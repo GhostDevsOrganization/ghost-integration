@@ -1,0 +1,52 @@
+{
+  "name": "portal-defi",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@kaspa/wallet": "^1.4.26",
+    "@walletconnect/client": "^1.8.0",
+    "@walletconnect/qrcode-modal": "^1.8.0",
+    "@walletconnect/sign-client": "^2.19.2",
+    "assert": "^2.1.0",
+    "autoprefixer": "^10.4.14",
+    "axios": "^1.8.4",
+    "buffer": "^6.0.3",
+    "cors": "^2.8.5",
+    "crypto-browserify": "^3.12.1",
+    "https-browserify": "^1.0.0",
+    "lucide-react": "^0.264.0",
+    "os-browserify": "^0.3.0",
+    "postcss": "^8.4.27",
+    "process": "^0.11.10",
+    "qrcode.react": "^4.2.0",
+    "react": "^18.2.0",
+    "react-app-polyfill": "^3.0.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.5.0",
+    "react-scripts": "5.0.1",
+    "recharts": "^2.15.2",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "tailwindcss": "^3.3.3",
+    "url": "^0.11.4"
+  },
+  "scripts": {
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:4001"
+}
