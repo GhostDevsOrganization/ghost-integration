@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; // Import Link
 import { ArrowRight, Twitter, Github, Send } from 'lucide-react';
 import { RadarPortal } from './RadarPortal';
+import RoadmapSection from './RoadmapSection'; // Import RoadmapSection
 
 // Enhanced Footer component
 const EnhancedFooter = () => {
@@ -219,7 +220,10 @@ export default function KaspaLandingPage() {
               to={feature.route}
               className="px-4 py-2 md:px-6 md:py-3 rounded-md font-semibold text-sm md:text-base transition-colors duration-300 text-gray-300 border border-transparent hover:border-green-400 hover:text-green-400"
             >
-              {feature.title}
+              {feature.title}{" "}
+              {(feature.title === "Multi-Wallet Support" || feature.title === "Advanced Analytics") && (
+                <span className="ml-1 text-xs text-green-500">(Coming Soon)</span>
+              )}
             </Link>
           ))}
         </div>
@@ -300,6 +304,9 @@ export default function KaspaLandingPage() {
 
       </section>
 
+      {/* Add RoadmapSection here */}
+      <RoadmapSection />
+
       {/* Enhanced Footer */}
       <EnhancedFooter />
 
@@ -309,52 +316,52 @@ export default function KaspaLandingPage() {
           0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
           100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0; }
         }
-        
+
         @keyframes floatFractals {
           0%, 100% { transform: translate(0, 0); }
           25% { transform: translate(15px, 15px); }
           50% { transform: translate(20px, -10px); }
           75% { transform: translate(-10px, 20px); }
         }
-        
+
         @keyframes pulse {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.7; }
         }
-        
+
         @keyframes spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
-        
+
         @keyframes ping {
           0% { transform: scale(1); opacity: 0.8; }
           75%, 100% { transform: scale(1.8); opacity: 0; }
         }
-        
+
         @keyframes pulseOpacity {
           0%, 100% { opacity: 0.4; }
           50% { opacity: 0.8; }
         }
-        
+
         @keyframes counter-effect {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        
+
         /* Grid background for footer */
         .grid-bg {
-          background-image: 
+          background-image:
             linear-gradient(to right, rgba(74, 222, 128, 0.1) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(74, 222, 128, 0.1) 1px, transparent 1px);
           background-size: 30px 30px;
         }
-        
+
         /* Particle animation */
         .particle {
           animation: float 60s infinite linear;
         }
-        
+
         @keyframes float {
           0% { transform: translate(0, 0); }
           25% { transform: translate(10px, 10px); }
@@ -362,7 +369,7 @@ export default function KaspaLandingPage() {
           75% { transform: translate(10px, -10px); }
           100% { transform: translate(0, 0); }
         }
-        
+
         /* Optimize transitions for performance */
         .transition-all {
           will-change: transform, opacity;

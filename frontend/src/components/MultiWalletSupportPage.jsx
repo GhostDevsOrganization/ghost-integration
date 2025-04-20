@@ -7,8 +7,8 @@ const MultiWalletSupportPage = () => {
 
     const features = [
         {
-            title: "Unified Portfolio View",
-            description: "See the total value and distribution of your assets across all connected wallets in one place.",
+            title: "Unified Cross-Chain View",
+            description: "See the total value and distribution of your assets across all connected wallets and supported chains in one place.",
             icon: (
                 <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 3H3V10H10V3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -19,29 +19,19 @@ const MultiWalletSupportPage = () => {
             )
         },
         {
-            title: "Simplified Transaction Tracking",
-            description: "Monitor incoming and outgoing transactions for all your wallets without switching interfaces.",
+            title: "Seamless Cross-Chain Operations",
+            description: "Initiate swaps and manage assets across different chains directly from the integrated multi-wallet dashboard.",
             icon: (
                 <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 3V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M17 8L12 3L7 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M19 21H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M4 12H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M17 8L21 12L17 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M7 8L3 12L7 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
             )
         },
         {
-            title: "Streamlined Operations",
-            description: "Initiate swaps, sends, and other supported operations directly from the integrated multi-wallet dashboard.",
-            icon: (
-                <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 4H3C1.89543 4 1 4.89543 1 6V18C1 19.1046 1.89543 20 3 20H21C22.1046 20 23 19.1046 23 18V6C23 4.89543 22.1046 4 21 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M1 10H23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-            )
-        },
-        {
-            title: "Enhanced Security",
-            description: "Connect your wallets using secure and widely supported methods, maintaining control of your private keys.",
+            title: "Enhanced Security & Control",
+            description: "Connect your wallets using secure and widely supported methods, maintaining full control of your private keys at all times.",
             icon: (
                 <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 11H5C3.89543 11 3 11.8954 3 13V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V13C21 11.8954 20.1046 11 19 11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -50,8 +40,19 @@ const MultiWalletSupportPage = () => {
             )
         },
         {
-            title: "Broad Compatibility",
-            description: "Support for a growing list of popular cryptocurrency wallets.",
+            title: "Kasware Integration (Current)",
+            description: "We currently support seamless integration with the Kasware wallet, providing a direct connection to the Kaspa network.",
+            icon: (
+                <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M9.09998 8.00001L14.9 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M14.9 8L9.09998 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            )
+        },
+        {
+            title: "Expanded Wallet Support (Coming Soon)",
+            description: "We are actively working to integrate support for a growing list of popular cryptocurrency wallets to enhance cross-chain capabilities.",
             icon: (
                 <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M16 4H8V20H16V4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -121,8 +122,7 @@ const MultiWalletSupportPage = () => {
                 </h1>
                 <div className="w-20 h-1 bg-gradient-to-r from-green-500 to-green-300 mx-auto mb-6"></div>
                 <p className="text-xl text-gray-300 max-w-3xl mx-auto px-4">
-                    Effortlessly connect and manage all your cryptocurrency wallets from a single, secure interface within the Kaspa Portal.
-                    Our multi-wallet support feature provides a unified view of your diverse crypto holdings across various networks.
+                    Kasportal's multi-wallet support is a core component of our Phase 1 roadmap, enabling a unified view and management of your assets across different chains. Connect your wallets securely to interact with our growing suite of DeFi simulations and future native protocols.
                 </p>
             </header>
 
@@ -140,7 +140,7 @@ const MultiWalletSupportPage = () => {
                                 {features.map((feature, index) => (
                                     <div
                                         key={index}
-                                        className={`p-4 rounded-lg cursor-pointer transition-all duration-300 
+                                        className={`p-4 rounded-lg cursor-pointer transition-all duration-300
                               ${activeFeature === index
                                                 ? 'bg-green-500/10 border border-green-500/30'
                                                 : 'hover:bg-black/50'}`}
@@ -190,7 +190,7 @@ const MultiWalletSupportPage = () => {
                         </div>
 
                         <div className="mt-8 text-center text-gray-400 text-sm">
-                            More wallets being added regularly - your favorite wallet not listed? Let us know!
+                            We currently support Kasware wallet integration. More wallets are being added regularly as part of our roadmap!
                         </div>
                     </div>
                 </section>
@@ -208,8 +208,8 @@ const MultiWalletSupportPage = () => {
                                         <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold mb-2">1. Connect</h3>
-                                <p className="text-gray-300">Choose which wallets to connect using our secure connection protocols</p>
+                                <h3 className="text-xl font-bold mb-2">1. Connect Securely</h3>
+                                <p className="text-gray-300">Connect your Kasware wallet (and more coming soon) using secure, non-custodial methods.</p>
                             </div>
 
                             <div className="flex flex-col items-center text-center">
@@ -221,8 +221,8 @@ const MultiWalletSupportPage = () => {
                                         <path d="M18 7L12 4L6 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold mb-2">2. View</h3>
-                                <p className="text-gray-300">See all your combined assets and activities in a unified dashboard</p>
+                                <h3 className="text-xl font-bold mb-2">2. View & Simulate</h3>
+                                <p className="text-gray-300">See your combined assets and interact with DeFi simulations using your connected wallets.</p>
                             </div>
 
                             <div className="flex flex-col items-center text-center">
@@ -232,8 +232,8 @@ const MultiWalletSupportPage = () => {
                                         <path d="M17 8L21 12L17 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold mb-2">3. Manage</h3>
-                                <p className="text-gray-300">Perform operations across multiple wallets without switching interfaces</p>
+                                <h3 className="text-xl font-bold mb-2">3. Prepare for Native DeFi</h3>
+                                <p className="text-gray-300">Your connected wallets will be ready for seamless interaction with native Kaspa DeFi when smart contracts are available.</p>
                             </div>
                         </div>
                     </div>
@@ -245,13 +245,13 @@ const MultiWalletSupportPage = () => {
                         href="#"
                         className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-md hover:from-green-400 hover:to-green-500 transition-all duration-300 shadow-lg shadow-green-500/20"
                     >
-                        Connect Your First Wallet
+                        Connect Your Kasware Wallet
                         <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                     </a>
                     <p className="text-gray-400 mt-4">
-                        Managing multiple wallets has never been easier
+                        Start managing your Kaspa assets and prepare for the future of DeFi
                     </p>
                 </div>
             </main>
