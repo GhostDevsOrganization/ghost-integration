@@ -13,6 +13,8 @@ import AdvancedAnalyticsPage from './components/AdvancedAnalyticsPage'; // Impor
 import CrossChainCompatibilityPage from './components/CrossChainCompatibilityPage'; // Import CrossChainCompatibilityPage
 import { ThemeProvider } from './context/ThemeContext'; // Import ThemeProvider
 import BlackPortfolioChart from './components/BlackPortfolioChart';
+import MobileResponsiveWrapper from './components/MobileResponsiveWrapper'; // Import MobileResponsiveWrapper
+import './mobile-enhancements.js'; // Import mobile enhancements script
 
 // Debug logging setup
 function enableMobileDebugging() {
@@ -96,7 +98,9 @@ function renderApp() {
   root.render(
     <React.StrictMode>
       <BrowserRouter> {/* BrowserRouter wraps the App */}
-        <App />
+        <MobileResponsiveWrapper>
+          <App />
+        </MobileResponsiveWrapper>
       </BrowserRouter>
     </React.StrictMode>
   );

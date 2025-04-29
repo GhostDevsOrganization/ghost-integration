@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; // Import Link
-import { ArrowRight, Twitter, Github, Send } from 'lucide-react';
-import { RadarPortal } from './RadarPortal';
+import { ArrowRight, Twitter, Github, Send, BarChart2, Shield, Layers, RefreshCw } from 'lucide-react';
+import { EnhancedRadarPortal as RadarPortal } from './EnhancedRadarPortal'; // Import the enhanced version
 import RoadmapSection from './RoadmapSection'; // Import RoadmapSection
 
 // Enhanced Footer component
@@ -27,7 +27,6 @@ const EnhancedFooter = () => {
         <nav className="flex flex-wrap justify-center gap-8" aria-label="Footer navigation">
           <a href="#features" className="hover:text-green-400 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-green-400 after:transition-all hover:after:w-full">Features</a>
           <a href="#roadmap" className="hover:text-green-400 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-green-400 after:transition-all hover:after:w-full">Roadmap</a>
-          <a href="#stats" className="hover:text-green-400 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-green-400 after:transition-all hover:after:w-full">Statistics</a>
           <a href="https://kaspa.org" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-green-400 after:transition-all hover:after:w-full">Kaspa.org</a>
         </nav>
 
@@ -56,6 +55,213 @@ const EnhancedFooter = () => {
   );
 };
 
+// Feature Card Component
+const FeatureCard = ({ icon, title, description, comingSoon }) => {
+  return (
+    <div className="relative group overflow-hidden rounded-xl bg-gradient-to-b from-green-900/20 to-black border border-green-400/10 p-6 transition-all duration-300 hover:border-green-400/30 hover:shadow-lg hover:shadow-green-400/5">
+      <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-green-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      
+      {/* Decorative lines */}
+      <div className="absolute top-0 left-0 h-px w-0 bg-gradient-to-r from-green-400 to-transparent group-hover:w-full transition-all duration-700"></div>
+      <div className="absolute bottom-0 right-0 h-px w-0 bg-gradient-to-l from-green-400 to-transparent group-hover:w-full transition-all duration-700"></div>
+      
+      <div className="mb-4 text-green-400 p-3 bg-green-400/10 rounded-lg inline-block">{icon}</div>
+      <h3 className="text-xl font-bold mb-2 text-white group-hover:text-green-400 transition-colors duration-300">
+        {title} {comingSoon && <span className="ml-2 text-xs text-green-500">(Coming Soon)</span>}
+      </h3>
+      <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">{description}</p>
+    </div>
+  );
+};
+
+// Token Swapping Section Component
+const TokenSwappingSection = () => {
+  const steps = [
+    { number: 1, text: "Initiate Swap" },
+    { number: 2, text: "Provide Destination Address" },
+    { number: 3, text: "Receive Deposit Address" },
+    { number: 4, text: "Send Funds" },
+    { number: 5, text: "Exchange Processed" },
+    { number: 6, text: "Receive Swapped Tokens" }
+  ];
+
+  const benefits = [
+    { title: "Speed & Efficiency", description: "Fast transactions with automatic rate calculations" },
+    { title: "Security", description: "No need to create accounts on external exchanges" },
+    { title: "Simplicity", description: "User-friendly interface without complex order books" },
+    { title: "Variety", description: "Access to numerous cryptocurrencies across multiple networks" }
+  ];
+
+  return (
+    <section className="py-24 px-4 bg-black">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Token Swapping</h2>
+        <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
+          Seamlessly swap between a wide range of cryptocurrencies directly within the Kaspa Portal. Our integration with a leading swapping service allows you to exchange assets across different blockchain networks quickly and securely.
+        </p>
+
+        {/* How It Works */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold mb-8 text-center text-white">How It Works</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {steps.map((step) => (
+              <div
+                key={step.number}
+                className="w-full sm:w-40 p-4 rounded-lg border border-green-400/20 bg-black/80 backdrop-blur-sm text-center"
+                style={{ minHeight: '100px' }} // Ensure consistent height on mobile
+              >
+                <div className="w-10 h-10 rounded-full bg-green-400/20 flex items-center justify-center mx-auto mb-3">
+                  <span className="text-green-400 font-bold">{step.number}</span>
+                </div>
+                <p className="text-gray-300">{step.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Benefits */}
+        <div className="mb-12">
+          <h3 className="text-2xl font-bold mb-8 text-center text-white">Features & Benefits</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((benefit, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-lg border border-green-400/20 bg-black/80 backdrop-blur-sm"
+              >
+                <h4 className="text-xl font-bold mb-2 text-green-400">{benefit.title}</h4>
+                <p className="text-gray-400">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center">
+          <button className="px-8 py-3 rounded-md bg-green-500 hover:bg-green-400 text-white font-semibold transition-colors duration-300">
+            Try Token Swapping
+          </button>
+          <p className="mt-2 text-gray-400">Experience the easiest way to exchange cryptocurrencies on Kasportal</p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Multi-Wallet Support Section Component
+const MultiWalletSection = () => {
+  const keyBenefits = [
+    "Unified Cross-Chain View",
+    "Seamless Cross-Chain Operations",
+    "Enhanced Security & Control",
+    "Kasware Integration (Current)",
+    "Expanded Wallet Support (Coming Soon)"
+  ];
+
+  const supportedWallets = [
+    { emoji: "💼", name: "Kasware" },
+    { emoji: "🦊", name: "Metamask" },
+    { emoji: "💰", name: "Kaspium" },
+    { emoji: "☀️", name: "Raydium" },
+    { emoji: "🔒", name: "Hardware Wallets" },
+    { emoji: "⏳", name: "More Coming Soon" }
+  ];
+
+  const howItWorks = [
+    {
+      title: "1. Connect Securely",
+      description: "Connect your Kasware wallet (and more coming soon) using secure, non-custodial methods."
+    },
+    {
+      title: "2. View & Simulate",
+      description: "See your combined assets and interact with DeFi simulations using your connected wallets."
+    },
+    {
+      title: "3. Prepare for Native DeFi",
+      description: "Your connected wallets will be ready for seamless interaction with native Kaspa DeFi when smart contracts are available."
+    }
+  ];
+
+  return (
+    <section className="py-24 px-4 bg-black">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Multi-Wallet Support</h2>
+        <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
+          Kasportal's multi-wallet support is a core component of our Phase 1 roadmap, enabling a unified view and management of your assets across different chains. Connect your wallets securely to interact with our growing suite of DeFi simulations and future native protocols.
+        </p>
+
+        {/* Key Benefits */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold mb-8 text-center text-white">Key Benefits</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {keyBenefits.map((benefit, index) => (
+              <div
+                key={index}
+                className="p-4 rounded-lg border border-green-400/20 bg-black/80 backdrop-blur-sm text-center"
+              >
+                <p className="text-green-400 font-bold">{benefit}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Unified Cross-Chain View */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold mb-8 text-center text-white">Unified Cross-Chain View</h3>
+          <div className="bg-green-900/10 rounded-xl p-8 border border-green-400/20">
+            <p className="text-gray-300 text-center">
+              See the total value and distribution of your assets across all connected wallets and supported chains in one place.
+            </p>
+          </div>
+        </div>
+
+        {/* Supported Wallets */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold mb-8 text-center text-white">Supported Wallets</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            {supportedWallets.map((wallet, index) => (
+              <div
+                key={index}
+                className="p-4 sm:p-6 rounded-lg border border-green-400/20 bg-black/80 backdrop-blur-sm text-center"
+              >
+                <div className="text-3xl sm:text-4xl mb-2">{wallet.emoji}</div>
+                <p className="text-white font-medium text-sm sm:text-base">{wallet.name}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-gray-400 mt-6">
+            We currently support Kasware wallet integration. More wallets are being added regularly as part of our roadmap!
+          </p>
+        </div>
+
+        {/* How It Works */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold mb-8 text-center text-white">How It Works</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {howItWorks.map((step, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-lg border border-green-400/20 bg-black/80 backdrop-blur-sm"
+              >
+                <h4 className="text-xl font-bold mb-4 text-green-400">{step.title}</h4>
+                <p className="text-gray-400">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center">
+          <button className="px-8 py-3 rounded-md bg-green-500 hover:bg-green-400 text-white font-semibold transition-colors duration-300">
+            Connect Your Kasware Wallet
+          </button>
+          <p className="mt-2 text-gray-400">Start managing your Kaspa assets and prepare for the future of DeFi</p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Main Landing Page Component
 export default function KaspaLandingPage() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
@@ -67,12 +273,34 @@ export default function KaspaLandingPage() {
   const [portalIntensity, setPortalIntensity] = useState(0);
   const particlesRef = useRef([]);
 
-  // Define features with their routes
+  // Define features with their routes and enhanced descriptions
   const features = [
-    { title: "Token Swapping", route: "/features/token-swapping" },
-    { title: "Multi-Wallet Support", route: "/features/multi-wallet-support" },
-    { title: "Advanced Analytics", route: "/features/advanced-analytics" },
-    { title: "Cross-Chain Compatibility", route: "/features/cross-chain-compatibility" }
+    { 
+      title: "Token Swapping", 
+      route: "/features/token-swapping",
+      description: "Fast, secure token swaps with minimal slippage and optimal routing across liquidity pools.",
+      icon: <RefreshCw size={24} />
+    },
+    { 
+      title: "Multi-Wallet Support", 
+      route: "/features/multi-wallet-support",
+      description: "Connect and manage multiple wallets simultaneously for seamless asset management.",
+      icon: <Layers size={24} />,
+      comingSoon: true
+    },
+    { 
+      title: "Advanced Analytics", 
+      route: "/features/advanced-analytics",
+      description: "Real-time data visualization and insights for informed trading decisions.",
+      icon: <BarChart2 size={24} />,
+      comingSoon: true
+    },
+    { 
+      title: "Cross-Chain Compatibility", 
+      route: "/features/cross-chain-compatibility",
+      description: "Seamless transactions across multiple blockchains with enhanced security and low fees.",
+      icon: <Shield size={24} />
+    }
   ];
 
   const [faqOpen, setFaqOpen] = useState(false);
@@ -205,6 +433,9 @@ export default function KaspaLandingPage() {
 
       {/* Navbar - Enhanced with glass effect */}
       <nav className="sticky top-0 z-50 flex flex-col items-center bg-black/80 px-6 py-4 backdrop-blur-md border-b border-green-400/10 md:flex-row md:justify-between">
+        {/* This will be added by MobileResponsiveWrapper */}
+        {/* <MobileMenuButton /> */}
+
         <div className="flex items-center mb-4 md:mb-0">
           <span className="text-2xl font-bold relative group">
             <span className="text-green-400 group-hover:text-green-300 transition-colors duration-300">Kas</span>
@@ -212,28 +443,42 @@ export default function KaspaLandingPage() {
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 group-hover:w-full transition-all duration-500"></span>
           </span>
         </div>
-        {/* Tab Navigation */}
-        <div className="flex justify-center space-x-4 md:space-x-6 mb-4 md:mb-0">
+
+        {/* Mobile-friendly navigation links */}
+        <div className="nav-links flex justify-center space-x-4 md:space-x-6 mb-4 md:mb-0">
+          <Link to="/" className="px-4 py-2 md:px-6 md:py-3 rounded-md font-semibold text-sm md:text-base transition-colors duration-300 text-gray-300 border border-transparent hover:border-green-400 hover:text-green-400">
+            Home
+          </Link>
+          <button
+            onClick={handleEnterPortal}
+            className="px-4 py-2 md:px-6 md:py-3 rounded-md font-semibold text-sm md:text-base transition-colors duration-300 text-gray-300 border border-transparent hover:border-green-400 hover:text-green-400"
+          >
+            Enter Portal
+          </button>
+          {/* Only show the first feature on mobile, all on desktop */}
           {features.map((feature, index) => (
-            <Link
-              key={index}
-              to={feature.route}
-              className="px-4 py-2 md:px-6 md:py-3 rounded-md font-semibold text-sm md:text-base transition-colors duration-300 text-gray-300 border border-transparent hover:border-green-400 hover:text-green-400"
-            >
-              {feature.title}{" "}
-              {(feature.title === "Multi-Wallet Support" || feature.title === "Advanced Analytics") && (
-                <span className="ml-1 text-xs text-green-500">(Coming Soon)</span>
-              )}
-            </Link>
+            (window.innerWidth > 768 || index === 0) && (
+              <Link
+                key={index}
+                to={feature.route}
+                className="px-4 py-2 md:px-6 md:py-3 rounded-md font-semibold text-sm md:text-base transition-colors duration-300 text-gray-300 border border-transparent hover:border-green-400 hover:text-green-400"
+              >
+                {feature.title}{" "}
+                {(feature.title === "Multi-Wallet Support" || feature.title === "Advanced Analytics") && (
+                  <span className="ml-1 text-xs text-green-500">(Coming Soon)</span>
+                )}
+              </Link>
+            )
           ))}
         </div>
+
         <div className="flex space-x-4 items-center">
           <button
             onClick={handleEnterPortal}
             className="relative overflow-hidden rounded-md bg-gradient-to-r from-green-500 to-green-600 px-5 py-2.5 font-semibold text-white transition-all duration-300 hover:from-green-400 hover:to-green-500 hover:shadow-lg hover:shadow-green-400/20 group"
           >
             <span className="relative z-10 flex items-center">
-              Enter Portal
+              Connect Wallet
               <ArrowRight size={18} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
             </span>
             <span className="absolute bottom-0 left-0 h-1 w-0 bg-green-300 group-hover:w-full transition-all duration-500"></span>
@@ -301,10 +546,37 @@ export default function KaspaLandingPage() {
           <h1 className="text-4xl font-bold text-green-400">Kasportal</h1>
           <p className="text-lg text-white/80 mt-2">Unlock the Speed of Kaspa.</p>
         </div>
-
       </section>
 
-      {/* Add RoadmapSection here */}
+      {/* Enterprise Features Section */}
+      <section id="features" className="py-24 px-4 bg-black">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Enterprise-Grade Features</h2>
+          <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
+            Built for scale with advanced features that power the next generation of blockchain applications.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature, index) => (
+              <FeatureCard 
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+                comingSoon={feature.comingSoon}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Token Swapping Section */}
+      <TokenSwappingSection />
+
+      {/* Multi-Wallet Support Section */}
+      <MultiWalletSection />
+
+      {/* Roadmap Section */}
       <RoadmapSection />
 
       {/* Enhanced Footer */}

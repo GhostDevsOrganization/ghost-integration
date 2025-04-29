@@ -1,0 +1,458 @@
+/* Enhanced Mobile Responsiveness for Kasportal */
+
+:root {
+  --kaspa-green: #0ce183;
+  --kaspa-dark: #0a0e14;
+  --kaspa-light-dark: #14171f;
+}
+
+/* Global responsive adjustments */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%; /* Prevent text size adjustment on orientation change */
+}
+
+body.landing-page-active {
+  background-color: var(--kaspa-dark);
+  color: white;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(12, 225, 131, 0.03) 0%, transparent 25%),
+    radial-gradient(circle at 90% 80%, rgba(12, 225, 131, 0.03) 0%, transparent 25%);
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px; /* Base font size */
+}
+
+/* Enhanced responsive navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(10, 14, 20, 0.95); /* Improved opacity for better text contrast */
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.25rem; /* Slightly smaller on mobile */
+  color: white;
+}
+
+/* Mobile menu button */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem; /* Reduced gap for better spacing */
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+  font-size: 0.9rem; /* Slightly smaller text for mobile */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Responsive heroes and sections */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 1rem; /* Reduced padding on mobile */
+  position: relative;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 2.5rem; /* Base size - will scale down on mobile */
+  margin-bottom: 1rem;
+  max-width: 100%; /* Full width on mobile */
+  padding: 0 1rem;
+}
+
+.hero p {
+  font-size: 1rem;
+  opacity: 0.8;
+  max-width: 100%;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  padding: 0 1rem;
+}
+
+/* Responsive stats container */
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.stat-card {
+  background-color: var(--kaspa-light-dark);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  text-align: center;
+  flex: 1 1 200px; /* Flex grow/shrink with min width */
+  border: 1px solid rgba(12, 225, 131, 0.1);
+  color: white;
+  margin-bottom: 1rem;
+  min-width: 140px; /* Minimum width for small screens */
+}
+
+/* Enhanced feature cards */
+.features {
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.feature-card {
+  background-color: var(--kaspa-light-dark);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  height: 100%; /* Ensure equal heights */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+}
+
+/* Enhanced button styling */
+.join-btn,
+button[class*="connect"],
+button[class*="wallet"] {
+  background: linear-gradient(90deg, var(--kaspa-green), #06a25c);
+  border: none;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 140px; /* Minimum width for touch targets */
+  touch-action: manipulation; /* Optimize for touch */
+}
+
+.join-btn:hover,
+button[class*="connect"]:hover,
+button[class*="wallet"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(12, 225, 131, 0.25);
+}
+
+/* Responsive timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  padding: 0 1rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px; /* Consistent left alignment on mobile */
+  width: 2px;
+  background-color: rgba(12, 225, 131, 0.3);
+  transform: none;
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  position: relative;
+  padding-left: 50px; /* Space for timeline dot */
+}
+
+.timeline-content {
+  width: 100%;
+  background-color: var(--kaspa-light-dark);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(12, 225, 131, 0.1);
+  position: relative;
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: -30px; /* Consistent dot position */
+  width: 16px;
+  height: 16px;
+  background-color: var(--kaspa-green);
+  border-radius: 50%;
+  transform: none;
+  z-index: 1;
+}
+
+/* Footer improvements */
+.footer {
+  padding: 2rem 1rem;
+  background-color: var(--kaspa-light-dark);
+  display: flex;
+  flex-direction: column; /* Stack on mobile by default */
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.footer-links,
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Enhanced animations with reduced motion preference support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Enhanced radar portal and animations */
+.radar-portal {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+/* Additional mobile breakpoints for finer control */
+@media (max-width: 1024px) {
+  .hero h1 {
+    font-size: 2.25rem;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobile menu styles */
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: var(--kaspa-dark);
+    padding: 1rem;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(12, 225, 131, 0.1);
+  }
+
+  .nav-links.active {
+    display: flex; /* Show when active */
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .radar-portal {
+    width: 250px;
+    height: 250px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.8rem;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+
+  .stat-card {
+    flex-basis: 100%;
+  }
+
+  .radar-portal {
+    width: 200px;
+    height: 200px;
+  }
+
+  .join-btn,
+  button[class*="connect"],
+  button[class*="wallet"] {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .timeline-content {
+    padding: 1rem;
+  }
+
+  .timeline-content::before {
+    width: 12px;
+    height: 12px;
+    left: -26px;
+  }
+}
+
+/* Fixes for Tokenswapping and MultiWallet sections */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .grid-cols-1,
+  .md\\:grid-cols-2,
+  .md\\:grid-cols-3,
+  .lg\\:grid-cols-4,
+  .lg\\:grid-cols-5,
+  .sm\\:grid-cols-2,
+  .sm\\:grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-cols-2,
+  .sm\\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .md\\:flex-row {
+    flex-direction: column;
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  .p-6, .p-8, .p-4 {
+    padding: 1rem;
+  }
+
+  .mt-12, .mt-20, .mb-20, .mb-16, .py-24 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .text-3xl, .text-4xl, .md\\:text-4xl {
+    font-size: 1.75rem;
+  }
+
+  .text-xl, .text-2xl {
+    font-size: 1.25rem;
+  }
+}
+
+/* Fix for EnhancedFooter */
+@media (max-width: 768px) {
+  .md\\:flex-row {
+    flex-direction: column;
+  }
+
+  .md\\:justify-between {
+    justify-content: center;
+  }
+
+  .space-y-8 {
+    margin-bottom: 2rem;
+  }
+
+  .md\\:space-y-0 > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .justify-center {
+    justify-content: center;
+  }
+}
+
+/* Adjustments for specific components */
+@media (max-width: 480px) {
+  .steps-container, .benefits-container {
+    grid-template-columns: 1fr;
+  }
+
+  .step-item, .benefit-item {
+    width: 100%;
+  }
+}
