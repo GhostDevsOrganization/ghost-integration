@@ -1,393 +1,196 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart3, ArrowUpRight, ArrowDownRight, Zap, PiggyBank, TrendingUp } from 'lucide-react';
+import {
+  BarChart3,
+  ArrowUpRight,
+  ArrowDownRight,
+  RefreshCw,
+  ChevronsUp,
+  ChevronsDown
+} from 'lucide-react';
+import BlackPortfolioChart from './BlackPortfolioChart';
+import { useTheme } from '../context/ThemeContext';
+import KasportalLogo from './KasportalLogo';
 
-const AnalyticsPanel = ({ kasPrice = 0.062, portfolioData, assetDistribution }) => {
-  const [activeTab, setActiveTab] = useState('overview');
+const AnalyticsPanel = ({
+  walletData,
+  onClose,
+  mini = false
+}) => {
+  const { isDark } = useTheme();
   const [loading, setLoading] = useState(true);
+  const [portfolioData, setPortfolioData] = useState([]);
+  const [kasPrice, setKasPrice] = useState(0.068);
+  const [portfolioValue, setPortfolioValue] = useState(0);
+  const [portfolioChange, setPortfolioChange] = useState(0);
 
-  // Use provided data or defaults (removed default data)
-  const chartData = portfolioData || [];
-  const distributionData = assetDistribution || [];
-
-  // Simulate loading
+  // Generate sample data for demonstration
   useEffect(() => {
+    // Simulate loading
     const timer = setTimeout(() => {
+      const data = generateSampleData();
+      setPortfolioData(data);
+
+      // Calculate total value and change
+      if (data && data.length > 0) {
+        const lastEntry = data[data.length - 1];
+        setPortfolioValue(lastEntry.value * kasPrice);
+
+        const firstEntry = data[0];
+        const percentChange = ((lastEntry.value - firstEntry.value) / firstEntry.value) * 100;
+        setPortfolioChange(percentChange);
+      }
+
       setLoading(false);
-    }, 800);
+    }, 1000);
+
     return () => clearTimeout(timer);
   }, []);
 
-  // Calculate portfolio metrics
-  const currentValue = chartData.length > 0 ? chartData[chartData.length - 1]?.value || 0 : 0;
-  const previousValue = chartData.length > 1 ? chartData[chartData.length - 2]?.value || 0 : 0;
-  const changePercent = previousValue ? ((currentValue - previousValue) / previousValue) * 100 : 0;
-  const isPositive = changePercent >= 0;
+  const generateSampleData = () => {
+    const data = [];
+    const endDate = new Date();
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - 30);
+
+    let currentValue = 21500;
+    let currentDate = new Date(startDate);
+
+    while (currentDate <= endDate) {
+      const change = currentValue * (Math.random() * 0.08 - 0.03);
+      currentValue += change;
+
+      if (currentValue < 100) currentValue = 100;
+
+      data.push({
+        date: currentDate.toISOString(),
+        value: currentValue,
+        usdValue: currentValue * kasPrice
+      });
+
+      const nextDate = new Date(currentDate);
+      nextDate.setDate(nextDate.getDate() + 1);
+      currentDate = nextDate;
+    }
+
+    return data;
+  };
+
+  // Quick stats to display
+  const quickStats = [
+    {
+      label: "Total KAS",
+      value: portfolioData.length > 0 ? portfolioData[portfolioData.length - 1].value.toFixed(2) : "0",
+      icon: <BarChart3 size={16} />,
+      change: "+5.2%",
+      changeUp: true
+    },
+    {
+      label: "Portfolio Value",
+      value: `$${portfolioValue.toFixed(2)}`,
+      icon: <RefreshCw size={16} />,
+      change: `${portfolioChange >= 0 ? '+' : ''}${portfolioChange.toFixed(2)}%`,
+      changeUp: portfolioChange >= 0
+    }
+  ];
 
   if (loading) {
     return (
-      <div className="h-full flex items-center justify-center">
+      <div className="p-4 rounded-lg border transition-colors duration-300 flex flex-col items-center justify-center min-h-[200px]"
+        style={{ backgroundColor: 'var(--ks-surface)', borderColor: 'var(--ks-border)', color: 'var(--ks-text-primary)' }}>
         <div className="animate-pulse flex flex-col items-center">
-          <BarChart3 size={32} className="text-green-500 mb-4" />
-          <span className="text-green-400">Loading analytics...</span>
+          <BarChart3 className="mb-2" style={{ color: 'var(--ks-primary)' }} />
+          <p style={{ color: 'var(--ks-secondary)' }}>Loading analytics...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="h-full flex flex-col text-white">
-      {/* Header with title */}
-      <div className="pb-6 text-center">
-        <h1 className="text-3xl font-bold mb-2">
-          <span className="bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">Portfolio Analytics</span>
-        </h1>
-        <div className="w-16 h-1 bg-gradient-to-r from-green-500 to-green-300 mx-auto mb-4"></div>
+    <div className="rounded-lg border transition-colors duration-300"
+      style={{ backgroundColor: 'var(--ks-surface)', borderColor: 'var(--ks-border)', color: 'var(--ks-text-primary)' }}>
+      {/* Header */}
+      <div className="p-4 flex justify-between items-center border-b transition-colors duration-300"
+        style={{ borderColor: 'var(--ks-border)' }}>
+        <div className="flex items-center">
+          <div className="w-5 h-5 mr-2 rounded-full flex items-center justify-center"
+            style={{ backgroundColor: 'var(--ks-primary)', opacity: 0.2 }}>
+            <BarChart3 size={12} style={{ color: 'var(--ks-primary)' }} />
+          </div>
+          <span className="font-semibold" style={{ color: 'var(--ks-primary)' }}>PORTFOLIO ANALYTICS</span>
+        </div>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="px-2 py-0.5 rounded text-xs hover:opacity-80 transition-colors"
+            style={{ backgroundColor: 'var(--ks-primary)', color: 'white' }}
+          >
+            Close
+          </button>
+        )}
       </div>
 
-      {/* Tabs navigation */}
-      <div className="flex justify-center border-b border-green-500/20 mb-6">
-        <button
-          className={`px-6 py-3 font-medium ${activeTab === 'overview' ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-400 hover:text-gray-300'}`}
-          onClick={() => setActiveTab('overview')}
-        >
-          Overview
-        </button>
-        <button
-          className={`px-6 py-3 font-medium ${activeTab === 'performance' ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-400 hover:text-gray-300'}`}
-          onClick={() => setActiveTab('performance')}
-        >
-          Performance
-        </button>
-        <button
-          className={`px-6 py-3 font-medium ${activeTab === 'assets' ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-400 hover:text-gray-300'}`}
-          onClick={() => setActiveTab('assets')}
-        >
-          Assets
-        </button>
-      </div>
-
-      {/* Tab content */}
-      <div className="flex-1 overflow-y-auto">
-        {/* Overview Tab */}
-        {activeTab === 'overview' && (
-          <div className="space-y-6">
-            {/* Portfolio Summary */}
-            <div className="bg-black/50 border border-green-500/20 rounded-lg p-6">
-              <h2 className="text-xl font-bold mb-4">Portfolio Summary</h2>
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-sm text-gray-400">Total Value</div>
-                  <div className="text-2xl font-bold">${(currentValue / 100).toFixed(2)}</div>
-                  <div className={`flex items-center text-sm ${isPositive ? 'text-green-400' : 'text-red-400'}`}>
-                    {isPositive ? <ArrowUpRight size={16} className="mr-1" /> : <ArrowDownRight size={16} className="mr-1" />}
-                    {changePercent.toFixed(2)}% {isPositive ? 'increase' : 'decrease'}
-                  </div>
-                </div>
-                <div className="h-20 w-32 relative">
-                  {/* Mini chart - stylized trend line (using placeholder) */}
-                  <svg className="w-full h-full" viewBox="0 0 100 40">
-                    <defs>
-                      <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="rgba(16, 185, 129, 0.5)" />
-                        <stop offset="100%" stopColor="rgba(16, 185, 129, 0)" />
-                      </linearGradient>
-                    </defs>
-                    {/* Placeholder trend line */}
-                    <path
-                      d="M0,35 L20,30 L40,32 L60,25 L80,15 L100,10"
-                      fill="none"
-                      stroke="#10b981"
-                      strokeWidth="2"
-                    />
-                    <path
-                      d="M0,35 L20,30 L40,32 L60,25 L80,15 L100,10 L100,40 L0,40 Z"
-                      fill="url(#chartGradient)"
-                    />
-                  </svg>
-                </div>
+      {/* Content */}
+      <div className="p-4">
+        {/* Quick Stats */}
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          {quickStats.map((stat, index) => (
+            <div key={index} className="p-3 rounded border transition-colors duration-300"
+              style={{ borderColor: 'var(--ks-border)', backgroundColor: 'rgba(106, 66, 244, 0.03)' }}>
+              <div className="flex items-center mb-1">
+                <div className="mr-2" style={{ color: 'var(--ks-secondary)' }}>{stat.icon}</div>
+                <span className="text-xs" style={{ color: 'var(--ks-text-secondary)' }}>{stat.label}</span>
               </div>
-              <div className="grid grid-cols-3 gap-4 mt-6">
-                <div className="p-3 bg-black/30 rounded-lg">
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-400">Current KAS</span>
-                    <Zap size={16} className="text-green-400" />
-                  </div>
-                  {/* Display actual KAS balance if available, otherwise placeholder */}
-                  <div className="mt-1 font-medium">{portfolioData && portfolioData.length > 0 ? (portfolioData[portfolioData.length - 1].kasBalance / 100000000).toFixed(0) : 'N/A'}</div>
-                </div>
-                <div className="p-3 bg-black/30 rounded-lg">
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-400">KAS Price</span>
-                    <TrendingUp size={16} className="text-green-400" />
-                  </div>
-                  <div className="mt-1 font-medium">${kasPrice.toFixed(4)}</div>
-                </div>
-                <div className="p-3 bg-black/30 rounded-lg">
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-400">24h Change</span>
-                    {/* Placeholder for 24h change */}
-                    <span className={`text-sm text-gray-400`}>N/A</span>
-                  </div>
-                  {/* Display actual KAS value if available, otherwise placeholder */}
-                  <div className="mt-1 font-medium">{portfolioData && portfolioData.length > 0 ? '$' + ((portfolioData[portfolioData.length - 1].kasBalance / 100000000) * kasPrice).toFixed(2) : 'N/A'}</div>
-                </div>
+              <div className="text-lg font-bold" style={{ color: 'var(--ks-text-primary)' }}>{stat.value}</div>
+              <div className="flex items-center text-xs"
+                style={{ color: stat.changeUp ? 'rgb(52, 211, 153)' : 'rgb(239, 68, 68)' }}>
+                {stat.changeUp ? <ChevronsUp size={12} /> : <ChevronsDown size={12} />}
+                {stat.change}
               </div>
             </div>
+          ))}
+        </div>
 
-            {/* Quick Stats */}
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-black/50 border border-green-500/20 rounded-lg p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-medium">Performance</h3>
-                  <PiggyBank size={20} className="text-green-400" />
-                </div>
-                {/* Removed simulated performance data */}
-                <div className="text-center text-gray-400 text-sm">
-                  Performance data not available.
-                </div>
-              </div>
+        {/* Chart */}
+        <div className="mb-4">
+          <h3 className="text-sm font-medium mb-2" style={{ color: 'var(--ks-text-primary)' }}>Portfolio Performance</h3>
+          <BlackPortfolioChart data={portfolioData} kasPrice={kasPrice} mini={mini} />
+        </div>
 
-              <div className="bg-black/50 border border-green-500/20 rounded-lg p-6">
-                <h3 className="font-medium mb-4">Asset Allocation</h3>
-                <div className="space-y-3">
-                  {/* Use actual distribution data if available, otherwise show placeholder */}
-                  {distributionData.length > 0 ? (
-                    distributionData.slice(0, 3).map((asset, index) => (
-                      <div key={index}>
-                        <div className="flex justify-between text-sm mb-1">
-                          <span>{asset.name}</span>
-                          <span>{asset.percentage}%</span>
-                        </div>
-                        <div className="w-full h-1.5 bg-gray-700 rounded-full overflow-hidden">
-                          <div className={`h-full rounded-full ${asset.color}`} style={{ width: `${asset.percentage}%` }}></div>
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="text-center text-gray-400 text-sm">
-                      Asset distribution data not available.
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Performance Tab */}
-        {activeTab === 'performance' && (
-          <div className="space-y-6">
-            {/* Portfolio Chart */}
-            <div className="bg-black/50 border border-green-500/20 rounded-lg p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">Performance History</h2>
-                <div className="flex space-x-2">
-                  <button className="bg-green-500/10 text-green-400 px-3 py-1 rounded text-sm">1M</button>
-                  <button className="bg-green-500/20 text-green-400 px-3 py-1 rounded text-sm">6M</button>
-                  <button className="bg-green-500/10 text-green-400 px-3 py-1 rounded text-sm">1Y</button>
-                </div>
-              </div>
-
-              {/* Chart area (using placeholder if no data) */}
-              <div className="h-64 relative">
-                {chartData.length > 1 ? (
-                  <div className="absolute inset-0">
-                    {/* Horizontal grid lines */}
-                    {[...Array(5)].map((_, i) => (
-                      <div key={i} className="absolute w-full h-px bg-green-500/10" style={{ top: `${i * 25}%` }}></div>
-                    ))}
-
-                    {/* Chart visualization */}
-                    <svg className="w-full h-full">
-                      <defs>
-                        <linearGradient id="chartFillGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" stopColor="rgba(16, 185, 129, 0.5)" />
-                          <stop offset="100%" stopColor="rgba(16, 185, 129, 0)" />
-                        </linearGradient>
-                      </defs>
-
-                      {/* Line chart path (using actual data) */}
-                      <path
-                        d={`M0,${240 - (chartData[0].value / 20000 * 224)} ` + chartData.slice(1).map((point, i) => {
-                          const x = (i + 1) * (600 / (chartData.length - 1));
-                          const y = 240 - (point.value / 20000 * 224);
-                          return `L${x},${y}`;
-                        }).join(' ')}
-                        fill="none"
-                        stroke="#10b981"
-                        strokeWidth="2"
-                      />
-
-                      {/* Area fill (using actual data) */}
-                      <path
-                        d={`M0,${240 - (chartData[0].value / 20000 * 224)} ` + chartData.slice(1).map((point, i) => {
-                          const x = (i + 1) * (600 / (chartData.length - 1));
-                          const y = 240 - (point.value / 20000 * 224);
-                          return `L${x},${y}`;
-                        }).join(' ') + ` L600,240 L0,240 Z`}
-                        fill="url(#chartFillGradient)"
-                      />
-
-                      {/* Data points */}
-                      {chartData.map((point, i) => {
-                        const x = i * (600 / (chartData.length - 1));
-                        const y = 240 - (point.value / 20000 * 224);
-                        return (
-                          <circle
-                            key={i}
-                            cx={x}
-                            cy={y}
-                            r="4"
-                            fill="#10b981"
-                            stroke="#000"
-                            strokeWidth="2"
-                          />
-                        );
-                      })}
-                    </svg>
-
-                    {/* X-axis labels */}
-                    <div className="absolute bottom-0 left-0 right-0 flex justify-between text-xs text-gray-400">
-                      {chartData.map((point, i) => (
-                        <span key={i}>{point.date}</span>
-                      ))}
-                    </div>
+        {/* Asset Breakdown */}
+        {!mini && (
+          <div>
+            <h3 className="text-sm font-medium mb-2" style={{ color: 'var(--ks-text-primary)' }}>Asset Breakdown</h3>
+            <div className="space-y-2">
+              {[
+                { name: "KAS", amount: "21,563.42", value: "$1,466.31", percent: "58%", color: "rgba(106, 66, 244, 1)" },
+                { name: "ETH", amount: "0.42", value: "$842.00", percent: "30%", color: "rgba(75, 180, 222, 1)" },
+                { name: "USDC", amount: "350.00", value: "$350.00", percent: "12%", color: "rgba(114, 95, 218, 1)" }
+              ].map((asset, index) => (
+                <div key={index} className="flex items-center justify-between py-2 border-b last:border-b-0 transition-colors duration-300"
+                  style={{ borderColor: 'var(--ks-border)', opacity: 0.85 }}>
+                  <div className="flex items-center">
+                    <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: asset.color }}></div>
+                    <span style={{ color: 'var(--ks-text-primary)' }}>{asset.name}</span>
                   </div>
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">
-                    Not enough data to display chart.
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Removed Comparative table */}
-          </div>
-        )}
-
-        {/* Assets Tab */}
-        {activeTab === 'assets' && (
-          <div className="space-y-6">
-            {/* Asset Distribution */}
-            <div className="bg-black/50 border border-green-500/20 rounded-lg p-6">
-              <h2 className="text-xl font-bold mb-4">Asset Distribution</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Pie Chart (using actual data if available) */}
-                <div className="flex items-center justify-center">
-                  {distributionData.length > 0 ? (
-                    <div className="relative w-48 h-48">
-                      <svg className="w-full h-full" viewBox="0 0 100 100">
-                        {/* Calculate strokeDashoffset based on actual percentages */}
-                        {distributionData.map((asset, index, arr) => {
-                          const circumference = 2 * Math.PI * 40;
-                          const strokeDasharray = circumference;
-                          const percentage = asset.percentage;
-                          const strokeDashoffset = circumference - (percentage / 100) * circumference;
-                          const cumulativePercentage = arr.slice(0, index).reduce((sum, current) => sum + current.percentage, 0);
-                          const rotateAngle = (cumulativePercentage / 100) * 360 - 90; // Start from top (-90 deg)
-
-                          return (
-                            <circle
-                              key={index}
-                              cx="50"
-                              cy="50"
-                              r="40"
-                              fill="transparent"
-                              stroke={asset.color.replace('bg-', '#').replace('-500', '').replace('-400', '').replace('-300', '').replace('-200', '').replace('-100', '')} // Simple color conversion
-                              strokeWidth="20"
-                              strokeDasharray={strokeDasharray}
-                              strokeDashoffset={strokeDashoffset}
-                              transform={`rotate(${rotateAngle} 50 50)`}
-                            />
-                          );
-                        })}
-                        {/* Center circle */}
-                        <circle
-                          cx="50"
-                          cy="50"
-                          r="30"
-                          fill="#000"
-                        />
-                      </svg>
-
-                      {/* Percentage in center (displaying the largest slice's percentage) */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-green-400">
-                            {distributionData.length > 0 ? distributionData[0].percentage : 'N/A'}%
-                          </div>
-                          <div className="text-sm text-white">
-                            {distributionData.length > 0 ? distributionData[0].name : 'N/A'}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="relative w-48 h-48 flex items-center justify-center text-gray-400 text-sm">
-                      No distribution data.
-                    </div>
-                  )}
+                  <div className="text-xs" style={{ color: 'var(--ks-text-secondary)' }}>{asset.amount}</div>
+                  <div className="text-xs" style={{ color: 'var(--ks-text-secondary)' }}>{asset.value}</div>
+                  <div className="text-xs font-medium" style={{ color: 'var(--ks-text-primary)' }}>{asset.percent}</div>
                 </div>
-
-                {/* Asset List */}
-                <div>
-                  <div className="mb-4 text-sm text-gray-400">Your asset allocation</div>
-                  {distributionData.length > 0 ? (
-                    distributionData.map((asset, index) => (
-                      <div key={index} className="mb-4">
-                        <div className="flex justify-between mb-1">
-                          <span className="font-medium">{asset.name}</span>
-                          <span>{asset.percentage}%</span>
-                        </div>
-                        <div className="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
-                          <div className={`h-full rounded-full ${asset.color}`} style={{ width: `${asset.percentage}%` }}></div>
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="text-center text-gray-400 text-sm">
-                      Asset distribution data not available.
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Token Holdings (using placeholder data) */}
-            <div className="bg-black/50 border border-green-500/20 rounded-lg p-6">
-              <h2 className="text-xl font-bold mb-4">Token Holdings</h2>
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-green-500/20">
-                      <th className="text-left py-3 px-4 text-gray-400 font-medium">Token</th>
-                      <th className="text-right py-3 px-4 text-gray-400 font-medium">Amount</th>
-                      <th className="text-right py-3 px-4 text-gray-400 font-medium">Value (USD)</th>
-                      <th className="text-right py-3 px-4 text-gray-400 font-medium">24h Change</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* Placeholder rows */}
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-gray-400" colSpan="4">
-                        Token holding data not available.
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              ))}
             </div>
           </div>
         )}
       </div>
 
-      {/* Export buttons */}
-      <div className="mt-6 flex justify-center space-x-4 pb-4">
-        <button className="bg-green-500/10 hover:bg-green-500/20 text-green-400 px-4 py-2 rounded text-sm">
-          Export Data as CSV
-        </button>
-        <button className="bg-green-500/10 hover:bg-green-500/20 text-green-400 px-4 py-2 rounded text-sm">
-          Generate PDF Report
+      {/* Footer */}
+      <div className="p-3 border-t text-xs transition-colors duration-300 flex justify-between items-center"
+        style={{ borderColor: 'var(--ks-border)', color: 'var(--ks-text-secondary)' }}>
+        <div className="flex items-center">
+          <KasportalLogo size="small" withText={false} className="mr-2" />
+          <span>Powered by KasPortal Analytics</span>
+        </div>
+        <button className="underline hover:no-underline" style={{ color: 'var(--ks-primary)' }}>
+          View Full Dashboard
         </button>
       </div>
     </div>
