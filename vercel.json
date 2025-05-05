@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "rootDirectory": ".",
     "builds": [
         {
             "src": "frontend/package.json",
@@ -10,7 +9,7 @@
             }
         },
         {
-            "src": "backend/dist/main.js",
+            "src": "backend/package.json",
             "use": "@vercel/node",
             "config": {
                 "includeFiles": "dist/**"
@@ -27,7 +26,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "frontend/build/index.html"
+            "dest": "frontend/build/$1"
         }
     ],
     "outputDirectory": "frontend/build"
