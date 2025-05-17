@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import SwapComponent from './SwapComponent';
 
 const TokenSwappingPage = () => {
     const [activeStep, setActiveStep] = useState(0);
@@ -124,6 +125,16 @@ const TokenSwappingPage = () => {
 
             {/* Main content */}
             <main className="max-w-6xl mx-auto px-4 pb-20">
+                {/* Swap Component Integration */}
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold mb-8 text-center">Universal Token Swapping (Available Now)</h2>
+                    <div className="rounded-lg overflow-hidden">
+                        <div className="bg-black border border-green-500/20 p-0 rounded-lg">
+                            <SwapComponent onClose={() => { }} />
+                        </div>
+                    </div>
+                </section>
+
                 {/* Interactive process visualization */}
                 <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8 mb-12">
                     <h2 className="text-2xl font-bold mb-8 text-center">How It Works</h2>

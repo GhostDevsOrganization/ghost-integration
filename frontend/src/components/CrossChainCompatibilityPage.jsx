@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import ChangeNowWidget from './ChangeNowWidget';
 
 const CrossChainCompatibilityPage = () => {
     const [activeFuture, setActiveFuture] = useState(0);
@@ -126,409 +127,345 @@ const CrossChainCompatibilityPage = () => {
                 </p>
             </header>
 
-            {/* Main content */}
-            <main className="max-w-6xl mx-auto px-4 pb-20">
-                {/* Universal Swap Feature Section - NEW */}
-                <section className="mb-16">
-                    <h2 className="text-2xl font-bold mb-8 text-center">Universal Token Swapping (Available Now)</h2>
+            {/* Cross-Chain Swap Integration - NEW */}
+            <section className="mb-16">
+                <h2 className="text-2xl font-bold mb-8 text-center">Universal Cross-Chain Swapping (Available Now)</h2>
 
-                    <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                            <div>
-                                <h3 className="text-xl font-bold text-green-400 mb-4">Swap Any Cryptocurrency</h3>
-                                <p className="text-gray-300 mb-6">
-                                    Kasportal's advanced cross-chain technology is already implemented and fully functional, allowing you to exchange virtually any cryptocurrency for any other cryptocurrency, regardless of their native blockchains. Our integration handles all the complex cross-chain operations behind the scenes.
-                                </p>
+                <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-8">
+                        <div>
+                            <h3 className="text-xl font-bold text-green-400 mb-4">Swap Any Cryptocurrency</h3>
+                            <p className="text-gray-300 mb-6">
+                                Kasportal's advanced cross-chain technology is already implemented and fully functional, allowing you to exchange virtually any cryptocurrency for any other cryptocurrency, regardless of their native blockchains. Our integration handles all the complex cross-chain operations behind the scenes.
+                            </p>
 
-                                <div className="space-y-4">
-                                    <div className="flex items-start">
-                                        <div className="mt-1 mr-3 text-green-400">
-                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <p className="text-white">Already Supporting 900+ cryptocurrencies across all major blockchain networks</p>
-                                        </div>
+                            <div className="space-y-4">
+                                <div className="flex items-start">
+                                    <div className="mt-1 mr-3 text-green-400">
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
                                     </div>
-
-                                    <div className="flex items-start">
-                                        <div className="mt-1 mr-3 text-green-400">
-                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <p className="text-white">Automated best-rate finding ensures you get the most favorable exchange rates</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start">
-                                        <div className="mt-1 mr-3 text-green-400">
-                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <p className="text-white">No account creation required - connect your wallet and start swapping immediately</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start">
-                                        <div className="mt-1 mr-3 text-green-400">
-                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <p className="text-white">Minimal fees compared to traditional exchanges</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Swap Visualization */}
-                            <div className="relative rounded-xl overflow-hidden bg-black/50 border border-green-500/20 p-6 flex items-center justify-center">
-                                <div className="w-full max-w-md">
-                                    {/* Swap Interface Mockup */}
-                                    <div className="space-y-6">
-                                        <div>
-                                            <div className="flex justify-between mb-1">
-                                                <span className="text-sm text-gray-400">You send</span>
-                                                <span className="text-sm text-gray-400">Balance: 0.42 BTC</span>
-                                            </div>
-                                            <div className="flex bg-black/60 border border-green-500/30 rounded-lg p-3">
-                                                <input
-                                                    type="text"
-                                                    className="bg-transparent text-white flex-grow outline-none"
-                                                    placeholder="0.0"
-                                                    defaultValue="0.05"
-                                                />
-                                                <div className="flex items-center space-x-2">
-                                                    <div className="w-6 h-6 bg-orange-500 rounded-full"></div>
-                                                    <span className="font-medium">BTC</span>
-                                                    <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Swap icon */}
-                                        <div className="flex justify-center">
-                                            <div className="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center cursor-pointer hover:bg-green-500/30 transition-colors">
-                                                <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
-                                                </svg>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div className="flex justify-between mb-1">
-                                                <span className="text-sm text-gray-400">You receive (estimated)</span>
-                                                <span className="text-sm text-gray-400">1 BTC ≈ 64,280 KAS</span>
-                                            </div>
-                                            <div className="flex bg-black/60 border border-green-500/30 rounded-lg p-3">
-                                                <input
-                                                    type="text"
-                                                    className="bg-transparent text-white flex-grow outline-none"
-                                                    placeholder="0.0"
-                                                    defaultValue="3,214"
-                                                    readOnly
-                                                />
-                                                <div className="flex items-center space-x-2">
-                                                    <div className="w-6 h-6 bg-green-500 rounded-full"></div>
-                                                    <span className="font-medium">KAS</span>
-                                                    <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div className="flex justify-between text-sm text-gray-400 mb-1">
-                                                <span>Exchange Rate</span>
-                                                <span>1 BTC = 64,280 KAS</span>
-                                            </div>
-                                            <div className="flex justify-between text-sm text-gray-400 mb-1">
-                                                <span>Network Fee</span>
-                                                <span>0.0001 BTC</span>
-                                            </div>
-                                            <div className="flex justify-between text-sm text-gray-400">
-                                                <span>Estimated Arrival</span>
-                                                <span>~20 minutes</span>
-                                            </div>
-                                        </div>
-
-                                        <button className="w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-lg hover:from-green-400 hover:to-green-500 transition-colors">
-                                            Swap Now
-                                        </button>
+                                    <div>
+                                        <p className="text-white">Already Supporting 900+ cryptocurrencies across all major blockchain networks</p>
                                     </div>
                                 </div>
 
-                                {/* Animated Particles */}
-                                {[...Array(10)].map((_, i) => (
-                                    <div
-                                        key={`swap-particle-${i}`}
-                                        className="absolute rounded-full bg-green-400"
-                                        style={{
-                                            width: `${Math.random() * 4 + 2}px`,
-                                            height: `${Math.random() * 4 + 2}px`,
-                                            top: `${Math.random() * 100}%`,
-                                            left: `${Math.random() * 100}%`,
-                                            opacity: Math.random() * 0.7 + 0.3,
-                                            animation: `floatSwap ${Math.random() * 5 + 5}s infinite linear`
-                                        }}
-                                    ></div>
-                                ))}
+                                <div className="flex items-start">
+                                    <div className="mt-1 mr-3 text-green-400">
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p className="text-white">Automated best-rate finding ensures you get the most favorable exchange rates</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start">
+                                    <div className="mt-1 mr-3 text-green-400">
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p className="text-white">No account creation required - connect your wallet and start swapping immediately</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start">
+                                    <div className="mt-1 mr-3 text-green-400">
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p className="text-white">Minimal fees compared to traditional exchanges</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
 
-                {/* Digital Payment Integration Section - NEW */}
-                <section className="mb-16">
-                    <h2 className="text-2xl font-bold mb-8 text-center">Digital Payment Integration (Available Now)</h2>
+                        {/* Live Swap Widget */}
+                        <div className="relative rounded-xl overflow-hidden bg-black/50 border border-green-500/20 p-6 flex items-center justify-center">
+                            <ChangeNowWidget
+                                from="btc"
+                                to="kas"
+                                amount="0.1"
+                                darkMode={true}
+                                backgroundColor="000000"
+                                primaryColor="22C55E"
+                                height="400px"
+                                width="100%"
+                            />
 
-                    <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8">
-                        <p className="text-gray-300 mb-8 text-center max-w-3xl mx-auto">
-                            Kasportal already bridges traditional finance and cryptocurrencies through the crypto features of popular payment platforms. By using the crypto sections of apps like Venmo, Cash App, and PayPal, you can:
-                        </p>
-                        <div className="text-gray-300 mb-8 text-center max-w-3xl mx-auto">
-                            <ol className="list-decimal list-inside space-y-2">
-                                <li>Purchase crypto through these platforms</li>
-                                <li>Use our swap router to send your crypto to any blockchain</li>
-                                <li>Complete the entire process with just input and output addresses</li>
-                            </ol>
-                        </div>
-
-
-                        {/* Payment Method Selector */}
-                        <div className="flex flex-wrap justify-center gap-4 mb-8">
-                            {paymentMethods.map(method => (
-                                <button
-                                    key={method.id}
-                                    className={`px-6 py-3 rounded-lg transition-colors ${activePaymentMethod === method.id
-                                        ? 'bg-green-500/20 border border-green-500/50 text-white'
-                                        : 'bg-black/40 border border-green-500/20 text-gray-300 hover:bg-black/60'
-                                        }`}
-                                    onClick={() => setActivePaymentMethod(method.id)}
-                                >
-                                    {method.name}
-                                </button>
+                            {/* Animated Particles */}
+                            {[...Array(8)].map((_, i) => (
+                                <div
+                                    key={`swap-particle-${i}`}
+                                    className="absolute rounded-full bg-green-400"
+                                    style={{
+                                        width: `${Math.random() * 4 + 2}px`,
+                                        height: `${Math.random() * 4 + 2}px`,
+                                        top: `${Math.random() * 100}%`,
+                                        left: `${Math.random() * 100}%`,
+                                        opacity: Math.random() * 0.7 + 0.3,
+                                        animation: `floatSwap ${Math.random() * 5 + 5}s infinite linear`
+                                    }}
+                                ></div>
                             ))}
                         </div>
+                    </div>
 
-                        {/* Payment Method Details */}
+                    <p className="text-center text-gray-300">
+                        Experience cross-chain swapping right now - no additional setup required.
+                        Simply specify the cryptocurrencies you want to exchange and provide your wallet addresses.
+                    </p>
+                </div>
+            </section>
+
+
+            {/* Digital Payment Integration Section - NEW */}
+            <section className="mb-16">
+                <h2 className="text-2xl font-bold mb-8 text-center">Digital Payment Integration (Available Now)</h2>
+
+                <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8">
+                    <p className="text-gray-300 mb-8 text-center max-w-3xl mx-auto">
+                        Kasportal already bridges traditional finance and cryptocurrencies through the crypto features of popular payment platforms. By using the crypto sections of apps like Venmo, Cash App, and PayPal, you can:
+                    </p>
+                    <div className="text-gray-300 mb-8 text-center max-w-3xl mx-auto">
+                        <ol className="list-decimal list-inside space-y-2">
+                            <li>Purchase crypto through these platforms</li>
+                            <li>Use our swap router to send your crypto to any blockchain</li>
+                            <li>Complete the entire process with just input and output addresses</li>
+                        </ol>
+                    </div>
+
+
+                    {/* Payment Method Selector */}
+                    <div className="flex flex-wrap justify-center gap-4 mb-8">
                         {paymentMethods.map(method => (
-                            <div
+                            <button
                                 key={method.id}
-                                className={`transition-opacity duration-300 ${activePaymentMethod === method.id ? 'opacity-100' : 'opacity-0 hidden'
+                                className={`px-6 py-3 rounded-lg transition-colors ${activePaymentMethod === method.id
+                                    ? 'bg-green-500/20 border border-green-500/50 text-white'
+                                    : 'bg-black/40 border border-green-500/20 text-gray-300 hover:bg-black/60'
                                     }`}
+                                onClick={() => setActivePaymentMethod(method.id)}
                             >
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    {/* Method Information */}
-                                    <div>
-                                        <h3 className="text-xl font-bold text-green-400 mb-4">How It Works Today with {method.name}</h3>
-                                        <p className="text-gray-300 mb-6">{method.description}</p>
+                                {method.name}
+                            </button>
+                        ))}
+                    </div>
 
-                                        {/* Removed Benefits section as it's less about direct integration benefits */}
-                                    </div>
+                    {/* Payment Method Details */}
+                    {paymentMethods.map(method => (
+                        <div
+                            key={method.id}
+                            className={`transition-opacity duration-300 ${activePaymentMethod === method.id ? 'opacity-100' : 'opacity-0 hidden'
+                                }`}
+                        >
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                {/* Method Information */}
+                                <div>
+                                    <h3 className="text-xl font-bold text-green-400 mb-4">How It Works Today with {method.name}</h3>
+                                    <p className="text-gray-300 mb-6">{method.description}</p>
 
-                                    {/* Process Steps */}
-                                    <div className="bg-black/40 border border-green-500/20 rounded-lg p-6">
-                                        <h4 className="font-medium text-white mb-4">Steps</h4>
-                                        <div className="relative">
-                                            {/* Vertical line */}
-                                            <div className="absolute left-4 top-0 bottom-0 w-px bg-green-500/30"></div>
+                                    {/* Removed Benefits section as it's less about direct integration benefits */}
+                                </div>
 
-                                            {/* Steps */}
-                                            <div className="space-y-8">
-                                                {method.steps.map((step, index) => (
-                                                    <div key={index} className="relative flex items-start pl-12">
-                                                        <div className="absolute left-0 rounded-full w-8 h-8 bg-green-500/20 flex items-center justify-center border border-green-500/30">
-                                                            {index + 1}
-                                                        </div>
-                                                        <p>{step}</p>
+                                {/* Process Steps */}
+                                <div className="bg-black/40 border border-green-500/20 rounded-lg p-6">
+                                    <h4 className="font-medium text-white mb-4">Steps</h4>
+                                    <div className="relative">
+                                        {/* Vertical line */}
+                                        <div className="absolute left-4 top-0 bottom-0 w-px bg-green-500/30"></div>
+
+                                        {/* Steps */}
+                                        <div className="space-y-8">
+                                            {method.steps.map((step, index) => (
+                                                <div key={index} className="relative flex items-start pl-12">
+                                                    <div className="absolute left-0 rounded-full w-8 h-8 bg-green-500/20 flex items-center justify-center border border-green-500/30">
+                                                        {index + 1}
                                                     </div>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        <div className="mt-8 pt-6 border-t border-green-500/20">
-                                            <p className="text-gray-400 text-sm mb-4">
-                                                * This process utilizes the existing crypto features within the {method.name} app and Kasportal's universal swap. It is not a direct API integration with {method.name}'s payment system.
-                                            </p>
-                                            {/* Removed Connect button as it's not a direct connection */}
+                                                    <p>{step}</p>
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
+
+                                    <div className="mt-8 pt-6 border-t border-green-500/20">
+                                        <p className="text-gray-400 text-sm mb-4">
+                                            * This process utilizes the existing crypto features within the {method.name} app and Kasportal's universal swap. It is not a direct API integration with {method.name}'s payment system.
+                                        </p>
+                                        {/* Removed Connect button as it's not a direct connection */}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                    <p className="text-gray-300 mt-8 text-center max-w-3xl mx-auto">
+                        Our system enables true cross-chain functionality while utilizing familiar payment interfaces, making the process simple and accessible for everyone.
+                    </p>
+                </div>
+            </section>
+
+
+            {/* Current Network Compatibility Section - NEW */}
+            <section className="mb-16">
+                <h2 className="text-2xl font-bold mb-8 text-center">Current Network Compatibility</h2>
+
+                <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {currentNetworks.map((network, index) => (
+                            <div
+                                key={index}
+                                className="bg-black/60 border border-green-500/20 rounded-lg p-5 group hover:border-green-400/40 transition-all duration-300"
+                            >
+                                <h3 className="text-xl font-bold mb-2 text-white group-hover:text-green-300 transition-colors duration-300">{network.name}</h3>
+                                <div className="flex items-center">
+                                    <div className={`w-3 h-3 rounded-full mr-2 ${network.status === 'Fully Operational' ? 'bg-green-400' : ''}`}></div>
+                                    <span className="text-gray-400 text-sm">{network.status}</span>
                                 </div>
                             </div>
                         ))}
-                        <p className="text-gray-300 mt-8 text-center max-w-3xl mx-auto">
-                            Our system enables true cross-chain functionality while utilizing familiar payment interfaces, making the process simple and accessible for everyone.
-                        </p>
                     </div>
-                </section>
 
-
-                {/* Current Network Compatibility Section - NEW */}
-                <section className="mb-16">
-                    <h2 className="text-2xl font-bold mb-8 text-center">Current Network Compatibility</h2>
-
-                    <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {currentNetworks.map((network, index) => (
-                                <div
-                                    key={index}
-                                    className="bg-black/60 border border-green-500/20 rounded-lg p-5 group hover:border-green-400/40 transition-all duration-300"
-                                >
-                                    <h3 className="text-xl font-bold mb-2 text-white group-hover:text-green-300 transition-colors duration-300">{network.name}</h3>
-                                    <div className="flex items-center">
-                                        <div className={`w-3 h-3 rounded-full mr-2 ${network.status === 'Fully Operational' ? 'bg-green-400' : ''}`}></div>
-                                        <span className="text-gray-400 text-sm">{network.status}</span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="mt-6 text-gray-400 text-center text-sm">
-                            <p>Compatibility with these networks is currently facilitated through our integrated universal swap technology. Direct smart contract level bridging with Kaspa is a future development goal.</p>
-                        </div>
-
-                        {/* Visual showing all connected networks with "Connected" status indicators - Placeholder */}
-                        <div className="mt-8 text-center text-gray-500">
-                            [Visual showing all connected networks with "Connected" status indicators - Placeholder]
-                        </div>
+                    <div className="mt-6 text-gray-400 text-center text-sm">
+                        <p>Compatibility with these networks is currently facilitated through our integrated universal swap technology. Direct smart contract level bridging with Kaspa is a future development goal.</p>
                     </div>
-                </section>
 
-
-                {/* How Our Cross-Chain Technology Works Section - NEW */}
-                <section className="mb-16">
-                    <h2 className="text-2xl font-bold mb-8 text-center">How Our Cross-Chain Technology Works</h2>
-
-                    <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8">
-                        <p className="text-gray-300 mb-8 text-center max-w-3xl mx-auto">
-                            Our implemented cross-chain technology utilizes a sophisticated routing system to ensure seamless asset transfers:
-                        </p>
-                        <div className="text-gray-300 mb-8 text-center max-w-3xl mx-auto">
-                            <ol className="list-decimal list-inside space-y-2">
-                                <li>User initiates a cross-chain transaction in Kasportal</li>
-                                <li>Our router identifies the optimal path between chains</li>
-                                <li>Transaction processing happens behind the scenes</li>
-                                <li>Recipient receives the funds in their desired cryptocurrency</li>
-                            </ol>
-                        </div>
-                        <p className="text-gray-300 mt-8 text-center max-w-3xl mx-auto">
-                            This technology maintains the security and integrity of all connected blockchains while enabling true interoperability today.
-                        </p>
+                    {/* Visual showing all connected networks with "Connected" status indicators - Placeholder */}
+                    <div className="mt-8 text-center text-gray-500">
+                        [Visual showing all connected networks with "Connected" status indicators - Placeholder]
                     </div>
-                </section>
-
-
-                {/* Future Enhancements Section - NEW */}
-                <section className="mb-16">
-                    <h2 className="text-2xl font-bold mb-8 text-center">Future Enhancements</h2>
-
-                    <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8">
-                        <p className="text-gray-300 mb-8 text-center max-w-3xl mx-auto">
-                            While our cross-chain capabilities are already robust and functional, we're continuing to enhance the technology with:
-                        </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {/* Re-purposing the old futureFeatures data for this section */}
-                            <div className="text-center">
-                                <div className="text-green-400 mb-3">
-                                    <svg className="w-8 h-8 mx-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 7H5C3.89543 7 3 7.89543 3 9V18C3 19.1046 3.89543 20 5 20H19C20.1046 20 21 19.1046 21 18V9C21 7.89543 20.1046 7 19 7H16M15 4H9C8.44772 4 8 4.44772 8 5V7H16V5C16 4.44772 15.5523 4 15 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M12 12V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M9 14L12 17L15 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </div>
-                                <h3 className="font-bold text-white mb-2">Faster Transaction Processing</h3>
-                                <p className="text-gray-400 text-sm">Through optimized routing and integration improvements.</p>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-green-400 mb-3">
-                                    <svg className="w-8 h-8 mx-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7 16L3 12L7 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M17 8L21 12L17 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M3 12H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </div>
-                                <h3 className="font-bold text-white mb-2">Expanded Asset Support</h3>
-                                <p className="text-gray-400 text-sm">For emerging tokens and chains as they become available.</p>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-green-400 mb-3">
-                                    <svg className="w-8 h-8 mx-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 19C9 20.1046 7.65685 21 6 21C4.34315 21 3 20.1046 3 19C3 17.8954 4.34315 17 6 17C7.65685 17 9 17.8954 9 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M21 19C21 20.1046 19.6569 21 18 21C16.3431 21 15 20.1046 15 19C15 17.8954 16.3431 17 18 17C19.6569 17 21 17.8954 21 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M21 5C21 6.10457 19.6569 7 18 7C16.3431 7 15 6.10457 15 5C15 3.89543 16.3431 3 18 3C19.6569 3 21 3.89543 21 5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M9 5C9 6.10457 7.65685 7 6 7C4.34315 7 3 6.10457 3 5C3 3.89543 4.34315 3 6 3C7.65685 3 9 3.89543 9 5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M6 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M18 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M6 7L18 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M6 17L18 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </div>
-                                <h3 className="font-bold text-white mb-2">Lower Fees</h3>
-                                <p className="text-gray-400 text-sm">Through continued routing optimizations and partnerships.</p>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-green-400 mb-3">
-                                    <svg className="w-8 h-8 mx-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 2V6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M12 18V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M5.63623 5.63623L8.46482 8.46482" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M15.5355 15.5355L18.364 18.364" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M2 12H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M18 12H22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M5.63623 18.364L8.46482 15.5355" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M15.5355 8.46482L18.364 5.63623" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </div>
-                                <h3 className="font-bold text-white mb-2">Advanced Analytics</h3>
-                                <p className="text-gray-400 text-sm">For detailed insights into cross-chain transaction flows.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-
-                {/* Call to action */}
-                <div className="text-center mt-16">
-                    <div className="mb-6 text-gray-300">
-                        Ready to experience seamless cross-chain interactions?
-                    </div>
-                    <Link
-                        to="/portal" // Assuming /portal is the path to the swap interface
-                        className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-md hover:from-green-400 hover:to-green-500 transition-all duration-300 shadow-lg shadow-green-500/20"
-                    >
-                        Enter the Portal
-                        <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </Link>
                 </div>
-            </main>
+            </section>
+
+
+            {/* How Our Cross-Chain Technology Works Section - NEW */}
+            <section className="mb-16">
+                <h2 className="text-2xl font-bold mb-8 text-center">How Our Cross-Chain Technology Works</h2>
+
+                <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8">
+                    <p className="text-gray-300 mb-8 text-center max-w-3xl mx-auto">
+                        Our implemented cross-chain technology utilizes a sophisticated routing system to ensure seamless asset transfers:
+                    </p>
+                    <div className="text-gray-300 mb-8 text-center max-w-3xl mx-auto">
+                        <ol className="list-decimal list-inside space-y-2">
+                            <li>User initiates a cross-chain transaction in Kasportal</li>
+                            <li>Our router identifies the optimal path between chains</li>
+                            <li>Transaction processing happens behind the scenes</li>
+                            <li>Recipient receives the funds in their desired cryptocurrency</li>
+                        </ol>
+                    </div>
+                    <p className="text-gray-300 mt-8 text-center max-w-3xl mx-auto">
+                        This technology maintains the security and integrity of all connected blockchains while enabling true interoperability today.
+                    </p>
+                </div>
+            </section>
+
+
+            {/* Future Enhancements Section - NEW */}
+            <section className="mb-16">
+                <h2 className="text-2xl font-bold mb-8 text-center">Future Enhancements</h2>
+
+                <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8">
+                    <p className="text-gray-300 mb-8 text-center max-w-3xl mx-auto">
+                        While our cross-chain capabilities are already robust and functional, we're continuing to enhance the technology with:
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {/* Re-purposing the old futureFeatures data for this section */}
+                        <div className="text-center">
+                            <div className="text-green-400 mb-3">
+                                <svg className="w-8 h-8 mx-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 7H5C3.89543 7 3 7.89543 3 9V18C3 19.1046 3.89543 20 5 20H19C20.1046 20 21 19.1046 21 18V9C21 7.89543 20.1046 7 19 7H16M15 4H9C8.44772 4 8 4.44772 8 5V7H16V5C16 4.44772 15.5523 4 15 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M12 12V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M9 14L12 17L15 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                            <h3 className="font-bold text-white mb-2">Faster Transaction Processing</h3>
+                            <p className="text-gray-400 text-sm">Through optimized routing and integration improvements.</p>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-green-400 mb-3">
+                                <svg className="w-8 h-8 mx-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 16L3 12L7 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M17 8L21 12L17 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M3 12H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                            <h3 className="font-bold text-white mb-2">Expanded Asset Support</h3>
+                            <p className="text-gray-400 text-sm">For emerging tokens and chains as they become available.</p>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-green-400 mb-3">
+                                <svg className="w-8 h-8 mx-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 19C9 20.1046 7.65685 21 6 21C4.34315 21 3 20.1046 3 19C3 17.8954 4.34315 17 6 17C7.65685 17 9 17.8954 9 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M21 19C21 20.1046 19.6569 21 18 21C16.3431 21 15 20.1046 15 19C15 17.8954 16.3431 17 18 17C19.6569 17 21 17.8954 21 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M21 5C21 6.10457 19.6569 7 18 7C16.3431 7 15 6.10457 15 5C15 3.89543 16.3431 3 18 3C19.6569 3 21 3.89543 21 5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M9 5C9 6.10457 7.65685 7 6 7C4.34315 7 3 6.10457 3 5C3 3.89543 4.34315 3 6 3C7.65685 3 9 3.89543 9 5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M6 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M18 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M6 7L18 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M6 17L18 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                            <h3 className="font-bold text-white mb-2">Lower Fees</h3>
+                            <p className="text-gray-400 text-sm">Through continued routing optimizations and partnerships.</p>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-green-400 mb-3">
+                                <svg className="w-8 h-8 mx-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2V6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M12 18V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M5.63623 5.63623L8.46482 8.46482" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M15.5355 15.5355L18.364 18.364" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M2 12H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M18 12H22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M5.63623 18.364L8.46482 15.5355" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M15.5355 8.46482L18.364 5.63623" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                            <h3 className="font-bold text-white mb-2">Advanced Analytics</h3>
+                            <p className="text-gray-400 text-sm">For detailed insights into cross-chain transaction flows.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            {/* Call to action */}
+            <div className="text-center mt-16 mb-16">
+                <div className="mb-6 text-gray-300">
+                    Ready to experience seamless cross-chain interactions?
+                </div>
+                <Link
+                    to="/portal" // Assuming /portal is the path to the swap interface
+                    className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-md hover:from-green-400 hover:to-green-500 transition-all duration-300 shadow-lg shadow-green-500/20"
+                >
+                    Enter the Portal
+                    <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </Link>
+            </div>
 
             {/* Custom animations */}
             <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translate(0, 0); }
-          25% { transform: translate(3px, 3px); }
-          50% { transform: translate(5px, -5px); }
-          75% { transform: translate(-3px, 5px); }
-        }
+                @keyframes float {
+                  0%, 100% { transform: translate(0, 0); }
+                  25% { transform: translate(3px, 3px); }
+                  50% { transform: translate(5px, -5px); }
+                  75% { transform: translate(-3px, 5px); }
+                }
 
-        @keyframes floatSwap {
-          0% { transform: translate(0, 0); }
-          50% { transform: translate(10px, -10px); }
-          100% { transform: translate(0, 0); }
-        }
-      `}</style>
+                @keyframes floatSwap {
+                  0% { transform: translate(0, 0); }
+                  50% { transform: translate(10px, -10px); }
+                  100% { transform: translate(0, 0); }
+                }
+            `}</style>
         </div>
     );
 };

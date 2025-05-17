@@ -8,33 +8,18 @@ const SwapComponent = ({ onClose }) => {
   const [prices, setPrices] = useState({ btc: 0, eth: 0, sol: 0, kas: 0 });
   const [loadingPrices, setLoadingPrices] = useState(true);
   const [priceError, setPriceError] = useState(null);
-  const [activeStep, setActiveStep] = useState(4); // Set to Exchange Processed step by default
 
-  const steps = [
-    {
-      title: "Initiate Swap",
-      description: "Select the cryptocurrencies you want to swap and specify the amount. The system will calculate the estimated amount you'll receive based on current exchange rates."
-    },
-    {
-      title: "Provide Address",
-      description: "Enter your destination wallet address where you want to receive the swapped tokens. Make sure this address is compatible with the cryptocurrency you're receiving."
-    },
-    {
-      title: "Receive Deposit Address",
-      description: "The system generates a unique deposit address for your source cryptocurrency. This address is specifically tied to your transaction and destination address."
-    },
-    {
-      title: "Send Funds",
-      description: "Transfer the exact amount of your source cryptocurrency to the provided deposit address. You can use the QR code for easy wallet scanning."
-    },
-    {
-      title: "Exchange Processed",
-      description: "The swapping service automatically exchanges your funds at the current market rate. This process typically takes 10-30 minutes depending on network confirmations."
-    },
-    {
-      title: "Receive Tokens",
-      description: "Once the exchange is complete, the swapped tokens are sent directly to the destination wallet address you provided. No further action is required."
-    }
+  const popularPairs = [
+    { from: 'eth', to: 'kas', label: 'ETH → KAS' },
+    { from: 'btc', to: 'kas', label: 'BTC → KAS' },
+    { from: 'usdc', to: 'kas', label: 'USDC → KAS' },
+    { from: 'btc', to: 'eth', label: 'BTC → ETH' },
+  ];
+
+  const marketStats = [
+    { coin: 'BTC', change: 2.4 },
+    { coin: 'ETH', change: -0.8 },
+    { coin: 'KAS', change: 1.2 },
   ];
 
   useEffect(() => {
@@ -84,19 +69,6 @@ const SwapComponent = ({ onClose }) => {
     return `$${price.toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 6 })}`;
   };
 
-  const popularPairs = [
-    { from: 'eth', to: 'kas', label: 'ETH → KAS' },
-    { from: 'btc', to: 'kas', label: 'BTC → KAS' },
-    { from: 'usdc', to: 'kas', label: 'USDC → KAS' },
-    { from: 'btc', to: 'eth', label: 'BTC → ETH' },
-  ];
-
-  const marketStats = [
-    { coin: 'BTC', change: 2.4 },
-    { coin: 'ETH', change: -0.8 },
-    { coin: 'KAS', change: 1.2 },
-  ];
-
   return (
     <div className="fixed inset-0 z-50 flex flex-col overflow-y-auto touch-pan-y">
       <div className="absolute inset-0 bg-black" />
@@ -116,7 +88,7 @@ const SwapComponent = ({ onClose }) => {
 
         <div className="px-4 text-center">
           <h2 className="text-3xl font-bold text-green-500 mb-4">
-            Exchange Crypto
+            Swap your crypto instantly
           </h2>
           <div className="flex flex-wrap justify-center gap-6 text-gray-400 text-sm mb-6 min-h-[20px]">
             {loadingPrices ? (
@@ -178,14 +150,14 @@ const SwapComponent = ({ onClose }) => {
           </div>
         </div>
 
-        <div className="px-4 flex-1 flex items-center justify-center mb-2">
+        <div className="px-4 flex-1 flex items-center justify-center mb-6">
           <div className="w-full max-w-4xl relative">
             <ChangeNowWidget
               from={selectedPair.from}
               to={selectedPair.to}
               amount="0.1"
-              darkMode
-              horizontal
+              darkMode={true}
+              horizontal={true}
               lang="en-US"
               backgroundColor="000000"
               primaryColor="22C55E"
@@ -195,60 +167,6 @@ const SwapComponent = ({ onClose }) => {
             <button className="absolute top-2 right-2 text-green-500 hover:text-green-400">
               <Info size={18} />
             </button>
-          </div>
-        </div>
-
-        {/* Simplified Swap Process Indicator */}
-        <div className="px-4 mb-4">
-          <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-4">
-            <h3 className="text-lg font-bold mb-4 text-center text-green-400">How Swapping Works</h3>
-
-            {/* Simple Progress Bar */}
-            <div className="relative flex items-center justify-between mb-4">
-              {steps.map((step, index) => (
-                <div
-                  key={index}
-                  className="relative z-10 flex flex-col items-center"
-                >
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center ${index < activeStep
-                    ? 'bg-green-600 text-white'
-                    : index === activeStep
-                      ? 'bg-green-500 text-black'
-                      : 'bg-gray-800 text-gray-400'
-                    }`}>
-                    {index < activeStep ? (
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    ) : (
-                      <span>{index + 1}</span>
-                    )}
-                  </div>
-                </div>
-              ))}
-
-              {/* Connecting line */}
-              <div className="absolute top-4 left-0 right-0 h-0.5 bg-gray-800 -z-0">
-                <div
-                  className="h-full bg-green-500"
-                  style={{ width: `${(activeStep / (steps.length - 1)) * 100}%` }}
-                ></div>
-              </div>
-            </div>
-
-            {/* Current Step Description */}
-            <div className="flex items-center justify-between">
-              <div className="text-gray-300">
-                <p>{steps[activeStep].description}</p>
-              </div>
-              <button
-                className="px-4 py-1 rounded bg-green-500 text-black text-sm hover:bg-green-400"
-                onClick={() => setActiveStep(prev => Math.min(steps.length - 1, prev + 1))}
-                disabled={activeStep === steps.length - 1}
-              >
-                Next
-              </button>
-            </div>
           </div>
         </div>
 

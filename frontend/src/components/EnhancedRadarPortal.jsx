@@ -162,7 +162,7 @@ export const EnhancedRadarPortal = ({ onEnterPortal, isActive, mousePosition }) 
       )}
 
       {/* Added CSS for animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes spin {
           from { transform: translate(-50%, -50%) rotate(0deg); }
           to { transform: translate(-50%, -50%) rotate(360deg); }

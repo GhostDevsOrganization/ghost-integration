@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; // Import Link
 import { ArrowRight, Twitter, Github, Send, BarChart2, Shield, Layers, RefreshCw } from 'lucide-react';
-import { EnhancedRadarPortal as RadarPortal } from './EnhancedRadarPortal'; // Import the enhanced version
-import RoadmapSection from './RoadmapSection'; // Import RoadmapSection
+import { EnhancedRadarPortal as RadarPortal } from './EnhancedRadarPortal';
+import RoadmapSection from './RoadmapSection';
+import TraditionalNav from './TraditionalNav';
 
 // Enhanced Footer component
 const EnhancedFooter = () => {
@@ -60,11 +61,11 @@ const FeatureCard = ({ icon, title, description, comingSoon }) => {
   return (
     <div className="relative group overflow-hidden rounded-xl bg-gradient-to-b from-green-900/20 to-black border border-green-400/10 p-6 transition-all duration-300 hover:border-green-400/30 hover:shadow-lg hover:shadow-green-400/5">
       <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-green-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-      
+
       {/* Decorative lines */}
       <div className="absolute top-0 left-0 h-px w-0 bg-gradient-to-r from-green-400 to-transparent group-hover:w-full transition-all duration-700"></div>
       <div className="absolute bottom-0 right-0 h-px w-0 bg-gradient-to-l from-green-400 to-transparent group-hover:w-full transition-all duration-700"></div>
-      
+
       <div className="mb-4 text-green-400 p-3 bg-green-400/10 rounded-lg inline-block">{icon}</div>
       <h3 className="text-xl font-bold mb-2 text-white group-hover:text-green-400 transition-colors duration-300">
         {title} {comingSoon && <span className="ml-2 text-xs text-green-500">(Coming Soon)</span>}
@@ -96,26 +97,227 @@ const TokenSwappingSection = () => {
     <section className="py-24 px-4 bg-black">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Token Swapping</h2>
-        <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center mb-10">
           Seamlessly swap between a wide range of cryptocurrencies directly within the Kaspa Portal. Our integration with a leading swapping service allows you to exchange assets across different blockchain networks quickly and securely.
         </p>
 
-        {/* How It Works */}
-        <div className="mb-20">
-          <h3 className="text-2xl font-bold mb-8 text-center text-white">How It Works</h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {steps.map((step) => (
-              <div
-                key={step.number}
-                className="w-full sm:w-40 p-4 rounded-lg border border-green-400/20 bg-black/80 backdrop-blur-sm text-center"
-                style={{ minHeight: '100px' }} // Ensure consistent height on mobile
-              >
-                <div className="w-10 h-10 rounded-full bg-green-400/20 flex items-center justify-center mx-auto mb-3">
-                  <span className="text-green-400 font-bold">{step.number}</span>
+        {/* Universal Token Swapping Feature */}
+        <div className="mb-16">
+          <div className="bg-black/30 backdrop-blur-sm border border-green-400/20 rounded-lg p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div>
+                <h3 className="text-xl font-bold text-green-400 mb-4">Swap Any Cryptocurrency</h3>
+                <p className="text-gray-300 mb-6">
+                  Kasportal's advanced cross-chain technology is already implemented and fully functional, allowing you to exchange virtually any cryptocurrency for any other cryptocurrency, regardless of their native blockchains. Our integration handles all the complex cross-chain operations behind the scenes.
+                </p>
+
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <div className="mt-1 mr-3 text-green-400">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-white">Supporting 900+ cryptocurrencies across all major blockchain networks</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="mt-1 mr-3 text-green-400">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-white">Automated best-rate finding ensures you get the most favorable exchange rates</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="mt-1 mr-3 text-green-400">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-white">No account creation required - connect your wallet and start swapping immediately</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="mt-1 mr-3 text-green-400">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-white">Minimal fees compared to traditional exchanges</p>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-gray-300">{step.text}</p>
               </div>
-            ))}
+
+              {/* Swap Visualization */}
+              <div className="relative rounded-xl overflow-hidden bg-black/50 border border-green-400/20 p-6 flex items-center justify-center">
+                <div className="w-full max-w-md">
+                  {/* Swap Interface Mockup */}
+                  <div className="space-y-6">
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-sm text-gray-400">You send</span>
+                        <span className="text-sm text-gray-400">Balance: 0.42 BTC</span>
+                      </div>
+                      <div className="flex bg-black/60 border border-green-400/30 rounded-lg p-3">
+                        <input
+                          type="text"
+                          className="bg-transparent text-white flex-grow outline-none"
+                          placeholder="0.0"
+                          defaultValue="0.05"
+                        />
+                        <div className="flex items-center space-x-2">
+                          <div className="w-6 h-6 bg-orange-500 rounded-full"></div>
+                          <span className="font-medium">BTC</span>
+                          <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Swap icon */}
+                    <div className="flex justify-center">
+                      <div className="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center cursor-pointer hover:bg-green-500/30 transition-colors">
+                        <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                        </svg>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-sm text-gray-400">You receive (estimated)</span>
+                        <span className="text-sm text-gray-400">1 BTC ≈ 64,280 KAS</span>
+                      </div>
+                      <div className="flex bg-black/60 border border-green-400/30 rounded-lg p-3">
+                        <input
+                          type="text"
+                          className="bg-transparent text-white flex-grow outline-none"
+                          placeholder="0.0"
+                          defaultValue="3,214"
+                          readOnly
+                        />
+                        <div className="flex items-center space-x-2">
+                          <div className="w-6 h-6 bg-green-500 rounded-full"></div>
+                          <span className="font-medium">KAS</span>
+                          <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-sm text-gray-400 mb-1">
+                        <span>Exchange Rate</span>
+                        <span>1 BTC = 64,280 KAS</span>
+                      </div>
+                      <div className="flex justify-between text-sm text-gray-400 mb-1">
+                        <span>Network Fee</span>
+                        <span>0.0001 BTC</span>
+                      </div>
+                      <div className="flex justify-between text-sm text-gray-400">
+                        <span>Estimated Arrival</span>
+                        <span>~20 minutes</span>
+                      </div>
+                    </div>
+
+                    <button className="w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-lg hover:from-green-400 hover:to-green-500 transition-colors">
+                      Swap Now
+                    </button>
+                  </div>
+                </div>
+
+                {/* Animated Particles */}
+                {[...Array(10)].map((_, i) => (
+                  <div
+                    key={`swap-particle-${i}`}
+                    className="absolute rounded-full bg-green-400"
+                    style={{
+                      width: `${Math.random() * 4 + 2}px`,
+                      height: `${Math.random() * 4 + 2}px`,
+                      top: `${Math.random() * 100}%`,
+                      left: `${Math.random() * 100}%`,
+                      opacity: Math.random() * 0.7 + 0.3,
+                      animation: `floatSwap ${Math.random() * 3 + 6}s linear infinite`
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* How It Works */}
+        <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8 mb-12">
+          <h2 className="text-2xl font-bold mb-8 text-center">How It Works</h2>
+          <div className="flex justify-between items-center mb-8 relative">
+            <div className="relative z-10 flex flex-col items-center cursor-pointer transition-all duration-300 opacity-100">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-300 bg-green-500 text-black">
+                <span>1</span>
+              </div>
+              <span className="text-xs text-center max-w-[80px] md:max-w-[120px] hidden md:block">Initiate Swap</span>
+            </div>
+            <div className="relative z-10 flex flex-col items-center cursor-pointer transition-all duration-300 opacity-40">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-300 bg-black border border-green-500/40 text-green-400">
+                <span>2</span>
+              </div>
+              <span className="text-xs text-center max-w-[80px] md:max-w-[120px] hidden md:block">Provide Destination Address</span>
+            </div>
+            <div className="relative z-10 flex flex-col items-center cursor-pointer transition-all duration-300 opacity-40">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-300 bg-black border border-green-500/40 text-green-400">
+                <span>3</span>
+              </div>
+              <span className="text-xs text-center max-w-[80px] md:max-w-[120px] hidden md:block">Receive Deposit Address</span>
+            </div>
+            <div className="relative z-10 flex flex-col items-center cursor-pointer transition-all duration-300 opacity-40">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-300 bg-black border border-green-500/40 text-green-400">
+                <span>4</span>
+              </div>
+              <span className="text-xs text-center max-w-[80px] md:max-w-[120px] hidden md:block">Send Funds</span>
+            </div>
+            <div className="relative z-10 flex flex-col items-center cursor-pointer transition-all duration-300 opacity-40">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-300 bg-black border border-green-500/40 text-green-400">
+                <span>5</span>
+              </div>
+              <span className="text-xs text-center max-w-[80px] md:max-w-[120px] hidden md:block">Exchange Processed</span>
+            </div>
+            <div className="relative z-10 flex flex-col items-center cursor-pointer transition-all duration-300 opacity-40">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-300 bg-black border border-green-500/40 text-green-400">
+                <span>6</span>
+              </div>
+              <span className="text-xs text-center max-w-[80px] md:max-w-[120px] hidden md:block">Receive Swapped Tokens</span>
+            </div>
+            <div className="absolute top-6 left-0 right-0 h-px bg-gradient-to-r from-green-500 to-green-500 transform -translate-y-1/2 -z-0">
+              <div className="h-full bg-green-400" style={{ width: '0%', transition: 'width 0.5s ease-in-out' }}></div>
+            </div>
+          </div>
+          <div className="bg-black/40 border border-green-500/20 rounded-lg p-6 transition-all duration-500">
+            <div className="flex items-center mb-4">
+              <div className="w-14 h-14 rounded-full bg-green-500/10 flex items-center justify-center mr-4 text-green-400">
+                <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10L3 14L7 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                  <path d="M17 14L21 10L17 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                  <path d="M3 14H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-green-400">Initiate Swap</h3>
+            </div>
+            <p className="text-gray-300">Select the cryptocurrencies you want to swap and enter the amount.</p>
+            <div className="flex justify-between mt-8">
+              <button className="px-4 py-2 rounded border border-green-500/40 text-sm opacity-50 cursor-not-allowed" disabled>Previous</button>
+              <button className="px-4 py-2 rounded bg-green-500 text-black text-sm hover:bg-green-400">Next</button>
+            </div>
           </div>
         </div>
 
@@ -137,9 +339,12 @@ const TokenSwappingSection = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <button className="px-8 py-3 rounded-md bg-green-500 hover:bg-green-400 text-white font-semibold transition-colors duration-300">
-            Try Token Swapping
-          </button>
+          <Link
+            to="/features/token-swapping"
+            className="px-8 py-3 rounded-md bg-green-500 hover:bg-green-400 text-white font-semibold transition-colors duration-300 inline-flex items-center justify-center gap-2"
+          >
+            Try Token Swapping <ArrowRight size={18} />
+          </Link>
           <p className="mt-2 text-gray-400">Experience the easiest way to exchange cryptocurrencies on Kasportal</p>
         </div>
       </div>
@@ -251,9 +456,12 @@ const MultiWalletSection = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <button className="px-8 py-3 rounded-md bg-green-500 hover:bg-green-400 text-white font-semibold transition-colors duration-300">
-            Connect Your Kasware Wallet
-          </button>
+          <Link
+            to="/features/multi-wallet-support"
+            className="px-8 py-3 rounded-md bg-green-500 hover:bg-green-400 text-white font-semibold transition-colors duration-300 inline-flex items-center justify-center gap-2"
+          >
+            Connect Your Kasware Wallet <ArrowRight size={18} />
+          </Link>
           <p className="mt-2 text-gray-400">Start managing your Kaspa assets and prepare for the future of DeFi</p>
         </div>
       </div>
@@ -271,37 +479,66 @@ export default function KaspaLandingPage() {
   const [portalActive, setPortalActive] = useState(false);
   const [portalPulse, setPortalPulse] = useState(false);
   const [portalIntensity, setPortalIntensity] = useState(0);
+  const [activeProtocol, setActiveProtocol] = useState('home');
+
+  // Map protocol keys to their corresponding route paths
+  const protocolToRoutePath = {
+    home: '/',
+    swap: '/features/token-swapping',
+    crosschain: '/features/cross-chain-compatibility',
+    wallet: '/features/multi-wallet-support',
+    analytics: '/features/advanced-analytics',
+    learn: '/learn'
+  };
+
+  const handleProtocolChange = (protocolKey) => {
+    setActiveProtocol(protocolKey);
+    // Navigate to corresponding route using the mapping
+    navigate(protocolToRoutePath[protocolKey] || '/');
+    // Scroll to top for better navigation experience
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   const particlesRef = useRef([]);
 
   // Define features with their routes and enhanced descriptions
   const features = [
-    { 
-      title: "Token Swapping", 
+    {
+      title: "Token Swapping",
       route: "/features/token-swapping",
       description: "Fast, secure token swaps with minimal slippage and optimal routing across liquidity pools.",
       icon: <RefreshCw size={24} />
     },
-    { 
-      title: "Multi-Wallet Support", 
+    {
+      title: "Multi-Wallet Support",
       route: "/features/multi-wallet-support",
       description: "Connect and manage multiple wallets simultaneously for seamless asset management.",
       icon: <Layers size={24} />,
       comingSoon: true
     },
-    { 
-      title: "Advanced Analytics", 
+    {
+      title: "Advanced Analytics",
       route: "/features/advanced-analytics",
       description: "Real-time data visualization and insights for informed trading decisions.",
       icon: <BarChart2 size={24} />,
       comingSoon: true
     },
-    { 
-      title: "Cross-Chain Compatibility", 
+    {
+      title: "Cross-Chain Compatibility",
       route: "/features/cross-chain-compatibility",
       description: "Seamless transactions across multiple blockchains with enhanced security and low fees.",
       icon: <Shield size={24} />
     }
   ];
+
+  // Navigation protocols structure
+  const protocols = {
+    home: { label: 'Home' },
+    swap: { label: 'Token Swapping' },
+    crosschain: { label: 'Cross-Chain' },
+    wallet: { label: 'Multi-Wallet' },
+    analytics: { label: 'Advanced Analytics' },
+    learn: { label: 'Learn' }
+  };
 
   const [faqOpen, setFaqOpen] = useState(false);
 
@@ -431,63 +668,15 @@ export default function KaspaLandingPage() {
         ))}
       </div>
 
-      {/* Navbar - Enhanced with glass effect */}
-      <nav className="sticky top-0 z-50 flex flex-col items-center bg-black/80 px-6 py-4 backdrop-blur-md border-b border-green-400/10 md:flex-row md:justify-between">
-        {/* This will be added by MobileResponsiveWrapper */}
-        {/* <MobileMenuButton /> */}
-
-        <div className="flex items-center mb-4 md:mb-0">
-          <span className="text-2xl font-bold relative group">
-            <span className="text-green-400 group-hover:text-green-300 transition-colors duration-300">Kas</span>
-            <span className="text-white group-hover:text-green-100 transition-colors duration-300">portal</span>
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 group-hover:w-full transition-all duration-500"></span>
-          </span>
-        </div>
-
-        {/* Mobile-friendly navigation links */}
-        <div className="nav-links flex justify-center space-x-4 md:space-x-6 mb-4 md:mb-0">
-          <Link to="/" className="px-4 py-2 md:px-6 md:py-3 rounded-md font-semibold text-sm md:text-base transition-colors duration-300 text-gray-300 border border-transparent hover:border-green-400 hover:text-green-400">
-            Home
-          </Link>
-          <button
-            onClick={handleEnterPortal}
-            className="px-4 py-2 md:px-6 md:py-3 rounded-md font-semibold text-sm md:text-base transition-colors duration-300 text-gray-300 border border-transparent hover:border-green-400 hover:text-green-400"
-          >
-            Enter Portal
-          </button>
-          {/* Only show the first feature on mobile, all on desktop */}
-          {features.map((feature, index) => (
-            (window.innerWidth > 768 || index === 0) && (
-              <Link
-                key={index}
-                to={feature.route}
-                className="px-4 py-2 md:px-6 md:py-3 rounded-md font-semibold text-sm md:text-base transition-colors duration-300 text-gray-300 border border-transparent hover:border-green-400 hover:text-green-400"
-              >
-                {feature.title}{" "}
-                {(feature.title === "Multi-Wallet Support" || feature.title === "Advanced Analytics") && (
-                  <span className="ml-1 text-xs text-green-500">(Coming Soon)</span>
-                )}
-              </Link>
-            )
-          ))}
-        </div>
-
-        <div className="flex space-x-4 items-center">
-          <button
-            onClick={handleEnterPortal}
-            className="relative overflow-hidden rounded-md bg-gradient-to-r from-green-500 to-green-600 px-5 py-2.5 font-semibold text-white transition-all duration-300 hover:from-green-400 hover:to-green-500 hover:shadow-lg hover:shadow-green-400/20 group"
-          >
-            <span className="relative z-10 flex items-center">
-              Connect Wallet
-              <ArrowRight size={18} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
-            </span>
-            <span className="absolute bottom-0 left-0 h-1 w-0 bg-green-300 group-hover:w-full transition-all duration-500"></span>
-          </button>
-        </div>
-      </nav>
+      {/* Main Navigation */}
+      <TraditionalNav
+        protocols={protocols}
+        activeProtocol={activeProtocol}
+        onProtocolClick={handleProtocolChange}
+      />
 
       {/* Hero Section - Radar Portal */}
-      <section className="relative flex min-h-screen flex-col items-center justify-center px-4">
+      <section id="home" className="relative flex min-h-screen flex-col items-center justify-center px-4">
         {/* Enhanced dimensional rift background effect */}
         <div
           className={`absolute inset-0 pointer-events-none overflow-hidden ${portalActive ? 'opacity-100' : 'opacity-0'}`}
@@ -549,16 +738,16 @@ export default function KaspaLandingPage() {
       </section>
 
       {/* Enterprise Features Section */}
-      <section id="features" className="py-24 px-4 bg-black">
+      <section id="swap" className="py-24 px-4 bg-black">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Enterprise-Grade Features</h2>
           <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
             Built for scale with advanced features that power the next generation of blockchain applications.
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
-              <FeatureCard 
+              <FeatureCard
                 key={index}
                 icon={feature.icon}
                 title={feature.title}
@@ -647,6 +836,6 @@ export default function KaspaLandingPage() {
           will-change: transform, opacity;
         }
       `}</style>
-    </div>
+    </div >
   );
 }
