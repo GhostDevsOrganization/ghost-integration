@@ -104,7 +104,7 @@ const RoadmapSection = () => {
                 </div>
             </div>
             {/* Custom animations and styles */}
-            <style jsx global>{`
+            <style jsx="true" global="true">{`
         /* Grid background for section */
         .grid-bg {
           background-image:

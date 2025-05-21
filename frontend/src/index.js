@@ -11,6 +11,7 @@ import TokenSwappingPage from './components/TokenSwappingPage'; // Import TokenS
 import MultiWalletSupportPage from './components/MultiWalletSupportPage'; // Import MultiWalletSupportPage
 import AdvancedAnalyticsPage from './components/AdvancedAnalyticsPage'; // Import AdvancedAnalyticsPage
 import CrossChainCompatibilityPage from './components/CrossChainCompatibilityPage'; // Import CrossChainCompatibilityPage
+import LearnPage from './components/LearnPage'; // Import LearnPage
 import { ThemeProvider } from './context/ThemeContext'; // Import ThemeProvider
 import BlackPortfolioChart from './components/BlackPortfolioChart';
 import MobileResponsiveWrapper from './components/MobileResponsiveWrapper'; // Import MobileResponsiveWrapper
@@ -88,6 +89,7 @@ function App() {
           <Route path="/features/multi-wallet-support" element={<MultiWalletSupportPage />} />
           <Route path="/features/advanced-analytics" element={<AdvancedAnalyticsPage />} />
           <Route path="/features/cross-chain-compatibility" element={<CrossChainCompatibilityPage />} />
+          <Route path="/learn" element={<LearnPage />} />
         </Routes>
       </div>
     </ThemeProvider>

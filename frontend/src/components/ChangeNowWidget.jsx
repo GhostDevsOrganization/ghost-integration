@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from '../context/ThemeContext.jsx';
 
 /**
  * ChangeNowWidget
@@ -32,18 +33,26 @@ const ChangeNowWidget = ({
   width = "100%",
   ...rest
 }) => {
+  // Get theme context
+  const { theme } = useTheme();
+
+  // Override primaryColor based on theme if not explicitly provided
+  const themeBasedPrimaryColor = rest.primaryColor || (theme === 'dark' ? '4ADE80' : '3B82F6');
+
+  // Override darkMode based on theme if not explicitly provided
+  const themeBasedDarkMode = rest.darkMode !== undefined ? darkMode : theme === 'dark';
   // Build the widget URL with query params
   const params = new URLSearchParams({
     FAQ: "false",
     amount: String(amount),
     ...(amountFiat ? { amountFiat: String(amountFiat) } : {}),
     backgroundColor,
-    darkMode: String(darkMode),
+    darkMode: String(themeBasedDarkMode),
     from,
     to,
     horizontal: String(horizontal),
     lang,
-    primaryColor,
+    primaryColor: themeBasedPrimaryColor,
     ...rest,
   });
 
@@ -52,8 +61,8 @@ const ChangeNowWidget = ({
 
   const src = `https://changenow.io/embeds/exchange-widget/v2/widget.html?${params.toString()}`;
 
+  // Load the ChangeNOW stepper-connector script
   React.useEffect(() => {
-    // Dynamically load the ChangeNOW stepper-connector script
     const scriptId = "changenow-stepper-connector";
     if (!document.getElementById(scriptId)) {
       const script = document.createElement("script");
@@ -64,6 +73,15 @@ const ChangeNowWidget = ({
     }
     // No cleanup needed, script is idempotent
   }, []);
+
+  // Update the widget when theme changes
+  React.useEffect(() => {
+    // Force iframe reload when theme changes
+    const iframe = document.getElementById("iframe-widget");
+    if (iframe) {
+      iframe.src = src;
+    }
+  }, [theme, src]);
 
   return (
     <div style={{ width }}>

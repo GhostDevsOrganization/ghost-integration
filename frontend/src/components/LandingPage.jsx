@@ -1,6 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; // Import Link
-import { ArrowRight, Twitter, Github, Send, BarChart2, Shield, Layers, RefreshCw } from 'lucide-react';
+import ArrowRight from 'lucide-react/dist/esm/icons/arrow-right';
+import Twitter from 'lucide-react/dist/esm/icons/twitter';
+import Github from 'lucide-react/dist/esm/icons/github';
+import Send from 'lucide-react/dist/esm/icons/send';
+import BarChart2 from 'lucide-react/dist/esm/icons/bar-chart-2';
+import Shield from 'lucide-react/dist/esm/icons/shield';
+import Layers from 'lucide-react/dist/esm/icons/layers';
+import RefreshCw from 'lucide-react/dist/esm/icons/refresh-cw';
+import Book from 'lucide-react/dist/esm/icons/book';
 import { EnhancedRadarPortal as RadarPortal } from './EnhancedRadarPortal';
 import RoadmapSection from './RoadmapSection';
 import TraditionalNav from './TraditionalNav';
@@ -527,6 +535,12 @@ export default function KaspaLandingPage() {
       route: "/features/cross-chain-compatibility",
       description: "Seamless transactions across multiple blockchains with enhanced security and low fees.",
       icon: <Shield size={24} />
+    },
+    {
+      title: "Learn",
+      route: "/learn",
+      description: "Comprehensive resource to understand Kaspa's innovative BlockDAG technology.",
+      icon: <Book size={24} />
     }
   ];
 
