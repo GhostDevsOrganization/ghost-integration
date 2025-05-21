@@ -8,20 +8,9 @@
                 "distDir": "build",
                 "buildCommand": "cd frontend && npm install && npm run build"
             }
-        },
-        {
-            "src": "backend/nest-cli.json",
-            "use": "@vercel/node",
-            "config": {
-                "buildCommand": "cd backend && npm install && npm run build"
-            }
         }
     ],
     "routes": [
-        {
-            "src": "/api/(.*)",
-            "dest": "backend/dist/main.js"
-        },
         {
             "handle": "filesystem"
         },
@@ -31,6 +20,6 @@
         }
     ],
     "env": {
-        "REACT_APP_API_URL": "https://ghost-integration-m5mofm6sd-irobotv2s-projects.vercel.app/api"
+        "REACT_APP_API_URL": "https://ghost-integration-api.netlify.app/api"
     }
 }
