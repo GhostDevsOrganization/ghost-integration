@@ -85,6 +85,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/portal" element={<InterdimensionalPortal />} />
+          <Route path="/swap" element={<TokenSwappingPage />} />
           <Route path="/features/token-swapping" element={<TokenSwappingPage />} />
           <Route path="/features/multi-wallet-support" element={<MultiWalletSupportPage />} />
           <Route path="/features/advanced-analytics" element={<AdvancedAnalyticsPage />} />

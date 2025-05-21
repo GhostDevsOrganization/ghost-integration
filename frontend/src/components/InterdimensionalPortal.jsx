@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Repeat, PiggyBank, Shield, BarChart3, Wallet, Activity, Zap, CreditCard, Send, Copy, LayoutGrid, Circle, Sun, Moon, Home, MessageCircle } from 'lucide-react'; // Added Home, MessageCircle icons
-import SwapComponent from './SwapComponent';
+import TokenSwappingPage from './TokenSwappingPage';
 import TraditionalNav from './TraditionalNav';
 import AnalyticsPanel from './AnalyticsPanel';
 import BlackPortfolioChart from './BlackPortfolioChart';
@@ -292,7 +292,13 @@ const Kasportal = () => {
 
   // Handle protocol selection with animation effect
   const handleProtocolClick = (key) => {
-    // Toggle protocol selection
+    // For swap protocol, navigate directly to swap page
+    if (key === 'swap') {
+      window.location.href = '/swap';
+      return;
+    }
+
+    // For other protocols, toggle selection
     if (activeProtocol === key) {
       setActiveProtocol(null);
     } else {
@@ -540,7 +546,7 @@ const Kasportal = () => {
   if (isMobile()) {
     return (
       <div className="w-full min-h-screen bg-black flex flex-col items-center justify-start pt-4">
-        <SwapComponent onClose={() => { }} />
+        <TokenSwappingPage />
       </div>
     );
   }
@@ -789,48 +795,7 @@ const Kasportal = () => {
             </div>
 
             <div className="flex-1 bg-black rounded-lg p-4 text-green-200 overflow-y-auto">
-              {/* Swap Panel */}
-              {activeProtocol === 'swap' && (
-                <div className="p-4 bg-black/40 rounded-lg">
-                  <div className="text-center mb-4 font-medium">Swap Tokens</div>
-                  <div className="mb-4">
-                    <div className="text-xs text-green-300 mb-1">You Send</div>
-                    <div className="flex">
-                      <input
-                        type="text"
-                        className="flex-grow bg-black/40 border border-green-700 rounded-l p-2 text-white"
-                        placeholder="0.0"
-                        value={swapAmount}
-                        onChange={(e) => setSwapAmount(e.target.value)}
-                      />
-                      <div className="bg-green-900 px-3 py-2 rounded-r flex items-center">
-                        KAS
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex justify-center my-4">
-                    <div className="w-10 h-10 rounded-full bg-green-900 flex items-center justify-center">
-                      <Repeat size={20} className="text-green-200" />
-                    </div>
-                  </div>
-                  <div className="mb-4">
-                    <div className="text-xs text-green-300 mb-1">You Receive</div>
-                    <div className="flex">
-                      <div className="flex-grow bg-black/40 border border-green-700 rounded-l p-2 text-white opacity-80">
-                        {swapEstimate}
-                      </div>
-                      <div className="bg-green-900 px-3 py-2 rounded-r flex items-center">
-                        ETH
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    className="w-full bg-green-600 hover:bg-green-500 text-white py-2 rounded-lg transition-colors"
-                  >
-                    Swap Tokens
-                  </button>
-                </div>
-              )}
+              {/* Swap protocol is handled directly in the handleProtocolClick function */}
 
               {/* Send Panel */}
               {activeProtocol === 'send' && (
@@ -1228,12 +1193,6 @@ const Kasportal = () => {
         </div>
       </div>
 
-      {/* Fullscreen Swap Overlay */}
-      {activeProtocol === 'swap' && (
-        <SwapComponent
-          onClose={() => setActiveProtocol(null)}
-        />
-      )}
 
       {/* Analytics Overlay */}
       {showAnalytics && (
