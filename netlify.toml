@@ -1,0 +1,14 @@
+[build]
+  base = "frontend/"
+  publish = "build/"
+  command = "npm run build"
+
+# Redirects for SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Environment variables
+[build.environment]
+  REACT_APP_API_URL = "https://ghost-integration-api.netlify.app/api"
