@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Home, Repeat, Wallet, Link2, BookOpen } from 'lucide-react';
 import ChangeNowWidget from './ChangeNowWidget';
+import TraditionalNav from './TraditionalNav';
 
 const CrossChainCompatibilityPage = () => {
     const [activeFuture, setActiveFuture] = useState(0);
     const [activePaymentMethod, setActivePaymentMethod] = useState('venmo'); // Default to Venmo
+
+    // Define navigation protocols for TraditionalNav
+    const protocols = [
+        { key: 'home', label: 'Home', path: '/', icon: <Home size={18} /> },
+        { key: 'swap', label: 'Token Swapping', path: '/features/token-swapping', icon: <Repeat size={18} /> },
+        { key: 'wallet', label: 'Multi-Wallet Support', path: '/features/multi-wallet-support', icon: <Wallet size={18} /> },
+        { key: 'crosschain', label: 'Cross-Chain Compatibility', path: '/features/cross-chain-compatibility', icon: <Link2 size={18} /> },
+        { key: 'learn', label: 'Learn', path: '/learn', icon: <BookOpen size={18} /> }
+    ];
+
+    const [activeProtocol, setActiveProtocol] = useState('crosschain');
 
     // Removed futureFeatures as the section is now "Future Enhancements"
     // Removed supportedNetworks as the section is now "Current Network Compatibility"
@@ -92,18 +105,14 @@ const CrossChainCompatibilityPage = () => {
                 ))}
             </div>
 
-            {/* Navigation Tabs */}
-            <div className="flex justify-center space-x-4 pt-4 z-20 relative">
-                <Link to="/" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Home</Link>
-                <Link to="/portal" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/portal' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Enter Portal</Link>
-                <Link to="/features/token-swapping" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/features/token-swapping' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Token Swapping</Link>
-                <Link to="/features/multi-wallet-support" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/features/multi-wallet-support' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Multi-Wallet Support</Link>
-                <Link to="/features/advanced-analytics" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/features/advanced-analytics' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Advanced Analytics</Link>
-                <Link to="/features/cross-chain-compatibility" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/features/cross-chain-compatibility' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Cross-Chain Compatibility</Link>
-            </div>
+            {/* Consistent Navigation Bar */}
+            <TraditionalNav
+                protocols={protocols}
+                activeProtocol={activeProtocol}
+            />
 
-            {/* Header */}
-            <header className="pt-10 pb-10 text-center">
+            {/* Header - increased top padding to account for nav bar */}
+            <header className="pt-24 pb-10 text-center">
                 <div className="mb-4 w-32 h-32 mx-auto relative">
                     <div className="absolute inset-0 rounded-full border-2 border-green-500/40 animate-pulse" style={{ animationDuration: '3s' }}></div>
                     <div className="absolute inset-4 rounded-full border border-green-500/30"></div>

@@ -95,7 +95,7 @@ const AdvancedAnalyticsPage = () => {
                 <div className="w-20 h-1 bg-gradient-to-r from-green-500 to-green-300 mx-auto mb-6"></div>
                 {/* Updated Description */}
                 <p className="text-xl text-gray-300 max-w-3xl mx-auto px-4">
-                    Kasportal's Advanced Analytics is evolving to become your go-to hub for understanding DeFi opportunities. While we build towards native Kaspa smart contract capabilities, we are developing powerful, interactive simulations to help you explore lending, borrowing, and yield generation strategies.
+                    Kasportal's Advanced Analytics provides comprehensive insights into your cryptocurrency portfolio and market trends. Our powerful visualization tools help you track performance, analyze market conditions, and make informed decisions about your investments.
                 </p>
             </header>
 
@@ -117,13 +117,6 @@ const AdvancedAnalyticsPage = () => {
                         >
 
 
-                        </button>
-                        {/* New DeFi Simulations Tab */}
-                        <button
-                            className={`px-6 py-3 font-medium ${activeTab === 'defi-simulations' ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-400 hover:text-gray-300'}`}
-                            onClick={() => setActiveTab('defi-simulations')}
-                        >
-                            DeFi Simulations (Coming Soon)
                         </button>
                         <button
                             className={`px-6 py-3 font-medium ${activeTab === 'customize' ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-400 hover:text-gray-300'}`}
@@ -438,46 +431,6 @@ const AdvancedAnalyticsPage = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* New DeFi Simulations Tab Content */}
-                        {activeTab === 'defi-simulations' && (
-                            <div>
-                                <h2 className="text-2xl font-bold text-white mb-6">DeFi Simulations (Coming Soon)</h2>
-                                <p className="text-gray-300 mb-8">
-                                    Explore potential DeFi strategies in a risk-free simulated environment. We are actively developing interactive tools to help you understand lending, borrowing, and yield generation on Kaspa.
-                                </p>
-
-                                {/* Simulated Lending/Borrowing Analytics */}
-                                <div className="bg-black/50 border border-green-500/20 rounded-lg p-6 mb-8">
-                                    <h3 className="text-xl font-bold text-white mb-4">Simulated Lending/Borrowing Analytics</h3>
-                                    <p className="text-gray-400 mb-4">Visualize potential APYs, interest accrual, and loan health based on simulated market conditions.</p>
-                                    {/* Placeholder for chart/visual */}
-                                    <div className="h-48 bg-green-900/10 border border-green-500/20 rounded flex items-center justify-center text-gray-500">
-                                        [Interactive Chart/Visualization Placeholder]
-                                    </div>
-                                </div>
-
-                                {/* Portfolio Projection */}
-                                <div className="bg-black/50 border border-green-500/20 rounded-lg p-6 mb-8">
-                                    <h3 className="text-xl font-bold text-white mb-4">Portfolio Projection</h3>
-                                    <p className="text-gray-400 mb-4">Project the growth of your portfolio based on simulated DeFi positions and yield farming strategies.</p>
-                                    {/* Placeholder for projection tool */}
-                                    <div className="h-32 bg-green-900/10 border border-green-500/20 rounded flex items-center justify-center text-gray-500">
-                                        [Portfolio Projection Tool Placeholder]
-                                    </div>
-                                </div>
-
-                                {/* Risk Assessment Module */}
-                                <div className="bg-black/50 border border-green-500/20 rounded-lg p-6">
-                                    <h3 className="text-xl font-bold text-white mb-4">Risk Assessment Module</h3>
-                                    <p className="text-gray-400 mb-4">Understand collateralization ratios, liquidation risks, and impermanent loss in simulated scenarios.</p>
-                                    {/* Placeholder for risk assessment tool */}
-                                    <div className="h-32 bg-green-900/10 border border-green-500/20 rounded flex items-center justify-center text-gray-500">
-                                        [Risk Assessment Tool Placeholder]
                                     </div>
                                 </div>
                             </div>
