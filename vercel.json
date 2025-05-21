@@ -5,14 +5,15 @@
             "src": "frontend/package.json",
             "use": "@vercel/static-build",
             "config": {
-                "distDir": "build"
+                "distDir": "build",
+                "buildCommand": "cd frontend && npm install && npm run build"
             }
         },
         {
-            "src": "backend/package.json",
+            "src": "backend/nest-cli.json",
             "use": "@vercel/node",
             "config": {
-                "includeFiles": "dist/**"
+                "buildCommand": "cd backend && npm install && npm run build"
             }
         }
     ],
@@ -29,5 +30,7 @@
             "dest": "frontend/build/$1"
         }
     ],
-    "outputDirectory": "frontend/build"
+    "env": {
+        "REACT_APP_API_URL": "https://ghost-integration-m5mofm6sd-irobotv2s-projects.vercel.app/api"
+    }
 }
