@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, HelpCircle, Info, ExternalLink, RefreshCw, ChevronDown } from 'lucide-react';
+import { ArrowLeft, HelpCircle, Info, ExternalLink, RefreshCw, ChevronDown, Home, Repeat, Wallet, Link2, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ChangeNowWidget from './ChangeNowWidget';
 import { useTheme } from '../context/ThemeContext.jsx';
 import ThemeSwitcher from './ThemeSwitcher';
+import TraditionalNav from './TraditionalNav';
 
 const TokenSwappingPage = () => {
     const [showAdvanced, setShowAdvanced] = useState(false);
@@ -67,6 +68,17 @@ const TokenSwappingPage = () => {
         }));
     };
 
+    // Define navigation protocols for TraditionalNav
+    const protocols = [
+        { key: 'home', label: 'Home', path: '/', icon: <Home size={18} /> },
+        { key: 'swap', label: 'Token Swapping', path: '/features/token-swapping', icon: <Repeat size={18} /> },
+        { key: 'wallet', label: 'Multi-Wallet Support', path: '/features/multi-wallet-support', icon: <Wallet size={18} /> },
+        { key: 'crosschain', label: 'Cross-Chain Compatibility', path: '/features/cross-chain-compatibility', icon: <Link2 size={18} /> },
+        { key: 'learn', label: 'Learn', path: '/learn', icon: <BookOpen size={18} /> }
+    ];
+
+    const [activeProtocol, setActiveProtocol] = useState(protocols[0].key);
+
     return (
         <div className="min-h-screen bg-black text-white">
             {/* Background elements */}
@@ -85,29 +97,26 @@ const TokenSwappingPage = () => {
                 <div className="absolute inset-0 grid-bg opacity-10"></div>
             </div>
 
-            {/* Header */}
-            <header className={`sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b ${themeColors.borderColor} px-6 py-4`}>
-                <div className="max-w-6xl mx-auto flex justify-between items-center">
-                    <Link to="/" className="flex items-center group">
-                        <ArrowLeft size={20} className={`mr-2 ${themeColors.textAccent} group-hover:transform group-hover:-translate-x-1 transition-transform`} />
-                        <span className="text-xl font-bold">
-                            <span className={themeColors.textAccent}>Kas</span>
-                            <span className="text-white">portal</span>
-                        </span>
-                    </Link>
+            {/* Consistent Navigation Bar */}
+            <TraditionalNav
+                protocols={protocols}
+                activeProtocol={activeProtocol}
+            />
 
+            {/* Page-specific sub-navigation */}
+            <div className="bg-black/60 backdrop-blur-sm px-6 py-2 border-b border-green-400/10">
+                <div className="max-w-6xl mx-auto flex justify-end">
                     <div className="flex items-center space-x-6">
-                        <a href="#faq" className={`text-gray-400 ${themeColors.hoverAccent} transition-colors duration-200`}>FAQ</a>
-                        <a href="#history" className={`text-gray-400 ${themeColors.hoverAccent} transition-colors duration-200`}>Swap History</a>
-                        <Link to="/portal" className={`px-4 py-2 ${themeColors.bgAccentTransparent} border border-${themeColors.accentColor}-400/30 rounded-md ${themeColors.textAccent} ${themeColors.bgAccentHover} transition-colors duration-200`}>
+                        <a href="#faq" className="text-gray-400 hover:text-green-400 transition-colors duration-200">FAQ</a>
+                        <Link to="/portal" className="px-4 py-1.5 bg-green-500/10 hover:bg-green-500/20 border border-green-400/30 rounded-md text-green-400 transition-colors duration-200">
                             Enter Portal
                         </Link>
                         <ThemeSwitcher />
                     </div>
                 </div>
-            </header>
+            </div>
 
-            <main className="relative z-10 max-w-6xl mx-auto px-4 py-12">
+            <main className="relative z-10 max-w-6xl mx-auto px-4 pt-24 pb-12">
                 {/* Page Header */}
                 <div className="mb-12 text-center">
                     <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-500 inline-block mb-4">
@@ -192,52 +201,7 @@ const TokenSwappingPage = () => {
                                     />
                                 </div>
 
-                                {/* Advanced options toggle */}
-                                <div className="border-t border-gray-800 pt-4">
-                                    <button
-                                        className="flex items-center justify-between w-full py-2 text-gray-400 hover:text-green-400 transition-colors duration-200"
-                                        onClick={() => setShowAdvanced(!showAdvanced)}
-                                    >
-                                        <span className="font-medium">Advanced Options</span>
-                                        <ChevronDown
-                                            size={18}
-                                            className={`transition-transform duration-200 ${showAdvanced ? 'transform rotate-180' : ''}`}
-                                        />
-                                    </button>
 
-                                    {showAdvanced && (
-                                        <div className="mt-4 space-y-4 text-sm text-gray-400 bg-gray-900/30 p-4 rounded-lg">
-                                            <div className="flex justify-between">
-                                                <span>Slippage Tolerance</span>
-                                                <div className="flex space-x-2">
-                                                    <button className="px-2 py-1 rounded bg-gray-800 hover:bg-green-800 transition-colors">0.5%</button>
-                                                    <button className="px-2 py-1 rounded bg-green-900 text-green-400">1%</button>
-                                                    <button className="px-2 py-1 rounded bg-gray-800 hover:bg-green-800 transition-colors">2%</button>
-                                                    <div className="relative">
-                                                        <input
-                                                            type="text"
-                                                            className="w-16 px-2 py-1 rounded bg-gray-800 text-center"
-                                                            placeholder="Custom"
-                                                        />
-                                                        <span className="absolute right-2 top-1">%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex justify-between items-center">
-                                                <span>Transaction Deadline</span>
-                                                <div className="flex items-center">
-                                                    <input
-                                                        type="text"
-                                                        className="w-16 px-2 py-1 rounded bg-gray-800 text-center"
-                                                        value="20"
-                                                    />
-                                                    <span className="ml-2">minutes</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -256,7 +220,7 @@ const TokenSwappingPage = () => {
                                     <div className="flex-1">
                                         <div className="flex justify-between">
                                             <span className="text-gray-300">All Systems Operational</span>
-                                            <span className="text-green-400 text-sm">Normal</span>
+                                            <span className="text-green-400 text-sm">100%</span>
                                         </div>
                                         <div className="w-full bg-gray-800 h-1 mt-2 rounded-full overflow-hidden">
                                             <div className="bg-green-400 h-full w-full"></div>
@@ -265,27 +229,27 @@ const TokenSwappingPage = () => {
                                 </div>
 
                                 <div className="flex items-center">
-                                    <div className="w-3 h-3 rounded-full bg-green-400/80 mr-3"></div>
+                                    <div className="w-3 h-3 rounded-full bg-green-400 mr-3"></div>
                                     <div className="flex-1">
                                         <div className="flex justify-between">
                                             <span className="text-gray-300">KAS Network</span>
-                                            <span className="text-green-400 text-sm">97.6%</span>
+                                            <span className="text-green-400 text-sm">100%</span>
                                         </div>
                                         <div className="w-full bg-gray-800 h-1 mt-2 rounded-full overflow-hidden">
-                                            <div className="bg-green-400/80 h-full w-[97.6%]"></div>
+                                            <div className="bg-green-400 h-full w-full"></div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="flex items-center">
-                                    <div className="w-3 h-3 rounded-full bg-yellow-400 mr-3"></div>
+                                    <div className="w-3 h-3 rounded-full bg-green-400 mr-3"></div>
                                     <div className="flex-1">
                                         <div className="flex justify-between">
                                             <span className="text-gray-300">BTC Network</span>
-                                            <span className="text-yellow-400 text-sm">82.3%</span>
+                                            <span className="text-green-400 text-sm">100%</span>
                                         </div>
                                         <div className="w-full bg-gray-800 h-1 mt-2 rounded-full overflow-hidden">
-                                            <div className="bg-yellow-400 h-full w-[82.3%]"></div>
+                                            <div className="bg-green-400 h-full w-full"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -322,7 +286,7 @@ const TokenSwappingPage = () => {
                                     <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
                                         <span className="text-green-400 text-xs">✓</span>
                                     </div>
-                                    <span className="text-gray-300 text-sm">Support for 300+ cryptocurrencies</span>
+                                    <span className="text-gray-300 text-sm">Support for over 900+ cryptocurrencies</span>
                                 </li>
                                 <li className="flex items-start">
                                     <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
@@ -333,45 +297,7 @@ const TokenSwappingPage = () => {
                             </ul>
                         </div>
 
-                        {/* Recent Swaps */}
-                        <div id="history" className="bg-gray-900/40 rounded-xl p-5 backdrop-blur-sm border border-green-400/10">
-                            <h3 className="text-lg font-semibold mb-4">Recent Swaps</h3>
 
-                            {recentSwaps.length === 0 ? (
-                                <div className="text-center py-6 text-gray-500">
-                                    <p>No recent swaps found</p>
-                                </div>
-                            ) : (
-                                <div className="space-y-3">
-                                    {recentSwaps.map((swap) => (
-                                        <div key={swap.id} className="flex items-center justify-between p-3 bg-black/40 rounded-lg">
-                                            <div className="flex items-center">
-                                                <div className="mr-3">
-                                                    <div className={`w-2 h-2 rounded-full ${swap.status === 'completed' ? 'bg-green-400' :
-                                                            swap.status === 'pending' ? 'bg-yellow-400' : 'bg-gray-400'
-                                                        }`}></div>
-                                                </div>
-                                                <div>
-                                                    <div className="flex items-center">
-                                                        <span className="text-sm font-medium">{swap.from} → {swap.to}</span>
-                                                        <span className="ml-2 text-xs text-gray-500">{swap.id}</span>
-                                                    </div>
-                                                    <div className="text-xs text-gray-500">{swap.time}</div>
-                                                </div>
-                                            </div>
-                                            <div className="text-right">
-                                                <div className="text-sm">{swap.amount} {swap.from}</div>
-                                                <div className="text-xs text-green-400">{swap.received} {swap.to}</div>
-                                            </div>
-                                        </div>
-                                    ))}
-
-                                    <button className="w-full mt-2 text-center text-sm text-green-400 hover:text-green-300 py-2 transition-colors">
-                                        View All History
-                                    </button>
-                                </div>
-                            )}
-                        </div>
                     </div>
                 </div>
 

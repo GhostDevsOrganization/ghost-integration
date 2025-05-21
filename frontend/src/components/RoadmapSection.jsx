@@ -49,16 +49,16 @@ const RoadmapSection = () => {
             <div className="absolute inset-0 grid-bg opacity-5 pointer-events-none"></div>
 
             <div className="mx-auto max-w-6xl px-4">
-                <h2 className="text-4xl font-bold text-center text-green-400 mb-8">Project Roadmap</h2>
+                <h2 className="text-3xl font-bold text-center text-white mb-4">Project Roadmap</h2>
 
                 {/* Introduction */}
-                <p className="text-lg text-white/80 text-center mb-12">
+                <p className="text-base text-gray-400 text-center mb-12 max-w-3xl mx-auto">
                     Kasportal is evolving into a comprehensive DeFi hub that combines the best of DEX trading and lending protocols. Our phased approach delivers immediate value through simulations and education while building toward full native functionality when Kaspa smart contracts arrive.
                 </p>
 
                 {/* Current Progress */}
                 <div className="mb-16">
-                    <h3 className="text-2xl font-semibold text-green-400 text-center mb-6">Current Progress</h3>
+                    <h3 className="text-2xl font-bold text-center text-white mb-8">Current Progress</h3>
                     <ul className="list-disc list-inside text-white/80 mx-auto max-w-md space-y-2">
                         <li>Multi-crypto swaps via swap integration</li>
                         <li>KRC-20 token deployment and management</li>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import TraditionalNav from './TraditionalNav';
+import { Home, Repeat, Wallet, Link2, BookOpen } from 'lucide-react';
 import { Book, ArrowRight, Github, Send, Clock, ExternalLink, Zap, Shield, Database, Layers, RefreshCw } from 'lucide-react';
 
 const LearnPage = () => {
@@ -36,7 +38,17 @@ const LearnPage = () => {
                 // 2. Add a slight delay to ensure the DOM has updated before scrolling
                 // This prevents scrolling to an element that's still animating or hidden
                 setTimeout(() => {
-                    element.scrollIntoView({ behavior: 'smooth' });
+                    // Calculate the top navigation's height and add extra padding
+                    const navHeight = 60; // Typical height of the nav bar
+                    const padding = 20; // Extra padding for better appearance
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navHeight - padding;
+
+                    // Use window.scrollTo instead of scrollIntoView for better control
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
                     setActiveTopic(id); // Set active topic after successful scroll
                 }, 100); // Small delay, e.g., 100ms
             }
@@ -101,7 +113,7 @@ const LearnPage = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-black text-white">
+        <div className="min-h-screen bg-black text-white pt-[var(--content-padding)]">
             {/* Radar-style background elements - similar to other pages */}
             <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150vh] h-[150vh] rounded-full border border-green-500/10"></div>
@@ -132,16 +144,19 @@ const LearnPage = () => {
                 ))}
             </div>
 
-            {/* Navigation Tabs - same style as other pages */}
-            <div className="flex justify-center space-x-4 pt-4 z-20 relative">
-                <Link to="/" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Home</Link>
-                <Link to="/portal" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/portal' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Enter Portal</Link>
-                <Link to="/features/token-swapping" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/features/token-swapping' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Token Swapping</Link>
-                <Link to="/features/multi-wallet-support" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/features/multi-wallet-support' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Multi-Wallet Support</Link>
-                <Link to="/features/advanced-analytics" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/features/advanced-analytics' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Advanced Analytics</Link>
-                <Link to="/features/cross-chain-compatibility" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/features/cross-chain-compatibility' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Cross-Chain Compatibility</Link>
-                <Link to="/learn" className={`px-4 py-2 rounded-t-lg ${location.pathname === '/learn' ? 'bg-green-500/20 text-green-400' : 'text-white hover:bg-black/50'}`}>Learn</Link>
-            </div>
+            {/* Navigation - now using TraditionalNav component */}
+            <TraditionalNav
+                protocols={[
+                    { key: 'home', label: 'Home', path: '/', icon: <Home size={18} /> },
+                    { key: 'swap', label: 'Token Swapping', path: '/features/token-swapping', icon: <Repeat size={18} /> },
+                    { key: 'crosschain', label: 'Cross-Chain Compatibility', path: '/features/cross-chain-compatibility', icon: <Link2 size={18} /> },
+                    { key: 'wallet', label: 'Multi-Wallet Support', path: '/features/multi-wallet-support', icon: <Wallet size={18} /> },
+                    { key: 'learn', label: 'Learn', path: '/learn', icon: <BookOpen size={18} /> }
+                ]}
+                activeProtocol={location.pathname.split('/')[1] === 'features'
+                    ? location.pathname.split('/')[2]
+                    : location.pathname.split('/')[1]}
+            />
 
             {/* Header */}
             <header className="pt-10 pb-10 text-center">
@@ -165,16 +180,16 @@ const LearnPage = () => {
                 <div className="flex flex-col md:flex-row gap-8">
                     {/* Left sidebar navigation */}
                     <div className="md:w-1/4">
-                        <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-4 mb-6 sticky top-24">
+                        <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-4 mb-6 sticky top-[calc(var(--content-padding)+1rem)]">
                             <h3 className="text-xl font-bold text-green-400 mb-4">Learning Topics</h3>
                             <nav className="space-y-2">
                                 {topics.map(topic => (
                                     <a
                                         key={topic.id}
                                         href={`#${topic.id}`}
-                                        className={`block px-4 py-2 rounded-lg transition-colors ${activeTopic === topic.id
-                                            ? 'bg-green-500/20 text-green-300 font-medium'
-                                            : 'hover:bg-green-500/10 text-gray-300'
+                                        className={`block px-4 py-3 rounded-lg transition-all duration-200 ${activeTopic === topic.id
+                                            ? 'bg-green-600 text-white shadow-md font-medium'
+                                            : 'bg-black/50 border border-green-500/20 text-green-200 hover:bg-green-700/50 hover:text-white'
                                             }`}
                                         onClick={() => setActiveTopic(topic.id)}
                                     >

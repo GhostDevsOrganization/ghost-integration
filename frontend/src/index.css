@@ -2,10 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --header-height: 60px;
+  --nav-padding: 1rem;
+  --content-padding: calc(var(--header-height) + var(--nav-padding));
+}
+
 /* Custom animations */
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* Gradient background styles */
@@ -15,9 +28,11 @@
 
 /* Responsive adjustments */
 @layer components {
+
   /* Adjust protocol panel width on small screens */
   .protocol-panel-responsive {
-    @apply w-full sm:w-96; /* Full width on small screens, fixed width on sm and up */
+    @apply w-full sm:w-96;
+    /* Full width on small screens, fixed width on sm and up */
   }
 
   /* Adjust circular nav node size and position on small screens */
@@ -30,20 +45,26 @@
 
   /* Adjust traditional nav spacing on small screens */
   .traditional-nav-responsive {
-    @apply space-x-4 sm:space-x-2; /* Less space on smaller screens */
+    @apply space-x-4 sm:space-x-2;
+    /* Less space on smaller screens */
   }
 
   /* Adjust bottom info panel layout on small screens */
   .bottom-info-responsive {
-    @apply flex-col space-y-2 sm:flex-row sm:space-y-0 sm:justify-between items-center; /* Stack vertically on small, row on sm+ */
+    @apply flex-col space-y-2 sm:flex-row sm:space-y-0 sm:justify-between items-center;
+    /* Stack vertically on small, row on sm+ */
   }
 }
 
 /* Hide scrollbar for cleaner look (optional) */
 body::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+  display: none;
+  /* Safari and Chrome */
 }
+
 body {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }

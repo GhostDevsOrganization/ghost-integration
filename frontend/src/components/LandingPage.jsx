@@ -9,6 +9,11 @@ import Shield from 'lucide-react/dist/esm/icons/shield';
 import Layers from 'lucide-react/dist/esm/icons/layers';
 import RefreshCw from 'lucide-react/dist/esm/icons/refresh-cw';
 import Book from 'lucide-react/dist/esm/icons/book';
+import Home from 'lucide-react/dist/esm/icons/home';
+import Repeat from 'lucide-react/dist/esm/icons/repeat';
+import Wallet from 'lucide-react/dist/esm/icons/wallet';
+import Link2 from 'lucide-react/dist/esm/icons/link-2';
+import BookOpen from 'lucide-react/dist/esm/icons/book-open';
 import { EnhancedRadarPortal as RadarPortal } from './EnhancedRadarPortal';
 import RoadmapSection from './RoadmapSection';
 import TraditionalNav from './TraditionalNav';
@@ -75,10 +80,10 @@ const FeatureCard = ({ icon, title, description, comingSoon }) => {
       <div className="absolute bottom-0 right-0 h-px w-0 bg-gradient-to-l from-green-400 to-transparent group-hover:w-full transition-all duration-700"></div>
 
       <div className="mb-4 text-green-400 p-3 bg-green-400/10 rounded-lg inline-block">{icon}</div>
-      <h3 className="text-xl font-bold mb-2 text-white group-hover:text-green-400 transition-colors duration-300">
+      <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-green-400 transition-colors duration-300">
         {title} {comingSoon && <span className="ml-2 text-xs text-green-500">(Coming Soon)</span>}
       </h3>
-      <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">{description}</p>
+      <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">{description}</p>
     </div>
   );
 };
@@ -185,8 +190,8 @@ const TokenSwappingSection = () => {
   return (
     <section className="py-24 px-4 bg-black">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Token Swapping</h2>
-        <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center mb-10">
+        <h2 className="text-2xl font-bold text-center mb-4 text-white">Token Swapping</h2>
+        <p className="text-base text-gray-400 max-w-3xl mx-auto text-center mb-8">
           Seamlessly swap between a wide range of cryptocurrencies directly within the Kaspa Portal. Our integration with a leading swapping service allows you to exchange assets across different blockchain networks quickly and securely.
         </p>
 
@@ -471,8 +476,8 @@ const MultiWalletSection = () => {
   return (
     <section className="py-24 px-4 bg-black">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Multi-Wallet Support</h2>
-        <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
+        <h2 className="text-2xl font-bold text-center mb-4 text-white">Multi-Wallet Support</h2>
+        <p className="text-base text-gray-400 text-center mb-12 max-w-3xl mx-auto">
           Kasportal's multi-wallet support is a core component of our Phase 1 roadmap, enabling a unified view and management of your assets across different chains. Connect your wallets securely to interact with our growing suite of DeFi simulations and future native protocols.
         </p>
 
@@ -568,22 +573,15 @@ export default function KaspaLandingPage() {
   const [portalIntensity, setPortalIntensity] = useState(0);
   const [activeProtocol, setActiveProtocol] = useState('home');
 
-  // Map protocol keys to their corresponding route paths
-  const protocolToRoutePath = {
-    home: '/',
-    swap: '/features/token-swapping',
-    crosschain: '/features/cross-chain-compatibility',
-    wallet: '/features/multi-wallet-support',
-    analytics: '/features/advanced-analytics',
-    learn: '/learn'
-  };
-
   const handleProtocolChange = (protocolKey) => {
     setActiveProtocol(protocolKey);
-    // Navigate to corresponding route using the mapping
-    navigate(protocolToRoutePath[protocolKey] || '/');
-    // Scroll to top for better navigation experience
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Find the protocol in the protocols array and navigate to its path
+    const protocol = protocols.find(p => p.key === protocolKey);
+    if (protocol) {
+      navigate(protocol.path);
+      // Scroll to top for better navigation experience
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
   const particlesRef = useRef([]);
 
@@ -603,13 +601,6 @@ export default function KaspaLandingPage() {
       comingSoon: true
     },
     {
-      title: "Advanced Analytics",
-      route: "/features/advanced-analytics",
-      description: "Real-time data visualization and insights for informed trading decisions.",
-      icon: <BarChart2 size={24} />,
-      comingSoon: true
-    },
-    {
       title: "Cross-Chain Compatibility",
       route: "/features/cross-chain-compatibility",
       description: "Seamless transactions across multiple blockchains with enhanced security and low fees.",
@@ -624,14 +615,13 @@ export default function KaspaLandingPage() {
   ];
 
   // Navigation protocols structure
-  const protocols = {
-    home: { label: 'Home' },
-    swap: { label: 'Token Swapping' },
-    crosschain: { label: 'Cross-Chain' },
-    wallet: { label: 'Multi-Wallet' },
-    analytics: { label: 'Advanced Analytics' },
-    learn: { label: 'Learn' }
-  };
+  const protocols = [
+    { key: 'home', label: 'Home', path: '/', icon: <Home size={18} /> },
+    { key: 'swap', label: 'Token Swapping', path: '/features/token-swapping', icon: <Repeat size={18} /> },
+    { key: 'crosschain', label: 'Cross-Chain Compatibility', path: '/features/cross-chain-compatibility', icon: <Link2 size={18} /> },
+    { key: 'wallet', label: 'Multi-Wallet Support', path: '/features/multi-wallet-support', icon: <Wallet size={18} /> },
+    { key: 'learn', label: 'Learn', path: '/learn', icon: <BookOpen size={18} /> }
+  ];
 
   const [faqOpen, setFaqOpen] = useState(false);
 
@@ -742,7 +732,7 @@ export default function KaspaLandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden pt-[var(--content-padding)] pb-[var(--nav-padding)]">
       {/* Background particles */}
       <div className="fixed inset-0 pointer-events-none z-0">
         {particles.map((particle, i) => (
@@ -826,15 +816,15 @@ export default function KaspaLandingPage() {
         {/* Minimal Text */}
         <div className="text-center mt-8">
           <h1 className="text-4xl font-bold text-green-400">Kasportal</h1>
-          <p className="text-lg text-white/80 mt-2">Unlock the Speed of Kaspa.</p>
+          <p className="text-xl text-white/80 mt-4">Unlock the Speed of Kaspa.</p>
         </div>
       </section>
 
       {/* Enterprise Features Section */}
-      <section id="swap" className="py-24 px-4 bg-black">
+      <section id="swap" className="pt-32 pb-24 px-4 bg-black">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Enterprise-Grade Features</h2>
-          <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-4 text-white">Enterprise-Grade Features</h2>
+          <p className="text-base text-gray-400 text-center mb-12 max-w-3xl mx-auto">
             Built for scale with advanced features that power the next generation of blockchain applications.
           </p>
 

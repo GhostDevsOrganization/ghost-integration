@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Repeat, PiggyBank, Shield, BarChart3, Wallet, Activity, Zap, CreditCard, Send, Copy, LayoutGrid, Circle, Sun, Moon, Home, MessageCircle } from 'lucide-react'; // Added Home, MessageCircle icons
+import { Repeat, PiggyBank, Shield, Wallet, Activity, Zap, CreditCard, Send, Copy, LayoutGrid, Circle, Sun, Moon, Home, MessageCircle } from 'lucide-react'; // Added Home, MessageCircle icons
 import TokenSwappingPage from './TokenSwappingPage';
 import TraditionalNav from './TraditionalNav';
-import AnalyticsPanel from './AnalyticsPanel';
-import BlackPortfolioChart from './BlackPortfolioChart';
-// import NetworkStatsTicker from './NetworkStatsTicker'; // Removed import
 import { useTheme } from '../context/ThemeContext';
 import GuidedTour from './GuidedTour';
 import { connectKasware, disconnectKasware, signTransaction } from '../services/kaswareService';
@@ -275,20 +272,71 @@ const Kasportal = () => {
       position: { top: '70%', left: '75%' },
       group: "account",
       label: "Tokens" // Added label
-    },
-    analytics: {
-      name: "Analytics",
-      icon: <BarChart3 className="text-green-200" />,
-      description: "Portfolio performance over time",
-      position: { top: '50%', left: '50%' },
-      group: "account",
-      label: "Analytics"
     }
   };
 
   // State for navigation mode (circular or traditional)
   const [navMode, setNavMode] = useState('circular'); // 'circular' or 'traditional'
   const { theme, toggleTheme } = useTheme(); // Use the theme context
+  // Store original positions for protocol buttons
+  const [originalPositions, setOriginalPositions] = useState({});
+  // Store center coordinates for animation target
+  const [centerCoords, setCenterCoords] = useState({ x: 0, y: 0 });
+
+  // Initialize center coordinates for portal
+  useEffect(() => {
+    // Get the viewport center
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    setCenterCoords({
+      x: viewportWidth / 2,
+      y: viewportHeight / 2
+    });
+  }, []);
+
+  // Measure and store original positions of all protocol buttons
+  useEffect(() => {
+    const positions = {};
+
+    Object.keys(protocols).forEach(key => {
+      const button = document.getElementById(`protocol-${key}`);
+      if (button) {
+        const rect = button.getBoundingClientRect();
+        positions[key] = {
+          left: rect.left + rect.width / 2, // center X
+          top: rect.top + rect.height / 2   // center Y
+        };
+      }
+    });
+
+    if (Object.keys(positions).length > 0) {
+      setOriginalPositions(positions);
+    }
+  }, [navMode]); // Re-measure when nav mode changes
+
+  // Function to animate a button toward the central portal
+  const animateButtonToCenter = (key) => {
+    const button = document.getElementById(`protocol-${key}`);
+    if (!button || !centerCoords.x) return;
+
+    // Set transition for smooth movement
+    button.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out';
+
+    // Calculate direction and move toward center
+    button.style.transform = 'translate(-50%, -50%) translateX(30px) translateY(30px) scale(0.8)';
+    button.style.opacity = '0.7';
+  };
+
+  // Function to animate a button back to its original position
+  const animateButtonToOriginal = (key) => {
+    const button = document.getElementById(`protocol-${key}`);
+    if (!button) return;
+
+    // Reset transform to return to original position
+    button.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out';
+    button.style.transform = 'translate(-50%, -50%) scale(1)';
+    button.style.opacity = '1';
+  };
 
   // Handle protocol selection with animation effect
   const handleProtocolClick = (key) => {
@@ -300,9 +348,16 @@ const Kasportal = () => {
 
     // For other protocols, toggle selection
     if (activeProtocol === key) {
+      animateButtonToOriginal(key);
       setActiveProtocol(null);
     } else {
+      // If there's an already active protocol, animate its button back
+      if (activeProtocol) {
+        animateButtonToOriginal(activeProtocol);
+      }
+
       setActiveProtocol(key);
+      animateButtonToCenter(key);
 
       // Jitter the stars slightly
       setStars((prevStars) =>
@@ -312,26 +367,37 @@ const Kasportal = () => {
           top: Math.min(100, Math.max(0, star.top + (Math.random() - 0.5) * 2)),
         }))
       );
+    }
+  };
 
-      // Add visual sucking animation effect
-      const button = document.getElementById(`protocol-${key}`);
-      if (button) {
-        // First scale down slightly
-        button.style.transition = 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out';
-        button.style.transform = 'scale(0.8)';
-        button.style.opacity = '0.7';
+  // Handler for clicks on empty space to close panel and reset button position
+  const handleBackgroundClick = (event) => {
+    // Only process if there's an active protocol
+    if (!activeProtocol) return;
 
-        // Then quickly scale up and fade back
-        setTimeout(() => {
-          button.style.transform = 'scale(1.2)';
-          button.style.opacity = '1';
+    // Check if click was directly on a black/empty space
+    // We'll identify interactive elements that should not trigger closure
+    const isInteractiveElement = event.target.closest('button, input, select, a, .w-16.h-16, .w-8.h-8');
+    const isProtocolButton = event.target.closest('[id^="protocol-"]');
+    const isPortal = event.target.closest('.relative.w-32.h-32.rounded-full.z-30');
 
-          // Finally return to normal
-          setTimeout(() => {
-            button.style.transform = 'scale(1)';
-          }, 150);
-        }, 150);
-      }
+    // Check if target has a background color (indicating it's not a black space)
+    const targetStyle = window.getComputedStyle(event.target);
+    const hasBackgroundColor = targetStyle.backgroundColor !== 'transparent' &&
+      targetStyle.backgroundColor !== 'rgba(0, 0, 0, 0)' &&
+      !targetStyle.backgroundColor.includes('rgba(0, 0, 0, 0.4)'); // Allow clicks on black/40
+
+    // Allow clicks on elements with bg-black/40 class to close the panel
+    const isBlackBg = event.target.className &&
+      (event.target.className.includes('bg-black') ||
+        event.target.className.includes('overflow-y-auto'));
+
+    // Close panel if click is on a black space (including within panels)
+    if ((!isInteractiveElement && !isProtocolButton && !isPortal && !hasBackgroundColor) || isBlackBg) {
+      // Animate active button back to original position
+      animateButtonToOriginal(activeProtocol);
+      // Close the active panel
+      setActiveProtocol(null);
     }
   };
 
@@ -580,13 +646,6 @@ const Kasportal = () => {
         </div>
         <div className="flex space-x-2 ml-4">
           <button
-            onClick={() => { console.log('Analytics button clicked'); setShowAnalytics(true); }}
-            className="flex items-center bg-green-800 hover:bg-green-700 text-white px-3 py-1 rounded transition-colors"
-          >
-            <BarChart3 size={16} className="mr-1" />
-            Analytics
-          </button>
-          <button
             onClick={openTelegram}
             className="flex items-center bg-green-800 hover:bg-green-700 text-white px-3 py-1 rounded transition-colors"
           >
@@ -668,7 +727,7 @@ const Kasportal = () => {
                 {/* Protocol node */}
                 <div
                   id={`protocol-${key}`}
-                  className="absolute group flex flex-col items-center justify-center cursor-pointer transition-all duration-300 z-20"
+                  className="absolute group flex flex-col items-center justify-center cursor-pointer transition-all duration-300 z-20 protocol-node"
                   style={{
                     ...protocol.position,
                     transform: 'translate(-50%, -50%)',
@@ -1194,26 +1253,6 @@ const Kasportal = () => {
       </div>
 
 
-      {/* Analytics Overlay */}
-      {showAnalytics && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-black/95">
-          <div className="flex justify-end p-2">
-            <button
-              onClick={() => setShowAnalytics(false)}
-              className="px-3 py-1 rounded bg-green-700 text-white hover:bg-green-600"
-            >
-              Close
-            </button>
-          </div>
-          <div className="flex-grow overflow-auto p-4">
-            {demoMode ? (
-              <div className="text-center text-yellow-400 p-8">Connect wallet to view analytics.</div>
-            ) : (
-              <AnalyticsChartWrapper kasPrice={kasPrice} address={address} />
-            )}
-          </div>
-        </div>
-      )}
 
       {/* Define keyframes for animations */}
       <style jsx="true" global="true">{`
@@ -1276,25 +1315,5 @@ const Kasportal = () => {
   );
 };
 
-const AnalyticsChartWrapper = ({ kasPrice, address }) => {
-  let data = [];
-  try {
-    if (address) {
-      const key = `portfolioHistory_${address}`;
-      const raw = localStorage.getItem(key);
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        data = parsed.map((entry) => ({
-          date: new Date(entry.timestamp).toISOString(),
-          value: entry.kasBalance / 100000000,
-          usdValue: (entry.kasBalance / 100000000) * kasPrice,
-        }));
-      }
-    }
-  } catch (e) {
-    data = [];
-  }
-  return <BlackPortfolioChart data={data} kasPrice={kasPrice} />;
-};
 
 export default Kasportal;
