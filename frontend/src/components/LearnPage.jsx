@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import TraditionalNav from './TraditionalNav';
-import { Home, Repeat, Wallet, Link2, BookOpen } from 'lucide-react';
+import { Home, Repeat, Wallet, Link2, BookOpen, Menu, X } from 'lucide-react';
 import { Book, ArrowRight, Github, Send, Clock, ExternalLink, Zap, Shield, Database, Layers, RefreshCw, AlertTriangle, DollarSign, Lock, Cpu, ServerCrash } from 'lucide-react';
 import DiscordIcon from './DiscordIcon';
 
 const LearnPage = () => {
     const [activeTopic, setActiveTopic] = useState('overview');
     const [showCommunityLinks, setShowCommunityLinks] = useState(false);
+    const [showMobileNav, setShowMobileNav] = useState(false);
     const location = useLocation();
 
     // Animate in sections as they come into view
@@ -157,6 +158,45 @@ const LearnPage = () => {
                     ? location.pathname.split('/')[2]
                     : location.pathname.split('/')[1]}
             />
+
+            {/* Mobile Navigation Button */}
+            <button
+                onClick={() => setShowMobileNav(!showMobileNav)}
+                className="md:hidden fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-green-600 text-white flex items-center justify-center shadow-lg"
+                aria-label="Open navigation menu"
+            >
+                {showMobileNav ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
+            {/* Mobile Navigation Menu */}
+            {showMobileNav && (
+                <div className="md:hidden fixed inset-0 z-40 bg-black/90 backdrop-blur-sm flex items-center justify-center overflow-auto">
+                    <div className="w-full max-w-sm mx-auto px-6 py-10">
+                        <div className="mb-8 text-center">
+                            <h3 className="text-xl font-bold text-green-400 mb-2">Learning Topics</h3>
+                            <p className="text-gray-300 text-sm">Select a topic to navigate</p>
+                        </div>
+                        <div className="space-y-3">
+                            {topics.map(topic => (
+                                <a
+                                    key={topic.id}
+                                    href={`#${topic.id}`}
+                                    className={`block px-4 py-3 rounded-lg transition-all duration-200 ${activeTopic === topic.id
+                                        ? 'bg-green-600 text-white shadow-md font-medium'
+                                        : 'bg-black/70 border border-green-500/20 text-green-200 hover:bg-green-700/50 hover:text-white'
+                                        }`}
+                                    onClick={() => {
+                                        setActiveTopic(topic.id);
+                                        setShowMobileNav(false);
+                                    }}
+                                >
+                                    {topic.label}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Header */}
             <header className="pt-10 pb-10 text-center">
@@ -1519,6 +1559,66 @@ const LearnPage = () => {
           .animate-on-scroll.animate-in {
             animation: fadeInUp 0.6s ease-out forwards;
           }
+          
+          /* Mobile navigation button animations */
+          @keyframes pulse {
+            0% {
+              box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
+            }
+            70% {
+              box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
+            }
+            100% {
+              box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+            }
+          }
+          
+          /* Mobile navigation overlay animations */
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+          
+          /* Menu items slide in */
+          @keyframes slideIn {
+            from {
+              transform: translateY(20px);
+              opacity: 0;
+            }
+            to {
+              transform: translateY(0);
+              opacity: 1;
+            }
+          }
+          
+          /* Apply animations to elements */
+          button.fixed.bottom-6.right-6 {
+            animation: pulse 2s infinite;
+          }
+          
+          .md\\:hidden.fixed.inset-0 {
+            animation: fadeIn 0.3s ease-out;
+          }
+          
+          .md\\:hidden.fixed.inset-0 .space-y-3 a {
+            animation: slideIn 0.3s ease-out forwards;
+            opacity: 0;
+          }
+          
+          /* Stagger the menu items */
+          .md\\:hidden.fixed.inset-0 .space-y-3 a:nth-child(1) { animation-delay: 0.05s; }
+          .md\\:hidden.fixed.inset-0 .space-y-3 a:nth-child(2) { animation-delay: 0.1s; }
+          .md\\:hidden.fixed.inset-0 .space-y-3 a:nth-child(3) { animation-delay: 0.15s; }
+          .md\\:hidden.fixed.inset-0 .space-y-3 a:nth-child(4) { animation-delay: 0.2s; }
+          .md\\:hidden.fixed.inset-0 .space-y-3 a:nth-child(5) { animation-delay: 0.25s; }
+          .md\\:hidden.fixed.inset-0 .space-y-3 a:nth-child(6) { animation-delay: 0.3s; }
+          .md\\:hidden.fixed.inset-0 .space-y-3 a:nth-child(7) { animation-delay: 0.35s; }
+          .md\\:hidden.fixed.inset-0 .space-y-3 a:nth-child(8) { animation-delay: 0.4s; }
+          .md\\:hidden.fixed.inset-0 .space-y-3 a:nth-child(9) { animation-delay: 0.45s; }
         `}</style>
         </div>
     );
