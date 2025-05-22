@@ -1,0 +1,39 @@
+/* Mobile animation fixes for learn page */
+@media screen and (max-width: 768px) {
+
+    /* Simplify animations on mobile to prevent glitching */
+    .animate-on-scroll {
+        opacity: 1 !important;
+        /* Always visible on mobile */
+        transform: none !important;
+        /* Remove transform animations on mobile */
+        animation: none !important;
+        /* Disable all animations on mobile */
+        transition: none !important;
+        /* Disable transitions on mobile */
+    }
+
+    /* Ensure targeted sections are always visible on mobile */
+    .animate-on-scroll:target {
+        opacity: 1 !important;
+    }
+
+    /* Override the fadeInUp animation on mobile */
+    @keyframes fadeInUp {
+
+        from,
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Remove Enter Portal functionality on mobile */
+@media screen and (max-width: 768px) {
+
+    /* Hide the Enter Portal link in the TokenSwappingPage */
+    .token-swapping-portal-link {
+        display: none !important;
+    }
+}

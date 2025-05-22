@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import TraditionalNav from './TraditionalNav';
 import { Home, Repeat, Wallet, Link2, BookOpen } from 'lucide-react';
-import { Book, ArrowRight, Github, Send, Clock, ExternalLink, Zap, Shield, Database, Layers, RefreshCw } from 'lucide-react';
+import { Book, ArrowRight, Github, Send, Clock, ExternalLink, Zap, Shield, Database, Layers, RefreshCw, AlertTriangle, DollarSign, Lock, Cpu, ServerCrash } from 'lucide-react';
+import DiscordIcon from './DiscordIcon';
 
 const LearnPage = () => {
     const [activeTopic, setActiveTopic] = useState('overview');
@@ -67,14 +68,13 @@ const LearnPage = () => {
         { id: 'layers', label: 'Layer 2 Solutions' },
         { id: 'tokenomics', label: 'Tokenomics' },
         { id: 'defi', label: 'Future DeFi Ecosystem' },
-        { id: 'roadmap', label: 'Kaspa Roadmap' },
-        { id: 'faq', label: 'Frequently Asked Questions' }
+        { id: 'mev', label: 'MEV Resistance' }
     ];
 
     const communityResources = [
         { name: 'Official Kaspa Website', url: 'https://kaspa.org', icon: <ExternalLink size={16} className="ml-1" /> },
         { name: 'Kaspa Github', url: 'https://github.com/kaspanet', icon: <Github size={16} className="ml-1" /> },
-        { name: 'Kaspa Discord', url: 'https://discord.gg/kaspa', icon: <Send size={16} className="ml-1" /> },
+        { name: 'Kaspa Discord', url: 'https://discord.gg/kaspa', icon: <DiscordIcon size={16} className="ml-1" /> },
         { name: 'Kaspa Telegram', url: 'https://t.me/+LJanxsRyV645OWUx', icon: <Send size={16} className="ml-1" /> },
         { name: 'Kaspa Explorer', url: 'https://explorer.kaspa.org', icon: <ExternalLink size={16} className="ml-1" /> }
     ];
@@ -1077,6 +1077,416 @@ const LearnPage = () => {
                                             </div>
 
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* MEV Resistance Section */}
+                        <section id="mev" className="mb-16 animate-on-scroll opacity-0 transition-opacity duration-1000">
+                            <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-8">
+                                <h2 className="text-3xl font-bold text-green-400 mb-6">MEV Resistance: Kaspa's Solution to Blockchain's Extraction Crisis</h2>
+
+                                <p className="mb-6 text-gray-300">
+                                    Maximal Extractable Value (MEV) represents one of the most significant threats to fair and
+                                    decentralized blockchain ecosystems today. Originally termed "Miner Extractable Value" during Ethereum's
+                                    proof-of-work era, MEV refers to the value that can be extracted from block production beyond standard
+                                    rewards by manipulating transaction ordering. Kaspa's unique BlockDAG architecture provides a
+                                    fundamental solution to this systemic problem.
+                                </p>
+
+                                <div className="flex items-center bg-green-500/10 border border-green-500/20 rounded-lg p-4 mb-8">
+                                    <AlertTriangle className="text-green-400 mr-3 flex-shrink-0" />
+                                    <p className="text-sm text-green-200">
+                                        <span className="font-medium">Industry Impact:</span> Since 2020, MEV extraction has evolved from an
+                                        academic curiosity into a sophisticated industry worth over $686 million on Ethereum alone. In extreme cases,
+                                        users can lose nearly all their funds—as happened in March 2023 when a trader lost approximately $215,000
+                                        (98% of their funds) during what should have been a simple stablecoin swap.
+                                    </p>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                                    <div className="bg-black/50 p-6 rounded-lg border border-green-500/10">
+                                        <div className="mb-3 text-green-400">
+                                            <DollarSign size={24} />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-white mb-2">Direct User Losses</h3>
+                                        <p className="text-gray-400">
+                                            Research has identified over 265,000 sandwich attacks affecting nearly 125,000 unique victims
+                                            with losses totaling $20 million plus $9 million in reordering slippage
+                                        </p>
+                                    </div>
+
+                                    <div className="bg-black/50 p-6 rounded-lg border border-green-500/10">
+                                        <div className="mb-3 text-green-400">
+                                            <ServerCrash size={24} />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-white mb-2">Centralization Risk</h3>
+                                        <p className="text-gray-400">
+                                            Block building centralization creates censorship risks, while MEV revenue advantages
+                                            push solo validators to join larger staking pools, reducing network decentralization
+                                        </p>
+                                    </div>
+
+                                    <div className="bg-black/50 p-6 rounded-lg border border-green-500/10">
+                                        <div className="mb-3 text-green-400">
+                                            <Lock size={24} />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-white mb-2">DeFi Vulnerability</h3>
+                                        <p className="text-gray-400">
+                                            MEV infrastructure amplifies smart contract vulnerabilities through transaction transparency,
+                                            flash loan amplification, and validator/miner collusion
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="bg-black/50 border border-green-500/10 rounded-lg p-6 mb-8">
+                                    <h3 className="text-xl font-bold text-white mb-3">The Dark Side: How MEV Extractors Operate</h3>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                        <div className="bg-black/70 border border-green-500/20 rounded-lg p-4">
+                                            <h4 className="font-bold text-green-400 mb-2">SELFDESTRUCT Opcode Exploitation</h4>
+                                            <p className="text-gray-300 text-sm">
+                                                MEV extractors deliberately undermine blockchain transparency using Ethereum's SELFDESTRUCT opcode to:
+                                                1) Deploy contracts containing MEV strategies, 2) Execute them to extract value, and 3) Immediately
+                                                self-destruct the contracts to hide their extraction logic. Recent Ethereum updates (EIP-6780) have
+                                                reduced but not eliminated this functionality.
+                                            </p>
+                                            <div className="mt-3 p-2 bg-black/80 rounded-md font-mono text-xs text-green-300">
+                                                <p>// Typical extraction pattern</p>
+                                                <p>1. Deploy contract with CREATE2</p>
+                                                <p>2. Execute MEV extraction logic</p>
+                                                <p>3. SELFDESTRUCT the contract</p>
+                                                <p>4. Redeploy different code at same address</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="bg-black/70 border border-green-500/20 rounded-lg p-4">
+                                            <h4 className="font-bold text-green-400 mb-2">Private Mempool Infrastructure</h4>
+                                            <p className="text-gray-300 text-sm">
+                                                The proliferation of private transaction channels has created fundamental transparency issues,
+                                                with data showing over 50% of all transactions in some periods bypassing the public mempool.
+                                                This opacity directly contradicts blockchain's founding principles of transparency and equal access.
+                                            </p>
+                                            <div className="mt-3">
+                                                <p className="text-xs text-green-400 font-medium">Common MEV Extraction Strategies:</p>
+                                                <ul className="mt-1 space-y-1 text-xs text-gray-300">
+                                                    <li>• Sandwich attacks (front and back running)</li>
+                                                    <li>• Liquidation sniping in lending protocols</li>
+                                                    <li>• Arbitrage between liquidity pools</li>
+                                                    <li>• Just-in-time (JIT) liquidity provision</li>
+                                                    <li>• NFT sniping/minting optimization</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-6 mb-6 bg-black/70 border border-green-500/20 rounded-lg p-4">
+                                        <p className="text-green-300 italic text-sm">
+                                            "During the July 2023 Curve Finance hack, white-hat rescuers attempted to front-run attackers to recover funds,
+                                            but MEV bots monitored these rescue attempts in the public mempool and outbid the white-hat efforts, resulting
+                                            in millions in additional losses. This incident resulted in the largest MEV block rewards in Ethereum's history."
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="bg-black/50 border border-green-500/10 rounded-lg p-6 mb-8">
+                                    <h3 className="text-xl font-bold text-white mb-3">Why Current MEV Protection Fails</h3>
+
+                                    <p className="text-gray-300 mb-4">
+                                        Despite numerous attempts to address MEV, current protection mechanisms consistently fall short due to
+                                        fundamental limitations:
+                                    </p>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                        <div className="bg-black/70 border border-green-500/20 rounded-lg p-4">
+                                            <h4 className="font-bold text-green-400 mb-2">Private Mempools</h4>
+                                            <p className="text-gray-300 text-sm">
+                                                Services like Flashbots Protect and MEV Blockers route transactions directly to validators without
+                                                exposing them publicly, but still rely on trusted operators who could potentially exploit transaction
+                                                data themselves. The April 2023 Flashbots relay vulnerability that resulted in $20 million stolen
+                                                demonstrates these weaknesses.
+                                            </p>
+                                        </div>
+
+                                        <div className="bg-black/70 border border-green-500/20 rounded-lg p-4">
+                                            <h4 className="font-bold text-green-400 mb-2">Builder-Searcher Integration</h4>
+                                            <p className="text-gray-300 text-sm">
+                                                A concerning trend is the increasing vertical integration between searchers (who find MEV opportunities)
+                                                and block builders (who construct blocks), creating information advantages that undermine existing
+                                                protections through priority manipulation and order flow capture.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-6 mb-6 bg-black/70 border border-green-500/20 rounded-lg p-4">
+                                        <p className="text-green-300 italic text-sm">
+                                            "These solutions face constant pressure from MEV extractors who continuously develop more sophisticated
+                                            bypass techniques. The arms race between protection mechanisms and extraction methods ensures that MEV
+                                            extraction will continue to evolve faster than protections."
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="bg-black/50 border border-green-500/10 rounded-lg p-6 mb-8">
+                                    <h3 className="text-xl font-bold text-white mb-3">Layer 2 Solutions: Inheriting Problems or Solutions?</h3>
+
+                                    <p className="text-gray-300 mb-4">
+                                        Layer 2 solutions face a critical choice: implement MEV resistance at the protocol level or risk recreating
+                                        the same extractive economic landscape as their underlying Layer 1s. Research shows cross-layer sandwich attacks
+                                        have already extracted approximately $2 million across different L2s.
+                                    </p>
+
+                                    <ul className="space-y-3 text-gray-300">
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 mr-3 mt-0.5 flex-shrink-0 text-xs">•</div>
+                                            <div>
+                                                <span className="font-medium text-white">Cross-Layer MEV Attacks</span>
+                                                <p className="text-sm mt-1">
+                                                    Novel attack strategies that bypass traditional MEV protections by exploiting execution delays
+                                                    between chains, allowing attackers to observe transactions in the L1 mempool before they execute on L2
+                                                </p>
+                                            </div>
+                                        </li>
+
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 mr-3 mt-0.5 flex-shrink-0 text-xs">•</div>
+                                            <div>
+                                                <span className="font-medium text-white">Architecture-Independent Vulnerabilities</span>
+                                                <p className="text-sm mt-1">
+                                                    Regardless of the underlying Layer 1 blockchain, certain vulnerability classes like reentrancy,
+                                                    flash loan attacks, and oracle manipulation will transfer to any Layer 2 implementation
+                                                </p>
+                                            </div>
+                                        </li>
+
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 mr-3 mt-0.5 flex-shrink-0 text-xs">•</div>
+                                            <div>
+                                                <span className="font-medium text-white">Centralized Sequencers</span>
+                                                <p className="text-sm mt-1">
+                                                    Many current L2 solutions rely on centralized sequencers, which simply shifts the MEV extraction
+                                                    potential from miners/validators to sequencer operators
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div className="bg-black/50 border border-green-500/10 rounded-lg p-6">
+                                    <h3 className="text-xl font-bold text-white mb-3">How Kaspa Solves the MEV Problem</h3>
+
+                                    <p className="text-gray-300 mb-4">
+                                        Unlike incremental solutions that try to mitigate MEV symptoms, Kaspa's innovative BlockDAG architecture
+                                        addresses the root cause by fundamentally changing how transactions are ordered and validated:
+                                    </p>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                        <div className="bg-black/70 border border-green-500/20 rounded-lg p-4">
+                                            <h4 className="font-bold text-green-400 mb-2">BlockDAG's Structural Advantage</h4>
+                                            <p className="text-gray-300 text-sm">
+                                                In traditional blockchains, MEV extraction is possible because a single entity controls the ordering of transactions within each block.
+                                                Kaspa's BlockDAG fundamentally breaks this monopoly by allowing multiple blocks to be created simultaneously. This parallel block
+                                                production makes it impossible for a single miner to monopolize transaction ordering across the entire network.
+                                            </p>
+                                            <div className="mt-3 p-2 bg-black/80 rounded-md text-xs text-green-300">
+                                                <p className="font-medium">Technical Insight:</p>
+                                                <p>With 10 blocks per second (BPS), a front-runner would need to control the entire mining network for
+                                                    a sustained period to reliably execute sandwich attacks—a scenario that's economically infeasible
+                                                    in a properly decentralized network.</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="bg-black/70 border border-green-500/20 rounded-lg p-4">
+                                            <h4 className="font-bold text-green-400 mb-2">GHOSTDAG's Role in MEV Prevention</h4>
+                                            <p className="text-gray-300 text-sm">
+                                                The GHOSTDAG protocol's transaction ordering mechanism creates an environment where predictable transaction ordering
+                                                (required for successful MEV extraction) becomes extremely difficult. By including multiple parallel blocks in the consensus
+                                                DAG, GHOSTDAG creates uncertainty about which miner will include any given transaction.
+                                            </p>
+                                            <div className="mt-3 p-2 bg-black/80 rounded-md text-xs text-green-300">
+                                                <p className="font-medium">Blue Set Selection:</p>
+                                                <p>GHOSTDAG's blue set selection algorithm establishes a deterministic order for parallel blocks that's extremely
+                                                    difficult to manipulate, making it nearly impossible for extractors to reliably predict transaction sequencing.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <ol className="space-y-3 text-gray-300">
+                                        <li className="flex">
+                                            <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 mr-3 flex-shrink-0">1</div>
+                                            <div>
+                                                <span className="font-medium text-white">Eliminating Monopolistic Block Control</span>
+                                                <p className="text-sm mt-1">
+                                                    Unlike traditional blockchains where a single miner controls each block, Kaspa's BlockDAG allows
+                                                    multiple miners to produce blocks simultaneously, creating competition for transaction inclusion
+                                                    that prevents monopolistic ordering power.
+                                                </p>
+                                            </div>
+                                        </li>
+
+                                        <li className="flex">
+                                            <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 mr-3 flex-shrink-0">2</div>
+                                            <div>
+                                                <span className="font-medium text-white">Miner Kickback Auction System</span>
+                                                <p className="text-sm mt-1">
+                                                    When multiple miners compete to include the same transactions, they must offer competitive
+                                                    kickbacks to users. In equilibrium, the miner kickback equals the MEV value, resulting in a
+                                                    net-zero transaction cost for users—effectively returning extracted value to the users themselves.
+                                                </p>
+                                            </div>
+                                        </li>
+
+                                        <li className="flex">
+                                            <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 mr-3 flex-shrink-0">3</div>
+                                            <div>
+                                                <span className="font-medium text-white">Increased Auction Frequency</span>
+                                                <p className="text-sm mt-1">
+                                                    With Kaspa's high block rate (10 blocks per second with the Crescendo upgrade), the frequency of
+                                                    these auctions increases, enhancing the likelihood that miner kickbacks will match user rebates
+                                                    and effectively neutralize MEV extraction. This creates a mathematical probability barrier to
+                                                    successful MEV extraction.
+                                                </p>
+                                            </div>
+                                        </li>
+
+                                        <li className="flex">
+                                            <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 mr-3 flex-shrink-0">4</div>
+                                            <div>
+                                                <span className="font-medium text-white">Stealth Transactions via DAG</span>
+                                                <p className="text-sm mt-1">
+                                                    Kaspa's architecture enables users to submit encrypted transactions that are only decrypted after
+                                                    inclusion in a block. Since multiple blocks are produced in parallel, front-runners cannot reliably
+                                                    predict which block will include the transaction, making front-running attacks probabilistically infeasible.
+                                                </p>
+                                            </div>
+                                        </li>
+
+                                        <li className="flex">
+                                            <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 mr-3 flex-shrink-0">5</div>
+                                            <div>
+                                                <span className="font-medium text-white">Transaction Randomization</span>
+                                                <p className="text-sm mt-1">
+                                                    The GHOSTDAG protocol encourages miners to select transactions randomly rather than strictly by fees.
+                                                    This randomization further obscures transaction ordering, making it difficult for MEV extractors to
+                                                    predict which transactions will be included in which blocks and in what order.
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ol>
+
+                                    <div className="mt-6 mb-6 bg-black/70 border border-green-500/20 rounded-lg p-4">
+                                        <p className="text-green-300 italic text-sm">
+                                            "Kaspa's BlockDAG architecture and GHOSTDAG protocol offer the only truly effective solution by addressing
+                                            MEV at the protocol level. By enabling parallel block processing and implementing multi-leader consensus,
+                                            Kaspa creates structural obstacles to MEV extraction rather than trying to patch vulnerabilities in
+                                            fundamentally MEV-prone architectures."
+                                        </p>
+                                    </div>
+
+                                    <div className="border border-green-500/20 rounded-lg overflow-hidden mt-6">
+                                        <div className="bg-green-500/10 px-4 py-2 text-green-400 font-medium">Implementation Guidelines for Kaspa L2 Builders</div>
+                                        <div className="p-4">
+                                            <ul className="text-gray-300 space-y-2">
+                                                <li className="flex items-center">
+                                                    <Cpu size={16} className="mr-2 text-green-400" />
+                                                    <span>Design for MEV resistance from the ground up with encrypted mempools</span>
+                                                </li>
+                                                <li className="flex items-center">
+                                                    <Cpu size={16} className="mr-2 text-green-400" />
+                                                    <span>Implement time-locked encryption and batch execution with predetermined ordering</span>
+                                                </li>
+                                                <li className="flex items-center">
+                                                    <Cpu size={16} className="mr-2 text-green-400" />
+                                                    <span>Balance decentralization with tiered sequencer designs and regular rotation</span>
+                                                </li>
+                                                <li className="flex items-center">
+                                                    <Cpu size={16} className="mr-2 text-green-400" />
+                                                    <span>Ensure protocol transparency with robust monitoring and verification systems</span>
+                                                </li>
+                                                <li className="flex items-center">
+                                                    <Cpu size={16} className="mr-2 text-green-400" />
+                                                    <span>Implement strong cross-chain security with multi-signature requirements</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <h3 className="text-xl font-semibold mb-4 text-kaspa-green mt-8">Layer 2 Solutions with Inherited MEV Resistance</h3>
+
+                                    <p className="text-gray-300 mb-4">
+                                        Kaspa's Layer 2 solutions inherit the MEV-resistant properties of the base layer, creating an ecosystem
+                                        that's fundamentally more resistant to extraction at every level. This inheritance occurs through several
+                                        technical mechanisms:
+                                    </p>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                        <div className="bg-black/70 border border-green-500/20 rounded-lg p-4">
+                                            <h4 className="font-bold text-green-400 mb-2">Kasplex: Inherited Ordering Uncertainty</h4>
+                                            <p className="text-gray-300 text-sm">
+                                                Kasplex, the most mature L2 implementation, leverages Kaspa's multi-block parallel production to create an
+                                                environment where MEV extractors face probabilistic barriers to successful front-running. By committing state transitions
+                                                to multiple parallel blocks rather than a single block, Kasplex inherits Kaspa's natural defense against
+                                                monopolistic transaction ordering.
+                                            </p>
+                                            <div className="mt-3 p-2 bg-black/80 rounded-md text-xs text-green-300">
+                                                <p className="font-medium">Technical Implementation:</p>
+                                                <p>Kasplex uses a distributed sequencing mechanism where multiple sequencers can propose state transitions,
+                                                    with final ordering determined through a consensus protocol derived from GHOSTDAG's principles. This prevents any
+                                                    single sequencer from having full control over transaction ordering.</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="bg-black/70 border border-green-500/20 rounded-lg p-4">
+                                            <h4 className="font-bold text-green-400 mb-2">ZK-Rollups: Threshold Cryptography</h4>
+                                            <p className="text-gray-300 text-sm">
+                                                ZK-rollup implementations on Kaspa combine the BlockDAG's inherent MEV resistance with zero-knowledge proofs
+                                                and threshold cryptography to prevent transaction data from being visible to any single party until after ordering
+                                                is finalized. This creates a technical barrier to MEV extraction that's almost impossible to circumvent.
+                                            </p>
+                                            <div className="mt-3 p-2 bg-black/80 rounded-md text-xs text-green-300">
+                                                <p className="font-medium">Cryptographic Protection:</p>
+                                                <p>Transaction data is encrypted with a threshold scheme requiring multiple independent parties to
+                                                    collaborate to decrypt. The transaction is first ordered, then decrypted and executed, making it
+                                                    impossible to front-run transactions based on their content.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-black/70 border border-green-500/20 rounded-lg p-4 mb-6">
+                                        <h4 className="font-bold text-green-400 mb-2">Cross-Layer MEV Protection</h4>
+                                        <p className="text-gray-300 text-sm">
+                                            Unlike other Layer 2 solutions that remain vulnerable to cross-layer MEV attacks, Kaspa's L2 implementations
+                                            are specifically designed to prevent these attack vectors through several technical mechanisms:
+                                        </p>
+                                        <ul className="mt-3 space-y-2 text-gray-300 text-sm list-disc list-inside">
+                                            <li>
+                                                <span className="font-medium text-white">Mempool Isolation:</span> Transactions bound for L2 are never visible
+                                                in the L1 mempool, preventing the observation and exploitation of L1→L2 transaction flows
+                                            </li>
+                                            <li>
+                                                <span className="font-medium text-white">Commit-Reveal Schemes:</span> Transactions use a two-phase commit-reveal
+                                                pattern where only a hash of the transaction is submitted first, with the full transaction details revealed
+                                                only after ordering is finalized
+                                            </li>
+                                            <li>
+                                                <span className="font-medium text-white">Execution Delay Elimination:</span> The high throughput of Kaspa's BlockDAG
+                                                significantly reduces the execution delay window typically exploited in cross-layer attacks
+                                            </li>
+                                            <li>
+                                                <span className="font-medium text-white">Batch Processing:</span> Transactions are processed in predetermined batches
+                                                with fixed ordering, eliminating intra-batch MEV opportunities
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4 mb-6">
+                                        <p className="text-sm text-green-200">
+                                            <span className="font-medium">Mathematical Analysis:</span> Game theory models suggest that in Kaspa's multi-leader
+                                            consensus environment with high block production rates, MEV extraction becomes a negative-sum game for extractors,
+                                            as the cost of attempting extraction exceeds potential profits. This creates a natural economic disincentive
+                                            for MEV extraction that extends to Layer 2 solutions built on Kaspa.
+                                        </p>
                                     </div>
                                 </div>
                             </div>

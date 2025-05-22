@@ -4,6 +4,7 @@ import ArrowRight from 'lucide-react/dist/esm/icons/arrow-right';
 import Twitter from 'lucide-react/dist/esm/icons/twitter';
 import Github from 'lucide-react/dist/esm/icons/github';
 import Send from 'lucide-react/dist/esm/icons/send';
+import DiscordIcon from './DiscordIcon';
 import BarChart2 from 'lucide-react/dist/esm/icons/bar-chart-2';
 import Shield from 'lucide-react/dist/esm/icons/shield';
 import Layers from 'lucide-react/dist/esm/icons/layers';
@@ -23,6 +24,7 @@ const EnhancedFooter = () => {
   const socialLinks = [
     { name: "Twitter", icon: <Twitter size={20} />, href: "https://x.com/PORTAL_KAS", ariaLabel: "Follow us on Twitter" },
     { name: "GitHub", icon: <Github size={20} />, href: "https://github.com/GhostDevs", ariaLabel: "View our GitHub" },
+    { name: "Discord", icon: <DiscordIcon size={20} />, href: "https://discord.gg/kaspa", ariaLabel: "Join our Discord server" },
     { name: "Telegram", icon: <Send size={20} />, href: "https://t.me/+LJanxsRyV645OWUx", ariaLabel: "Join our Telegram group" }
   ];
 
@@ -738,14 +740,15 @@ export default function KaspaLandingPage() {
         {particles.map((particle, i) => (
           <div
             key={`particle-${i}`}
-            className="absolute rounded-full bg-green-400"
+            className="absolute rounded-full bg-green-300"
             style={{
               left: `${particle.x}%`,
               top: `${particle.y}%`,
               width: `${particle.size}px`,
               height: `${particle.size}px`,
-              opacity: particle.opacity,
+              opacity: particle.opacity * 1.1, // Increase opacity by 10%
               transition: 'opacity 0.5s ease',
+              filter: 'brightness(1.1)' // Add brightness filter for additional 10% boost
             }}
           />
         ))}

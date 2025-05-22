@@ -108,7 +108,7 @@ const TokenSwappingPage = () => {
                 <div className="max-w-6xl mx-auto flex justify-end">
                     <div className="flex items-center space-x-6">
                         <a href="#faq" className="text-gray-400 hover:text-green-400 transition-colors duration-200">FAQ</a>
-                        <Link to="/portal" className="px-4 py-1.5 bg-green-500/10 hover:bg-green-500/20 border border-green-400/30 rounded-md text-green-400 transition-colors duration-200">
+                        <Link to="/portal" className="token-swapping-portal-link px-4 py-1.5 bg-green-500/10 hover:bg-green-500/20 border border-green-400/30 rounded-md text-green-400 transition-colors duration-200">
                             Enter Portal
                         </Link>
                         <ThemeSwitcher />
@@ -263,38 +263,100 @@ const TokenSwappingPage = () => {
                                 <span>Why Use Our Swap?</span>
                             </h3>
 
-                            <ul className="space-y-3">
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">No registration or KYC required for basic swaps</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">Best rates from multiple exchanges in one place</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">Fast transactions with average completion time under 15 minutes</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">Support for over 900+ cryptocurrencies</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">24/7 customer support via live chat</span>
-                                </li>
-                            </ul>
+                            <div className="space-y-5">
+                                {/* Enhanced Existing Benefits */}
+                                <div>
+                                    <h4 className="text-sm font-medium text-green-300 mb-2">Enhanced Existing Benefits</h4>
+                                    <ul className="space-y-3">
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                                <span className="text-green-400 text-xs">✓</span>
+                                            </div>
+                                            <span className="text-gray-300 text-sm">No registration or KYC required - Swap instantly with complete privacy and skip time-consuming verification processes</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                                <span className="text-green-400 text-xs">✓</span>
+                                            </div>
+                                            <span className="text-gray-300 text-sm">Best aggregated rates guaranteed - Our system automatically compares multiple exchanges to find you the most favorable exchange rate</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                                <span className="text-green-400 text-xs">✓</span>
+                                            </div>
+                                            <span className="text-gray-300 text-sm">Fast transactions under 15 minutes - Complete swaps in a fraction of the time compared to traditional exchanges that can take hours</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                                <span className="text-green-400 text-xs">✓</span>
+                                            </div>
+                                            <span className="text-gray-300 text-sm">Support for 900+ cryptocurrencies - Including all major coins and KRC20 tokens for maximum flexibility</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                                <span className="text-green-400 text-xs">✓</span>
+                                            </div>
+                                            <span className="text-gray-300 text-sm">24/7 customer support via live chat - Get help whenever you need it</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                {/* New Core Benefits */}
+                                <div>
+                                    <h4 className="text-sm font-medium text-green-300 mb-2">New Core Benefits</h4>
+                                    <ul className="space-y-3">
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                                <span className="text-green-400 text-xs">✓</span>
+                                            </div>
+                                            <span className="text-gray-300 text-sm">Streamlined swapping process - Complete complex trades in just 2-3 clicks instead of 10+ steps on traditional exchanges</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                                <span className="text-green-400 text-xs">✓</span>
+                                            </div>
+                                            <span className="text-gray-300 text-sm">100% non-custodial operation - You maintain full control of your funds throughout the entire swapping process</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                                <span className="text-green-400 text-xs">✓</span>
+                                            </div>
+                                            <span className="text-gray-300 text-sm">Seamless bridging capability - Bridge any of 900+ currencies to Kaspa and KRC20 tokens all within one intuitive interface</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                {/* Advanced Platform Features */}
+                                <div>
+                                    <h4 className="text-sm font-medium text-green-300 mb-2">Advanced Platform Features</h4>
+                                    <ul className="space-y-3">
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                                <span className="text-green-400 text-xs">✓</span>
+                                            </div>
+                                            <span className="text-gray-300 text-sm">Fintech integration - Connect with Venmo, Cash App, and PayPal crypto sections for seamless fiat-to-crypto onboarding</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                                <span className="text-green-400 text-xs">✓</span>
+                                            </div>
+                                            <span className="text-gray-300 text-sm">Multi-wallet compatibility - Use MetaMask, Raydium, and other popular wallets directly within our portal for maximum flexibility</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                                <span className="text-green-400 text-xs">✓</span>
+                                            </div>
+                                            <span className="text-gray-300 text-sm">Complete on-ramping & off-ramping - Buy crypto with fiat and cash out to traditional currencies all in one platform</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                                <span className="text-green-400 text-xs">✓</span>
+                                            </div>
+                                            <span className="text-gray-300 text-sm">Blockchain ecosystem gateway - Navigate from point A to Z across any blockchain faster, cheaper, and more securely than traditional methods</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
 

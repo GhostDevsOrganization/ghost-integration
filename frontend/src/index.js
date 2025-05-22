@@ -5,6 +5,7 @@ import { Buffer } from 'buffer';
 import process from 'process';
 import 'react-app-polyfill/stable';
 import './index.css';
+import './styles/mobile-fixes.css';
 import InterdimensionalPortal from './components/InterdimensionalPortal';
 import LandingPage from './components/LandingPage'; // Import the new LandingPage component
 import TokenSwappingPage from './components/TokenSwappingPage'; // Import TokenSwappingPage
