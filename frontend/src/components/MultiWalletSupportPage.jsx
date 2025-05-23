@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Repeat, Wallet, Link2, BookOpen } from 'lucide-react';
+import { Home, Repeat, Wallet, Link2, BookOpen, ArrowRight } from 'lucide-react';
 import TraditionalNav from './TraditionalNav';
 
 const MultiWalletSupportPage = () => {

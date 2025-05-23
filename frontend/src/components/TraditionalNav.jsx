@@ -55,15 +55,15 @@ const TraditionalNav = ({ protocols, activeProtocol, onProtocolClick }) => {
       </button>
 
       {/* Desktop Navigation */}
-      <nav className="hidden md:grid traditional-nav-responsive fixed top-0 left-0 right-0 bg-green-900/80 backdrop-blur-md border-b border-green-700 p-2 z-40 grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-2 overflow-y-auto max-h-[calc(100vh-var(--header-height))] scrollbar-thin transition-all duration-300">
+      <nav className="hidden md:flex traditional-nav-responsive fixed top-0 left-0 right-0 bg-green-900/80 backdrop-blur-md border-b border-green-700 px-6 py-3 z-40 justify-center gap-6 transition-all duration-300">
         {protocols.map((protocol) => (
           <Link
             key={protocol.key}
             to={protocol.path}
-            className={`flex items-center justify-center min-w-fit px-4 py-2 rounded-lg transition-all duration-300 overflow-hidden text-ellipsis
+            className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg transition-all duration-300 font-medium text-sm whitespace-nowrap
                         ${activeProtocol === protocol.key
-                ? 'bg-green-600 text-white shadow-md'
-                : 'text-green-200 hover:bg-green-700/50 hover:text-white'}`}
+                ? 'bg-green-600 text-white shadow-lg shadow-green-600/20'
+                : 'text-green-200 hover:bg-green-700/50 hover:text-white hover:shadow-md'}`}
           >
             {protocol.icon}
             <span>{protocol.label}</span>
@@ -74,8 +74,8 @@ const TraditionalNav = ({ protocols, activeProtocol, onProtocolClick }) => {
       {/* Mobile Navigation (Only visible when menu is open) */}
       <nav
         className={`mobile-menu md:hidden fixed inset-0 bg-green-900/95 backdrop-blur-md z-[990] transition-all duration-300 ${menuOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
+          ? 'opacity-100 pointer-events-auto'
+          : 'opacity-0 pointer-events-none'
           }`}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-6 py-16 px-4 overflow-y-auto">

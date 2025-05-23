@@ -5,8 +5,9 @@ import ChangeNowWidget from './ChangeNowWidget';
 import { useTheme } from '../context/ThemeContext.jsx';
 import ThemeSwitcher from './ThemeSwitcher';
 import TraditionalNav from './TraditionalNav';
+import { HowItWorksSection } from './HowItWorksSection';
 
-const TokenSwappingPage = () => {
+const TokenSwappingPage = ({ isWidgetMode = false }) => {
     const [showAdvanced, setShowAdvanced] = useState(false);
     const [loading, setLoading] = useState(true);
     const { theme, themeData } = useTheme();
@@ -72,12 +73,38 @@ const TokenSwappingPage = () => {
     const protocols = [
         { key: 'home', label: 'Home', path: '/', icon: <Home size={18} /> },
         { key: 'swap', label: 'Token Swapping', path: '/features/token-swapping', icon: <Repeat size={18} /> },
-        { key: 'wallet', label: 'Multi-Wallet Support', path: '/features/multi-wallet-support', icon: <Wallet size={18} /> },
         { key: 'crosschain', label: 'Cross-Chain Compatibility', path: '/features/cross-chain-compatibility', icon: <Link2 size={18} /> },
         { key: 'learn', label: 'Learn', path: '/learn', icon: <BookOpen size={18} /> }
     ];
 
     const [activeProtocol, setActiveProtocol] = useState(protocols[0].key);
+
+    if (isWidgetMode) {
+        return (
+            <div className="w-full h-full p-0"> {/* Removed flex centering */}
+                <div className="relative w-full h-full">
+                    {loading ? (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-900/70 backdrop-blur-sm rounded-xl z-20">
+                            <div className="flex flex-col items-center">
+                                <div className="w-12 h-12 border-2 border-green-400/20 border-t-green-400 rounded-full animate-spin mb-4"></div>
+                                <p className="text-green-400">Loading exchange rates...</p>
+                            </div>
+                        </div>
+                    ) : null}
+                    <ChangeNowWidget
+                        from={widgetConfig.from}
+                        to={widgetConfig.to}
+                        amount={widgetConfig.amount}
+                        backgroundColor={widgetConfig.backgroundColor}
+                        darkMode={widgetConfig.darkMode}
+                        primaryColor={widgetConfig.primaryColor}
+                        height="600px" // Set a fixed height for the widget
+                        width="100%"
+                    />
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-black text-white">
@@ -127,241 +154,234 @@ const TokenSwappingPage = () => {
                     </p>
                 </div>
 
-                {/* Main Content */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                    {/* Left Column - Widget */}
-                    <div className="lg:col-span-2">
-                        <div className="bg-gray-900/40 rounded-2xl p-6 backdrop-blur-sm border border-green-400/10 shadow-lg shadow-black/40 relative overflow-hidden">
-                            {/* Corner decoration */}
-                            <div className="absolute -top-10 -right-10 w-32 h-32 bg-green-400/10 rounded-full"></div>
-                            <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-green-400/5 rounded-full"></div>
+                {/* Swap Tokens (Widget) */}
+                <div className="mb-16">
+                    <div className="bg-gray-900/40 rounded-2xl p-6 backdrop-blur-sm border border-green-400/10 shadow-lg shadow-black/40 relative overflow-hidden">
+                        {/* Corner decoration */}
+                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-green-400/10 rounded-full"></div>
+                        <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-green-400/5 rounded-full"></div>
 
-                            <div className="relative z-10">
-                                <div className="flex justify-between items-center mb-6">
-                                    <h2 className="text-2xl font-semibold text-white">Swap Tokens</h2>
+                        <div className="relative z-10">
+                            <div className="flex justify-between items-center mb-6">
+                                <h2 className="text-2xl font-semibold text-white">Swap Tokens</h2>
 
-                                    <div className="flex items-center space-x-4">
+                                <div className="flex items-center space-x-4">
+                                    <button
+                                        className="text-gray-400 hover:text-green-400 transition-colors duration-200 p-2"
+                                        title="Refresh rates"
+                                    >
+                                        <RefreshCw size={18} />
+                                    </button>
+                                    <button
+                                        className="text-gray-400 hover:text-green-400 transition-colors duration-200 p-2"
+                                        title="Swap information"
+                                    >
+                                        <Info size={18} />
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Popular pairs section */}
+                            <div className="mb-6">
+                                <div className="flex items-center mb-3">
+                                    <span className="text-sm text-gray-400">Popular Pairs</span>
+                                    <div className="ml-2 h-px flex-grow bg-gray-700"></div>
+                                </div>
+
+                                <div className="flex flex-wrap gap-2">
+                                    {popularPairs.map((pair, index) => (
                                         <button
-                                            className="text-gray-400 hover:text-green-400 transition-colors duration-200 p-2"
-                                            title="Refresh rates"
+                                            key={index}
+                                            className="px-3 py-1.5 bg-green-900/20 hover:bg-green-900/30 rounded-md border border-green-400/20 text-sm flex items-center transition-colors duration-200"
+                                            onClick={() => handlePairSelect(pair.from.toLowerCase(), pair.to.toLowerCase())}
                                         >
-                                            <RefreshCw size={18} />
+                                            <span>{pair.from}</span>
+                                            <span className="mx-1 text-gray-500">→</span>
+                                            <span>{pair.to}</span>
                                         </button>
-                                        <button
-                                            className="text-gray-400 hover:text-green-400 transition-colors duration-200 p-2"
-                                            title="Swap information"
-                                        >
-                                            <Info size={18} />
-                                        </button>
-                                    </div>
-                                </div>
-
-                                {/* Popular pairs section */}
-                                <div className="mb-6">
-                                    <div className="flex items-center mb-3">
-                                        <span className="text-sm text-gray-400">Popular Pairs</span>
-                                        <div className="ml-2 h-px flex-grow bg-gray-700"></div>
-                                    </div>
-
-                                    <div className="flex flex-wrap gap-2">
-                                        {popularPairs.map((pair, index) => (
-                                            <button
-                                                key={index}
-                                                className="px-3 py-1.5 bg-green-900/20 hover:bg-green-900/30 rounded-md border border-green-400/20 text-sm flex items-center transition-colors duration-200"
-                                                onClick={() => handlePairSelect(pair.from.toLowerCase(), pair.to.toLowerCase())}
-                                            >
-                                                <span>{pair.from}</span>
-                                                <span className="mx-1 text-gray-500">→</span>
-                                                <span>{pair.to}</span>
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Widget */}
-                                <div className="relative mb-6 min-h-80">
-                                    {loading ? (
-                                        <div className="absolute inset-0 flex items-center justify-center bg-gray-900/70 backdrop-blur-sm rounded-xl z-20">
-                                            <div className="flex flex-col items-center">
-                                                <div className="w-12 h-12 border-2 border-green-400/20 border-t-green-400 rounded-full animate-spin mb-4"></div>
-                                                <p className="text-green-400">Loading exchange rates...</p>
-                                            </div>
-                                        </div>
-                                    ) : null}
-
-                                    <ChangeNowWidget
-                                        from={widgetConfig.from}
-                                        to={widgetConfig.to}
-                                        amount={widgetConfig.amount}
-                                        backgroundColor={widgetConfig.backgroundColor}
-                                        darkMode={widgetConfig.darkMode}
-                                        primaryColor={widgetConfig.primaryColor}
-                                        height="520px"
-                                        width="100%"
-                                    />
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right Column - Info and Status */}
-                    <div className="space-y-6">
-                        {/* Real-time status */}
-                        <div className="bg-gray-900/40 rounded-xl p-5 backdrop-blur-sm border border-green-400/10 overflow-hidden relative">
-                            <div className="absolute -top-12 -right-12 w-24 h-24 bg-green-400/10 rounded-full"></div>
-
-                            <h3 className="text-lg font-semibold mb-4 text-white">Exchange Status</h3>
-
-                            <div className="space-y-4">
-                                <div className="flex items-center">
-                                    <div className="w-3 h-3 rounded-full bg-green-400 mr-3"></div>
-                                    <div className="flex-1">
-                                        <div className="flex justify-between">
-                                            <span className="text-gray-300">All Systems Operational</span>
-                                            <span className="text-green-400 text-sm">100%</span>
-                                        </div>
-                                        <div className="w-full bg-gray-800 h-1 mt-2 rounded-full overflow-hidden">
-                                            <div className="bg-green-400 h-full w-full"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center">
-                                    <div className="w-3 h-3 rounded-full bg-green-400 mr-3"></div>
-                                    <div className="flex-1">
-                                        <div className="flex justify-between">
-                                            <span className="text-gray-300">KAS Network</span>
-                                            <span className="text-green-400 text-sm">100%</span>
-                                        </div>
-                                        <div className="w-full bg-gray-800 h-1 mt-2 rounded-full overflow-hidden">
-                                            <div className="bg-green-400 h-full w-full"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center">
-                                    <div className="w-3 h-3 rounded-full bg-green-400 mr-3"></div>
-                                    <div className="flex-1">
-                                        <div className="flex justify-between">
-                                            <span className="text-gray-300">BTC Network</span>
-                                            <span className="text-green-400 text-sm">100%</span>
-                                        </div>
-                                        <div className="w-full bg-gray-800 h-1 mt-2 rounded-full overflow-hidden">
-                                            <div className="bg-green-400 h-full w-full"></div>
-                                        </div>
-                                    </div>
+                                    ))}
                                 </div>
                             </div>
-                        </div>
 
-                        {/* Info Box */}
-                        <div className="bg-gray-900/40 rounded-xl p-5 backdrop-blur-sm border border-green-400/10">
-                            <h3 className="text-lg font-semibold mb-4 flex items-center">
-                                <HelpCircle size={18} className="mr-2 text-green-400" />
-                                <span>Why Use Our Swap?</span>
-                            </h3>
+                            {/* Widget */}
+                            <div className="relative mb-6 min-h-80">
+                                {loading ? (
+                                    <div className="absolute inset-0 flex items-center justify-center bg-gray-900/70 backdrop-blur-sm rounded-xl z-20">
+                                        <div className="flex flex-col items-center">
+                                            <div className="w-12 h-12 border-2 border-green-400/20 border-t-green-400 rounded-full animate-spin mb-4"></div>
+                                            <p className="text-green-400">Loading exchange rates...</p>
+                                        </div>
+                                    </div>
+                                ) : null}
 
-                            <div className="space-y-5">
-                                {/* Enhanced Existing Benefits */}
-                                <div>
-                                    <h4 className="text-sm font-medium text-green-300 mb-2">Enhanced Existing Benefits</h4>
-                                    <ul className="space-y-3">
-                                        <li className="flex items-start">
-                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                                <span className="text-green-400 text-xs">✓</span>
-                                            </div>
-                                            <span className="text-gray-300 text-sm">No registration or KYC required - Swap instantly with complete privacy and skip time-consuming verification processes</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                                <span className="text-green-400 text-xs">✓</span>
-                                            </div>
-                                            <span className="text-gray-300 text-sm">Best aggregated rates guaranteed - Our system automatically compares multiple exchanges to find you the most favorable exchange rate</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                                <span className="text-green-400 text-xs">✓</span>
-                                            </div>
-                                            <span className="text-gray-300 text-sm">Fast transactions under 15 minutes - Complete swaps in a fraction of the time compared to traditional exchanges that can take hours</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                                <span className="text-green-400 text-xs">✓</span>
-                                            </div>
-                                            <span className="text-gray-300 text-sm">Support for 900+ cryptocurrencies - Including all major coins and KRC20 tokens for maximum flexibility</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                                <span className="text-green-400 text-xs">✓</span>
-                                            </div>
-                                            <span className="text-gray-300 text-sm">24/7 customer support via live chat - Get help whenever you need it</span>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                {/* New Core Benefits */}
-                                <div>
-                                    <h4 className="text-sm font-medium text-green-300 mb-2">New Core Benefits</h4>
-                                    <ul className="space-y-3">
-                                        <li className="flex items-start">
-                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                                <span className="text-green-400 text-xs">✓</span>
-                                            </div>
-                                            <span className="text-gray-300 text-sm">Streamlined swapping process - Complete complex trades in just 2-3 clicks instead of 10+ steps on traditional exchanges</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                                <span className="text-green-400 text-xs">✓</span>
-                                            </div>
-                                            <span className="text-gray-300 text-sm">100% non-custodial operation - You maintain full control of your funds throughout the entire swapping process</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                                <span className="text-green-400 text-xs">✓</span>
-                                            </div>
-                                            <span className="text-gray-300 text-sm">Seamless bridging capability - Bridge any of 900+ currencies to Kaspa and KRC20 tokens all within one intuitive interface</span>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                {/* Advanced Platform Features */}
-                                <div>
-                                    <h4 className="text-sm font-medium text-green-300 mb-2">Advanced Platform Features</h4>
-                                    <ul className="space-y-3">
-                                        <li className="flex items-start">
-                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                                <span className="text-green-400 text-xs">✓</span>
-                                            </div>
-                                            <span className="text-gray-300 text-sm">Fintech integration - Connect with Venmo, Cash App, and PayPal crypto sections for seamless fiat-to-crypto onboarding</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                                <span className="text-green-400 text-xs">✓</span>
-                                            </div>
-                                            <span className="text-gray-300 text-sm">Multi-wallet compatibility - Use MetaMask, Raydium, and other popular wallets directly within our portal for maximum flexibility</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                                <span className="text-green-400 text-xs">✓</span>
-                                            </div>
-                                            <span className="text-gray-300 text-sm">Complete on-ramping & off-ramping - Buy crypto with fiat and cash out to traditional currencies all in one platform</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                                <span className="text-green-400 text-xs">✓</span>
-                                            </div>
-                                            <span className="text-gray-300 text-sm">Blockchain ecosystem gateway - Navigate from point A to Z across any blockchain faster, cheaper, and more securely than traditional methods</span>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <ChangeNowWidget
+                                    from={widgetConfig.from}
+                                    to={widgetConfig.to}
+                                    amount={widgetConfig.amount}
+                                    backgroundColor={widgetConfig.backgroundColor}
+                                    darkMode={widgetConfig.darkMode}
+                                    primaryColor={widgetConfig.primaryColor}
+                                    height="520px"
+                                    width="100%"
+                                />
                             </div>
                         </div>
-
-
                     </div>
                 </div>
+
+                {/* Exchange Status */}
+                <div className="bg-gray-900/40 rounded-xl p-5 backdrop-blur-sm border border-green-400/10 overflow-hidden relative mb-16">
+                    <div className="absolute -top-12 -right-12 w-24 h-24 bg-green-400/10 rounded-full"></div>
+
+                    <h3 className="text-lg font-semibold mb-4 text-white">Exchange Status</h3>
+
+                    <div className="space-y-4">
+                        <div className="flex items-center">
+                            <div className="w-3 h-3 rounded-full bg-green-400 mr-3"></div>
+                            <div className="flex-1">
+                                <div className="flex justify-between">
+                                    <span className="text-gray-300">All Systems Operational</span>
+                                    <span className="text-green-400 text-sm">100%</span>
+                                </div>
+                                <div className="w-full bg-gray-800 h-1 mt-2 rounded-full overflow-hidden">
+                                    <div className="bg-green-400 h-full w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center">
+                            <div className="w-3 h-3 rounded-full bg-green-400 mr-3"></div>
+                            <div className="flex-1">
+                                <div className="flex justify-between">
+                                    <span className="text-gray-300">KAS Network</span>
+                                    <span className="text-green-400 text-sm">100%</span>
+                                </div>
+                                <div className="w-full bg-gray-800 h-1 mt-2 rounded-full overflow-hidden">
+                                    <div className="bg-green-400 h-full w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center">
+                            <div className="w-3 h-3 rounded-full bg-green-400 mr-3"></div>
+                            <div className="flex-1">
+                                <div className="flex justify-between">
+                                    <span className="text-gray-300">BTC Network</span>
+                                    <span className="text-green-400 text-sm">100%</span>
+                                </div>
+                                <div className="w-full bg-gray-800 h-1 mt-2 rounded-full overflow-hidden">
+                                    <div className="bg-green-400 h-full w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Why Users Swap */}
+                <div className="bg-gray-900/40 rounded-xl p-5 backdrop-blur-sm border border-green-400/10 mb-16">
+                    <h3 className="text-lg font-semibold mb-4 flex items-center">
+                        <HelpCircle size={18} className="mr-2 text-green-400" />
+                        <span>Why Use Our Swap?</span>
+                    </h3>
+
+                    <div className="space-y-5">
+                        {/* Enhanced Existing Benefits */}
+                        <div>
+                            <h4 className="text-sm font-medium text-green-300 mb-2">Enhanced Existing Benefits</h4>
+                            <ul className="space-y-3">
+                                <li className="flex items-start">
+                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                        <span className="text-green-400 text-xs">✓</span>
+                                    </div>
+                                    <span className="text-gray-300 text-sm">No registration or KYC required - Swap instantly with complete privacy and skip time-consuming verification processes</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                        <span className="text-green-400 text-xs">✓</span>
+                                    </div>
+                                    <span className="text-gray-300 text-sm">Best aggregated rates guaranteed - Our system automatically compares multiple exchanges to find you the most favorable exchange rate</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                        <span className="text-green-400 text-xs">✓</span>
+                                    </div>
+                                    <span className="text-300 text-sm">Fast transactions under 15 minutes - Complete swaps in a fraction of the time compared to traditional exchanges that can take hours</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                        <span className="text-green-400 text-xs">✓</span>
+                                    </div>
+                                    <span className="text-gray-300 text-sm">Support for 900+ cryptocurrencies - Including all major coins and KRC20 tokens for maximum flexibility</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                        <span className="text-green-400 text-xs">✓</span>
+                                    </div>
+                                    <span className="text-gray-300 text-sm">24/7 customer support via live chat - Get help whenever you need it</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/* New Core Benefits */}
+                        <div>
+                            <h4 className="text-sm font-medium text-green-300 mb-2">New Core Benefits</h4>
+                            <ul className="space-y-3">
+                                <li className="flex items-start">
+                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                        <span className="text-green-400 text-xs">✓</span>
+                                    </div>
+                                    <span className="text-gray-300 text-sm">Streamlined swapping process - Complete complex trades in just 2-3 clicks instead of 10+ steps on traditional exchanges</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                        <span className="text-green-400 text-xs">✓</span>
+                                    </div>
+                                    <span className="text-gray-300 text-sm">100% non-custodial operation - You maintain full control of your funds throughout the entire swapping process</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                        <span className="text-green-400 text-xs">✓</span>
+                                    </div>
+                                    <span className="text-gray-300 text-sm">Seamless bridging capability - Bridge any of 900+ currencies to Kaspa and KRC20 tokens all within one intuitive interface</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/* Advanced Platform Features */}
+                        <div>
+                            <h4 className="text-sm font-medium text-green-300 mb-2">Advanced Platform Features</h4>
+                            <ul className="space-y-3">
+                                <li className="flex items-start">
+                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                        <span className="text-green-400 text-xs">✓</span>
+                                    </div>
+                                    <span className="text-gray-300 text-sm">Fintech integration - Connect with Venmo, Cash App, and PayPal crypto sections for seamless fiat-to-crypto onboarding</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                        <span className="text-green-400 text-xs">✓</span>
+                                    </div>
+                                    <span className="text-gray-300 text-sm">Multi-wallet compatibility - Use MetaMask, Raydium, and other popular wallets directly within our portal for maximum flexibility</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                        <span className="text-green-400 text-xs">✓</span>
+                                    </div>
+                                    <span className="text-gray-300 text-sm">Complete on-ramping & off-ramping - Buy crypto with fiat and cash out to traditional currencies all in one platform</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                                        <span className="text-green-400 text-xs">✓</span>
+                                    </div>
+                                    <span className="text-gray-300 text-sm">Blockchain ecosystem gateway - Navigate from point A to Z across any blockchain faster, cheaper, and more securely than traditional methods</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                {/* How It Works Section */}
+                <HowItWorksSection />
 
                 {/* FAQ Section */}
                 <section id="faq" className="mt-20 max-w-3xl mx-auto">

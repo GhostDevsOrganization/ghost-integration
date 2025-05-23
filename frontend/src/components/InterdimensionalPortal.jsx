@@ -639,7 +639,7 @@ const Kasportal = () => {
       </div>
 
       {/* Top navigation bar */}
-      <div className="absolute top-0 w-full px-6 py-4 flex justify-between items-center z-10">
+      <div className="absolute top-0 w-full px-6 py-4 flex justify-between items-center z-[100]">
         <div className="text-xl font-bold text-white flex items-center cursor-pointer" onClick={navigateToHome}>
           <Home size={20} className="mr-2 text-green-400" />
           <span className="text-green-400">Kaspa</span> Portal
