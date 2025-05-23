@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, HelpCircle, Info, ExternalLink, RefreshCw, ChevronDown, Home, Repeat, Wallet, Link2, BookOpen } from 'lucide-react';
+import { ArrowLeft, HelpCircle, Info, ExternalLink, RefreshCw, ChevronDown, Home, Repeat, Wallet, Link2, BookOpen, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ChangeNowWidget from './ChangeNowWidget';
 import { useTheme } from '../context/ThemeContext.jsx';
 import ThemeSwitcher from './ThemeSwitcher';
-import TraditionalNav from './TraditionalNav';
-import { HowItWorksSection } from './HowItWorksSection';
+import FuturisticNav from './FuturisticNav';
+import EnhancedFooter from './EnhancedFooter';
 
 const TokenSwappingPage = ({ isWidgetMode = false }) => {
     const [showAdvanced, setShowAdvanced] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [scrollY, setScrollY] = useState(0);
     const { theme, themeData } = useTheme();
+
     const [recentSwaps, setRecentSwaps] = useState([
         { id: 'SW-289341', from: 'BTC', to: 'KAS', status: 'completed', time: '12m ago', amount: '0.012', received: '4389.52' },
         { id: 'SW-289216', from: 'ETH', to: 'KAS', status: 'completed', time: '2h ago', amount: '0.35', received: '12492.81' },
@@ -19,28 +22,12 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
 
     // Popular swap pairs
     const popularPairs = [
-        { from: 'BTC', to: 'KAS' },
-        { from: 'ETH', to: 'KAS' },
-        { from: 'USDT', to: 'KAS' },
-        { from: 'BNB', to: 'KAS' },
-        { from: 'KAS', to: 'BTC' }
+        { from: 'BTC', to: 'KAS', color: 'from-orange-400 to-yellow-500' },
+        { from: 'ETH', to: 'KAS', color: 'from-blue-400 to-purple-500' },
+        { from: 'USDT', to: 'KAS', color: 'from-green-400 to-emerald-500' },
+        { from: 'BNB', to: 'KAS', color: 'from-yellow-400 to-orange-500' },
+        { from: 'KAS', to: 'BTC', color: 'from-teal-400 to-purple-500' }
     ];
-
-    // Widget config state
-    // Define theme-specific colors
-    const themeColors = {
-        accentColor: theme === 'dark' ? 'green' : 'blue',
-        accentHex: theme === 'dark' ? '4ADE80' : '3B82F6',
-        glowColor: theme === 'dark' ? 'rgba(74, 222, 128, 0.1)' : 'rgba(59, 130, 246, 0.1)',
-        borderColor: theme === 'dark' ? 'border-green-400/10' : 'border-blue-400/10',
-        textAccent: theme === 'dark' ? 'text-green-400' : 'text-blue-400',
-        hoverAccent: theme === 'dark' ? 'hover:text-green-400' : 'hover:text-blue-400',
-        bgAccent: theme === 'dark' ? 'bg-green-400' : 'bg-blue-400',
-        bgAccentHover: theme === 'dark' ? 'hover:bg-green-500/20' : 'hover:bg-blue-500/20',
-        bgAccentTransparent: theme === 'dark' ? 'bg-green-500/10' : 'bg-blue-500/10',
-        gradientFrom: theme === 'dark' ? 'from-green-400' : 'from-blue-400',
-        gradientTo: theme === 'dark' ? 'to-emerald-500' : 'to-cyan-500'
-    };
 
     // Widget config state
     const [widgetConfig, setWidgetConfig] = useState({
@@ -48,17 +35,46 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
         to: 'kas',
         amount: '0.01',
         backgroundColor: '121212',
-        darkMode: theme === 'dark',
-        primaryColor: themeColors.accentHex
+        darkMode: true,
+        primaryColor: '2DD4BF'
     });
 
+    // Define navigation protocols for FuturisticNav
+    const protocols = [
+        { key: 'home', label: 'Home', path: '/', icon: <Home size={18} /> },
+        { key: 'swap', label: 'Token Swapping', path: '/features/token-swapping', icon: <Repeat size={18} /> },
+        { key: 'crosschain', label: 'Cross Chain', path: '/features/cross-chain-compatibility', icon: <Link2 size={18} /> },
+        { key: 'analytics', label: 'Analytics', path: '/features/advanced-analytics', icon: <Wallet size={18} /> },
+        { key: 'learn', label: 'Learn', path: '/learn', icon: <BookOpen size={18} /> }
+    ];
+
+    const [activeProtocol, setActiveProtocol] = useState('swap');
+
     useEffect(() => {
+        const handleMouseMove = (e) => {
+            setMousePosition({
+                x: (e.clientX / window.innerWidth) - 0.5,
+                y: (e.clientY / window.innerHeight) - 0.5
+            });
+        };
+
+        const handleScroll = () => {
+            setScrollY(window.scrollY);
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('scroll', handleScroll);
+
         // Simulate loading
         const timer = setTimeout(() => {
             setLoading(false);
         }, 1500);
 
-        return () => clearTimeout(timer);
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('scroll', handleScroll);
+            clearTimeout(timer);
+        };
     }, []);
 
     const handlePairSelect = (from, to) => {
@@ -69,25 +85,15 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
         }));
     };
 
-    // Define navigation protocols for TraditionalNav
-    const protocols = [
-        { key: 'home', label: 'Home', path: '/', icon: <Home size={18} /> },
-        { key: 'swap', label: 'Token Swapping', path: '/features/token-swapping', icon: <Repeat size={18} /> },
-        { key: 'crosschain', label: 'Cross-Chain Compatibility', path: '/features/cross-chain-compatibility', icon: <Link2 size={18} /> },
-        { key: 'learn', label: 'Learn', path: '/learn', icon: <BookOpen size={18} /> }
-    ];
-
-    const [activeProtocol, setActiveProtocol] = useState(protocols[0].key);
-
     if (isWidgetMode) {
         return (
-            <div className="w-full h-full p-0"> {/* Removed flex centering */}
+            <div className="w-full h-full p-0">
                 <div className="relative w-full h-full">
                     {loading ? (
                         <div className="absolute inset-0 flex items-center justify-center bg-gray-900/70 backdrop-blur-sm rounded-xl z-20">
                             <div className="flex flex-col items-center">
-                                <div className="w-12 h-12 border-2 border-green-400/20 border-t-green-400 rounded-full animate-spin mb-4"></div>
-                                <p className="text-green-400">Loading exchange rates...</p>
+                                <div className="w-12 h-12 border-2 border-teal-400/20 border-t-teal-400 rounded-full animate-spin mb-4"></div>
+                                <p className="text-teal-400">Loading exchange rates...</p>
                             </div>
                         </div>
                     ) : null}
@@ -98,7 +104,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         backgroundColor={widgetConfig.backgroundColor}
                         darkMode={widgetConfig.darkMode}
                         primaryColor={widgetConfig.primaryColor}
-                        height="600px" // Set a fixed height for the widget
+                        height="600px"
                         width="100%"
                     />
                 </div>
@@ -107,109 +113,128 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
     }
 
     return (
-        <div className="min-h-screen bg-black text-white">
-            {/* Background elements */}
-            <div className="fixed inset-0 z-0 pointer-events-none">
-                {/* Glow effect */}
+        <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
+            {/* Animated background */}
+            <div className="fixed inset-0 pointer-events-none z-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-900/10 via-purple-900/10 to-blue-900/10"></div>
                 <div
-                    className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full filter blur-3xl opacity-30"
-                    style={{ background: themeColors.glowColor }}
-                ></div>
-                <div
-                    className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full filter blur-3xl opacity-20"
-                    style={{ background: themeColors.glowColor }}
+                    className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(45,212,191,0.1),transparent_70%)]"
+                    style={{
+                        transform: `translate(${mousePosition.x * 50}px, ${mousePosition.y * 50}px)`
+                    }}
                 ></div>
 
-                {/* Grid overlay */}
-                <div className="absolute inset-0 grid-bg opacity-10"></div>
+                {/* Floating particles */}
+                {[...Array(20)].map((_, i) => (
+                    <div
+                        key={i}
+                        className="absolute w-1 h-1 bg-teal-400/30 rounded-full animate-float"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                            animationDelay: `${Math.random() * 5}s`,
+                            animationDuration: `${3 + Math.random() * 4}s`
+                        }}
+                    />
+                ))}
             </div>
 
-            {/* Consistent Navigation Bar */}
-            <TraditionalNav
+            <FuturisticNav
                 protocols={protocols}
                 activeProtocol={activeProtocol}
             />
 
-            {/* Page-specific sub-navigation */}
-            <div className="bg-black/60 backdrop-blur-sm px-6 py-2 border-b border-green-400/10">
-                <div className="max-w-6xl mx-auto flex justify-end">
-                    <div className="flex items-center space-x-6">
-                        <a href="#faq" className="text-gray-400 hover:text-green-400 transition-colors duration-200">FAQ</a>
-                        <Link to="/portal" className="token-swapping-portal-link px-4 py-1.5 bg-green-500/10 hover:bg-green-500/20 border border-green-400/30 rounded-md text-green-400 transition-colors duration-200">
-                            Enter Portal
-                        </Link>
-                        <ThemeSwitcher />
-                    </div>
-                </div>
-            </div>
-
             <main className="relative z-10 max-w-6xl mx-auto px-4 pt-24 pb-12">
                 {/* Page Header */}
-                <div className="mb-12 text-center">
-                    <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-500 inline-block mb-4">
+                <div className="mb-16 text-center">
+                    <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent mb-6 animate-fade-in-up">
                         Token Swapping
                     </h1>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
-                        Seamlessly exchange Kaspa with other cryptocurrencies. Fast, secure, and with no registration required.
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-fade-in-up-delay">
+                        Seamlessly exchange cryptocurrencies with our quantum-powered swap engine.
+                        Fast, secure, and with no registration required.
                     </p>
                 </div>
 
-                {/* Swap Tokens (Widget) */}
-                <div className="mb-16">
-                    <div className="bg-gray-900/40 rounded-2xl p-6 backdrop-blur-sm border border-green-400/10 shadow-lg shadow-black/40 relative overflow-hidden">
+                {/* Popular Pairs Section */}
+                <section className="mb-16">
+                    <div className="text-center mb-8">
+                        <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent mb-4 animate-fade-in-up">
+                            Popular Trading Pairs
+                        </h2>
+                        <p className="text-lg text-gray-400 animate-fade-in-up-delay">
+                            Quick access to the most traded cryptocurrency pairs
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-5 gap-4">
+                        {popularPairs.map((pair, index) => (
+                            <button
+                                key={index}
+                                className="group relative bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-teal-400/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-fade-in-up"
+                                style={{ animationDelay: `${index * 0.1}s` }}
+                                onClick={() => handlePairSelect(pair.from.toLowerCase(), pair.to.toLowerCase())}
+                            >
+                                {/* Glowing background effect */}
+                                <div className={`absolute inset-0 bg-gradient-to-r ${pair.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`}></div>
+
+                                <div className="relative z-10 text-center">
+                                    <div className={`text-lg font-bold bg-gradient-to-r ${pair.color} bg-clip-text text-transparent mb-2`}>
+                                        {pair.from}
+                                    </div>
+                                    <div className="text-gray-400 text-sm mb-2">→</div>
+                                    <div className="text-lg font-bold text-teal-400">
+                                        {pair.to}
+                                    </div>
+                                </div>
+
+                                {/* Animated border */}
+                                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${pair.color} p-[1px]`}>
+                                        <div className="w-full h-full bg-gray-900/90 rounded-2xl"></div>
+                                    </div>
+                                </div>
+                            </button>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Swap Widget Section */}
+                <section className="mb-20">
+                    <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-8 hover:border-teal-400/50 transition-all duration-500 relative overflow-hidden">
                         {/* Corner decoration */}
-                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-green-400/10 rounded-full"></div>
-                        <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-green-400/5 rounded-full"></div>
+                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-teal-400/10 rounded-full"></div>
+                        <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-purple-400/5 rounded-full"></div>
 
                         <div className="relative z-10">
-                            <div className="flex justify-between items-center mb-6">
-                                <h2 className="text-2xl font-semibold text-white">Swap Tokens</h2>
+                            <div className="flex justify-between items-center mb-8">
+                                <h2 className="text-3xl font-bold bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent">
+                                    Quantum Swap Engine
+                                </h2>
 
                                 <div className="flex items-center space-x-4">
                                     <button
-                                        className="text-gray-400 hover:text-green-400 transition-colors duration-200 p-2"
+                                        className="text-gray-400 hover:text-teal-400 transition-colors duration-200 p-3 rounded-full hover:bg-teal-400/10"
                                         title="Refresh rates"
                                     >
-                                        <RefreshCw size={18} />
+                                        <RefreshCw size={20} />
                                     </button>
                                     <button
-                                        className="text-gray-400 hover:text-green-400 transition-colors duration-200 p-2"
+                                        className="text-gray-400 hover:text-teal-400 transition-colors duration-200 p-3 rounded-full hover:bg-teal-400/10"
                                         title="Swap information"
                                     >
-                                        <Info size={18} />
+                                        <Info size={20} />
                                     </button>
-                                </div>
-                            </div>
-
-                            {/* Popular pairs section */}
-                            <div className="mb-6">
-                                <div className="flex items-center mb-3">
-                                    <span className="text-sm text-gray-400">Popular Pairs</span>
-                                    <div className="ml-2 h-px flex-grow bg-gray-700"></div>
-                                </div>
-
-                                <div className="flex flex-wrap gap-2">
-                                    {popularPairs.map((pair, index) => (
-                                        <button
-                                            key={index}
-                                            className="px-3 py-1.5 bg-green-900/20 hover:bg-green-900/30 rounded-md border border-green-400/20 text-sm flex items-center transition-colors duration-200"
-                                            onClick={() => handlePairSelect(pair.from.toLowerCase(), pair.to.toLowerCase())}
-                                        >
-                                            <span>{pair.from}</span>
-                                            <span className="mx-1 text-gray-500">→</span>
-                                            <span>{pair.to}</span>
-                                        </button>
-                                    ))}
                                 </div>
                             </div>
 
                             {/* Widget */}
-                            <div className="relative mb-6 min-h-80">
+                            <div className="relative mb-6 min-h-96">
                                 {loading ? (
                                     <div className="absolute inset-0 flex items-center justify-center bg-gray-900/70 backdrop-blur-sm rounded-xl z-20">
                                         <div className="flex flex-col items-center">
-                                            <div className="w-12 h-12 border-2 border-green-400/20 border-t-green-400 rounded-full animate-spin mb-4"></div>
-                                            <p className="text-green-400">Loading exchange rates...</p>
+                                            <div className="w-12 h-12 border-2 border-teal-400/20 border-t-teal-400 rounded-full animate-spin mb-4"></div>
+                                            <p className="text-teal-400">Initializing quantum swap engine...</p>
                                         </div>
                                     </div>
                                 ) : null}
@@ -227,173 +252,162 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                {/* Exchange Status */}
-                <div className="bg-gray-900/40 rounded-xl p-5 backdrop-blur-sm border border-green-400/10 overflow-hidden relative mb-16">
-                    <div className="absolute -top-12 -right-12 w-24 h-24 bg-green-400/10 rounded-full"></div>
-
-                    <h3 className="text-lg font-semibold mb-4 text-white">Exchange Status</h3>
-
-                    <div className="space-y-4">
-                        <div className="flex items-center">
-                            <div className="w-3 h-3 rounded-full bg-green-400 mr-3"></div>
-                            <div className="flex-1">
-                                <div className="flex justify-between">
-                                    <span className="text-gray-300">All Systems Operational</span>
-                                    <span className="text-green-400 text-sm">100%</span>
-                                </div>
-                                <div className="w-full bg-gray-800 h-1 mt-2 rounded-full overflow-hidden">
-                                    <div className="bg-green-400 h-full w-full"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center">
-                            <div className="w-3 h-3 rounded-full bg-green-400 mr-3"></div>
-                            <div className="flex-1">
-                                <div className="flex justify-between">
-                                    <span className="text-gray-300">KAS Network</span>
-                                    <span className="text-green-400 text-sm">100%</span>
-                                </div>
-                                <div className="w-full bg-gray-800 h-1 mt-2 rounded-full overflow-hidden">
-                                    <div className="bg-green-400 h-full w-full"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center">
-                            <div className="w-3 h-3 rounded-full bg-green-400 mr-3"></div>
-                            <div className="flex-1">
-                                <div className="flex justify-between">
-                                    <span className="text-gray-300">BTC Network</span>
-                                    <span className="text-green-400 text-sm">100%</span>
-                                </div>
-                                <div className="w-full bg-gray-800 h-1 mt-2 rounded-full overflow-hidden">
-                                    <div className="bg-green-400 h-full w-full"></div>
-                                </div>
-                            </div>
-                        </div>
+                {/* Features Section */}
+                <section className="mb-20">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent mb-4 animate-fade-in-up">
+                            Why Choose Our Swap Engine?
+                        </h2>
+                        <p className="text-lg text-gray-400 max-w-2xl mx-auto animate-fade-in-up-delay">
+                            Experience the next generation of cryptocurrency trading with our advanced features.
+                        </p>
                     </div>
-                </div>
 
-                {/* Why Users Swap */}
-                <div className="bg-gray-900/40 rounded-xl p-5 backdrop-blur-sm border border-green-400/10 mb-16">
-                    <h3 className="text-lg font-semibold mb-4 flex items-center">
-                        <HelpCircle size={18} className="mr-2 text-green-400" />
-                        <span>Why Use Our Swap?</span>
-                    </h3>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {[
+                            {
+                                title: 'Quantum Speed',
+                                description: 'Lightning-fast swaps completed in under 15 minutes with our quantum-inspired routing algorithms.',
+                                icon: <RefreshCw className="w-8 h-8" />,
+                                color: 'from-teal-400 to-blue-500'
+                            },
+                            {
+                                title: 'Zero Registration',
+                                description: 'No KYC, no accounts, no hassle. Just connect your wallet and start swapping instantly.',
+                                icon: <Wallet className="w-8 h-8" />,
+                                color: 'from-teal-500 to-purple-500'
+                            },
+                            {
+                                title: 'Best Rates Guaranteed',
+                                description: 'Our AI aggregates rates from 50+ exchanges to ensure you always get the best deal.',
+                                icon: <ArrowRight className="w-8 h-8" />,
+                                color: 'from-teal-300 to-purple-400'
+                            },
+                            {
+                                title: '900+ Cryptocurrencies',
+                                description: 'Swap between any of 900+ supported cryptocurrencies including all major coins and tokens.',
+                                icon: <Link2 className="w-8 h-8" />,
+                                color: 'from-teal-600 to-purple-700'
+                            },
+                            {
+                                title: 'Military-Grade Security',
+                                description: 'Non-custodial swaps with multi-signature validation and quantum-resistant encryption.',
+                                icon: <HelpCircle className="w-8 h-8" />,
+                                color: 'from-teal-400 to-purple-600'
+                            },
+                            {
+                                title: '24/7 Support',
+                                description: 'Round-the-clock customer support via live chat to help with any questions or issues.',
+                                icon: <Info className="w-8 h-8" />,
+                                color: 'from-teal-500 to-purple-500'
+                            }
+                        ].map((feature, index) => (
+                            <div
+                                key={index}
+                                className="group relative bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-8 hover:border-teal-400/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-fade-in-up"
+                                style={{ animationDelay: `${index * 0.1}s` }}
+                            >
+                                {/* Glowing background effect */}
+                                <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`}></div>
 
-                    <div className="space-y-5">
-                        {/* Enhanced Existing Benefits */}
-                        <div>
-                            <h4 className="text-sm font-medium text-green-300 mb-2">Enhanced Existing Benefits</h4>
-                            <ul className="space-y-3">
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
+                                <div className="relative z-10">
+                                    <div className={`p-4 rounded-full bg-gradient-to-r ${feature.color} w-fit mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                                        <div className="text-white">
+                                            {feature.icon}
+                                        </div>
                                     </div>
-                                    <span className="text-gray-300 text-sm">No registration or KYC required - Swap instantly with complete privacy and skip time-consuming verification processes</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">Best aggregated rates guaranteed - Our system automatically compares multiple exchanges to find you the most favorable exchange rate</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-300 text-sm">Fast transactions under 15 minutes - Complete swaps in a fraction of the time compared to traditional exchanges that can take hours</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">Support for 900+ cryptocurrencies - Including all major coins and KRC20 tokens for maximum flexibility</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">24/7 customer support via live chat - Get help whenever you need it</span>
-                                </li>
-                            </ul>
-                        </div>
+                                    <h3 className="text-xl font-semibold text-white mb-4 group-hover:text-teal-300 transition-colors duration-300">
+                                        {feature.title}
+                                    </h3>
+                                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                                        {feature.description}
+                                    </p>
+                                </div>
 
-                        {/* New Core Benefits */}
-                        <div>
-                            <h4 className="text-sm font-medium text-green-300 mb-2">New Core Benefits</h4>
-                            <ul className="space-y-3">
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
+                                {/* Animated border */}
+                                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${feature.color} p-[1px]`}>
+                                        <div className="w-full h-full bg-gray-900/90 rounded-2xl"></div>
                                     </div>
-                                    <span className="text-gray-300 text-sm">Streamlined swapping process - Complete complex trades in just 2-3 clicks instead of 10+ steps on traditional exchanges</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">100% non-custodial operation - You maintain full control of your funds throughout the entire swapping process</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">Seamless bridging capability - Bridge any of 900+ currencies to Kaspa and KRC20 tokens all within one intuitive interface</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Advanced Platform Features */}
-                        <div>
-                            <h4 className="text-sm font-medium text-green-300 mb-2">Advanced Platform Features</h4>
-                            <ul className="space-y-3">
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">Fintech integration - Connect with Venmo, Cash App, and PayPal crypto sections for seamless fiat-to-crypto onboarding</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">Multi-wallet compatibility - Use MetaMask, Raydium, and other popular wallets directly within our portal for maximum flexibility</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">Complete on-ramping & off-ramping - Buy crypto with fiat and cash out to traditional currencies all in one platform</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-5 h-5 rounded-full bg-green-400/20 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                                        <span className="text-green-400 text-xs">✓</span>
-                                    </div>
-                                    <span className="text-gray-300 text-sm">Blockchain ecosystem gateway - Navigate from point A to Z across any blockchain faster, cheaper, and more securely than traditional methods</span>
-                                </li>
-                            </ul>
-                        </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                </div>
+                </section>
 
-                {/* How It Works Section */}
-                <HowItWorksSection />
+                {/* How It Works */}
+                <section className="mb-20">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent mb-4 animate-fade-in-up">
+                            How Quantum Swapping Works
+                        </h2>
+                        <p className="text-lg text-gray-400 max-w-2xl mx-auto animate-fade-in-up-delay">
+                            Our advanced swap protocol makes cryptocurrency trading simple and secure.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {[
+                            {
+                                step: '01',
+                                title: 'Select Tokens',
+                                description: 'Choose your source and destination cryptocurrencies from our extensive list of 900+ supported tokens.',
+                                color: 'from-teal-400 to-blue-500'
+                            },
+                            {
+                                step: '02',
+                                title: 'AI Rate Discovery',
+                                description: 'Our quantum AI scans 50+ exchanges in real-time to find the best possible exchange rate for your trade.',
+                                color: 'from-teal-500 to-purple-500'
+                            },
+                            {
+                                step: '03',
+                                title: 'Instant Execution',
+                                description: 'Complete your swap in under 15 minutes with our lightning-fast execution engine and receive your tokens.',
+                                color: 'from-teal-300 to-purple-400'
+                            }
+                        ].map((step, index) => (
+                            <div
+                                key={index}
+                                className="group relative bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-8 hover:border-teal-400/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-fade-in-up"
+                                style={{ animationDelay: `${index * 0.2}s` }}
+                            >
+                                <div className={`absolute inset-0 bg-gradient-to-r ${step.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`}></div>
+
+                                <div className="relative z-10 text-center">
+                                    <div className={`text-5xl font-bold bg-gradient-to-r ${step.color} bg-clip-text text-transparent mb-6`}>
+                                        {step.step}
+                                    </div>
+                                    <h3 className="text-xl font-semibold text-white mb-4 group-hover:text-teal-300 transition-colors duration-300">
+                                        {step.title}
+                                    </h3>
+                                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                                        {step.description}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
                 {/* FAQ Section */}
-                <section id="faq" className="mt-20 max-w-3xl mx-auto">
-                    <h2 className="text-2xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-500 inline-block">
-                        Frequently Asked Questions
-                    </h2>
+                <section className="mb-20">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent mb-4 animate-fade-in-up">
+                            Frequently Asked Questions
+                        </h2>
+                        <p className="text-lg text-gray-400 max-w-2xl mx-auto animate-fade-in-up-delay">
+                            Everything you need to know about our quantum swap engine.
+                        </p>
+                    </div>
 
-                    <div className="space-y-4">
+                    <div className="max-w-3xl mx-auto space-y-4">
                         {[
                             {
                                 question: "How long does a swap take to complete?",
-                                answer: "Most swaps are completed within 5-30 minutes depending on network congestion. Kaspa transactions are typically faster due to the network's high throughput capabilities."
+                                answer: "Most swaps are completed within 5-15 minutes thanks to our quantum-inspired routing algorithms. Kaspa transactions are typically even faster due to the network's high throughput capabilities."
                             },
                             {
                                 question: "Are there any swap limits?",
@@ -401,7 +415,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                             },
                             {
                                 question: "What fees are associated with swapping?",
-                                answer: "The exchange rate you see includes all fees. There are no hidden fees or additional charges. The rate includes the network transaction fees and a small service fee."
+                                answer: "The exchange rate you see includes all fees. There are no hidden fees or additional charges. The rate includes network transaction fees and a small service fee."
                             },
                             {
                                 question: "Is my personal information required?",
@@ -409,72 +423,76 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                             },
                             {
                                 question: "What if my swap is taking longer than expected?",
-                                answer: "Transactions may occasionally take longer due to network congestion. You can check the status of your swap using the transaction ID provided. If a swap is pending for over 2 hours, please contact support."
+                                answer: "Transactions may occasionally take longer due to network congestion. You can check the status of your swap using the transaction ID provided. If a swap is pending for over 2 hours, please contact our 24/7 support."
                             }
                         ].map((faq, index) => (
-                            <div key={index} className="bg-gray-900/20 border border-green-400/10 rounded-lg overflow-hidden">
+                            <div key={index} className="bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl overflow-hidden hover:border-teal-400/50 transition-all duration-500">
                                 <details className="group">
-                                    <summary className="flex justify-between items-center p-5 cursor-pointer">
-                                        <h3 className="font-medium text-white">{faq.question}</h3>
-                                        <ChevronDown size={18} className="text-green-400 group-open:transform group-open:rotate-180 transition-transform" />
+                                    <summary className="flex justify-between items-center p-6 cursor-pointer">
+                                        <h3 className="font-semibold text-white group-hover:text-teal-300 transition-colors duration-300">{faq.question}</h3>
+                                        <ChevronDown size={20} className="text-teal-400 group-open:transform group-open:rotate-180 transition-transform duration-300" />
                                     </summary>
-                                    <div className="p-5 pt-0 text-gray-400 text-sm border-t border-gray-800">
-                                        <p>{faq.answer}</p>
+                                    <div className="px-6 pb-6 text-gray-400 border-t border-gray-800/50">
+                                        <p className="pt-4">{faq.answer}</p>
                                     </div>
                                 </details>
                             </div>
                         ))}
                     </div>
                 </section>
+
+                {/* Call to Action */}
+                <section className="text-center py-20">
+                    <div className="relative">
+                        <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 bg-clip-text text-transparent mb-6 animate-fade-in-up">
+                            Ready to Experience Quantum Trading?
+                        </h2>
+                        <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto animate-fade-in-up-delay">
+                            Join thousands of traders who trust our quantum-powered swap engine for their cryptocurrency exchanges.
+                        </p>
+                        <Link
+                            to="/features/cross-chain-compatibility"
+                            className="group relative inline-flex items-center gap-3 px-12 py-6 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 rounded-full font-bold text-white text-lg shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-2 overflow-hidden"
+                        >
+                            <span className="relative z-10 flex items-center gap-3">
+                                Explore Cross-Chain
+                                <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                            </span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                            {/* Animated border */}
+                            <div className="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-teal-400 via-blue-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-spin-slow">
+                                <div className="w-full h-full bg-black rounded-full"></div>
+                            </div>
+                        </Link>
+                    </div>
+                </section>
             </main>
 
-            {/* Footer */}
-            <footer className="border-t border-green-400/10 mt-24 py-12 bg-black/80 backdrop-blur-sm relative">
-                <div className="absolute inset-0 grid-bg opacity-5 pointer-events-none"></div>
+            <EnhancedFooter />
 
-                <div className="max-w-6xl mx-auto px-6 text-center">
-                    <div className="flex justify-center items-center mb-6">
-                        <div className="text-2xl font-bold">
-                            <span className="text-green-400">Kas</span>
-                            <span className="text-white">portal</span>
-                        </div>
-                    </div>
-
-                    <p className="text-gray-500 text-sm max-w-xl mx-auto mb-8">
-                        Kasportal is a community-built platform for Kaspa token management and exchange.
-                        Not affiliated with the Kaspa Foundation. All trades are executed via third-party providers.
-                    </p>
-
-                    <div className="flex justify-center space-x-8 text-sm">
-                        <Link to="/terms" className="text-gray-400 hover:text-green-400 transition-colors">Terms of Service</Link>
-                        <Link to="/privacy" className="text-gray-400 hover:text-green-400 transition-colors">Privacy Policy</Link>
-                        <a href="https://kaspa.org" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors flex items-center">
-                            Kaspa.org
-                            <ExternalLink size={14} className="ml-1" />
-                        </a>
-                    </div>
-
-                    <div className="mt-8 text-gray-600 text-xs">
-                        © {new Date().getFullYear()} Ghost Devs. All rights reserved.
-                    </div>
-                </div>
-            </footer>
-
-            {/* Global styles */}
-            <style dangerouslySetInnerHTML={{
-                __html: `
-        @keyframes float {
-          0%, 100% { transform: translate(0, 0); }
-          50% { transform: translate(0, 10px); }
-        }
-        
-        .grid-bg {
-          background-image:
-            linear-gradient(to right, rgba(74, 222, 128, 0.1) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(74, 222, 128, 0.1) 1px, transparent 1px);
-          background-size: 30px 30px;
-        }
-      `}} />
+            <style>{`
+                @keyframes fade-in-up {
+                    from { opacity: 0; transform: translateY(30px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                
+                @keyframes float {
+                    0%, 100% { transform: translateY(0px) rotate(0deg); }
+                    50% { transform: translateY(-20px) rotate(180deg); }
+                }
+                
+                @keyframes spin-slow {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                
+                .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+                .animate-fade-in-up-delay { animation: fade-in-up 0.8s ease-out 0.2s forwards; opacity: 0; }
+                .animate-fade-in-up-delay-2 { animation: fade-in-up 0.8s ease-out 0.4s forwards; opacity: 0; }
+                .animate-float { animation: float 6s ease-in-out infinite; }
+                .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+            `}</style>
         </div>
     );
 };

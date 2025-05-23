@@ -13,6 +13,8 @@ import MultiWalletSupportPage from './components/MultiWalletSupportPage'; // Imp
 import AdvancedAnalyticsPage from './components/AdvancedAnalyticsPage'; // Import AdvancedAnalyticsPage
 import CrossChainCompatibilityPage from './components/CrossChainCompatibilityPage'; // Import CrossChainCompatibilityPage
 import LearnPage from './components/LearnPage'; // Import LearnPage
+import BlogPage from './components/BlogPage'; // Import BlogPage
+import ArticlePage from './components/ArticlePage'; // Import ArticlePage
 import { ThemeProvider } from './context/ThemeContext'; // Import ThemeProvider
 import BlackPortfolioChart from './components/BlackPortfolioChart';
 import MobileResponsiveWrapper from './components/MobileResponsiveWrapper'; // Import MobileResponsiveWrapper
@@ -88,10 +90,12 @@ function App() {
           <Route path="/portal" element={<InterdimensionalPortal />} />
           <Route path="/swap" element={<TokenSwappingPage />} />
           <Route path="/features/token-swapping" element={<TokenSwappingPage />} />
+          <Route path="/features/cross-chain-compatibility" element={<CrossChainCompatibilityPage />} />
           <Route path="/features/multi-wallet-support" element={<MultiWalletSupportPage />} />
           <Route path="/features/advanced-analytics" element={<AdvancedAnalyticsPage />} />
-          <Route path="/features/cross-chain-compatibility" element={<CrossChainCompatibilityPage />} />
           <Route path="/learn" element={<LearnPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:articleId" element={<ArticlePage />} />
         </Routes>
       </div>
     </ThemeProvider>
