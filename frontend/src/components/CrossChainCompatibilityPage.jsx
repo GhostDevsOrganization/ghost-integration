@@ -472,7 +472,7 @@ const CrossChainCompatibilityPage = () => {
                             Experience seamless cross-chain transfers with our revolutionary bridge technology.
                         </p>
                         <Link
-                            to="/portal"
+                            to="/portal/enhanced-radar"
                             className="group relative inline-flex items-center gap-4 px-12 sm:px-16 py-6 sm:py-8 bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 rounded-full font-bold text-white text-xl sm:text-2xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-2 overflow-hidden"
                         >
                             <span className="relative z-10 flex items-center gap-4">

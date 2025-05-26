@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 import QuantumPortal from './QuantumPortal';
 import FuturisticNav from './FuturisticNav';
 import EnhancedFooter from './EnhancedFooter';
 import FeatureCard from './FeatureCard';
 import HolographicStats from './HolographicStats';
-import QuantumBackground from './3D/QuantumBackground';
+import HolographicGrid from './3D/HolographicGrid';
 import MEVProtectionVisual from './3D/MEVProtectionVisual';
 import EnhancedIPhoneMockup from './EnhancedIPhoneMockup';
 import {
@@ -33,6 +34,7 @@ import {
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const { themeData } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const portalRef = useRef(null);
   const [portalActive, setPortalActive] = useState(false);
@@ -202,7 +204,7 @@ export default function LandingPage() {
     if (!portalActive) {
       setPortalActive(true);
       setTimeout(() => {
-        navigate('/portal');
+        navigate('/portal/interdimensional');
       }, 1800);
     }
   };
@@ -220,7 +222,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen overflow-x-hidden relative bg-gradient-to-br from-white via-gray-50 to-white text-gray-900">
       {/* Add 3D Background */}
-      <QuantumBackground />
+      <HolographicGrid themeData={themeData} performanceMode="high" />
 
       {/* Clean light background with subtle gradients */}
       <div className="fixed inset-0 pointer-events-none z-0">

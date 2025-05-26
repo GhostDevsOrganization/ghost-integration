@@ -17,8 +17,10 @@ import BlogPage from './components/BlogPage'; // Import BlogPage
 import ArticlePage from './components/ArticlePage'; // Import ArticlePage
 import IconComparison from './components/IconComparison'; // Import IconComparison
 import AdvancedPortal from './components/AdvancedPortal'; // Import AdvancedPortal
+import EnhancedRadarPortalPage from './components/EnhancedRadarPortalPage'; // Import EnhancedRadarPortalPage
 import { ThemeProvider } from './context/ThemeContext'; // Import ThemeProvider
 import BlackPortfolioChart from './components/BlackPortfolioChart';
+import BackgroundDemoShowcase from './components/BackgroundDemoShowcase'; // Import BackgroundDemoShowcase
 import MobileResponsiveWrapper from './components/MobileResponsiveWrapper'; // Import MobileResponsiveWrapper
 import './mobile-enhancements.js'; // Import mobile enhancements script
 
@@ -90,6 +92,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/portal" element={<AdvancedPortal />} />
+          <Route path="/portal/enhanced-radar" element={<EnhancedRadarPortalPage />} />
           <Route path="/portal/interdimensional" element={<InterdimensionalPortal />} />
           <Route path="/swap" element={<TokenSwappingPage />} />
           <Route path="/features/token-swapping" element={<TokenSwappingPage />} />
@@ -100,6 +103,7 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:articleId" element={<ArticlePage />} />
           <Route path="/icon-comparison" element={<IconComparison />} />
+          <Route path="/demo-backgrounds" element={<BackgroundDemoShowcase />} />
         </Routes>
       </div>
     </ThemeProvider>
