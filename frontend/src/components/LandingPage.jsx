@@ -269,18 +269,18 @@ export default function LandingPage() {
                     <img
                       src="/kasportal-logo.svg"
                       alt="Kasportal Logo"
-                      className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 hover:scale-110 transition-transform duration-500 drop-shadow-2xl relative z-10"
+                      className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 hover:scale-105 transition-transform duration-500 drop-shadow-2xl relative z-10"
                     />
                   </div>
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold mb-4 sm:mb-6 lg:mb-8 bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent animate-gradient-x drop-shadow-2xl relative z-10 leading-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent animate-gradient-x drop-shadow-2xl relative z-10 leading-tight overflow-visible py-2">
                   Kasportal
                 </h1>
-                <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-transparent bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text mb-4 sm:mb-6 animate-fade-in-up drop-shadow-lg relative z-10 leading-tight font-medium">
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-transparent bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text mb-4 sm:mb-6 animate-fade-in-up drop-shadow-lg relative z-10 leading-normal font-medium overflow-visible py-1">
                   Building the Future of Finance
                 </p>
-                <p className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto lg:mx-0 mb-8 sm:mb-10 animate-fade-in-up-delay backdrop-blur-sm relative z-10 leading-relaxed px-2 sm:px-0 text-gray-600 font-medium">
+                <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 sm:mb-10 animate-fade-in-up-delay backdrop-blur-sm relative z-10 leading-relaxed px-2 sm:px-0 text-gray-600 font-medium overflow-visible">
                   Bridging traditional payment systems with blockchain technology. From Apple Pay to smart contract utilities, we're making crypto accessible via web browser.
                 </p>
 
@@ -312,6 +312,62 @@ export default function LandingPage() {
       </section>
 
       <main className="max-w-6xl mx-auto px-4 pb-20 relative z-10">
+        {/* Core Features Section - MOVED UP */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="text-center mb-16 sm:mb-20 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
+              Core Features
+            </h2>
+            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
+              Explore our comprehensive suite of blockchain tools and services
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 px-4">
+            {features.map((feature, index) => (
+              <FeatureCard
+                key={index}
+                title={feature.title}
+                description={feature.description}
+                icon={feature.icon}
+                route={feature.route}
+                color={feature.color}
+                comingSoon={feature.comingSoon}
+                delay={index * 0.1}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Development Roadmap Section - MOVED UP */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="text-center mb-16 sm:mb-20 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
+              Development Roadmap
+            </h2>
+            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
+              Our journey to revolutionize decentralized finance
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 px-4">
+            {roadmapPhases.map((phase, index) => (
+              <div
+                key={index}
+                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full"
+              >
+                <div className="flex items-center justify-center w-20 h-20 mx-auto mb-8 bg-gradient-to-r from-teal-100 to-purple-100 rounded-3xl backdrop-blur-sm border border-teal-200">
+                  {phase.icon}
+                </div>
+                <div className="text-lg text-teal-600 font-bold mb-3 text-center">{phase.phase}</div>
+                <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">{phase.title}</h3>
+                <p className="text-center leading-relaxed text-gray-600 text-lg">{phase.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Seamless Payment Integration Section - MOVED DOWN */}
         <section className="py-16 sm:py-20 lg:py-24">
           <div className="text-center mb-16 sm:mb-20 px-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up drop-shadow-xl">
@@ -381,61 +437,8 @@ export default function LandingPage() {
 
         <HolographicStats />
 
-        <section className="py-16 sm:py-20 lg:py-24">
-          <div className="text-center mb-16 sm:mb-20 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
-              Core Features
-            </h2>
-            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Explore our comprehensive suite of blockchain tools and services
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 px-4">
-            {features.map((feature, index) => (
-              <FeatureCard
-                key={index}
-                title={feature.title}
-                description={feature.description}
-                icon={feature.icon}
-                route={feature.route}
-                color={feature.color}
-                comingSoon={feature.comingSoon}
-                delay={index * 0.1}
-              />
-            ))}
-          </div>
-        </section>
-
         {/* Add MEV Protection Visual */}
         <MEVProtectionVisual />
-
-        <section className="py-16 sm:py-20 lg:py-24">
-          <div className="text-center mb-16 sm:mb-20 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
-              Development Roadmap
-            </h2>
-            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Our journey to revolutionize decentralized finance
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 px-4">
-            {roadmapPhases.map((phase, index) => (
-              <div
-                key={index}
-                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full"
-              >
-                <div className="flex items-center justify-center w-20 h-20 mx-auto mb-8 bg-gradient-to-r from-teal-100 to-purple-100 rounded-3xl backdrop-blur-sm border border-teal-200">
-                  {phase.icon}
-                </div>
-                <div className="text-lg text-teal-600 font-bold mb-3 text-center">{phase.phase}</div>
-                <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">{phase.title}</h3>
-                <p className="text-center leading-relaxed text-gray-600 text-lg">{phase.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
 
         <section className="py-16 sm:py-20 lg:py-24">
           <div className="text-center mb-16 sm:mb-20 px-4">

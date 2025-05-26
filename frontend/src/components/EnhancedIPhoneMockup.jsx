@@ -104,7 +104,7 @@ export default function EnhancedIPhoneMockup() {
         }
 
         .animate-float {
-          animation: float 6s ease-in-out infinite;
+          animation: float 6s ease-in-out 1;
         }
       `}</style>
         </div>

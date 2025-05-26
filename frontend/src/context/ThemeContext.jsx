@@ -144,6 +144,12 @@ export const ThemeProvider = ({ children }) => {
     return storedTheme && THEMES[storedTheme] ? storedTheme : 'KASPA_GREEN';
   });
 
+  // Background animation preferences
+  const [backgroundAnimation, setBackgroundAnimation] = useState(() => {
+    const storedAnimation = localStorage.getItem('backgroundAnimation');
+    return storedAnimation || 'advanced'; // 'advanced', 'quantum', 'none'
+  });
+
   // Apply theme to CSS variables
   useEffect(() => {
     const root = document.documentElement;
@@ -165,6 +171,11 @@ export const ThemeProvider = ({ children }) => {
     localStorage.setItem('colorTheme', currentTheme);
   }, [currentTheme]);
 
+  // Save background animation preference to localStorage
+  useEffect(() => {
+    localStorage.setItem('backgroundAnimation', backgroundAnimation);
+  }, [backgroundAnimation]);
+
   // Toggle between themes in a cycle
   const toggleTheme = () => {
     setCurrentTheme(prevTheme => {
@@ -182,13 +193,33 @@ export const ThemeProvider = ({ children }) => {
     }
   };
 
+  // Set background animation type
+  const setBackgroundAnimationType = (animationType) => {
+    if (['advanced', 'quantum', 'none'].includes(animationType)) {
+      setBackgroundAnimation(animationType);
+    }
+  };
+
+  // Toggle background animation
+  const toggleBackgroundAnimation = () => {
+    setBackgroundAnimation(prev => {
+      const animations = ['advanced', 'quantum', 'none'];
+      const currentIndex = animations.indexOf(prev);
+      const nextIndex = (currentIndex + 1) % animations.length;
+      return animations[nextIndex];
+    });
+  };
+
   return (
     <ThemeContext.Provider value={{
       theme: currentTheme,
       themeData: THEMES[currentTheme],
       allThemes: THEMES,
       toggleTheme,
-      setTheme
+      setTheme,
+      backgroundAnimation,
+      setBackgroundAnimation: setBackgroundAnimationType,
+      toggleBackgroundAnimation
     }}>
       {children}
     </ThemeContext.Provider>

@@ -52,11 +52,10 @@ const HolographicStats = () => {
                     {stats.map((stat, index) => (
                         <div
                             key={index}
-                            className={`relative group transform hover:scale-105 transition-all duration-300 ${isVisible ? 'animate-float' : 'opacity-0'
+                            className={`relative group transform hover:scale-105 transition-all duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'
                                 }`}
                             style={{
-                                animationDelay: `${index * 0.2}s`,
-                                animationDuration: `${3 + index * 0.5}s`
+                                transitionDelay: `${index * 0.2}s`
                             }}
                         >
                             {/* Holographic layers */}

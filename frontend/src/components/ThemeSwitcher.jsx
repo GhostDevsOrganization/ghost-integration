@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../context/ThemeContext';
-import { Sun, Moon, Palette, ChevronDown } from 'lucide-react';
+import { Sun, Moon, Palette, ChevronDown, Sparkles, Zap, X } from 'lucide-react';
 
 const ThemeSwitcher = ({ dropdownPosition = 'bottom', className = '' }) => {
-  const { theme, themeData, allThemes, setTheme } = useTheme();
+  const { theme, themeData, allThemes, setTheme, backgroundAnimation, setBackgroundAnimation, toggleBackgroundAnimation } = useTheme();
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
@@ -62,6 +62,40 @@ const ThemeSwitcher = ({ dropdownPosition = 'bottom', className = '' }) => {
     setShowDropdown(false);
   };
 
+  // Handle background animation selection
+  const handleSelectAnimation = (animationType) => {
+    console.log('Setting background animation:', animationType);
+    setBackgroundAnimation(animationType);
+  };
+
+  // Get animation icon
+  const getAnimationIcon = (animationType) => {
+    switch (animationType) {
+      case 'advanced':
+        return <Sparkles size={16} />;
+      case 'quantum':
+        return <Zap size={16} />;
+      case 'none':
+        return <X size={16} />;
+      default:
+        return <Sparkles size={16} />;
+    }
+  };
+
+  // Get animation display name
+  const getAnimationName = (animationType) => {
+    switch (animationType) {
+      case 'advanced':
+        return 'Advanced 3D';
+      case 'quantum':
+        return 'Quantum Wave';
+      case 'none':
+        return 'No Animation';
+      default:
+        return 'Advanced 3D';
+    }
+  };
+
   return (
     <div className={`relative ${className}`} ref={dropdownRef}>
       {/* Theme selector dropdown button */}
@@ -72,7 +106,7 @@ const ThemeSwitcher = ({ dropdownPosition = 'bottom', className = '' }) => {
           setShowDropdown(!showDropdown);
         }}
         className="bg-sky-900/30 backdrop-blur-md border border-sky-700/50 text-white p-2 rounded-lg hover:bg-sky-800/30 focus:outline-none focus:border-sky-500/50 transition-all duration-200 flex items-center"
-        title={`Current theme: ${themeData.name}`}
+        title={`Current theme: ${themeData.name} | Animation: ${getAnimationName(backgroundAnimation)}`}
         ref={buttonRef}
       >
         <Palette size={18} className="text-sky-400" />
@@ -83,11 +117,12 @@ const ThemeSwitcher = ({ dropdownPosition = 'bottom', className = '' }) => {
       {/* Theme dropdown */}
       {showDropdown && (
         <div
-          className="w-48 py-2 bg-black/80 backdrop-blur-md rounded-lg shadow-xl border border-sky-700/50 z-[1000]"
+          className="w-64 py-2 bg-black/80 backdrop-blur-md rounded-lg shadow-xl border border-sky-700/50 z-[1000]"
           style={dropdownStyle}
         >
+          {/* Theme Selection Section */}
           <div className="px-4 py-2 text-sm font-medium border-b border-sky-700/50 text-sky-300">
-            Select Theme
+            Color Themes
           </div>
           {Object.entries(allThemes).map(([key, value]) => (
             <button
@@ -105,6 +140,37 @@ const ThemeSwitcher = ({ dropdownPosition = 'bottom', className = '' }) => {
               {value.name}
             </button>
           ))}
+
+          {/* Background Animation Section */}
+          <div className="px-4 py-2 text-sm font-medium border-b border-t border-sky-700/50 text-sky-300 mt-2">
+            Background Animation
+          </div>
+          {['advanced', 'quantum', 'none'].map((animationType) => (
+            <button
+              key={animationType}
+              className={`flex items-center w-full px-4 py-2 text-sm transition-colors duration-200 ${backgroundAnimation === animationType
+                ? 'bg-sky-900/40 text-sky-300'
+                : 'hover:bg-sky-900/30 text-gray-300 hover:text-sky-300'
+                }`}
+              onClick={() => handleSelectAnimation(animationType)}
+            >
+              <span className="mr-3 text-sky-400">
+                {getAnimationIcon(animationType)}
+              </span>
+              {getAnimationName(animationType)}
+            </button>
+          ))}
+
+          {/* Quick Toggle Button */}
+          <div className="px-4 py-2 border-t border-sky-700/50 mt-2">
+            <button
+              onClick={toggleBackgroundAnimation}
+              className="w-full px-3 py-2 text-sm bg-sky-800/30 hover:bg-sky-700/40 text-sky-300 rounded-md transition-colors duration-200 flex items-center justify-center"
+            >
+              <Sparkles size={16} className="mr-2" />
+              Toggle Animation
+            </button>
+          </div>
         </div>
       )}
     </div>

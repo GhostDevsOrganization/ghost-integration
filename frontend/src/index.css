@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import text rendering fixes */
+@import './styles/text-rendering-fixes.css';
+
 :root {
   /* Default dark theme */
   --primary-bg: #1a0a2b;
