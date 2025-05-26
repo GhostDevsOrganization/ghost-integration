@@ -47,24 +47,6 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
             toColor: 'text-green-500'
         },
         {
-            from: 'USDT',
-            to: 'KAS',
-            fromIcon: <USDTIcon size={48} />,
-            toIcon: <KASIcon size={48} style={{ color: '#00D632' }} />,
-            color: 'from-green-400 to-emerald-500',
-            fromColor: 'text-green-500',
-            toColor: 'text-green-500'
-        },
-        {
-            from: 'BNB',
-            to: 'KAS',
-            fromIcon: <BNBIcon size={48} />,
-            toIcon: <KASIcon size={48} style={{ color: '#00D632' }} />,
-            color: 'from-yellow-400 to-green-500',
-            fromColor: 'text-yellow-500',
-            toColor: 'text-green-500'
-        },
-        {
             from: 'KAS',
             to: 'BTC',
             fromIcon: <KASIcon size={48} style={{ color: '#00D632' }} />,
@@ -221,11 +203,11 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 sm:gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
                         {popularPairs.map((pair, index) => (
                             <button
                                 key={index}
-                                className="group relative bg-white backdrop-blur-sm border border-gray-200 rounded-3xl p-6 sm:p-8 hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-3 animate-fade-in-up shadow-lg"
+                                className="group relative bg-white/95 backdrop-blur-lg border-2 border-gray-100 rounded-3xl p-8 sm:p-10 hover:border-teal-200 hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-2 animate-fade-in-up shadow-xl grid place-items-center"
                                 style={{ animationDelay: `${index * 0.1}s` }}
                                 onClick={() => handlePairSelect(pair.from.toLowerCase(), pair.to.toLowerCase())}
                             >
@@ -327,16 +309,6 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                 />
                             </div>
 
-                            {/* Prominent Exchange Button */}
-                            <div className="text-center">
-                                <button className="group relative inline-flex items-center gap-4 px-12 py-6 bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 rounded-full font-bold text-white text-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-110 overflow-hidden">
-                                    <span className="relative z-10 flex items-center gap-4">
-                                        Exchange Crypto
-                                        <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
-                                    </span>
-                                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -431,19 +403,16 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
                         {[
                             {
-                                step: '01',
                                 title: 'Select Tokens',
                                 description: 'Choose your source and destination cryptocurrencies from our extensive list of 900+ supported tokens.',
                                 color: 'from-teal-500 to-blue-600'
                             },
                             {
-                                step: '02',
                                 title: 'AI Rate Discovery',
                                 description: 'Our advanced AI scans 50+ exchanges in real-time to find the best possible exchange rate for your trade.',
                                 color: 'from-teal-600 to-purple-600'
                             },
                             {
-                                step: '03',
                                 title: 'Instant Execution',
                                 description: 'Complete your swap in under 15 minutes with our lightning-fast execution engine and receive your tokens.',
                                 color: 'from-teal-400 to-purple-500'
@@ -457,9 +426,6 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                 <div className={`absolute inset-0 bg-gradient-to-r ${step.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
 
                                 <div className="relative z-10 text-center">
-                                    <div className={`text-5xl sm:text-6xl font-bold bg-gradient-to-r ${step.color} bg-clip-text text-transparent mb-6 sm:mb-8`}>
-                                        {step.step}
-                                    </div>
                                     <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 group-hover:text-teal-700 transition-colors duration-300">
                                         {step.title}
                                     </h3>
