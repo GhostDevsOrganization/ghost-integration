@@ -5,7 +5,8 @@ import { AppService } from './app.service';
 import { AuthMiddleware } from './middleware/auth.middleware';
 import { ChangeNowModule } from './changenow/changenow.module';
 import { PaymentModule } from './payment/payment.module';
-import { MongooseModule } from '@nestjs/mongoose';
+import { SoundcloudModule } from './soundcloud/soundcloud.module';
+// import { MongooseModule } from '@nestjs/mongoose';
 import { validateEnv } from './config/env.validation';
 
 @Module({
@@ -15,13 +16,15 @@ import { validateEnv } from './config/env.validation';
       validate: validateEnv,
       envFilePath: ['.env.local', '.env'],
     }),
-    MongooseModule.forRootAsync({
-      useFactory: () => ({
-        uri: process.env.MONGODB_URI || 'mongodb://localhost/change-now-v2',
-      }),
-    }),
+    // Temporarily disabled MongoDB for SoundCloud testing
+    // MongooseModule.forRootAsync({
+    //   useFactory: () => ({
+    //     uri: process.env.MONGODB_URI || 'mongodb://localhost/change-now-v2',
+    //   }),
+    // }),
     ChangeNowModule,
     PaymentModule,
+    SoundcloudModule,
   ],
   controllers: [AppController],
   providers: [AppService],

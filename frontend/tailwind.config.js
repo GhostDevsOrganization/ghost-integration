@@ -14,6 +14,7 @@ module.exports = {
         pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
         spin: 'spin 1s linear infinite',
+        'spin-slow': 'spin-slow 20s linear infinite',
       },
       keyframes: {
         pulse: {
@@ -24,6 +25,10 @@ module.exports = {
           '75%, 100%': { transform: 'scale(2)', opacity: '0' },
         },
         spin: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'spin-slow': {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
         }

@@ -3,9 +3,30 @@
 @tailwind utilities;
 
 :root {
+  /* Default dark theme */
+  --primary-bg: #1a0a2b;
+  --secondary-bg: #2d1a47;
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e0;
+  --accent-primary: #4ade80;
+  --accent-secondary: #3b82f6;
   --header-height: 60px;
   --nav-padding: 1rem;
   --content-padding: calc(var(--header-height) + var(--nav-padding));
+}
+
+[data-theme="light"] {
+  /* White theme overrides - Enhanced contrast */
+  --primary-bg: #ffffff;
+  --secondary-bg: #f8fafc;
+  --text-primary: #0f172a;
+  /* slate-900 */
+  --text-secondary: #334155;
+  /* slate-700 for better contrast */
+  --text-tertiary: #64748b;
+  /* slate-600 */
+  --accent-primary: #2563eb;
+  --accent-secondary: #4f46e5;
 }
 
 /* Custom animations */
@@ -21,9 +42,118 @@
   }
 }
 
+@keyframes grid-move {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes attack {
+  0% {
+    top: -100px;
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  50% {
+    top: 50%;
+    opacity: 0.3;
+    transform: scaleY(0.5);
+  }
+
+  100% {
+    top: 50%;
+    opacity: 0;
+  }
+}
+
+@keyframes sandwich-attack-top {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+@keyframes sandwich-attack-bottom {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fall {
+  0% {
+    top: -50px;
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 350px;
+    opacity: 0;
+    transform: rotate(360deg);
+  }
+}
+
 /* Gradient background styles */
 .bg-gradient-radial {
   background: radial-gradient(circle, #1a0a2b 0%, #2d1a47 100%);
+}
+
+/* Additional utility classes for 3D enhancements */
+.animate-float {
+  animation: float ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
 }
 
 /* Responsive adjustments */
@@ -67,4 +197,9 @@ body {
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: var(--line-height-primary);
+  font-weight: var(--font-weight-primary);
 }

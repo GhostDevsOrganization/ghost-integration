@@ -15,6 +15,8 @@ import CrossChainCompatibilityPage from './components/CrossChainCompatibilityPag
 import LearnPage from './components/LearnPage'; // Import LearnPage
 import BlogPage from './components/BlogPage'; // Import BlogPage
 import ArticlePage from './components/ArticlePage'; // Import ArticlePage
+import IconComparison from './components/IconComparison'; // Import IconComparison
+import AdvancedPortal from './components/AdvancedPortal'; // Import AdvancedPortal
 import { ThemeProvider } from './context/ThemeContext'; // Import ThemeProvider
 import BlackPortfolioChart from './components/BlackPortfolioChart';
 import MobileResponsiveWrapper from './components/MobileResponsiveWrapper'; // Import MobileResponsiveWrapper
@@ -87,7 +89,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/portal" element={<InterdimensionalPortal />} />
+          <Route path="/portal" element={<AdvancedPortal />} />
+          <Route path="/portal/interdimensional" element={<InterdimensionalPortal />} />
           <Route path="/swap" element={<TokenSwappingPage />} />
           <Route path="/features/token-swapping" element={<TokenSwappingPage />} />
           <Route path="/features/cross-chain-compatibility" element={<CrossChainCompatibilityPage />} />
@@ -96,6 +99,7 @@ function App() {
           <Route path="/learn" element={<LearnPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:articleId" element={<ArticlePage />} />
+          <Route path="/icon-comparison" element={<IconComparison />} />
         </Routes>
       </div>
     </ThemeProvider>

@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const TraditionalNav = ({ protocols, activeProtocol, onProtocolClick }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -55,28 +56,37 @@ const TraditionalNav = ({ protocols, activeProtocol, onProtocolClick }) => {
       </button>
 
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex traditional-nav-responsive fixed top-0 left-0 right-0 bg-green-900/80 backdrop-blur-md border-b border-green-700 px-6 py-3 z-40 justify-center gap-6 transition-all duration-300">
+      <nav className="hidden md:flex traditional-nav-responsive fixed top-0 left-0 right-0 backdrop-blur-md border-b px-6 py-3 z-40 justify-center gap-6 transition-all duration-300"
+        style={{ backgroundColor: 'var(--primary-bg)', borderColor: 'var(--border-color)' }}>
         {protocols.map((protocol) => (
           <Link
             key={protocol.key}
             to={protocol.path}
-            className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg transition-all duration-300 font-medium text-sm whitespace-nowrap
-                        ${activeProtocol === protocol.key
-                ? 'bg-green-600 text-white shadow-lg shadow-green-600/20'
-                : 'text-green-200 hover:bg-green-700/50 hover:text-white hover:shadow-md'}`}
+            className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg transition-all duration-300 font-medium text-sm whitespace-nowrap`}
+            style={{
+              backgroundColor: activeProtocol === protocol.key ? 'var(--accent-primary)' : 'transparent',
+              color: activeProtocol === protocol.key ? 'var(--text-primary)' : 'var(--text-secondary)',
+              boxShadow: activeProtocol === protocol.key ? '0 4px 10px rgba(var(--accent-primary-rgb-values), 0.2)' : 'none',
+              border: activeProtocol === protocol.key ? '1px solid var(--accent-primary)' : 'none',
+              opacity: activeProtocol === protocol.key ? 1 : 0.8,
+              transition: 'all 0.3s ease-in-out'
+            }}
           >
             {protocol.icon}
             <span>{protocol.label}</span>
           </Link>
         ))}
+        {/* Theme Switcher for Desktop */}
+        <ThemeSwitcher className="ml-6 z-[1000]" dropdownPosition="bottom" />
       </nav>
 
       {/* Mobile Navigation (Only visible when menu is open) */}
       <nav
-        className={`mobile-menu md:hidden fixed inset-0 bg-green-900/95 backdrop-blur-md z-[990] transition-all duration-300 ${menuOpen
+        className={`mobile-menu md:hidden fixed inset-0 backdrop-blur-md z-[990] transition-all duration-300 ${menuOpen
           ? 'opacity-100 pointer-events-auto'
           : 'opacity-0 pointer-events-none'
           }`}
+        style={{ backgroundColor: 'rgba(var(--primary-bg-rgb-values), 0.95)' }}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-6 py-16 px-4 overflow-y-auto">
           {protocols.map((protocol) => (
@@ -84,15 +94,22 @@ const TraditionalNav = ({ protocols, activeProtocol, onProtocolClick }) => {
               key={protocol.key}
               to={protocol.path}
               onClick={() => setMenuOpen(false)}
-              className={`flex items-center justify-center w-full max-w-xs px-6 py-4 rounded-lg transition-all duration-300
-                          ${activeProtocol === protocol.key
-                  ? 'bg-green-600 text-white shadow-md'
-                  : 'text-green-200 hover:bg-green-700/50 hover:text-white'}`}
+              className={`flex items-center justify-center w-full max-w-xs px-6 py-4 rounded-lg transition-all duration-300`}
+              style={{
+                backgroundColor: activeProtocol === protocol.key ? 'rgba(var(--accent-primary-rgb-values), 0.3)' : 'transparent',
+                color: activeProtocol === protocol.key ? 'var(--text-primary)' : 'var(--text-secondary)',
+                boxShadow: activeProtocol === protocol.key ? '0 4px 10px rgba(var(--accent-primary-rgb-values), 0.2)' : 'none',
+                border: activeProtocol === protocol.key ? '1px solid var(--accent-primary)' : 'none',
+                opacity: activeProtocol === protocol.key ? 1 : 0.8,
+                transition: 'all 0.3s ease-in-out'
+              }}
             >
               {protocol.icon}
               <span className="ml-2 text-xl">{protocol.label}</span>
             </Link>
           ))}
+          {/* Theme Switcher for Mobile */}
+          <ThemeSwitcher className="mt-6 z-[1000]" dropdownPosition="bottom" />
         </div>
       </nav>
     </>

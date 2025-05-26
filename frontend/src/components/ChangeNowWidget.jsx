@@ -34,13 +34,14 @@ const ChangeNowWidget = ({
   ...rest
 }) => {
   // Get theme context
-  const { theme } = useTheme();
+  const { theme, themeData } = useTheme();
 
   // Override primaryColor based on theme if not explicitly provided
-  const themeBasedPrimaryColor = rest.primaryColor || (theme === 'dark' ? '4ADE80' : '3B82F6');
+  const themeBasedPrimaryColor = rest.primaryColor || themeData.colors.accentPrimary.replace('#', '');
 
   // Override darkMode based on theme if not explicitly provided
-  const themeBasedDarkMode = rest.darkMode !== undefined ? darkMode : theme === 'dark';
+  const isDarkTheme = ['NEON_BLUE', 'COSMIC_ORANGE', 'KASPA_GREEN', 'ANDROMEDA_GALAXY', 'MILKY_WAY_NEBULA', 'CRAB_NEBULA'].includes(theme);
+  const themeBasedDarkMode = rest.darkMode !== undefined ? darkMode : isDarkTheme;
   // Build the widget URL with query params
   const params = new URLSearchParams({
     FAQ: "false",

@@ -87,32 +87,33 @@ const MultiWalletSupportPage = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-black text-white">
+        <div className="min-h-screen" style={{ backgroundColor: 'var(--primary-bg)', color: 'var(--text-primary)' }}>
             {/* Radar-style background elements */}
             <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150vh] h-[150vh] rounded-full border border-green-500/10"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120vh] h-[120vh] rounded-full border border-green-500/10"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90vh] h-[90vh] rounded-full border border-green-500/10"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[60vh] h-[60vh] rounded-full border border-green-500/10"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150vh] h-[150vh] rounded-full border" style={{ borderColor: 'rgba(var(--accent-primary-rgb-values), 0.1)' }}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120vh] h-[120vh] rounded-full border" style={{ borderColor: 'rgba(var(--accent-primary-rgb-values), 0.1)' }}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90vh] h-[90vh] rounded-full border" style={{ borderColor: 'rgba(var(--accent-primary-rgb-values), 0.1)' }}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[60vh] h-[60vh] rounded-full border" style={{ borderColor: 'rgba(var(--accent-primary-rgb-values), 0.1)' }}></div>
 
                 {/* Scanning line */}
-                <div className="absolute top-1/2 left-1/2 h-[150vh] w-px bg-green-400/20 transform -translate-x-1/2 -translate-y-1/2 animate-spin"
-                    style={{ animationDuration: '25s' }}></div>
-                <div className="absolute top-1/2 left-1/2 h-px w-[150vh] bg-green-400/20 transform -translate-x-1/2 -translate-y-1/2 animate-spin"
-                    style={{ animationDuration: '25s' }}></div>
+                <div className="absolute top-1/2 left-1/2 h-[150vh] w-px transform -translate-x-1/2 -translate-y-1/2 animate-spin"
+                    style={{ animationDuration: '25s', backgroundColor: 'rgba(var(--accent-primary-rgb-values), 0.2)' }}></div>
+                <div className="absolute top-1/2 left-1/2 h-px w-[150vh] transform -translate-x-1/2 -translate-y-1/2 animate-spin"
+                    style={{ animationDuration: '25s', backgroundColor: 'rgba(var(--accent-primary-rgb-values), 0.2)' }}></div>
 
                 {/* Small particles */}
                 {[...Array(30)].map((_, i) => (
                     <div
                         key={i}
-                        className="absolute rounded-full bg-green-400"
+                        className="absolute rounded-full"
                         style={{
                             width: `${Math.random() * 3 + 1}px`,
                             height: `${Math.random() * 3 + 1}px`,
                             top: `${Math.random() * 100}%`,
                             left: `${Math.random() * 100}%`,
                             opacity: Math.random() * 0.5,
-                            animation: `float ${Math.random() * 10 + 10}s infinite linear`
+                            animation: `float ${Math.random() * 10 + 10}s infinite linear`,
+                            backgroundColor: 'var(--accent-primary)'
                         }}
                     ></div>
                 ))}

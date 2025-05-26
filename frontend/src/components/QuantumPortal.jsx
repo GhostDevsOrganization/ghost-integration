@@ -1,94 +1,29 @@
 import { useState, useEffect, useRef } from 'react';
-import { CreditCard, DollarSign, Bitcoin } from 'lucide-react';
+import BitcoinIcon from './BitcoinIcon';
+import EthereumIcon from './EthereumIcon';
+import SolanaIcon from './SolanaIcon';
+import { VisaIcon, MastercardIcon, ApplePayIcon, CashAppIcon } from './EnhancedPaymentIcons';
 
 // Enhanced Payment Icons with Quantum Effects
 const PaymentIcons = {
-    Bitcoin: ({ size = 40, glow = false }) => (
-        <div className={`relative ${glow ? 'animate-pulse' : ''}`} style={{ width: size, height: size }}>
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full shadow-2xl">
-                <div className="absolute inset-0 bg-orange-400/30 rounded-full blur-xl" />
-            </div>
-            <svg viewBox="0 0 24 24" className="relative w-full h-full p-2 text-white drop-shadow-lg">
-                <path fill="currentColor" d="M11.5 11.5v-2c1.4-.2 2.5-.9 2.5-2.5 0-1.4-1.1-2.5-2.5-2.5v-.5h-1v.5c-1.4 0-2.5 1.1-2.5 2.5h1.5c0-.6.4-1 1-1v2c-1.4.2-2.5 1-2.5 2.5 0 1.4 1.1 2.5 2.5 2.5v.5h1v-.5c1.4 0 2.5-1.1 2.5-2.5h-1.5c0 .6-.4 1-1 1zm-1-5c.6 0 1 .4 1 1s-.4 1-1 1v-2zm0 3.5v2c-.6 0-1-.4-1-1s.4-1 1-1z" />
-                <text x="12" y="16" textAnchor="middle" fontSize="4" fontWeight="bold">BTC</text>
-            </svg>
-        </div>
-    ),
-    Ethereum: ({ size = 40, glow = false }) => (
-        <div className={`relative ${glow ? 'animate-pulse' : ''}`} style={{ width: size, height: size }}>
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-purple-800 rounded-full shadow-2xl">
-                <div className="absolute inset-0 bg-purple-400/30 rounded-full blur-xl" />
-            </div>
-            <div className="relative w-full h-full flex items-center justify-center">
-                <div className="w-5 h-7 relative">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-r-[10px] border-b-[14px] border-l-transparent border-r-transparent border-b-white/90" />
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-r-[10px] border-t-[14px] border-l-transparent border-r-transparent border-t-white/60" />
-                </div>
-            </div>
-            <text x="12" y="20" textAnchor="middle" fontSize="3" fontWeight="bold" fill="white" className="absolute bottom-1 left-1/2 -translate-x-1/2">ETH</text>
-        </div>
-    ),
-    Solana: ({ size = 40, glow = false }) => (
-        <div className={`relative ${glow ? 'animate-pulse' : ''}`} style={{ width: size, height: size }}>
-            <div className="absolute inset-0 bg-gradient-to-br from-teal-500 via-purple-600 to-pink-600 rounded-full shadow-2xl">
-                <div className="absolute inset-0 bg-purple-400/30 rounded-full blur-xl" />
-            </div>
-            <svg viewBox="0 0 24 24" className="relative w-full h-full p-3 text-white">
-                <path fill="currentColor" d="M7 7h10l-2-2H7v2zm0 4h12l-2 2H7v-2zm0 4h10l2-2H9l-2 2z" />
-                <text x="12" y="20" textAnchor="middle" fontSize="3" fontWeight="bold">SOL</text>
-            </svg>
-        </div>
-    ),
-    Visa: ({ size = 40, glow = false }) => (
-        <div className={`relative ${glow ? 'animate-pulse' : ''}`} style={{ width: size, height: size }}>
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg shadow-2xl transform rotate-3">
-                <div className="absolute inset-0 bg-blue-400/30 rounded-lg blur-xl" />
-            </div>
-            <div className="relative w-full h-full flex items-center justify-center">
-                <span className="text-white font-bold text-xs drop-shadow-lg">VISA</span>
-            </div>
-        </div>
-    ),
-    Mastercard: ({ size = 40, glow = false }) => (
-        <div className={`relative ${glow ? 'animate-pulse' : ''}`} style={{ width: size, height: size }}>
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-2xl transform -rotate-3">
-                <div className="absolute inset-0 bg-gray-600/30 rounded-lg blur-xl" />
-            </div>
-            <svg viewBox="0 0 24 24" className="relative w-full h-full p-2">
-                <circle cx="9" cy="12" r="5" fill="#EB001B" />
-                <circle cx="15" cy="12" r="5" fill="#F79E1B" fillOpacity="0.9" />
-            </svg>
-        </div>
-    ),
-    ApplePay: ({ size = 40, glow = false }) => (
-        <div className={`relative ${glow ? 'animate-pulse' : ''}`} style={{ width: size, height: size }}>
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black rounded-lg shadow-2xl transform rotate-1">
-                <div className="absolute inset-0 bg-gray-700/30 rounded-lg blur-xl" />
-            </div>
-            <div className="relative w-full h-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">🍎</span>
-            </div>
-        </div>
-    ),
-    CashApp: ({ size = 40, glow = false }) => (
-        <div className={`relative ${glow ? 'animate-pulse' : ''}`} style={{ width: size, height: size }}>
-            <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-green-700 rounded-lg shadow-2xl transform -rotate-2">
-                <div className="absolute inset-0 bg-green-400/30 rounded-lg blur-xl" />
-            </div>
-            <DollarSign className="relative w-full h-full p-1 text-white" strokeWidth={3} />
-        </div>
-    )
+    Bitcoin: ({ size = 40, glow = false }) => <BitcoinIcon size={size} glow={glow} />,
+    Ethereum: ({ size = 40, glow = false }) => <EthereumIcon size={size} glow={glow} />,
+    Solana: ({ size = 40, glow = false }) => <SolanaIcon size={size} glow={glow} />,
+    Visa: ({ size = 40, glow = false }) => <VisaIcon size={size} glow={glow} />,
+    Mastercard: ({ size = 40, glow = false }) => <MastercardIcon size={size} glow={glow} />,
+    ApplePay: ({ size = 40, glow = false }) => <ApplePayIcon size={size} glow={glow} />,
+    CashApp: ({ size = 40, glow = false }) => <CashAppIcon size={size} glow={glow} />
 };
 
-// Floating icon data with orbital properties - all payment methods
+// Floating icon data with orbital properties - all payment methods (slower speeds, equally spaced)
 const floatingIconsData = [
-    { name: 'Bitcoin', component: PaymentIcons.Bitcoin, color: '#F7931A', orbit: { radius: 180, speed: 0.8, phase: 0 } },
-    { name: 'Ethereum', component: PaymentIcons.Ethereum, color: '#627EEA', orbit: { radius: 200, speed: 0.6, phase: 45 } },
-    { name: 'Solana', component: PaymentIcons.Solana, color: '#9945FF', orbit: { radius: 160, speed: 1.0, phase: 90 } },
-    { name: 'Visa', component: PaymentIcons.Visa, color: '#1A1F71', orbit: { radius: 220, speed: 0.7, phase: 135 } },
-    { name: 'Mastercard', component: PaymentIcons.Mastercard, color: '#EB001B', orbit: { radius: 190, speed: 0.9, phase: 180 } },
-    { name: 'ApplePay', component: PaymentIcons.ApplePay, color: '#000000', orbit: { radius: 210, speed: 0.5, phase: 225 } },
-    { name: 'CashApp', component: PaymentIcons.CashApp, color: '#00D632', orbit: { radius: 170, speed: 1.1, phase: 270 } }
+    { name: 'Bitcoin', component: PaymentIcons.Bitcoin, color: '#F7931A', orbit: { radius: 180, speed: 0.2, phase: 0 } },
+    { name: 'Ethereum', component: PaymentIcons.Ethereum, color: '#627EEA', orbit: { radius: 200, speed: 0.15, phase: 51.43 } },
+    { name: 'Solana', component: PaymentIcons.Solana, color: '#9945FF', orbit: { radius: 160, speed: 0.25, phase: 102.86 } },
+    { name: 'Visa', component: PaymentIcons.Visa, color: '#1A1F71', orbit: { radius: 220, speed: 0.18, phase: 154.29 } },
+    { name: 'Mastercard', component: PaymentIcons.Mastercard, color: '#EB001B', orbit: { radius: 190, speed: 0.22, phase: 205.72 } },
+    { name: 'ApplePay', component: PaymentIcons.ApplePay, color: '#000000', orbit: { radius: 210, speed: 0.12, phase: 257.15 } },
+    { name: 'CashApp', component: PaymentIcons.CashApp, color: '#00D632', orbit: { radius: 170, speed: 0.28, phase: 308.58 } }
 ];
 
 export default function QuantumPortal({ onEnterPortal = () => { }, isActive = false, mousePosition = { x: 0, y: 0 } }) {
@@ -144,7 +79,7 @@ export default function QuantumPortal({ onEnterPortal = () => { }, isActive = fa
         setFloatingIcons(icons);
     }, []);
 
-    // Update floating icons positions
+    // Update floating icons positions - X-axis orbital motion with slower rotation
     useEffect(() => {
         if (suctionActive) return;
 
@@ -152,9 +87,11 @@ export default function QuantumPortal({ onEnterPortal = () => { }, isActive = fa
             setFloatingIcons(prev => prev.map(icon => {
                 const newAngle = (icon.angle + icon.orbit.speed) % 360;
                 const radian = (newAngle * Math.PI) / 180;
+
+                // X-axis orbital motion - icons orbit around x-axis
                 const x = Math.cos(radian) * icon.orbit.radius;
-                const y = Math.sin(radian) * icon.orbit.radius;
-                const z = Math.sin(newAngle * 2 * Math.PI / 180) * 30;
+                const y = Math.sin(radian) * icon.orbit.radius * 0.3; // Flatten the orbit on Y
+                const z = Math.sin(radian) * icon.orbit.radius * 0.7; // Main orbital motion on Z-axis
 
                 return {
                     ...icon,
@@ -162,9 +99,10 @@ export default function QuantumPortal({ onEnterPortal = () => { }, isActive = fa
                     x,
                     y,
                     z,
-                    rotation: (icon.rotation + icon.orbit.speed * 2) % 360,
-                    scale: 1 + Math.sin(newAngle * Math.PI / 180) * 0.2,
-                    glowing: Math.random() > 0.95
+                    // Subtle rotation instead of full 360 spin
+                    rotation: Math.sin(newAngle * Math.PI / 180) * 15, // Gentle rocking motion instead of full rotation
+                    scale: 1 + Math.sin(newAngle * Math.PI / 180) * 0.1, // Smaller scale variation
+                    glowing: Math.random() > 0.97 // Less frequent glowing
                 };
             }));
         }, 16);
@@ -177,7 +115,7 @@ export default function QuantumPortal({ onEnterPortal = () => { }, isActive = fa
         const adjustedRadius = icon.orbit.radius * (portalSize / 350);
         const radian = (icon.angle * Math.PI) / 180;
         const x = Math.cos(radian) * adjustedRadius;
-        const y = Math.sin(radian) * adjustedRadius;
+        const y = Math.sin(radian) * adjustedRadius * 0.3; // Flattened Y movement
         const z = icon.z;
 
         const perspectiveScale = 1 + (z / 400);
@@ -193,7 +131,7 @@ export default function QuantumPortal({ onEnterPortal = () => { }, isActive = fa
             transform: `
         translate3d(${suctionActive ? icon.x : x}px, ${suctionActive ? icon.y : y}px, ${suctionActive ? icon.z : z}px)
         scale(${finalScale})
-        rotate(${icon.rotation}deg)
+        rotateX(${icon.rotation}deg)
       `,
             transition: suctionActive ? 'none' : 'all 0.05s linear',
             filter: `drop-shadow(0 0 ${icon.glowing ? 20 : 10}px ${icon.color})`,
@@ -233,7 +171,7 @@ export default function QuantumPortal({ onEnterPortal = () => { }, isActive = fa
                 return {
                     ...icon,
                     x: Math.cos(radian) * currentRadius,
-                    y: Math.sin(radian) * currentRadius,
+                    y: Math.sin(radian) * currentRadius * 0.3,
                     z: icon.z * (1 - iconEase),
                     scale: 1 - (iconEase * 0.8),
                     opacity: 1 - (iconEase * 0.7),
