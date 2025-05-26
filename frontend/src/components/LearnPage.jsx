@@ -6,6 +6,7 @@ import QuantumBackground from './3D/QuantumBackground';
 import { Home, Repeat, Wallet, Link2, BookOpen, Menu, X } from 'lucide-react';
 import { Book, ArrowRight, Github, Send, Clock, ExternalLink, Zap, Shield, Database, Layers, RefreshCw, AlertTriangle, DollarSign, Lock, Cpu, ServerCrash } from 'lucide-react';
 import DiscordIcon from './DiscordIcon';
+import KaspaAnalysisArticle from './KaspaAnalysisArticle';
 
 const LearnPage = () => {
     const [activeTopic, setActiveTopic] = useState('overview');
@@ -89,7 +90,8 @@ const LearnPage = () => {
         { id: 'layers', label: 'Layer 2 Solutions' },
         { id: 'tokenomics', label: 'Tokenomics' },
         { id: 'defi', label: 'Future DeFi Ecosystem' },
-        { id: 'mev', label: 'MEV Resistance' }
+        { id: 'mev', label: 'MEV Resistance' },
+        { id: 'kaspa-analysis', label: 'Kaspa Analysis Article' }
     ];
 
     const communityResources = [
@@ -713,6 +715,20 @@ const LearnPage = () => {
                                             </ul>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </section>
+
+
+                        {/* Kaspa Analysis Article Section */}
+                        <section id="kaspa-analysis" className="mb-24 animate-on-scroll opacity-0 transition-opacity duration-1000">
+                            <div className="bg-white backdrop-blur-md border border-gray-200 rounded-3xl p-10 lg:p-12 hover:border-teal-300 hover:shadow-xl transition-all duration-500 relative overflow-hidden shadow-lg">
+                                <div className="absolute -top-20 -right-20 w-40 h-40 bg-purple-50 rounded-full"></div>
+                                <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-teal-50 rounded-full"></div>
+
+                                <div className="relative z-10">
+                                    <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-10">Kaspa Analysis Article</h2>
+                                    <KaspaAnalysisArticle />
                                 </div>
                             </div>
                         </section>
