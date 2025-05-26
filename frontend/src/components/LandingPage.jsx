@@ -31,6 +31,11 @@ import {
   MastercardIcon,
   MobileWalletIcon
 } from './EnhancedPaymentIcons';
+import BitcoinIcon from './BitcoinIcon';
+import EthereumIcon from './EthereumIcon';
+import USDTIcon from './USDTIcon';
+import BNBIcon from './BNBIcon';
+import KASIcon from './KASIcon';
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -80,6 +85,37 @@ export default function LandingPage() {
     { key: 'swap', label: 'Token Swapping', path: '/features/token-swapping', icon: <SwapIcon size={18} className="drop-shadow-sm" /> },
     { key: 'crosschain', label: 'Cross Chain', path: '/features/cross-chain-compatibility', icon: <CrossChainIcon size={18} className="drop-shadow-sm" /> },
     { key: 'learn', label: 'Learn', path: '/learn', icon: <LearnIcon size={18} className="drop-shadow-sm" /> }
+  ];
+
+  // Popular swap pairs with brand-specific colors
+  const popularPairs = [
+    {
+      from: 'BTC',
+      to: 'KAS',
+      fromIcon: <BitcoinIcon size={48} style={{ color: '#F7931A' }} />,
+      toIcon: <KASIcon size={48} style={{ color: '#00D632' }} />,
+      color: 'from-orange-400 to-green-500',
+      fromColor: 'text-orange-500',
+      toColor: 'text-green-500'
+    },
+    {
+      from: 'ETH',
+      to: 'KAS',
+      fromIcon: <EthereumIcon size={48} style={{ color: '#627EEA' }} />,
+      toIcon: <KASIcon size={48} style={{ color: '#00D632' }} />,
+      color: 'from-blue-400 to-green-500',
+      fromColor: 'text-blue-500',
+      toColor: 'text-green-500'
+    },
+    {
+      from: 'KAS',
+      to: 'BTC',
+      fromIcon: <KASIcon size={48} style={{ color: '#00D632' }} />,
+      toIcon: <BitcoinIcon size={48} style={{ color: '#F7931A' }} />,
+      color: 'from-green-400 to-orange-500',
+      fromColor: 'text-green-500',
+      toColor: 'text-orange-500'
+    }
   ];
 
   const paymentMethods = [
@@ -219,6 +255,10 @@ export default function LandingPage() {
     }
   };
 
+  const handlePairSelect = (from, to) => {
+    navigate('/features/token-swapping');
+  };
+
   return (
     <div className="min-h-screen overflow-x-hidden relative bg-gradient-to-br from-white via-gray-50 to-white text-gray-900">
       {/* Add 3D Background */}
@@ -299,8 +339,9 @@ export default function LandingPage() {
             </div>
 
             <div className="flex items-center justify-center relative order-1 lg:order-2">
-              <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
-                <div className="relative w-full">
+              <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
+                <div className="relative w-full aspect-square">
+                  <div className="absolute inset-0 bg-gradient-to-r from-teal-100/20 to-purple-100/20 rounded-full blur-3xl animate-pulse"></div>
                   <QuantumPortal
                     onEnterPortal={handleEnterPortal}
                     isActive={portalActive}
@@ -314,7 +355,74 @@ export default function LandingPage() {
       </section>
 
       <main className="max-w-6xl mx-auto px-4 pb-20 relative z-10">
-        {/* Core Features Section - MOVED UP */}
+        {/* Popular Trading Pairs Section - NEW SECTION ADDED */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="text-center mb-12 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up">
+              Popular Trading Pairs
+            </h2>
+            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto animate-fade-in-up-delay px-4 font-medium text-gray-600">
+              Quick access to the most traded cryptocurrency pairs - click to start swapping
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 px-4">
+            {popularPairs.map((pair, index) => (
+              <button
+                key={index}
+                className="group relative bg-white/95 backdrop-blur-lg border-2 border-gray-100 rounded-3xl p-6 sm:p-8 lg:p-10 hover:border-teal-200 hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-2 animate-fade-in-up shadow-xl"
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => handlePairSelect(pair.from.toLowerCase(), pair.to.toLowerCase())}
+              >
+                {/* Glowing background effect */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${pair.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
+
+                <div className="relative z-10 text-center">
+                  {/* From Token */}
+                  <div className="flex flex-col items-center mb-4">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 group-hover:scale-110 transition-transform duration-300">
+                      {pair.fromIcon}
+                    </div>
+                    <div className={`text-lg sm:text-xl font-bold ${pair.fromColor}`}>
+                      {pair.from}
+                    </div>
+                  </div>
+
+                  {/* Arrow */}
+                  <div className="text-gray-400 text-sm mb-4 group-hover:text-teal-500 transition-colors duration-300 flex justify-center">
+                    <ArrowRight size={20} />
+                  </div>
+
+                  {/* To Token */}
+                  <div className="flex flex-col items-center">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 group-hover:scale-110 transition-transform duration-300">
+                      {pair.toIcon}
+                    </div>
+                    <div className={`text-lg sm:text-xl font-bold ${pair.toColor}`}>
+                      {pair.to}
+                    </div>
+                  </div>
+
+                  {/* Click hint */}
+                  <div className="mt-4 pt-4 border-t border-gray-100 group-hover:border-teal-200 transition-colors duration-300">
+                    <p className="text-sm text-gray-500 group-hover:text-teal-600 transition-colors duration-300 font-medium">
+                      Click to swap
+                    </p>
+                  </div>
+                </div>
+
+                {/* Animated border */}
+                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${pair.color} p-[2px]`}>
+                    <div className="w-full h-full bg-white rounded-3xl"></div>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* Core Features Section */}
         <section className="py-16 sm:py-20 lg:py-24">
           <div className="text-center mb-16 sm:mb-20 px-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
@@ -341,7 +449,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Development Roadmap Section - MOVED UP */}
+        {/* Development Roadmap Section */}
         <section className="py-16 sm:py-20 lg:py-24">
           <div className="text-center mb-16 sm:mb-20 px-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
@@ -369,7 +477,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Seamless Payment Integration Section - MOVED DOWN */}
+        {/* Seamless Payment Integration Section */}
         <section className="py-16 sm:py-20 lg:py-24">
           <div className="text-center mb-16 sm:mb-20 px-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up drop-shadow-xl">

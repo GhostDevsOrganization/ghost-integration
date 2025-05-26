@@ -147,7 +147,7 @@ export const ThemeProvider = ({ children }) => {
   // Background animation preferences
   const [backgroundAnimation, setBackgroundAnimation] = useState(() => {
     const storedAnimation = localStorage.getItem('backgroundAnimation');
-    return storedAnimation || 'advanced'; // 'advanced', 'quantum', 'none'
+    return storedAnimation || 'advanced'; // 'advanced', 'quantum', 'blockchain', 'none'
   });
 
   // Apply theme to CSS variables
@@ -195,7 +195,7 @@ export const ThemeProvider = ({ children }) => {
 
   // Set background animation type
   const setBackgroundAnimationType = (animationType) => {
-    if (['advanced', 'quantum', 'none'].includes(animationType)) {
+    if (['advanced', 'quantum', 'blockchain', 'none'].includes(animationType)) {
       setBackgroundAnimation(animationType);
     }
   };
@@ -203,7 +203,7 @@ export const ThemeProvider = ({ children }) => {
   // Toggle background animation
   const toggleBackgroundAnimation = () => {
     setBackgroundAnimation(prev => {
-      const animations = ['advanced', 'quantum', 'none'];
+      const animations = ['advanced', 'quantum', 'blockchain', 'none'];
       const currentIndex = animations.indexOf(prev);
       const nextIndex = (currentIndex + 1) % animations.length;
       return animations[nextIndex];

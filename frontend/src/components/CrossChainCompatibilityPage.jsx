@@ -163,6 +163,7 @@ const CrossChainCompatibilityPage = () => {
         }
     };
 
+
     useEffect(() => {
         const handleMouseMove = (e) => {
             setMousePosition({
@@ -301,13 +302,12 @@ const CrossChainCompatibilityPage = () => {
                                         </div>
                                     ))}
                                 </div>
-                                <button className={`mt-8 w-full py-4 px-8 bg-gradient-to-r ${paymentMethods[activePaymentMethod].color} rounded-xl font-bold text-white text-lg hover:scale-105 transition-transform duration-300 shadow-lg`}>
-                                    Connect {paymentMethods[activePaymentMethod].name}
-                                </button>
                             </div>
                         </div>
                     </div>
                 </section>
+
+
 
                 {/* Bridge Features - Clean White Cards */}
                 <section className="mb-24">
@@ -472,7 +472,7 @@ const CrossChainCompatibilityPage = () => {
                             Experience seamless cross-chain transfers with our revolutionary bridge technology.
                         </p>
                         <Link
-                            to="/portal/enhanced-radar"
+                            to="/portal/interdimensional"
                             className="group relative inline-flex items-center gap-4 px-12 sm:px-16 py-6 sm:py-8 bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 rounded-full font-bold text-white text-xl sm:text-2xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-2 overflow-hidden"
                         >
                             <span className="relative z-10 flex items-center gap-4">
@@ -481,10 +481,6 @@ const CrossChainCompatibilityPage = () => {
                             </span>
                             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                            {/* Animated border */}
-                            <div className="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-teal-400 via-blue-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-spin-slow">
-                                <div className="w-full h-full bg-white rounded-full"></div>
-                            </div>
                         </Link>
                     </div>
                 </section>
@@ -514,7 +510,7 @@ const CrossChainCompatibilityPage = () => {
                 .animate-float { animation: float 6s ease-in-out infinite; }
                 .animate-spin-slow { animation: spin-slow 20s linear infinite; }
             `}</style>
-        </div>
+        </div >
     );
 };
 

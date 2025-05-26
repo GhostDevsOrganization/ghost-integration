@@ -1,0 +1,358 @@
+/* Neural Nexus Theme Styles */
+
+/* CSS Custom Properties for Neural Nexus */
+:root {
+    --neural-primary: #4a9eff;
+    --neural-secondary: #1e7ce8;
+    --neural-tertiary: #0056b3;
+    --neural-light: #a8d8ff;
+    --neural-lighter: #a0c4ff;
+    --neural-accent: #8ab4f8;
+    --neural-bg-primary: #000;
+    --neural-bg-secondary: #0a0a1a;
+    --neural-glass-bg: rgba(255, 255, 255, 0.03);
+    --neural-glass-border: rgba(74, 158, 255, 0.2);
+    --neural-glass-hover: rgba(255, 255, 255, 0.05);
+}
+
+/* Neural Nexus Dark Theme */
+.neural-theme {
+    background: var(--neural-bg-primary);
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* Gradient Text Effects */
+.neural-gradient-text {
+    background: linear-gradient(135deg, var(--neural-primary), var(--neural-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.neural-gradient-text-alt {
+    background: linear-gradient(135deg, var(--neural-primary), var(--neural-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Button Styles */
+.neural-btn-primary {
+    background: linear-gradient(135deg, var(--neural-primary), var(--neural-secondary));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(74, 158, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.neural-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(74, 158, 255, 0.6);
+}
+
+.neural-btn-secondary {
+    background: transparent;
+    color: var(--neural-primary);
+    border: 2px solid var(--neural-primary);
+    border-radius: 50px;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.neural-btn-secondary:hover {
+    background: rgba(74, 158, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(74, 158, 255, 0.3);
+}
+
+/* Glass Card Styles */
+.neural-glass-card {
+    background: var(--neural-glass-bg);
+    border: 1px solid var(--neural-glass-border);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.neural-glass-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(74, 158, 255, 0.5);
+    background: var(--neural-glass-hover);
+}
+
+.neural-glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.neural-glass-card:hover::before {
+    opacity: 1;
+}
+
+/* Feature Icon Styles */
+.neural-feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--neural-primary), var(--neural-secondary));
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 1rem;
+    transition: all 0.3s ease;
+}
+
+.neural-glass-card:hover .neural-feature-icon {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(74, 158, 255, 0.4);
+}
+
+/* Animations */
+@keyframes neural-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 60px rgba(74, 158, 255, 0.8),
+            inset 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 100px rgba(74, 158, 255, 1),
+            inset 0 0 40px rgba(255, 255, 255, 0.5);
+    }
+}
+
+@keyframes neural-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes neural-float {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
+
+@keyframes neural-fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes neural-gradient-x {
+
+    0%,
+    100% {
+        background-size: 200% 200%;
+        background-position: left center;
+    }
+
+    50% {
+        background-size: 200% 200%;
+        background-position: right center;
+    }
+}
+
+/* Animation Classes */
+.neural-glow {
+    animation: neural-glow 3s ease-in-out infinite;
+}
+
+.neural-rotate {
+    animation: neural-rotate 20s linear infinite;
+}
+
+.neural-rotate-reverse {
+    animation: neural-rotate 20s linear infinite reverse;
+}
+
+.neural-float {
+    animation: neural-float 6s ease-in-out infinite;
+}
+
+.neural-fade-in-up {
+    animation: neural-fade-in-up 0.8s ease-out forwards;
+}
+
+.neural-fade-in-up-delay {
+    animation: neural-fade-in-up 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.neural-fade-in-up-delay-2 {
+    animation: neural-fade-in-up 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+.neural-gradient-x {
+    animation: neural-gradient-x 3s ease infinite;
+}
+
+/* Particle Canvas Overlay */
+.neural-particle-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(ellipse at center, #0a0a1a 0%, #000 70%);
+}
+
+/* Content Layer */
+.neural-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* Orbital Ring Styles */
+.neural-orbit {
+    position: absolute;
+    border: 2px solid rgba(74, 158, 255, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.neural-orbit-1 {
+    animation: neural-rotate 25s linear infinite;
+}
+
+.neural-orbit-2 {
+    animation: neural-rotate 35s linear infinite reverse;
+}
+
+/* Typography */
+.neural-heading {
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.neural-tagline {
+    font-size: 1.25rem;
+    color: var(--neural-lighter);
+    margin-bottom: 3rem;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.neural-feature-title {
+    margin-bottom: 0.5rem;
+    color: var(--neural-light);
+}
+
+.neural-feature-description {
+    color: var(--neural-accent);
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .neural-heading {
+        font-size: 2.5rem;
+    }
+
+    .neural-btn-primary,
+    .neural-btn-secondary {
+        padding: 0.875rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    .neural-feature-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+}
+
+/* Utility Classes */
+.neural-text-primary {
+    color: var(--neural-primary);
+}
+
+.neural-text-secondary {
+    color: var(--neural-secondary);
+}
+
+.neural-text-light {
+    color: var(--neural-light);
+}
+
+.neural-text-lighter {
+    color: var(--neural-lighter);
+}
+
+.neural-text-accent {
+    color: var(--neural-accent);
+}
+
+.neural-bg-glass {
+    background: var(--neural-glass-bg);
+}
+
+.neural-border-glass {
+    border-color: var(--neural-glass-border);
+}
+
+/* Scrollbar Styling for Neural Theme */
+.neural-theme ::-webkit-scrollbar {
+    width: 6px;
+}
+
+.neural-theme ::-webkit-scrollbar-track {
+    background: rgba(16, 16, 16, 0.3);
+    border-radius: 3px;
+}
+
+.neural-theme ::-webkit-scrollbar-thumb {
+    background-color: rgba(74, 158, 255, 0.3);
+    border-radius: 3px;
+}
+
+.neural-theme ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(74, 158, 255, 0.5);
+}

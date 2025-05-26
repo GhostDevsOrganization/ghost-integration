@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../context/ThemeContext';
-import { Sun, Moon, Palette, ChevronDown, Sparkles, Zap, X } from 'lucide-react';
+import { Sun, Moon, Palette, ChevronDown, Sparkles, Zap, X, Network } from 'lucide-react';
 
 const ThemeSwitcher = ({ dropdownPosition = 'bottom', className = '' }) => {
   const { theme, themeData, allThemes, setTheme, backgroundAnimation, setBackgroundAnimation, toggleBackgroundAnimation } = useTheme();
@@ -75,6 +75,8 @@ const ThemeSwitcher = ({ dropdownPosition = 'bottom', className = '' }) => {
         return <Sparkles size={16} />;
       case 'quantum':
         return <Zap size={16} />;
+      case 'blockchain':
+        return <Network size={16} />;
       case 'none':
         return <X size={16} />;
       default:
@@ -89,6 +91,8 @@ const ThemeSwitcher = ({ dropdownPosition = 'bottom', className = '' }) => {
         return 'Advanced 3D';
       case 'quantum':
         return 'Quantum Wave';
+      case 'blockchain':
+        return 'Blockchain Network';
       case 'none':
         return 'No Animation';
       default:
@@ -145,7 +149,7 @@ const ThemeSwitcher = ({ dropdownPosition = 'bottom', className = '' }) => {
           <div className="px-4 py-2 text-sm font-medium border-b border-t border-sky-700/50 text-sky-300 mt-2">
             Background Animation
           </div>
-          {['advanced', 'quantum', 'none'].map((animationType) => (
+          {['advanced', 'quantum', 'blockchain', 'none'].map((animationType) => (
             <button
               key={animationType}
               className={`flex items-center w-full px-4 py-2 text-sm transition-colors duration-200 ${backgroundAnimation === animationType

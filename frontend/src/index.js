@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'; // Import router components
 import { Buffer } from 'buffer';
@@ -18,11 +18,23 @@ import ArticlePage from './components/ArticlePage'; // Import ArticlePage
 import IconComparison from './components/IconComparison'; // Import IconComparison
 import AdvancedPortal from './components/AdvancedPortal'; // Import AdvancedPortal
 import EnhancedRadarPortalPage from './components/EnhancedRadarPortalPage'; // Import EnhancedRadarPortalPage
+import KaspaResearchPaper from './components/KaspaResearchPaper'; // Import KaspaResearchPaper
 import { ThemeProvider } from './context/ThemeContext'; // Import ThemeProvider
 import BlackPortfolioChart from './components/BlackPortfolioChart';
 import BackgroundDemoShowcase from './components/BackgroundDemoShowcase'; // Import BackgroundDemoShowcase
 import MobileResponsiveWrapper from './components/MobileResponsiveWrapper'; // Import MobileResponsiveWrapper
 import './mobile-enhancements.js'; // Import mobile enhancements script
+
+// ScrollToTop component to handle route changes
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 // Debug logging setup
 function enableMobileDebugging() {
@@ -85,6 +97,7 @@ function App() {
   return (
     <ThemeProvider>
       <div className="relative">
+        <ScrollToTop />
         {isPortalRoute && (
           null
         )}
@@ -102,6 +115,7 @@ function App() {
           <Route path="/learn" element={<LearnPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:articleId" element={<ArticlePage />} />
+          <Route path="/research/kaspa-analysis" element={<KaspaResearchPaper />} />
           <Route path="/icon-comparison" element={<IconComparison />} />
           <Route path="/demo-backgrounds" element={<BackgroundDemoShowcase />} />
         </Routes>

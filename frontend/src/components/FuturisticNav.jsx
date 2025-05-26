@@ -150,7 +150,7 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                     {/* Right side elements */}
                     <div className="flex items-center gap-4">
                         <Link
-                            to="/portal/enhanced-radar"
+                            to="/portal/interdimensional"
                             className="group relative px-4 py-2 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full font-semibold text-white shadow-lg hover:shadow-[var(--accent-primary)]/50 transition-all duration-300 transform hover:scale-105 overflow-hidden border border-white/20"
                         >
                             <span className="relative z-10 flex items-center gap-2 text-sm">
@@ -221,7 +221,7 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
 
                     {/* Enter Portal Button for Mobile */}
                     <Link
-                        to="/portal/enhanced-radar"
+                        to="/portal/interdimensional"
                         onClick={() => setMenuOpen(false)}
                         className="group relative px-6 py-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full font-semibold text-white shadow-lg transition-all duration-300 transform hover:scale-105 overflow-hidden border border-white/20"
                     >

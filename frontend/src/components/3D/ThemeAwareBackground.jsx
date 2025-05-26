@@ -1,10 +1,16 @@
 import { useEffect, useRef } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import * as THREE from 'three';
+import EnhancedBlockchainNetwork from './EnhancedBlockchainNetwork';
 
 export default function ThemeAwareBackground({ animationType = 'advanced' }) {
     const canvasRef = useRef(null);
     const { themeData } = useTheme();
+
+    // If blockchain animation is selected, render the specialized component
+    if (animationType === 'blockchain') {
+        return <EnhancedBlockchainNetwork performanceMode="high" />;
+    }
 
     useEffect(() => {
         if (!canvasRef.current) return;
