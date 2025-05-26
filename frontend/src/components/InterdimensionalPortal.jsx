@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Repeat, PiggyBank, Shield, Wallet, Activity, Zap, CreditCard, Send, Copy, LayoutGrid, Circle, Sun, Moon, Home, MessageCircle, ArrowRight } from 'lucide-react';
+import { Repeat, Wallet, Send, Home, MessageCircle } from 'lucide-react';
 import TokenSwappingPage from './TokenSwappingPage';
 import TraditionalNav from './TraditionalNav';
 import { useTheme } from '../context/ThemeContext';
@@ -10,10 +10,7 @@ import { isMobile } from '../utils/walletDetect';
 // Transaction type constants
 export const TxType = {
   SIGN_TX: 0,
-  SEND_KASPA: 1,
-  SIGN_KRC20_DEPLOY: 2,
-  SIGN_KRC20_MINT: 3,
-  SIGN_KRC20_TRANSFER: 4
+  SEND_KASPA: 1
 };
 
 const Kasportal = () => {
@@ -47,25 +44,12 @@ const Kasportal = () => {
     total: 0,
   });
   const [network, setNetwork] = useState("kaspa_mainnet");
-  const [krc20Balances, setKrc20Balances] = useState([]);
+  // Removed KRC20 state
 
-  // Form states for various protocols
+  // Form states for protocols
   const [recipientAddress, setRecipientAddress] = useState('');
   const [sendAmount, setSendAmount] = useState('');
-  const [enhancedPrivacy, setEnhancedPrivacy] = useState(false);
-  const [deployTicker, setDeployTicker] = useState('');
-  const [deploySupply, setDeploySupply] = useState(100000000);
-  const [deployLimit, setDeployLimit] = useState(1000);
-  const [mintTicker, setMintTicker] = useState('');
-  const [transferTicker, setTransferTicker] = useState('');
-  const [transferAmount, setTransferAmount] = useState(1);
-  const [transferAddress, setTransferAddress] = useState('');
-
-  // Loading states for actions
   const [isSendingKas, setIsSendingKas] = useState(false);
-  const [isDeployingToken, setIsDeployingToken] = useState(false);
-  const [isMintingToken, setIsMintingToken] = useState(false);
-  const [isSendingToken, setIsSendingToken] = useState(false);
 
   // Mouse movement tracking for parallax effects
   useEffect(() => {
@@ -86,29 +70,8 @@ const Kasportal = () => {
       name: "Swap",
       icon: <Repeat className="text-teal-200" />,
       description: "Token exchange protocol",
-      position: { top: '30%', left: '75%' },
+      position: { top: '50%', left: '50%' },
       color: "from-teal-400 to-purple-600"
-    },
-    send: {
-      name: "Send",
-      icon: <Send className="text-teal-200" />,
-      description: "Send KAS or KRC-20 tokens",
-      position: { top: '30%', left: '25%' },
-      color: "from-teal-500 to-purple-500"
-    },
-    privacy: {
-      name: "Privacy",
-      icon: <Shield className="text-teal-200" />,
-      description: "Transaction privacy",
-      position: { top: '70%', left: '25%' },
-      color: "from-teal-300 to-purple-400"
-    },
-    tokens: {
-      name: "Tokens",
-      icon: <CreditCard className="text-teal-200" />,
-      description: "Manage KRC-20 tokens",
-      position: { top: '70%', left: '75%' },
-      color: "from-teal-600 to-purple-700"
     }
   };
 
@@ -133,8 +96,7 @@ const Kasportal = () => {
         const balance = await window.kasware.getBalance();
         setBalance(balance);
 
-        const krc20Balances = await window.kasware.getKRC20Balance();
-        setKrc20Balances(krc20Balances);
+        // Removed KRC20 balance tracking
       }
     } catch (error) {
       console.error("Error connecting to wallet:", error);
@@ -201,29 +163,23 @@ const Kasportal = () => {
         </div>
         <div className="flex space-x-2 ml-4">
           <button
-            onClick={() => window.open('https://t.me/+LJanxsRyV645OWUx', '_blank')}
+            onClick={() => window.location.href = '/swap'}
             className="flex items-center bg-teal-800 hover:bg-teal-700 text-white px-3 py-1 rounded transition-colors"
           >
-            <MessageCircle size={16} className="mr-1" />
-            Telegram
+            <Repeat size={16} className="mr-1" />
+            Swap
+          </button>
+          <button
+            onClick={() => window.open('/whitepaper.html', '_blank')}
+            className="flex items-center bg-purple-800 hover:bg-purple-700 text-white px-3 py-1 rounded transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+              <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path>
+            </svg>
+            Research Paper
           </button>
         </div>
 
-        {connected ? (
-          <button
-            className="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg transition-colors text-sm"
-            onClick={disconnectWallet}
-          >
-            Disconnect Wallet
-          </button>
-        ) : (
-          <button
-            className="bg-gradient-to-r from-teal-500 to-purple-500 hover:from-teal-400 hover:to-purple-400 text-white px-4 py-2 rounded-lg transition-all duration-300 text-sm"
-            onClick={connectWallet}
-          >
-            Connect Wallet
-          </button>
-        )}
       </div>
 
       {/* Main portal interface with enhanced design */}
@@ -310,10 +266,6 @@ const Kasportal = () => {
           <div className="absolute inset-2 rounded-full bg-gradient-to-br from-teal-300/50 to-purple-500/50 animate-spin" style={{ animationDuration: '8s' }}></div>
           <div className="absolute inset-4 rounded-full bg-gradient-to-br from-white/80 to-teal-200/80 group-hover:scale-110 transition-transform"></div>
 
-          {/* Portal text */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-teal-900 font-bold text-sm">ENTER</span>
-          </div>
         </div>
       </div>
 
@@ -347,43 +299,6 @@ const Kasportal = () => {
             </div>
           )}
 
-          {activeProtocol === 'tokens' && (
-            <div className="space-y-4">
-              <div className="text-sm text-gray-300">
-                <p>Deploy, mint, or transfer KRC-20 tokens</p>
-              </div>
-              <input
-                type="text"
-                placeholder="Token Ticker"
-                value={deployTicker}
-                onChange={(e) => setDeployTicker(e.target.value)}
-                className="w-full bg-gray-800 border border-teal-600/50 rounded px-3 py-2 text-white"
-              />
-              <button
-                className="w-full bg-gradient-to-r from-teal-500 to-purple-500 hover:from-teal-400 hover:to-purple-400 text-white py-2 rounded transition-all"
-                disabled={isDeployingToken}
-              >
-                {isDeployingToken ? 'Deploying...' : 'Deploy Token'}
-              </button>
-            </div>
-          )}
-
-          {activeProtocol === 'privacy' && (
-            <div className="space-y-4">
-              <div className="text-sm text-gray-300">
-                <p>Enhanced privacy features for transactions</p>
-              </div>
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={enhancedPrivacy}
-                  onChange={(e) => setEnhancedPrivacy(e.target.checked)}
-                  className="rounded"
-                />
-                <span className="text-white">Enable Enhanced Privacy</span>
-              </label>
-            </div>
-          )}
         </div>
       )}
 

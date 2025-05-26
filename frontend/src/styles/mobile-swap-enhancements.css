@@ -1,0 +1,52 @@
+/* Mobile optimization for swap interface */
+@media (max-width: 768px) {
+    .swap-container {
+        padding-bottom: 100px;
+        /* Extra space for mobile browsers */
+        min-height: calc(100vh - 140px);
+        /* Additional height buffer */
+    }
+
+    /* Header section adjustments */
+    .text-center.py-16.sm\:py-24 {
+        padding-bottom: 80px !important;
+        padding-top: 40px;
+    }
+
+    .token-input-container {
+        margin-bottom: 20px;
+    }
+
+    /* Support section mobile fixes */
+    .support-section,
+    .business-inquiry {
+        padding: 20px 15px;
+        margin: 15px 0;
+        word-wrap: break-word;
+    }
+
+    .support-section p,
+    .business-inquiry p {
+        line-height: 1.5;
+        font-size: 14px;
+    }
+
+    /* Bottom section spacing */
+    .footer-container {
+        padding-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .support-section,
+    .business-inquiry {
+        padding: 15px 10px;
+        margin: 10px 0;
+    }
+
+    .support-email,
+    .discord-link {
+        word-break: break-all;
+    }
+}

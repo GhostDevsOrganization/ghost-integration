@@ -1,0 +1,116 @@
+:root {
+    --primary: #6366f1;
+    --secondary: #4f46e5;
+    --accent: #a855f7;
+    --background: #0f172a;
+    --text: #f8fafc;
+    --glass: rgba(15, 23, 42, 0.8);
+}
+
+body {
+    background: linear-gradient(45deg, var(--background), #1e293b);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.whitepaper-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border-radius: 1rem;
+    padding: 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    font-size: 3.5rem;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 800;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin: 3rem 0 1.5rem;
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 0.5rem;
+}
+
+.formula-box {
+    background: rgba(99, 102, 241, 0.1);
+    border-left: 4px solid var(--primary);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.formula-box:before {
+    content: "🧪";
+    position: absolute;
+    left: -2rem;
+    top: -1rem;
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    margin: 2rem 0;
+}
+
+th {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 1rem;
+    text-align: left;
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .whitepaper-container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+    }
+}
+
+.download-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--primary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s;
+}
+
+.download-button:hover {
+    transform: translateY(-2px);
+}
