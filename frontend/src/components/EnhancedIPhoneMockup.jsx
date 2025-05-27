@@ -36,8 +36,8 @@ export default function EnhancedIPhoneMockup() {
                                 <div className="flex items-center justify-center w-full h-full">
                                     {/* Your SVG will be integrated here */}
                                     <img
-                                        src="/kasportal-logo.svg"
-                                        alt="Kasportal Logo"
+                                        src="/images/phone-icon.svg"
+                                        alt="Phone Icon"
                                         className="w-32 h-32 drop-shadow-2xl opacity-80 hover:opacity-100 transition-opacity duration-500"
                                     />
                                 </div>

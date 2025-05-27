@@ -133,7 +133,7 @@ export default function LandingPage() {
     },
     {
       name: 'Mobile Wallet',
-      icon: <MobileIcon size={32} className="text-teal-400 drop-shadow-xl" />,
+      icon: <img src="/images/phone-icon.svg" alt="Mobile Icon" className="w-8 h-8 drop-shadow-xl" />,
       status: 'Coming Q3 2025',
       gradient: 'from-teal-400 to-cyan-500'
     }
@@ -299,15 +299,6 @@ export default function LandingPage() {
                   Bridging traditional payment systems with blockchain technology. From Apple Pay to smart contract utilities, we're making crypto accessible via web browser.
                 </p>
 
-                <button
-                  className="mt-4 sm:mt-6 px-8 sm:px-10 lg:px-12 py-4 sm:py-5 lg:py-6 bg-gradient-to-r from-teal-500 to-purple-500 rounded-full font-bold text-white text-lg sm:text-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-105 sm:hover:scale-110 animate-fade-in-up-delay-2 group relative overflow-hidden border border-white/30 backdrop-blur-sm w-full sm:w-auto"
-                  onClick={handleEnterPortal}
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-3 sm:gap-4">
-                    Enter Portal
-                    <ArrowRight className="w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-2 transition-transform duration-300" />
-                  </span>
-                </button>
               </div>
             </div>
 

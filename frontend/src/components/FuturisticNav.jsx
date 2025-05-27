@@ -61,11 +61,11 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                 <div className="max-w-7xl mx-auto px-6 flex items-center justify-between w-full">
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-3 group">
-                        <div className="relative">
+                        <div className="relative group">
                             <img
                                 src="/kasportal-logo.svg"
                                 alt="Kasportal"
-                                className="w-10 h-10 transition-transform duration-300 group-hover:scale-110"
+                                className="w-10 h-10 transition-transform duration-300 group-hover:scale-110 hover:scale-105 transition-transform duration-500 drop-shadow-2xl relative z-10"
                             />
                             <div className="absolute inset-0 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
                                 style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }} />
@@ -110,10 +110,7 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
 
                                 {/* Content */}
                                 <div className="relative z-10 flex items-center gap-2">
-                                    <span className={`transition-all duration-300 ${activeProtocol === protocol.key || hoveredItem === protocol.key
-                                        ? ''
-                                        : ''
-                                        }`} style={{ color: activeProtocol === protocol.key || hoveredItem === protocol.key ? 'var(--accent-primary)' : 'var(--text-secondary)' }}>
+                                    <span style={{ color: activeProtocol === protocol.key ? 'var(--accent-primary)' : 'var(--text-secondary)' }}>
                                         {protocol.icon}
                                     </span>
                                     <span className="font-medium">{protocol.label}</span>
@@ -149,15 +146,6 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
 
                     {/* Right side elements */}
                     <div className="flex items-center gap-4">
-                        <Link
-                            to="/portal/interdimensional"
-                            className="group relative px-4 py-2 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full font-semibold text-white shadow-lg hover:shadow-[var(--accent-primary)]/50 transition-all duration-300 transform hover:scale-105 overflow-hidden border border-white/20"
-                        >
-                            <span className="relative z-10 flex items-center gap-2 text-sm">
-                                Enter Portal
-                                <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
-                            </span>
-                        </Link>
                         <ThemeSwitcher className="mr-4 z-[1000]" dropdownPosition="bottom" /> {/* Theme Switcher for Desktop */}
                         <Activity className="w-5 h-5 animate-pulse" style={{ color: 'var(--accent-primary)' }} />
                         <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: 'var(--accent-primary)' }} />
@@ -176,12 +164,13 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
             >
                 <div className="flex flex-col items-center justify-center h-full space-y-6 py-16 px-4 overflow-y-auto">
                     {/* Logo in mobile menu */}
-                    <div className="mb-8">
+                    <div className="mb-8 relative group">
                         <img
                             src="/kasportal-logo.svg"
                             alt="Kasportal"
-                            className="w-20 h-20 mx-auto mb-4"
+                            className="w-20 h-20 mx-auto mb-4 hover:scale-105 transition-transform duration-500 drop-shadow-2xl relative z-10"
                         />
+                        <div className="absolute inset-0 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300" style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}></div>
                         <h2 className="text-2xl font-bold bg-clip-text text-transparent"
                             style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}>
                             Kasportal
@@ -218,18 +207,6 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                             </div>
                         </Link>
                     ))}
-
-                    {/* Enter Portal Button for Mobile */}
-                    <Link
-                        to="/portal/interdimensional"
-                        onClick={() => setMenuOpen(false)}
-                        className="group relative px-6 py-3 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full font-semibold text-white shadow-lg transition-all duration-300 transform hover:scale-105 overflow-hidden border border-white/20"
-                    >
-                        <span className="relative z-10 flex items-center gap-2">
-                            Enter Portal
-                            <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
-                        </span>
-                    </Link>
 
                     {/* Theme Switcher for Mobile */}
                     <ThemeSwitcher className="mt-6 z-[1000]" dropdownPosition="bottom" />
