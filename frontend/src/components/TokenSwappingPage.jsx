@@ -285,25 +285,25 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                             },
                             {
                                 title: 'Best Rates Guaranteed',
-                                description: 'Our AI aggregates rates from 50+ exchanges to ensure you always get the best deal.',
+                                description: '',
                                 icon: <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10" />,
                                 color: 'from-teal-400 to-purple-500'
                             },
                             {
                                 title: '900+ Cryptocurrencies',
-                                description: 'Swap between any of 900+ supported cryptocurrencies including all major coins and tokens.',
+                                description: '',
                                 icon: <Link2 className="w-8 h-8 sm:w-10 sm:h-10" />,
                                 color: 'from-teal-700 to-purple-700'
                             },
                             {
                                 title: 'Military-Grade Security',
-                                description: 'Non-custodial swaps with multi-signature validation and advanced encryption.',
+                                description: '',
                                 icon: <HelpCircle className="w-8 h-8 sm:w-10 sm:h-10" />,
                                 color: 'from-teal-500 to-purple-600'
                             },
                             {
                                 title: '24/7 Support',
-                                description: 'Round-the-clock customer support via live chat to help with any questions or issues.',
+                                description: '',
                                 icon: <Info className="w-8 h-8 sm:w-10 sm:h-10" />,
                                 color: 'from-teal-600 to-purple-600'
                             }
