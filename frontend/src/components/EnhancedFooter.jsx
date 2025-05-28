@@ -6,10 +6,10 @@ import DiscordIcon from './DiscordIcon';
 
 const EnhancedFooter = () => {
     const socialLinks = [
-        { name: "Twitter", icon: <Twitter size={20} />, href: "https://x.com/PORTAL_KAS", ariaLabel: "Follow us on Twitter" },
+        { name: "Twitter", icon: <Twitter size={20} />, href: "https://x.com/kas_portal", ariaLabel: "Follow us on Twitter" },
         { name: "GitHub", icon: <Github size={20} />, href: "https://github.com/GhostDevs", ariaLabel: "View our GitHub" },
         { name: "Discord", icon: <DiscordIcon size={20} />, href: "https://discord.gg/kaspa", ariaLabel: "Join our Discord server" },
-        { name: "Telegram", icon: <Send size={20} />, href: "https://t.me/+LJanxsRyV645OWUx", ariaLabel: "Join our Telegram group" }
+        { name: "Telegram", icon: <Send size={20} />, href: "https://t.me/+ogluJ3Srnr83MmJh", ariaLabel: "Join our Telegram group" }
     ];
 
     return (
@@ -19,8 +19,7 @@ const EnhancedFooter = () => {
 
             <div className="mx-auto max-w-6xl px-4 flex flex-col items-center space-y-8 md:flex-row md:justify-between md:space-y-0">
                 <div className="flex items-center group">
-                    <span className="text-2xl font-bold text-[var(--accent-primary)]">Kaspa</span>
-                    <span className="text-2xl font-bold text-[var(--text-primary)] ml-2">Portal</span>
+                    <span className="text-2xl font-bold text-[var(--accent-primary)]">Kasportal</span>
                     <div className="ml-2 h-4 w-4 rounded-full bg-[var(--accent-primary)]/20 group-hover:bg-[var(--accent-primary)]/40 transition-all duration-300"></div>
                 </div>
 

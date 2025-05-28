@@ -146,10 +146,7 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
 
                     {/* Right side elements */}
                     <div className="flex items-center gap-4">
-                        <ThemeSwitcher className="mr-4 z-[1000]" dropdownPosition="bottom" /> {/* Theme Switcher for Desktop */}
-                        <Activity className="w-5 h-5 animate-pulse" style={{ color: 'var(--accent-primary)' }} />
-                        <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: 'var(--accent-primary)' }} />
-                        <Sparkles className="w-5 h-5" style={{ color: 'var(--accent-secondary)' }} />
+                        <ThemeSwitcher className="mr-4 z-[1000]" dropdownPosition="bottom" />
                     </div>
                 </div>
             </nav>

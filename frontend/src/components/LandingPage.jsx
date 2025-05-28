@@ -6,7 +6,7 @@ import QuantumPortal from './QuantumPortal';
 import FuturisticNav from './FuturisticNav';
 import EnhancedFooter from './EnhancedFooter';
 import FeatureCard from './FeatureCard';
-import HolographicGrid from './3D/HolographicGrid';
+
 import MEVProtectionVisual from './3D/MEVProtectionVisual';
 import EnhancedIPhoneMockup from './EnhancedIPhoneMockup';
 import {
@@ -24,6 +24,8 @@ import {
   DocsIcon,
   BusinessIcon
 } from './CryptoIcons';
+import TwitterIcon from './TwitterIcon';
+import TelegramIcon from './TelegramIcon';
 import {
   ApplePayIcon,
   VisaIcon,
@@ -56,22 +58,26 @@ export default function LandingPage() {
 
   const features = [
     {
-      title: "Instant Cross-Chain Swaps",
-      description: "Seamlessly exchange assets across multiple blockchains with near-instant finality",
-      icon: <SwapIcon size={32} className="text-teal-400" />,
-      gradient: "from-teal-400 to-purple-500"
+      title: "Token Swapping",
+      route: "/features/token-swapping",
+      description: "Cross-chain token exchanges with best-rate routing and minimal fees through our advanced swap aggregator.",
+      icon: <SwapIcon size={24} className="drop-shadow-lg" />,
+      color: "from-teal-500 to-purple-500"
     },
     {
-      title: "MEV Protection",
-      description: "Advanced transaction bundling to prevent front-running and sandwich attacks",
-      icon: <SmartContractIcon size={32} className="text-purple-400" />,
-      gradient: "from-purple-400 to-teal-500"
+      title: "Cross-Chain Support",
+      route: "/features/cross-chain-compatibility",
+      description: "Unified wallet management system enabling simultaneous control of multiple blockchain assets with enterprise-grade security.",
+      icon: <WalletIcon size={24} className="drop-shadow-lg" />,
+      comingSoon: true,
+      color: "from-teal-400 to-purple-600"
     },
     {
-      title: "Multi-Chain Wallet",
-      description: "Unified interface for managing assets across all supported networks",
-      icon: <WalletIcon size={32} className="text-cyan-400" />,
-      gradient: "from-cyan-400 to-teal-500"
+      title: "Learn",
+      route: "/learn",
+      description: "Comprehensive educational platform exploring Kaspa's revolutionary BlockDAG architecture and cutting-edge innovations.",
+      icon: <LearnIcon size={24} className="drop-shadow-lg" />,
+      color: "from-teal-600 to-purple-700"
     }
   ];
 
@@ -88,52 +94,53 @@ export default function LandingPage() {
       from: 'BTC',
       to: 'KAS',
       fromIcon: <BitcoinIcon size={48} style={{ color: '#F7931A' }} />,
-      toIcon: <KASIcon size={48} style={{ color: '#70C7BA' }} />, // Official Kaspa primary color
-      color: 'from-orange-400 to-teal-400',
+      toIcon: <KASIcon size={48} style={{ color: '#00D632' }} />,
+      color: 'from-orange-400 to-green-500',
       fromColor: 'text-orange-500',
-      toColor: 'text-teal-400'
+      toColor: 'text-green-500'
     },
     {
       from: 'ETH',
       to: 'KAS',
       fromIcon: <EthereumIcon size={48} style={{ color: '#627EEA' }} />,
-      toIcon: <KASIcon size={48} style={{ color: '#70C7BA' }} />, // Official Kaspa primary color
-      color: 'from-blue-400 to-teal-400',
+      toIcon: <KASIcon size={48} style={{ color: '#00D632' }} />,
+      color: 'from-blue-400 to-green-500',
       fromColor: 'text-blue-500',
-      toColor: 'text-teal-400'
+      toColor: 'text-green-500'
     },
     {
       from: 'KAS',
       to: 'BTC',
-      fromIcon: <KASIcon size={48} style={{ color: '#70C7BA' }} />, // Official Kaspa primary color
+      fromIcon: <KASIcon size={48} style={{ color: '#00D632' }} />,
       toIcon: <BitcoinIcon size={48} style={{ color: '#F7931A' }} />,
-      color: 'from-teal-400 to-orange-500',
-      fromColor: 'text-teal-400',
+      color: 'from-green-400 to-orange-500',
+      fromColor: 'text-green-500',
       toColor: 'text-orange-500'
     }
   ];
+
   const paymentMethods = [
     {
       name: 'Apple Pay',
-      icon: <ApplePayIcon size={32} className="text-amber-400 drop-shadow-xl" />,
+      icon: <PaymentIcon size={32} className="text-amber-400 drop-shadow-xl" />,
       status: 'Coming Q2 2025',
       gradient: 'from-amber-400 to-orange-500'
     },
     {
       name: 'Visa',
-      icon: <VisaIcon size={32} className="text-blue-400 drop-shadow-xl" />,
+      icon: <PaymentIcon size={32} className="text-blue-400 drop-shadow-xl" />,
       status: 'Coming Q2 2025',
       gradient: 'from-blue-400 to-indigo-500'
     },
     {
       name: 'Mastercard',
-      icon: <MastercardIcon size={32} className="text-red-400 drop-shadow-xl" />,
+      icon: <PaymentIcon size={32} className="text-red-400 drop-shadow-xl" />,
       status: 'Coming Q2 2025',
       gradient: 'from-red-400 to-pink-500'
     },
     {
       name: 'Mobile Wallet',
-      icon: <img src="/images/phone-icon.svg" alt="Mobile Icon" className="w-8 h-8 drop-shadow-xl" />,
+      icon: <MobileIcon size={32} className="text-teal-400 drop-shadow-xl" />,
       status: 'Coming Q3 2025',
       gradient: 'from-teal-400 to-cyan-500'
     }
@@ -179,32 +186,32 @@ export default function LandingPage() {
       title: "Email Support",
       description: "Get help with technical issues, account questions, or general inquiries",
       icon: <EmailIcon size={32} className="text-teal-400 drop-shadow-xl" />,
-      contact: "support@kasportal.com",
-      action: "mailto:support@kasportal.com",
+      contact: "support@ghost",
+      action: "mailto:support@ghost",
       color: "from-teal-400 to-blue-500"
     },
     {
-      title: "Community Discord",
-      description: "Join our vibrant community for real-time discussions and updates",
-      icon: <DiscordIcon size={32} className="text-purple-400 drop-shadow-xl" />,
-      contact: "Join Discord",
-      action: "#",
-      color: "from-teal-500 to-purple-500"
+      title: "Follow on X",
+      description: "Stay updated with the latest news, announcements, and community updates",
+      icon: <TwitterIcon size={32} className="text-blue-400 drop-shadow-xl" />,
+      contact: "@kas_portal",
+      action: "https://x.com/kas_portal",
+      color: "from-blue-400 to-indigo-500"
     },
     {
-      title: "Documentation",
-      description: "Comprehensive guides and API documentation for developers",
-      icon: <DocsIcon size={32} className="text-cyan-400 drop-shadow-xl" />,
-      contact: "View Docs",
-      action: "/learn",
-      color: "from-teal-300 to-purple-400"
+      title: "Community Telegram",
+      description: "Join our vibrant community for real-time discussions and updates",
+      icon: <TelegramIcon size={32} className="text-purple-400 drop-shadow-xl" />,
+      contact: "Join Telegram",
+      action: "https://t.me/+ogluJ3Srnr83MmJh",
+      color: "from-teal-500 to-purple-500"
     },
     {
       title: "Business Inquiries",
       description: "Partnership opportunities and enterprise solutions",
       icon: <BusinessIcon size={32} className="text-indigo-400 drop-shadow-xl" />,
-      contact: "business@kasportal.com",
-      action: "mailto:business@kasportal.com",
+      contact: "business@ghost",
+      action: "mailto:business@ghost",
       color: "from-teal-600 to-purple-700"
     }
   ];
@@ -255,8 +262,7 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen overflow-x-hidden relative bg-gradient-to-br from-white via-gray-50 to-white text-gray-900">
-      {/* Add 3D Background */}
-      <HolographicGrid themeData={themeData} performanceMode="high" />
+
 
       {/* Clean light background with subtle gradients */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -266,6 +272,27 @@ export default function LandingPage() {
           <div className="absolute top-1/4 right-0 w-80 h-80 rounded-full blur-3xl animate-pulse bg-gradient-to-bl from-purple-100 to-transparent" style={{ animationDelay: '1s' }}></div>
           <div className="absolute bottom-0 left-1/3 w-72 h-72 rounded-full blur-3xl animate-pulse bg-gradient-to-tr from-blue-100 to-transparent" style={{ animationDelay: '2s' }}></div>
         </div>
+        <div
+          className="absolute inset-0 transition-all duration-500 ease-out"
+          style={{
+            background: `radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.03), transparent 70%)`,
+            transform: `translate(${mousePosition.x * 15}px, ${mousePosition.y * 15}px)`
+          }}
+        ></div>
+
+        {/* Floating particles */}
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-0.5 h-0.5 rounded-full animate-float bg-teal-300/30"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${4 + Math.random() * 6}s`
+            }}
+          />
+        ))}
       </div>
 
       <FuturisticNav
@@ -281,24 +308,30 @@ export default function LandingPage() {
               <div className="relative p-6 sm:p-8 lg:p-10 xl:p-12 rounded-3xl bg-white backdrop-blur-2xl border border-gray-200 shadow-2xl hover:shadow-xl hover:border-teal-300 transition-all duration-700 group">
                 <div className="flex justify-center lg:justify-start mb-6 sm:mb-8 lg:mb-10 animate-fade-in-up">
                   <div className="relative group">
-                    <img
-                      src="/kasportal-logo.svg"
-                      alt="Kasportal Logo"
-                      className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 hover:scale-105 transition-transform duration-500 drop-shadow-2xl relative z-10"
-                    />
+
                   </div>
                 </div>
+
 
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent animate-gradient-x drop-shadow-2xl relative z-10 leading-tight overflow-visible py-2">
                   Kasportal
                 </h1>
                 <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-transparent bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text mb-4 sm:mb-6 animate-fade-in-up drop-shadow-lg relative z-10 leading-normal font-medium overflow-visible py-1">
-                  Building the Future of Finance
+                  Seamless Finance. On-Chain and Off.
                 </p>
                 <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 sm:mb-10 animate-fade-in-up-delay backdrop-blur-sm relative z-10 leading-relaxed px-2 sm:px-0 text-gray-600 font-medium overflow-visible">
-                  Bridging traditional payment systems with blockchain technology. From Apple Pay to smart contract utilities, we're making crypto accessible via web browser.
+                  Bridging traditional payment systems with blockchain technology. From Apple Pay to smart contract utilities, we're making crypto accessible to everyone
                 </p>
 
+                <button
+                  className="mt-4 sm:mt-6 px-8 sm:px-10 lg:px-12 py-4 sm:py-5 lg:py-6 bg-gradient-to-r from-teal-500 to-purple-500 rounded-full font-bold text-white text-lg sm:text-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-105 sm:hover:scale-110 animate-fade-in-up-delay-2 group relative overflow-hidden border border-white/30 backdrop-blur-sm w-full sm:w-auto"
+                  onClick={handleEnterPortal}
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-3 sm:gap-4">
+                    Enter Portal
+                    <ArrowRight className="w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-2 transition-transform duration-300" />
+                  </span>
+                </button>
               </div>
             </div>
 
@@ -319,138 +352,31 @@ export default function LandingPage() {
       </section>
 
       <main className="max-w-6xl mx-auto px-4 pb-20 relative z-10">
+
         {/* Core Features Section */}
         <section className="py-16 sm:py-20 lg:py-24">
           <div className="text-center mb-16 sm:mb-20 px-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
               Core Features
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <FeatureCard key={index} {...feature} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Popular Swap Pairs Section */}
-        <section className="py-16 sm:py-20 lg:py-24">
-          <div className="text-center mb-16 sm:mb-20 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
-              Popular Swap Pairs
-            </h2>
             <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Effortless exchanges between leading cryptocurrencies
+              Explore our comprehensive suite of blockchain tools and services
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 px-4">
-            {popularPairs.map((pair, index) => (
-              <div
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 px-4">
+            {features.map((feature, index) => (
+              <FeatureCard
                 key={index}
-                className={`group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full cursor-pointer`}
-                onClick={() => handlePairSelect(pair.from, pair.to)}
-              >
-                <div className="flex items-center justify-center mb-8">
-                  <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-teal-100 to-purple-100 border border-teal-200 shadow-lg">
-                    <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10">
-                      {pair.fromIcon}
-                    </div>
-                    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10">
-                      {pair.toIcon}
-                    </div>
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">
-                  <span className={`${pair.fromColor}`}>{pair.from}</span> to <span className={`${pair.toColor}`}>{pair.to}</span>
-                </h3>
-                <p className="text-center leading-relaxed text-gray-600 text-lg">
-                  Swap {pair.from} for {pair.to} instantly with competitive rates.
-                </p>
-                <div className="mt-6 text-center">
-                  <button className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-teal-500 to-purple-500 rounded-full font-bold text-white text-base shadow-lg hover:shadow-teal-500/25 transition-all duration-300 transform hover:scale-105">
-                    Swap Now <ArrowRight className="ml-2 w-5 h-5" />
-                  </button>
-                </div>
-              </div>
+                title={feature.title}
+                description={feature.description}
+                icon={feature.icon}
+                route={feature.route}
+                color={feature.color}
+                comingSoon={feature.comingSoon}
+                delay={index * 0.1}
+              />
             ))}
-          </div>
-        </section>
-
-        {/* Enhanced Payment Gateway Section */}
-        <section className="py-16 sm:py-20 lg:py-24">
-          <div className="text-center mb-16 sm:mb-20 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
-              Enhanced Payment Gateway
-            </h2>
-            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Seamlessly bridge traditional finance with crypto
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 px-4">
-            {paymentMethods.map((method, index) => (
-              <div
-                key={index}
-                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full"
-              >
-                <div className="flex items-center justify-center w-20 h-20 mx-auto mb-8 bg-gradient-to-r from-teal-100 to-purple-100 rounded-3xl backdrop-blur-sm border border-teal-200">
-                  {method.icon}
-                </div>
-                <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">{method.name}</h3>
-                <p className="text-center leading-relaxed text-gray-600 text-lg">{method.status}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-
-        {/* Innovation Features Section */}
-        <section className="py-16 sm:py-20 lg:py-24">
-          <div className="text-center mb-16 sm:mb-20 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
-              Innovation Features
-            </h2>
-            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Driving the next generation of blockchain technology
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 px-4">
-            <div className="relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl shadow-xl hover:shadow-2xl hover:border-teal-300 transition-all duration-500 group">
-              <h3 className="text-3xl font-bold mb-4 text-gray-900">MEV Protection</h3>
-              <p className="text-lg leading-relaxed text-gray-600 mb-6">
-                Our advanced transaction bundling and ordering mechanisms protect users from malicious Maximal Extractable Value (MEV) attacks, ensuring fair and secure transactions.
-              </p>
-              <div className="relative h-64 w-full rounded-xl overflow-hidden bg-gray-100 border border-gray-200">
-                <MEVProtectionVisual />
-              </div>
-            </div>
-            <div className="relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl shadow-xl hover:shadow-2xl hover:border-teal-300 transition-all duration-500 group">
-              <h3 className="text-3xl font-bold mb-4 text-gray-900">Cross-Chain Interoperability</h3>
-              <p className="text-lg leading-relaxed text-gray-600 mb-6">
-                Seamlessly interact with assets and applications across multiple blockchain networks, breaking down silos and fostering a truly interconnected crypto ecosystem.
-              </p>
-              <div className="relative h-64 w-full rounded-xl overflow-hidden bg-gray-100 border border-gray-200 flex items-center justify-center">
-                {/* Placeholder for Cross-Chain Visual */}
-                <CrossChainIcon size={96} className="text-teal-400 opacity-50" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Mobile App Preview Section */}
-        <section className="py-16 sm:py-20 lg:py-24">
-          <div className="text-center mb-16 sm:mb-20 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
-              Mobile App Preview
-            </h2>
-            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Your entire crypto world, in your pocket
-            </p>
-          </div>
-          <div className="flex justify-center items-center px-4">
-            <EnhancedIPhoneMockup />
           </div>
         </section>
 
@@ -482,31 +408,105 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Contact Us Section */}
+        {/* Seamless Payment Integration Section */}
         <section className="py-16 sm:py-20 lg:py-24">
           <div className="text-center mb-16 sm:mb-20 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
-              Contact Us
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up drop-shadow-xl">
+              Seamless Payment Integration
             </h2>
-            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              We're here to help and connect
+            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto animate-fade-in-up-delay leading-relaxed text-gray-600 font-medium">
+              Buy crypto with the payment methods you already use every day
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 px-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 mb-16 sm:mb-20 px-4">
+            <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
+              <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
+                <ApplePayIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+              </div>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Apple Pay</h3>
+              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
+            </div>
+            <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
+              <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
+                <VisaIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+              </div>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Visa</h3>
+              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
+            </div>
+            <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
+              <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
+                <MastercardIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+              </div>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Mastercard</h3>
+              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
+            </div>
+            <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
+              <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
+                <MobileWalletIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+              </div>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Mobile Wallet</h3>
+              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q3 2025</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Enhanced iPhone Mockup Section */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up drop-shadow-xl">
+              🚀 Mobile Experience - Coming Soon!
+            </h2>
+            <div className="mb-6 sm:mb-8">
+              <span className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-full text-lg sm:text-xl lg:text-2xl shadow-lg animate-pulse">
+                FEATURE IN DEVELOPMENT
+              </span>
+            </div>
+            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto animate-fade-in-up-delay leading-relaxed text-gray-600 font-medium">
+              Track our progress building the future of mobile DeFi with KAS Coin integration, Apple Pay, Visa, and Mastercard support. Expected launch Q3 2025.
+            </p>
+          </div>
+
+          <div className="relative bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-200 mx-4 shadow-xl hover:shadow-2xl transition-all duration-500">
+            <div className="flex justify-center overflow-hidden">
+              <div className="w-full max-w-4xl">
+                <EnhancedIPhoneMockup />
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+        {/* Contact Section */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="text-center mb-16 sm:mb-20 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
+              Get in Touch
+            </h2>
+            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
+              We're here to help you navigate the future of decentralized finance
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 px-4">
             {contactMethods.map((method, index) => (
               <div
                 key={index}
-                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full cursor-pointer"
                 onClick={() => handleContactClick(method.action)}
+                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 cursor-pointer w-full"
               >
+                <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-r ${method.color}`}></div>
+
                 <div className="flex items-center justify-center w-20 h-20 mx-auto mb-8 bg-gradient-to-r from-teal-100 to-purple-100 rounded-3xl backdrop-blur-sm border border-teal-200">
                   {method.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">{method.title}</h3>
-                <p className="text-center leading-relaxed text-gray-600 text-lg mb-4">{method.description}</p>
+
+                <h3 className="text-2xl font-bold mb-4 text-center text-gray-900">{method.title}</h3>
+                <p className="text-center leading-relaxed text-gray-600 text-lg mb-6">{method.description}</p>
+
                 <div className="text-center">
-                  <span className="text-teal-600 font-semibold text-lg hover:underline">
+                  <span className={`inline-block px-6 py-3 bg-gradient-to-r ${method.color} text-white font-bold rounded-full text-lg shadow-lg group-hover:shadow-xl transition-all duration-300`}>
                     {method.contact}
                   </span>
                 </div>
@@ -514,9 +514,34 @@ export default function LandingPage() {
             ))}
           </div>
         </section>
+
+
       </main>
 
       <EnhancedFooter />
+
+      <style>{`
+        @keyframes fade-in-up {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        @keyframes gradient-x {
+          0%, 100% { background-size: 200% 200%; background-position: left center; }
+          50% { background-size: 200% 200%; background-position: right center; }
+        }
+        
+        .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+        .animate-fade-in-up-delay { animation: fade-in-up 0.8s ease-out 0.2s forwards; opacity: 0; }
+        .animate-fade-in-up-delay-2 { animation: fade-in-up 0.8s ease-out 0.4s forwards; opacity: 0; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-gradient-x { animation: gradient-x 3s ease infinite; }
+      `}</style>
     </div>
   );
 }
