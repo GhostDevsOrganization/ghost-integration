@@ -249,8 +249,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                     className="flex items-center gap-3 text-gray-500 hover:text-teal-600 transition-colors duration-200 px-6 py-3 rounded-full hover:bg-teal-50 border border-gray-200 hover:border-teal-300 w-full sm:w-auto justify-center"
                                     title="Swap information"
                                 >
-                                    <Info size={20} />
-                                    <span className="font-medium">Swap Info</span>
+
                                 </button>
                             </div>
                         </div>
@@ -283,30 +282,14 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                 icon: <Wallet className="w-8 h-8 sm:w-10 sm:h-10" />,
                                 color: 'from-teal-600 to-purple-600'
                             },
-                            {
-                                title: 'Best Rates Guaranteed',
-                                description: 'Our AI aggregates rates from 50+ exchanges to ensure you always get the best deal.',
-                                icon: <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10" />,
-                                color: 'from-teal-400 to-purple-500'
-                            },
+
                             {
                                 title: '900+ Cryptocurrencies',
                                 description: 'Swap between any of 900+ supported cryptocurrencies including all major coins and tokens.',
                                 icon: <Link2 className="w-8 h-8 sm:w-10 sm:h-10" />,
                                 color: 'from-teal-700 to-purple-700'
                             },
-                            {
-                                title: 'Military-Grade Security',
-                                description: 'Non-custodial swaps with multi-signature validation and advanced encryption.',
-                                icon: <HelpCircle className="w-8 h-8 sm:w-10 sm:h-10" />,
-                                color: 'from-teal-500 to-purple-600'
-                            },
-                            {
-                                title: '24/7 Support',
-                                description: 'Round-the-clock customer support via live chat to help with any questions or issues.',
-                                icon: <Info className="w-8 h-8 sm:w-10 sm:h-10" />,
-                                color: 'from-teal-600 to-purple-600'
-                            }
+
                         ].map((feature, index) => (
                             <div
                                 key={index}
@@ -358,7 +341,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                 color: 'from-teal-600 to-purple-600'
                             },
                             {
-                                title: 'Instant Execution',
+                                title: 'Fast Execution',
                                 description: 'Complete your swap in under 15 minutes with our lightning-fast execution engine and receive your tokens.',
                                 color: 'from-teal-400 to-purple-500'
                             }
@@ -439,7 +422,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                             Ready to Experience Advanced Trading?
                         </h2>
                         <p className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-in-up-delay font-medium leading-relaxed">
-                            Join thousands of traders who trust our advanced swap engine for their cryptocurrency exchanges.
+
                         </p>
                         <Link
                             to="/features/cross-chain-compatibility"

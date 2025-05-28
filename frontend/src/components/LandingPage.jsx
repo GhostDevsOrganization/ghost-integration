@@ -6,8 +6,7 @@ import QuantumPortal from './QuantumPortal';
 import FuturisticNav from './FuturisticNav';
 import EnhancedFooter from './EnhancedFooter';
 import FeatureCard from './FeatureCard';
-import HolographicStats from './HolographicStats';
-import HolographicGrid from './3D/HolographicGrid';
+
 import MEVProtectionVisual from './3D/MEVProtectionVisual';
 import EnhancedIPhoneMockup from './EnhancedIPhoneMockup';
 import {
@@ -261,8 +260,7 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen overflow-x-hidden relative bg-gradient-to-br from-white via-gray-50 to-white text-gray-900">
-      {/* Add 3D Background */}
-      <HolographicGrid themeData={themeData} performanceMode="high" />
+
 
       {/* Clean light background with subtle gradients */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -308,13 +306,10 @@ export default function LandingPage() {
               <div className="relative p-6 sm:p-8 lg:p-10 xl:p-12 rounded-3xl bg-white backdrop-blur-2xl border border-gray-200 shadow-2xl hover:shadow-xl hover:border-teal-300 transition-all duration-700 group">
                 <div className="flex justify-center lg:justify-start mb-6 sm:mb-8 lg:mb-10 animate-fade-in-up">
                   <div className="relative group">
-                    <img
-                      src="/kasportal-logo.svg"
-                      alt="Kasportal Logo"
-                      className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 hover:scale-105 transition-transform duration-500 drop-shadow-2xl relative z-10"
-                    />
+
                   </div>
                 </div>
+
 
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent animate-gradient-x drop-shadow-2xl relative z-10 leading-tight overflow-visible py-2">
                   Kasportal
@@ -323,7 +318,7 @@ export default function LandingPage() {
                   Building the Future of Finance
                 </p>
                 <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 sm:mb-10 animate-fade-in-up-delay backdrop-blur-sm relative z-10 leading-relaxed px-2 sm:px-0 text-gray-600 font-medium overflow-visible">
-                  Bridging traditional payment systems with blockchain technology. From Apple Pay to smart contract utilities, we're making crypto accessible via web browser.
+                  Bridging traditional payment systems with blockchain technology. From Apple Pay to smart contract utilities, we're making crypto accessible to everyone
                 </p>
 
                 <button
@@ -355,72 +350,6 @@ export default function LandingPage() {
       </section>
 
       <main className="max-w-6xl mx-auto px-4 pb-20 relative z-10">
-        {/* Popular Trading Pairs Section - NEW SECTION ADDED */}
-        <section className="py-16 sm:py-20 lg:py-24">
-          <div className="text-center mb-12 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up">
-              Popular Trading Pairs
-            </h2>
-            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto animate-fade-in-up-delay px-4 font-medium text-gray-600">
-              Quick access to the most traded cryptocurrency pairs - click to start swapping
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 px-4">
-            {popularPairs.map((pair, index) => (
-              <button
-                key={index}
-                className="group relative bg-white/95 backdrop-blur-lg border-2 border-gray-100 rounded-3xl p-6 sm:p-8 lg:p-10 hover:border-teal-200 hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-2 animate-fade-in-up shadow-xl"
-                style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => handlePairSelect(pair.from.toLowerCase(), pair.to.toLowerCase())}
-              >
-                {/* Glowing background effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${pair.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
-
-                <div className="relative z-10 text-center">
-                  {/* From Token */}
-                  <div className="flex flex-col items-center mb-4">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 group-hover:scale-110 transition-transform duration-300">
-                      {pair.fromIcon}
-                    </div>
-                    <div className={`text-lg sm:text-xl font-bold ${pair.fromColor}`}>
-                      {pair.from}
-                    </div>
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="text-gray-400 text-sm mb-4 group-hover:text-teal-500 transition-colors duration-300 flex justify-center">
-                    <ArrowRight size={20} />
-                  </div>
-
-                  {/* To Token */}
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 group-hover:scale-110 transition-transform duration-300">
-                      {pair.toIcon}
-                    </div>
-                    <div className={`text-lg sm:text-xl font-bold ${pair.toColor}`}>
-                      {pair.to}
-                    </div>
-                  </div>
-
-                  {/* Click hint */}
-                  <div className="mt-4 pt-4 border-t border-gray-100 group-hover:border-teal-200 transition-colors duration-300">
-                    <p className="text-sm text-gray-500 group-hover:text-teal-600 transition-colors duration-300 font-medium">
-                      Click to swap
-                    </p>
-                  </div>
-                </div>
-
-                {/* Animated border */}
-                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${pair.color} p-[2px]`}>
-                    <div className="w-full h-full bg-white rounded-3xl"></div>
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
-        </section>
 
         {/* Core Features Section */}
         <section className="py-16 sm:py-20 lg:py-24">
@@ -545,7 +474,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <HolographicStats />
+
 
         {/* Add MEV Protection Visual */}
         <MEVProtectionVisual />

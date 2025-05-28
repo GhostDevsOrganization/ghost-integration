@@ -309,45 +309,6 @@ const CrossChainCompatibilityPage = () => {
 
 
 
-                {/* Bridge Features - Clean White Cards */}
-                <section className="mb-24">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up">
-                            Next-Generation Bridge Technology
-                        </h2>
-                        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up-delay px-4 font-medium">
-                            Experience the future of cross-chain interoperability with our cutting-edge bridge protocol.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8 sm:gap-10">
-                        {bridgeFeatures.map((feature, index) => (
-                            <div
-                                key={index}
-                                className="group relative bg-white backdrop-blur-sm border border-gray-200 rounded-3xl p-8 sm:p-10 hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-3 animate-fade-in-up shadow-lg"
-                                style={{ animationDelay: `${index * 0.1}s` }}
-                            >
-                                {/* Glowing background effect */}
-                                <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
-
-                                <div className="relative z-10">
-                                    <div className={`p-4 sm:p-5 rounded-2xl bg-gradient-to-r ${feature.color} w-fit mb-6 sm:mb-8 group-hover:scale-110 transition-transform duration-300`}>
-                                        <div className="text-white">
-                                            {feature.icon}
-                                        </div>
-                                    </div>
-                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 group-hover:text-teal-700 transition-colors duration-300">
-                                        {feature.title}
-                                    </h3>
-                                    <p className="text-base sm:text-lg text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed">
-                                        {feature.description}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-
                 {/* Supported Chains - Clean White Cards */}
                 <section className="mb-24">
                     <div className="text-center mb-16">
@@ -469,13 +430,13 @@ const CrossChainCompatibilityPage = () => {
                             Ready to Bridge the Future?
                         </h2>
                         <p className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-in-up-delay font-medium leading-relaxed">
-                            Experience seamless cross-chain transfers with our revolutionary bridge technology.
+
                         </p>
                         <Link
                             to="/portal/interdimensional"
                             className="group relative inline-flex items-center gap-4 px-12 sm:px-16 py-6 sm:py-8 bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 rounded-full font-bold text-white text-xl sm:text-2xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-2 overflow-hidden"
                         >
-                            <span className="relative z-10 flex items-center gap-4">
+                            <span className="relative z-10 flex items-center gap-">
                                 Enter Portal
                                 <ArrowRight className="w-6 h-6 sm:w-8 sm:h-8 group-hover:translate-x-2 transition-transform duration-300" />
                             </span>
