@@ -37,9 +37,9 @@ const LearnPage = () => {
         };
     }, []);
 
-    // Animate in sections as they come into view
+    // Animate in sections as they come into view AND track active section
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
+        const animationObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate-in');
@@ -47,11 +47,37 @@ const LearnPage = () => {
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
+        // Track which section is currently in view for navigation highlighting
+        const navigationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    if (sectionId && topics.some(topic => topic.id === sectionId)) {
+                        setActiveTopic(sectionId);
+                    }
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '-20% 0px -70% 0px'
         });
 
-        return () => observer.disconnect();
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            animationObserver.observe(el);
+        });
+
+        // Observe all section elements for navigation tracking
+        topics.forEach(topic => {
+            const element = document.getElementById(topic.id);
+            if (element) {
+                navigationObserver.observe(element);
+            }
+        });
+
+        return () => {
+            animationObserver.disconnect();
+            navigationObserver.disconnect();
+        };
     }, []);
 
     // Auto-scroll to anchor links AND ensure visibility

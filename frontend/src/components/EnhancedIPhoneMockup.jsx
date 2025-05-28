@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function EnhancedIPhoneMockup() {
+    const [shouldAnimate, setShouldAnimate] = useState(false);
+
+    useEffect(() => {
+        // Start animation immediately
+        setShouldAnimate(true);
+
+        // Set up interval to trigger animation every 20 seconds
+        const interval = setInterval(() => {
+            setShouldAnimate(false);
+            // Small delay to reset animation
+            setTimeout(() => setShouldAnimate(true), 100);
+        }, 20000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div className="flex items-center justify-center p-8 overflow-hidden relative">
             {/* Main content */}
             <div className="relative z-10 flex flex-col lg:flex-row items-center gap-16 max-w-7xl mx-auto">
                 {/* iPhone Mockup */}
-                <div className="relative group animate-float">
+                <div className={`relative group ${shouldAnimate ? 'animate-float' : ''}`}>
                     {/* Glow effect */}
-                    <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/20 to-teal-500/20 rounded-[60px] blur-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
+                    <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/20 to-teal-500/20 rounded-[60px] blur-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-500" />
 
                     {/* iPhone Frame */}
                     <div className="relative w-[380px] h-[780px] bg-[#1a1a1a] rounded-[50px] p-3 shadow-2xl transform transition-transform duration-300 group-hover:scale-[1.02]">
@@ -36,9 +52,9 @@ export default function EnhancedIPhoneMockup() {
                                 <div className="flex items-center justify-center w-full h-full">
                                     {/* Your SVG will be integrated here */}
                                     <img
-                                        src="/kasportal-logo.svg"
-                                        alt="Kasportal Logo"
-                                        className="w-32 h-32 drop-shadow-2xl opacity-80 hover:opacity-100 transition-opacity duration-500"
+                                        src="/images/kasportal-app-screenshot.png"
+                                        alt="Kasportal App Screenshot"
+                                        className="w-64 h-auto max-w-full rounded-lg drop-shadow-2xl opacity-90 hover:opacity-100 transition-opacity duration-500"
                                     />
                                 </div>
                             </div>
@@ -90,9 +106,7 @@ export default function EnhancedIPhoneMockup() {
                     </div>
 
                     <p className="mt-8 text-sm text-gray-500">
-                        * Currently accessible via web broswer at kasportal.com
-
-
+                        * Currently accessible via web browser at kasportal.com
                     </p>
                 </div>
             </div>

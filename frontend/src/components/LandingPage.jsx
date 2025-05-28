@@ -24,6 +24,8 @@ import {
   DocsIcon,
   BusinessIcon
 } from './CryptoIcons';
+import TwitterIcon from './TwitterIcon';
+import TelegramIcon from './TelegramIcon';
 import {
   ApplePayIcon,
   VisaIcon,
@@ -184,32 +186,32 @@ export default function LandingPage() {
       title: "Email Support",
       description: "Get help with technical issues, account questions, or general inquiries",
       icon: <EmailIcon size={32} className="text-teal-400 drop-shadow-xl" />,
-      contact: "support@kasportal.com",
-      action: "mailto:support@kasportal.com",
+      contact: "support@ghost",
+      action: "mailto:support@ghost",
       color: "from-teal-400 to-blue-500"
     },
     {
-      title: "Community Discord",
-      description: "Join our vibrant community for real-time discussions and updates",
-      icon: <DiscordIcon size={32} className="text-purple-400 drop-shadow-xl" />,
-      contact: "Join Discord",
-      action: "#",
-      color: "from-teal-500 to-purple-500"
+      title: "Follow on X",
+      description: "Stay updated with the latest news, announcements, and community updates",
+      icon: <TwitterIcon size={32} className="text-blue-400 drop-shadow-xl" />,
+      contact: "@kas_portal",
+      action: "https://x.com/kas_portal",
+      color: "from-blue-400 to-indigo-500"
     },
     {
-      title: "Documentation",
-      description: "Comprehensive guides and API documentation for developers",
-      icon: <DocsIcon size={32} className="text-cyan-400 drop-shadow-xl" />,
-      contact: "View Docs",
-      action: "/learn",
-      color: "from-teal-300 to-purple-400"
+      title: "Community Telegram",
+      description: "Join our vibrant community for real-time discussions and updates",
+      icon: <TelegramIcon size={32} className="text-purple-400 drop-shadow-xl" />,
+      contact: "Join Telegram",
+      action: "https://t.me/+ogluJ3Srnr83MmJh",
+      color: "from-teal-500 to-purple-500"
     },
     {
       title: "Business Inquiries",
       description: "Partnership opportunities and enterprise solutions",
       icon: <BusinessIcon size={32} className="text-indigo-400 drop-shadow-xl" />,
-      contact: "business@kasportal.com",
-      action: "mailto:business@kasportal.com",
+      contact: "business@ghost",
+      action: "mailto:business@ghost",
       color: "from-teal-600 to-purple-700"
     }
   ];
@@ -315,7 +317,7 @@ export default function LandingPage() {
                   Kasportal
                 </h1>
                 <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-transparent bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text mb-4 sm:mb-6 animate-fade-in-up drop-shadow-lg relative z-10 leading-normal font-medium overflow-visible py-1">
-                  Building the Future of Finance
+                  Seamless Finance. On-Chain and Off.
                 </p>
                 <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 sm:mb-10 animate-fade-in-up-delay backdrop-blur-sm relative z-10 leading-relaxed px-2 sm:px-0 text-gray-600 font-medium overflow-visible">
                   Bridging traditional payment systems with blockchain technology. From Apple Pay to smart contract utilities, we're making crypto accessible to everyone
@@ -476,49 +478,44 @@ export default function LandingPage() {
 
 
 
-        {/* Add MEV Protection Visual */}
-        <MEVProtectionVisual />
-
+        {/* Contact Section */}
         <section className="py-16 sm:py-20 lg:py-24">
           <div className="text-center mb-16 sm:mb-20 px-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
               Get in Touch
             </h2>
             <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Need help or have questions? We're here to support you on your crypto journey
+              We're here to help you navigate the future of decentralized finance
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 px-4">
             {contactMethods.map((method, index) => (
               <div
                 key={index}
-                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 cursor-pointer w-full"
                 onClick={() => handleContactClick(method.action)}
+                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 cursor-pointer w-full"
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${method.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl`}></div>
+                <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-r ${method.color}`}></div>
 
-                <div className="flex items-center justify-center w-20 h-20 mx-auto mb-8 bg-gradient-to-r from-teal-100 to-purple-100 rounded-3xl backdrop-blur-sm border border-teal-200 relative z-10">
-                  <div className="text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
-                    {method.icon}
-                  </div>
+                <div className="flex items-center justify-center w-20 h-20 mx-auto mb-8 bg-gradient-to-r from-teal-100 to-purple-100 rounded-3xl backdrop-blur-sm border border-teal-200">
+                  {method.icon}
                 </div>
 
-                <div className="text-center relative z-10">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6 group-hover:text-teal-700 transition-colors duration-300">
-                    {method.title}
-                  </h3>
-                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed mb-6 text-lg">
-                    {method.description}
-                  </p>
-                  <div className="text-teal-600 font-bold group-hover:text-teal-700 transition-colors duration-300 text-lg">
+                <h3 className="text-2xl font-bold mb-4 text-center text-gray-900">{method.title}</h3>
+                <p className="text-center leading-relaxed text-gray-600 text-lg mb-6">{method.description}</p>
+
+                <div className="text-center">
+                  <span className={`inline-block px-6 py-3 bg-gradient-to-r ${method.color} text-white font-bold rounded-full text-lg shadow-lg group-hover:shadow-xl transition-all duration-300`}>
                     {method.contact}
-                  </div>
+                  </span>
                 </div>
               </div>
             ))}
           </div>
         </section>
+
+
       </main>
 
       <EnhancedFooter />
