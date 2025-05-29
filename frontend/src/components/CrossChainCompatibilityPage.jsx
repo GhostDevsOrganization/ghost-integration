@@ -371,12 +371,26 @@ const CrossChainCompatibilityPage = () => {
                         ].map((step, index) => (
                             <div
                                 key={index}
-                                className="group relative bg-white backdrop-blur-sm border border-gray-200 rounded-3xl p-8 sm:p-10 hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-3 animate-fade-in-up shadow-lg"
+                                className="group relative bg-white backdrop-blur-sm border border-gray-200 rounded-3xl p-8 sm:p-10 hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-3 animate-fade-in-up shadow-lg flex flex-col"
                                 style={{ animationDelay: `${index * 0.2}s` }}
                             >
                                 <div className={`absolute inset-0 bg-gradient-to-r ${step.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
 
-
+                                <div className="relative z-10 text-center flex flex-col h-full">
+                                    <div className={`text-5xl sm:text-6xl font-bold bg-gradient-to-r ${step.color} bg-clip-text text-transparent mb-6 sm:mb-8`}>
+                                        {step.step}
+                                    </div>
+                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 group-hover:text-teal-700 transition-colors duration-300">
+                                        {step.title}
+                                    </h3>
+                                    <p className="text-base sm:text-lg text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed flex-grow">
+                                        {step.description}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
                 {/* Call to Action */}
                 <section className="text-center py-16 sm:py-24">
