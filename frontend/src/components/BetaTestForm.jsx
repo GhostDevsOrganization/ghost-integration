@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Send, Mail, User, MessageSquare, CheckCircle } from 'lucide-react';
-import { supabase } from '../config/supabase';
+import { supabase, isSupabaseConfigured, handleSupabaseError } from '../config/supabase';
 
 const BetaTestForm = ({ isVisible, onClose }) => {
     const [formData, setFormData] = useState({
@@ -82,58 +82,101 @@ const BetaTestForm = ({ isVisible, onClose }) => {
         if (!validateForm()) return;
 
         setIsSubmitting(true);
+        setErrors({}); // Clear previous errors
 
         try {
-            // Try Supabase first, fallback to localStorage
-            try {
-                const { data, error } = await supabase
-                    .from('beta_submissions')
-                    .insert([{
-                        name: formData.name,
-                        email: formData.email,
-                        interests: formData.interests,
-                        referral_source: formData.referralSource,
-                        comments: formData.comments
-                    }]);
+            let submissionSuccess = false;
 
-                if (error) {
-                    if (error.code === '23505' && error.details.includes('email')) {
-                        setErrors({ email: 'This email is already registered for beta access.' });
-                    } else {
-                        setErrors({ submit: 'Something went wrong. Please try again.' });
+            // Check if Supabase is configured
+            if (isSupabaseConfigured()) {
+                try {
+                    const { data, error } = await supabase
+                        .from('beta_submissions')
+                        .insert([{
+                            name: formData.name,
+                            email: formData.email,
+                            interests: formData.interests,
+                            referral_source: formData.referralSource,
+                            comments: formData.comments,
+                            submitted_at: new Date().toISOString()
+                        }]);
+
+                    if (error) {
+                        if (error.code === '23505' && error.details?.includes('email')) {
+                            setErrors({ email: 'This email is already registered for beta access.' });
+                            return;
+                        }
+                        throw error;
                     }
-                    throw error; // Re-throw to enter the outer catch block
+
+                    console.log('Successfully saved to Supabase:', data);
+                    submissionSuccess = true;
+                } catch (supabaseError) {
+                    const errorInfo = handleSupabaseError(supabaseError);
+                    console.warn(errorInfo.error);
+
+                    if (!errorInfo.fallback) {
+                        setErrors({ submit: errorInfo.error });
+                        return;
+                    }
+                    // Continue to localStorage fallback
                 }
-
-                console.log('Successfully saved to Supabase:', data);
-            } catch (supabaseError) {
-                // Error already handled by setting errors state
-                console.error('Supabase submission error:', supabaseError);
             }
 
-            // Simulate processing delay only if no errors were set
-            if (Object.keys(errors).length === 0) {
-                await new Promise(resolve => setTimeout(resolve, 1500));
+            // Fallback to localStorage if Supabase fails or isn't configured
+            if (!submissionSuccess) {
+                try {
+                    const existingSubmissions = JSON.parse(localStorage.getItem('beta_submissions') || '[]');
+
+                    // Check for duplicate email in localStorage
+                    if (existingSubmissions.some(sub => sub.email === formData.email)) {
+                        setErrors({ email: 'This email is already registered for beta access.' });
+                        return;
+                    }
+
+                    const newSubmission = {
+                        ...formData,
+                        id: Date.now().toString(),
+                        submitted_at: new Date().toISOString(),
+                        source: 'localStorage'
+                    };
+
+                    existingSubmissions.push(newSubmission);
+                    localStorage.setItem('beta_submissions', JSON.stringify(existingSubmissions));
+
+                    console.log('Successfully saved to localStorage:', newSubmission);
+                    submissionSuccess = true;
+                } catch (localStorageError) {
+                    console.error('localStorage fallback failed:', localStorageError);
+                    setErrors({ submit: 'Unable to save your submission. Please try again.' });
+                    return;
+                }
             }
 
-            setIsSubmitted(true);
+            // Success - show confirmation
+            if (submissionSuccess) {
+                // Brief delay for better UX
+                await new Promise(resolve => setTimeout(resolve, 800));
 
-            // Auto close after success message
-            setTimeout(() => {
-                onClose();
-                setIsSubmitted(false);
-                setFormData({
-                    name: '',
-                    email: '',
-                    interests: [],
-                    comments: '',
-                    referralSource: ''
-                });
-            }, 3000);
+                setIsSubmitted(true);
+
+                // Auto close after success message
+                setTimeout(() => {
+                    onClose();
+                    setIsSubmitted(false);
+                    setFormData({
+                        name: '',
+                        email: '',
+                        interests: [],
+                        comments: '',
+                        referralSource: ''
+                    });
+                }, 3000);
+            }
 
         } catch (error) {
-            console.error('Error submitting form:', error);
-            setErrors({ submit: 'Something went wrong. Please try again.' });
+            console.error('Unexpected error submitting form:', error);
+            setErrors({ submit: 'An unexpected error occurred. Please try again.' });
         } finally {
             setIsSubmitting(false);
         }

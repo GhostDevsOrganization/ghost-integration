@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import HexagonalLogo from './HexagonalLogo';
 
 export default function EnhancedIPhoneMockup() {
     const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -33,7 +34,7 @@ export default function EnhancedIPhoneMockup() {
         <div className="container mx-auto px-4 py-8">
             {/* Add the style using a standard style tag */}
             <style>{floatKeyframes}</style>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                 {/* iPhone Mockup Column */}
                 <div className="flex justify-center">
@@ -62,15 +63,31 @@ export default function EnhancedIPhoneMockup() {
                                     </div>
                                 </div>
 
-                                {/* Clean Phone Screen with Your SVG */}
-                                <div className="w-full h-full rounded-xl pt-11 flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-800">
-                                    <div className="flex items-center justify-center w-full h-full">
-                                        {/* Your SVG will be integrated here */}
-                                        <img
-                                            src="/images/kasportal-app-screenshot.png"
-                                            alt="Kasportal App Screenshot"
-                                            className="w-64 h-auto max-w-full rounded-lg drop-shadow-2xl opacity-90 hover:opacity-100 transition-opacity duration-500"
+                                {/* Clean Phone Screen with Hexagonal Logo */}
+                                <div className="w-full h-full rounded-xl pt-11 flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-800">
+                                    <div className="flex flex-col items-center justify-center w-full h-full space-y-6">
+                                        {/* Hexagonal Logo */}
+                                        <HexagonalLogo
+                                            className="w-48 h-48 transform hover:scale-110 transition-transform duration-500"
+                                            animate={shouldAnimate}
                                         />
+
+                                        {/* App Title */}
+                                        <div className="text-center space-y-2">
+                                            <h2 className="text-2xl font-bold text-white">
+                                                Kasportal
+                                            </h2>
+                                            <p className="text-sm text-gray-400">
+                                                Your Gateway to Kaspa
+                                            </p>
+                                        </div>
+
+                                        {/* Feature indicators */}
+                                        <div className="flex space-x-4 mt-4">
+                                            <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></div>
+                                            <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                                            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +106,7 @@ export default function EnhancedIPhoneMockup() {
                     <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent">
                         Kaspa, Mobile
                     </h1>
-                    
+
                     <div className="flex flex-wrap gap-3 mb-8 justify-center lg:justify-start">
                         <div className="px-4 py-2 text-gray-600 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300 text-gray-300">
                             <span>⚡</span> Instant
@@ -101,11 +118,11 @@ export default function EnhancedIPhoneMockup() {
                             <span>📱</span> Easy
                         </div>
                     </div>
-                    
+
                     <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                         Powered by Kaspa's lightning-fast blockDAG. Manage, monitor, and send your crypto everywhere you go.
                     </p>
-                    
+
                     <div className="flex gap-4 items-center justify-center lg:justify-start">
                         <button className="px-6 py-3 bg-gradient-to-r from-teal-600 to-purple-600 rounded-xl font-semibold flex items-center gap-3 hover:scale-105 transition-transform duration-300 text-white">
                             <div className="text-center">
@@ -115,9 +132,9 @@ export default function EnhancedIPhoneMockup() {
                         </button>
 
                         <div className="w-24 h-24 bg-white rounded-xl p-2">
-                            <img 
-                                src="/images/KASQR.svg" 
-                                alt="Kasportal QR Code" 
+                            <img
+                                src="/images/KASQR.svg"
+                                alt="Kasportal QR Code"
                                 className="w-full h-full"
                             />
                         </div>
