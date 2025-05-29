@@ -119,7 +119,7 @@ const CrossChainCompatibilityPage = () => {
                 'Social payment features',
                 'Mobile-first experience',
                 'Wide user adoption'
-            ],
+            ]
             steps: [
                 'Hit the crypto button on mobile',
                 'Select cryptocurrency to reci',
@@ -233,7 +233,7 @@ const CrossChainCompatibilityPage = () => {
                         Move Crypto Between Any Blockchain
                     </h1>
                     <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto animate-fade-in-up-delay px-4 leading-relaxed font-medium">
-                        Transfer your assets seamlessly across Ethereum, Bitcoin, Solana, and 50+ other networks. 
+                        Transfer your assets across Ethereum, Bitcoin, Solana, and 50+ other networks. 
                         One platform, every blockchain.
                     </p>
                 </div>
@@ -427,7 +427,7 @@ const CrossChainCompatibilityPage = () => {
                 <section className="text-center py-16 sm:py-24">
                     <div className="relative px-4">
                         <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-8 animate-fade-in-up">
-                            Ready to try it?
+                            Ready to Swap?
                         </h2>
                         <p className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-in-up-delay font-medium leading-relaxed">
 

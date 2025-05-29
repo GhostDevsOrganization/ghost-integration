@@ -257,7 +257,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
             Why Choose Our Swap Engine?
         </h2>
         <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up-delay px-4 font-medium">
-            Speed - Ease of Use - Options
+            Speed - Ease of Use - Myriad Coins
         </p>
     </div>
 
@@ -277,7 +277,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
             },
 
             {
-                title: 'So many Coins!',
+                title: 'So Many Coins!',
                 description: 'Swap between 900 + supported cryptocurrencies including all major coins and tokens.',
                 icon: <Link2 className="w-8 h-8 sm:w-10 sm:h-10" />,
                 color: 'from-teal-700 to-purple-700'
@@ -330,13 +330,13 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                 color: 'from-teal-500 to-blue-600'
                             },
                             {
-                                title: '',
-                                description: 'We scan 50+ exchanges in real-time to find the best exchange rate for your trade.',
+                                title: 'Scan',
+                                description: 'Scan 50+ exchanges in real-time to find the best exchange rate for your trade.',
                                 color: 'from-teal-600 to-purple-600'
                             },
                             {
-                                title: 'Fast Execution',
-                                description: 'Complete your swap in under 15 minutes and receive your tokens.',
+                                title: 'Execute',
+                                description: 'Complete your swap in under 10 minutes and receive your tokens.',
                                 color: 'from-teal-400 to-purple-500'
                             }
                         ].map((step, index) => (
@@ -375,23 +375,23 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         {[
                             {
                                 question: "How long does a swap take to complete?",
-                                answer: "Most swaps are completed within 5-15 minutes thanks to our advanced routing algorithms. Kaspa transactions are typically even faster due to the network's high throughput capabilities."
+                                answer: "Most swaps are completed within 5-10 minutes thanks to our advanced routing algorithms. Kaspa transactions are typically even faster due to the network's high throughput capabilities."
                             },
                             {
                                 question: "Are there any swap limits?",
-                                answer: "Basic swaps have no upper limits. However, very large transactions may require additional verification steps in accordance with regulatory requirements."
+                                answer: "Basic swaps have no upper limits. However, very large transactions may require additional verification steps, KYC verification in accordance with regulatory requirements."
                             },
                             {
                                 question: "What fees are associated with swapping?",
-                                answer: "The exchange rate you see includes all fees. There are no hidden fees or additional charges. The rate includes network transaction fees and a small service fee."
+                                answer: "The exchange rate you see includes all fees. The rate includes network transaction fees and a small service fee Typically around 1%."
                             },
                             {
                                 question: "Is my personal information required?",
-                                answer: "For basic swaps, only your receiving wallet address is required. No personal information or account creation is needed."
+                                answer: "For basic swaps, only your sending and receiving wallet address is required. No account creation is needed, You maintain control of your funds and seed phrases at all time. This is a non custodial service."
                             },
                             {
                                 question: "What if my swap is taking longer than expected?",
-                                answer: "Transactions may occasionally take longer due to network congestion. You can check the status of your swap using the transaction ID provided. If a swap is pending for over 2 hours, please contact our 24/7 support."
+                                answer: "Transactions may occasionally take longer due to network congestion. You can check the status of your swap using the transaction ID provided. If a swap is pending for over 2 hours, please contact our support."
                             }
                         ].map((faq, index) => (
                             <div key={index} className="bg-white backdrop-blur-sm border border-gray-200 rounded-2xl overflow-hidden hover:border-teal-300 hover:shadow-lg transition-all duration-500 shadow-md">
