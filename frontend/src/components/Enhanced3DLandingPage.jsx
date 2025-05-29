@@ -25,7 +25,7 @@ import {
 } from './CryptoIcons';
 import TelegramIcon from './TelegramIcon';
 import {
-    ApplePayIcon,
+    KaspaIcon,
     VisaIcon,
     MastercardIcon,
 } from './EnhancedPaymentIcons';
@@ -383,8 +383,8 @@ export default function Enhanced3DLandingPage() {
 
     const paymentMethods = [
         {
-            name: "Apple Pay",
-            icon: <ApplePayIcon size={32} style={{ color: themeData?.colors?.accentPrimary || '#6EC7BB' }} />,
+            name: "Kaspa",
+            icon: <KaspaIcon size={32} style={{ color: themeData?.colors?.accentPrimary || '#6EC7BB' }} />,
             status: "Coming Q2 2025",
         },
         {
