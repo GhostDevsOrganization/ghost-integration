@@ -157,7 +157,7 @@ const AdvancedPortal = () => {
                         </span>
                     </h1>
                     <p className="text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed animate-fade-in-up-delay" style={{ color: 'var(--text-secondary)' }}>
-                        Your gateway to the quantum-powered blockchain ecosystem. Access advanced trading tools,
+                        Your gateway to the KasPortal ecosystem. Access advanced trading tools,
                         cross-chain bridges, and comprehensive learning resources.
                     </p>
                 </div>
@@ -199,13 +199,7 @@ const AdvancedPortal = () => {
                             </button>
                         ))}
                     </div>
-                </section>
-
-                {/* Main Portal Features */}
-                <section className="mb-20">
-                    <h2 className="text-3xl md:text-4xl font-bold text-center mb-12" style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                        Portal Features
-                    </h2>
+                
                     <div className="grid md:grid-cols-3 gap-8">
                         {portalFeatures.map((feature, index) => (
                             <Link
@@ -266,50 +260,16 @@ const AdvancedPortal = () => {
                 </section>
 
                 {/* Portal Stats */}
-                <section className="mb-20">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                            Portal Statistics
-                        </h2>
-                        <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-                            Real-time metrics from the Kasportal ecosystem
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        {[
-                            { label: 'Total Volume', value: '$2.4M+', icon: <Database className="w-6 h-6" /> },
-                            { label: 'Active Users', value: '12.5K+', icon: <Activity className="w-6 h-6" /> },
-                            { label: 'Transactions', value: '45.2K+', icon: <RefreshCw className="w-6 h-6" /> },
-                            { label: 'Networks', value: '6+', icon: <Globe className="w-6 h-6" /> }
-                        ].map((stat, index) => (
-                            <div
-                                key={index}
-                                className="text-center p-6 rounded-2xl border transition-all duration-500 hover:scale-105"
-                                style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border-color)' }}
-                            >
-                                <div className="flex justify-center mb-4" style={{ color: 'var(--accent-primary)' }}>
-                                    {stat.icon}
-                                </div>
-                                <div className="text-2xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
-                                    {stat.value}
-                                </div>
-                                <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                                    {stat.label}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
+                
 
                 {/* Call to Action */}
                 <section className="text-center py-20">
                     <div className="relative">
                         <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up" style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                            Ready to Explore?
+                            Ready to Swap?
                         </h2>
                         <p className="text-xl mb-8 max-w-2xl mx-auto animate-fade-in-up-delay" style={{ color: 'var(--text-secondary)' }}>
-                            Dive into the quantum-powered blockchain ecosystem and experience the future of decentralized finance.
+                            Dive into the blockchain ecosystem and experience the future of decentralized finance.
                         </p>
                         <Link
                             to="/features/token-swapping"

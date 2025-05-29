@@ -5,13 +5,13 @@ export default function EnhancedIPhoneMockup() {
 
     useEffect(() => {
         // Start animation immediately
-        setShouldAnimate(true);
+        setShouldAnimate(false);
 
         // Set up interval to trigger animation every 20 seconds
         const interval = setInterval(() => {
             setShouldAnimate(false);
             // Small delay to reset animation
-            setTimeout(() => setShouldAnimate(true), 100);
+            setTimeout(() => setShouldAnimate(false), 100);
         }, 20000);
 
         return () => clearInterval(interval);
@@ -71,30 +71,29 @@ export default function EnhancedIPhoneMockup() {
                 {/* Side Content */}
                 <div className="max-w-md text-center lg:text-left">
                     <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-teal-400 to-purple-400 bg-clip-text text-transparent">
-                        Kaspa Mobile
+                        Kaspa, Mobile
                     </h1>
-                    <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                        Simple, secure payments powered by Kaspa's lightning-fast blockchain. Pay with crypto or traditional methods in one app.
-                    </p>
+                    
 
                     <div className="flex flex-wrap gap-3 mb-8 justify-center lg:justify-start">
-                        <div className="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300">
-                            <span>⚡</span> Instant Payments
+                        <div className="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300 text-gray-300">
+                            <span>⚡</span> Instant
                         </div>
-                        <div className="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300">
+                        <div className="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300 text-gray-300">
                             <span>🔒</span> Secure
                         </div>
-                        <div className="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300">
-                            <span>📱</span> Easy to Use
+                        <div className="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300 text-gray-300">
+                            <span>📱</span> Easy
                         </div>
                     </div>
-
+                <p className="text-xl  text-gray-300 mb-8 leading-relaxed">
+                        Powered by Kaspa's lightning-fast blockDAG. Manage, monitor, and send your crypto everywhere you go.
+                    </p>
                     <div className="flex gap-4 items-center justify-center lg:justify-start">
                         <button className="px-6 py-3 bg-gradient-to-r from-teal-600 to-purple-600 rounded-xl font-semibold flex items-center gap-3 hover:scale-105 transition-transform duration-300">
-                            <span>🌐</span>
-                            <div className="text-left">
-                                <div className="text-xs opacity-80">Access now at</div>
-                                <div className="text-base">kasportal.com</div>
+                            <div className="text-center">
+                                <div className="text-base">Access now via</div>
+                                <div className="text-xs opacity-80">mobile browser</div>
                             </div>
                         </button>
 
@@ -104,10 +103,6 @@ export default function EnhancedIPhoneMockup() {
                             </div>
                         </div>
                     </div>
-
-                    <p className="mt-8 text-sm text-gray-500">
-                        * Currently accessible via web browser at kasportal.com
-                    </p>
                 </div>
             </div>
 

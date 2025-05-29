@@ -187,8 +187,8 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         Token Swapping
                     </h1>
                     <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto animate-fade-in-up-delay px-4 leading-relaxed font-medium">
-                        Seamlessly exchange cryptocurrencies with our advanced swap engine.
-                        Fast, secure, and with no registration required.
+                        Seamlessly exchange cryptocurrencies.
+                        Fast, secure, Non Custodial.
                     </p>
                 </div>
 
@@ -250,65 +250,66 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                 </section>
 
 
-                {/* Features Section - Clean White Cards */}
-                <section className="mb-32">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up">
-                            Why Choose Our Swap Engine?
-                        </h2>
-                        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up-delay px-4 font-medium">
-                            Experience the next generation of cryptocurrency trading with our advanced features.
-                        </p>
+            {/* Features Section - Clean White Cards */}
+<section className="mb-32">
+    <div className="text-center mb-16">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up">
+            Why Choose Our Swap Engine?
+        </h2>
+        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up-delay px-4 font-medium">
+            Speed - Ease of Use - Options
+        </p>
+    </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+        {[
+            {
+                title: 'Lightning Speed',
+                description: 'Speedy swaps completed in under 10 minutes even on the clunkiest chains.',
+                icon: <RefreshCw className="w-8 h-8 sm:w-10 sm:h-10" />,
+                color: 'from-teal-500 to-blue-600'
+            },
+            {
+                title: 'Non Custodial',
+                description: 'No sign up, no accounts, no hassle. Just connect a fund and recipient wallet and swap.',
+                icon: <Wallet className="w-8 h-8 sm:w-10 sm:h-10" />,
+                color: 'from-teal-600 to-purple-600'
+            },
+
+            {
+                title: 'So many Coins!',
+                description: 'Swap between 900 + supported cryptocurrencies including all major coins and tokens.',
+                icon: <Link2 className="w-8 h-8 sm:w-10 sm:h-10" />,
+                color: 'from-teal-700 to-purple-700'
+            },
+
+        ].map((feature, index) => (
+            <div
+                key={index}
+                className="group relative bg-white backdrop-blur-sm border border-gray-200 rounded-3xl p-8 sm:p-10 hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-3 animate-fade-in-up shadow-lg"
+                style={{ animationDelay: `${index * 0.1}s` }}
+            >
+                {/* Glowing background effect */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
+
+                <div className="relative z-10">
+                    <div className={`p-4 sm:p-5 rounded-2xl bg-gradient-to-r ${feature.color} w-fit mb-6 sm:mb-8 group-hover:scale-110 transition-transform duration-300 mx-auto`}>
+                        <div className="text-white">
+                            {feature.icon}
+                        </div>
                     </div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 group-hover:text-teal-700 transition-colors duration-300 text-center">
+                        {feature.title}
+                    </h3>
+                    <p className="text-base sm:text-lg text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed text-center">
+                        {feature.description}
+                    </p>
+                </div>
+            </div>
+        ))}
+    </div>
+</section>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-                        {[
-                            {
-                                title: 'Lightning Speed',
-                                description: 'Lightning-fast swaps completed in under 10 minutes with our advanced routing algorithms.',
-                                icon: <RefreshCw className="w-8 h-8 sm:w-10 sm:h-10" />,
-                                color: 'from-teal-500 to-blue-600'
-                            },
-                            {
-                                title: 'Zero Registration',
-                                description: 'No KYC, no accounts, no hassle. Just connect your wallet and start swapping instantly.',
-                                icon: <Wallet className="w-8 h-8 sm:w-10 sm:h-10" />,
-                                color: 'from-teal-600 to-purple-600'
-                            },
-
-                            {
-                                title: '900+ Cryptocurrencies',
-                                description: 'Swap between any of 900+ supported cryptocurrencies including all major coins and tokens.',
-                                icon: <Link2 className="w-8 h-8 sm:w-10 sm:h-10" />,
-                                color: 'from-teal-700 to-purple-700'
-                            },
-
-                        ].map((feature, index) => (
-                            <div
-                                key={index}
-                                className="group relative bg-white backdrop-blur-sm border border-gray-200 rounded-3xl p-8 sm:p-10 hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-3 animate-fade-in-up shadow-lg"
-                                style={{ animationDelay: `${index * 0.1}s` }}
-                            >
-                                {/* Glowing background effect */}
-                                <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
-
-                                <div className="relative z-10">
-                                    <div className={`p-4 sm:p-5 rounded-2xl bg-gradient-to-r ${feature.color} w-fit mb-6 sm:mb-8 group-hover:scale-110 transition-transform duration-300`}>
-                                        <div className="text-white">
-                                            {feature.icon}
-                                        </div>
-                                    </div>
-                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 group-hover:text-teal-700 transition-colors duration-300">
-                                        {feature.title}
-                                    </h3>
-                                    <p className="text-base sm:text-lg text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed">
-                                        {feature.description}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
 
                 {/* How It Works - Clean Design */}
                 <section className="mb-32">
@@ -325,17 +326,17 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         {[
                             {
                                 title: 'Select Tokens',
-                                description: 'Choose your source and destination cryptocurrencies from our extensive list of 900+ supported tokens.',
+                                description: 'Add funding source and destination token from the list of 900 + supported tokens.',
                                 color: 'from-teal-500 to-blue-600'
                             },
                             {
-                                title: 'AI Rate Discovery',
-                                description: 'Our advanced AI scans 50+ exchanges in real-time to find the best possible exchange rate for your trade.',
+                                title: '',
+                                description: 'We scan 50+ exchanges in real-time to find the best exchange rate for your trade.',
                                 color: 'from-teal-600 to-purple-600'
                             },
                             {
                                 title: 'Fast Execution',
-                                description: 'Complete your swap in under 15 minutes with our lightning-fast execution engine and receive your tokens.',
+                                description: 'Complete your swap in under 15 minutes and receive your tokens.',
                                 color: 'from-teal-400 to-purple-500'
                             }
                         ].map((step, index) => (

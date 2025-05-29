@@ -58,25 +58,27 @@ export default function LandingPage() {
 
   const features = [
     {
-      title: "Token Swapping",
+      title: "Swap",
       route: "/features/token-swapping",
-      description: "Cross-chain token swapping with ease",
+      description: "Send assets from and to your wallets accross any network. \n Enterprise-grade security. \n Wrap and unwrap with ease.",
       icon: <SwapIcon size={24} className="drop-shadow-lg" />,
       color: "from-teal-500 to-purple-500"
     },
-    {      title: "Cross-Chain Support",
-      route: "/features/cross-chain-compatibility",
-      description:"Send assets across chains in 1 step, enterprise-grade security. Wrap and unwrap with ease.",
-      icon: <WalletIcon size={24} className="drop-shadow-lg" />,
-      comingSoon: true,
-      color: "from-teal-400 to-purple-600"
-    },
+    
     {
       title: "Learn",
       route: "/learn",
       description: "Educational platform exploring Kaspa's revolutionary BlockDAG technology and Projects to follow.",
       icon: <LearnIcon size={24} className="drop-shadow-lg" />,
       color: "from-teal-600 to-purple-700"
+    },
+    {      
+      title: "Explore",
+      route: "/portal",
+      description: "our interactive portal. \n Discover the future of blockchain technology.",
+      icon: <WalletIcon size={24} className="drop-shadow-lg" />,
+      comingSoon: false,
+      color: "from-teal-400 to-purple-600" 
     }
   ];
 
@@ -347,8 +349,8 @@ export default function LandingPage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
               Core Features
             </h2>
-            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Swap - Learn - Explore 
+             <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
+              Send, Swap, Discover
             </p>
           </div>
 
@@ -400,10 +402,9 @@ export default function LandingPage() {
         <section className="py-16 sm:py-20 lg:py-24">
           <div className="text-center mb-16 sm:mb-20 px-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up drop-shadow-xl">
-              Simple Payment Integration
+              🚀 Coming Soon!
             </h2>
             <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto animate-fade-in-up-delay leading-relaxed text-gray-600 font-medium">
-              Buy and swap funds with payment methods you already use
             </p>
           </div>
 
@@ -413,7 +414,7 @@ export default function LandingPage() {
                 <MobileWalletIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
               </div>
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Mobile Wallet</h3>
-              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium"> Connect now</p>
+              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium"> Availible now</p>
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
@@ -437,23 +438,6 @@ export default function LandingPage() {
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
             </div>
             
-          </div>
-        </section>
-
-        {/* Enhanced iPhone Mockup Section */}
-        <section className="py-16 sm:py-20 lg:py-24">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up drop-shadow-xl">
-              🚀 Mobile Experience - Coming Soon!
-            </h2>
-            <div className="mb-6 sm:mb-8">
-              <span className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-full text-lg sm:text-xl lg:text-2xl shadow-lg animate-pulse">
-                FEATURE IN DEVELOPMENT
-              </span>
-            </div>
-            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto animate-fade-in-up-delay leading-relaxed text-gray-600 font-medium">
-              Follow alongs as we build fiat compatability - Expected launch Q2 2025.
-            </p>
           </div>
 
           <div className="relative bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-200 mx-4 shadow-xl hover:shadow-2xl transition-all duration-500">
