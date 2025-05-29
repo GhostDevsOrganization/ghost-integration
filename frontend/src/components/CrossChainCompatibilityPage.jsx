@@ -119,7 +119,7 @@ const CrossChainCompatibilityPage = () => {
                 'Social payment features',
                 'Mobile-first experience',
                 'Wide user adoption'
-            ]
+            ],
             steps: [
                 'Hit the crypto button on mobile',
                 'Select cryptocurrency to reci',
@@ -384,7 +384,7 @@ const CrossChainCompatibilityPage = () => {
                             {
                                 step: '01',
                                 title: 'Select Cryptocurrencies',
-                                description: 'Choose your source and destination cryptocurrencies from our supported list.',
+                                description: 'Choose your source and destination wallet, from cryptocurrencies in our supported list.',
                                 color: 'from-teal-500 to-blue-600'
                             },
                             {
@@ -396,7 +396,7 @@ const CrossChainCompatibilityPage = () => {
                             {
                                 step: '03',
                                 title: 'Direct Transfer',
-                                description: 'Your exchanged cryptocurrency is transferred directly to your wallet.',
+                                description: 'Your exchanged cryptocurrency is transferred directly to your wallet --> from your wallet. You hold and control your funds.',
                                 color: 'from-teal-400 to-purple-500'
                             }
                         ].map((step, index) => (

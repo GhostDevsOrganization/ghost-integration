@@ -75,7 +75,7 @@ export default function LandingPage() {
     {      
       title: "Explore",
       route: "/portal",
-      description: "our interactive portal. \n Discover the future of blockchain technology.",
+      description: "Our interactive portal. \n Discover the future of blockchain technology.",
       icon: <WalletIcon size={24} className="drop-shadow-lg" />,
       comingSoon: false,
       color: "from-teal-400 to-purple-600" 
@@ -370,35 +370,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Development Roadmap Section */}
-        <section className="py-16 sm:py-20 lg:py-24">
-          <div className="text-center mb-16 sm:mb-20 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
-              Development Roadmap
-            </h2>
-            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Our journey toward decentralized finance
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 px-4 auto-rows-fr">
-            {roadmapPhases.map((phase, index) => (
-              <div
-                key={index}
-                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full flex flex-col"
-              >
-                <div className="flex items-center justify-center w-20 h-20 mx-auto mb-8 bg-gradient-to-r from-teal-100 to-purple-100 rounded-3xl backdrop-blur-sm border border-teal-200">
-                  {phase.icon}
-                </div>
-                <div className="text-lg text-teal-600 font-bold mb-3 text-center">{phase.phase}</div>
-                <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">{phase.title}</h3>
-                <p className="text-center leading-relaxed text-gray-600 text-lg flex-grow">{phase.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Seamless Payment Integration Section */}
+        {/* Soon Come Section */}
         <section className="py-16 sm:py-20 lg:py-24">
           <div className="text-center mb-16 sm:mb-20 px-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up drop-shadow-xl">
@@ -414,7 +386,7 @@ export default function LandingPage() {
                 <MobileWalletIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
               </div>
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Mobile Wallet</h3>
-              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium"> Availible now</p>
+              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium"> Multiple Now Supported </p>
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
@@ -449,7 +421,33 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* Development Roadmap Section */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="text-center mb-16 sm:mb-20 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
+              Development Roadmap
+            </h2>
+            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
+              Our journey toward decentralized finance
+            </p>
+          </div>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 px-4 auto-rows-fr">
+            {roadmapPhases.map((phase, index) => (
+              <div
+                key={index}
+                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full flex flex-col"
+              >
+                <div className="flex items-center justify-center w-20 h-20 mx-auto mb-8 bg-gradient-to-r from-teal-100 to-purple-100 rounded-3xl backdrop-blur-sm border border-teal-200">
+                  {phase.icon}
+                </div>
+                <div className="text-lg text-teal-600 font-bold mb-3 text-center">{phase.phase}</div>
+                <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">{phase.title}</h3>
+                <p className="text-center leading-relaxed text-gray-600 text-lg flex-grow">{phase.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Contact Section */}
         <section className="py-16 sm:py-20 lg:py-24">

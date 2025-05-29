@@ -271,7 +271,7 @@ const LearnPage = () => {
                 <div className="w-32 h-1 bg-gradient-to-r from-teal-500 to-purple-500 mx-auto mb-12 animate-fade-in-up-delay-2"></div>
                 <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 max-w-6xl mx-auto px-4 leading-relaxed animate-fade-in-up-delay-3 font-medium">
                     Your comprehensive resource to understand Kaspa's innovative BlockDAG technology,
-                    its revolutionary capabilities, and the future of quantum-powered decentralized finance.
+                    its capabilities, and the potential future of decentralized finance.
                 </p>
             </header>
 
