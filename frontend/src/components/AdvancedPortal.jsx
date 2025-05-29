@@ -4,6 +4,7 @@ import { Home, Repeat, Link2, BookOpen, Sparkles, Zap, Shield, Globe, ArrowRight
 import FuturisticNav from './FuturisticNav';
 import EnhancedFooter from './EnhancedFooter';
 import { useTheme } from '../context/ThemeContext';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const AdvancedPortal = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -139,9 +140,14 @@ const AdvancedPortal = () => {
                 protocols={protocols}
                 activeProtocol="portal"
             />
+            {/* Right side elements */}
+            <div className="fixed top-4 right-4 z-50">
+                
+            </div>
 
             <main className="relative z-10 max-w-7xl mx-auto px-4 pt-24 pb-12">
-                {/* Portal Header */}
+               <div className="flex items-right gap-4">
+                    <ThemeSwitcher className="mt-6 items-right z-[1000]" dropdownPosition="bottom" />                </div>
                 <div className="text-center mb-16">
                     <div className="flex justify-center items-center mb-8">
                         <div className="relative">

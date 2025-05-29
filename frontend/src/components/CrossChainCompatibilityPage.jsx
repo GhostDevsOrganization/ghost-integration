@@ -187,7 +187,8 @@ const CrossChainCompatibilityPage = () => {
                         Cross Chain Compatibility
                     </h1>
                     <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto animate-fade-in-up-delay px-4 leading-relaxed font-medium">
-                        Transfer your assets seamlessly across Ethereum, Bitcoin, Solana, and 50+ other networks.
+
+                        Transfer your assets across Ethereum, Bitcoin, Solana, and 50+ other networks. 
                         One platform, every blockchain.
                     </p>
                 </div>
@@ -336,13 +337,52 @@ const CrossChainCompatibilityPage = () => {
                     </div>
                 </section>
 
+                {/* How It Works - Clean Design */}
+                <section className="mb-24">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up">
+                            How Cross-Chain Exchange Works
+                        </h2>
+                        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up-delay px-4 font-medium">
+                            Our advanced exchange protocol makes cryptocurrency swaps simple and secure.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8 sm:gap-10">
+                        {[
+                            {
+                                step: '01',
+                                title: 'Select Cryptocurrencies',
+                                description: 'Choose your source and destination wallet, from cryptocurrencies in our supported list.',
+                                color: 'from-teal-500 to-blue-600'
+                            },
+                            {
+                                step: '02',
+                                title: 'Secure Exchange',
+                                description: 'Our platform calculates the best rates and executes your exchange securely.',
+                                color: 'from-teal-600 to-purple-600'
+                            },
+                            {
+                                step: '03',
+                                title: 'Direct Transfer',
+                                description: 'Your exchanged cryptocurrency is transferred directly to your wallet --> from your wallet. You hold and control your funds.',
+                                color: 'from-teal-400 to-purple-500'
+                            }
+                        ].map((step, index) => (
+                            <div
+                                key={index}
+                                className="group relative bg-white backdrop-blur-sm border border-gray-200 rounded-3xl p-8 sm:p-10 hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-3 animate-fade-in-up shadow-lg"
+                                style={{ animationDelay: `${index * 0.2}s` }}
+                            >
+                                <div className={`absolute inset-0 bg-gradient-to-r ${step.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
+
 
 
                 {/* Call to Action */}
                 <section className="text-center py-16 sm:py-24">
                     <div className="relative px-4">
                         <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-8 animate-fade-in-up">
-                            Ready to try it?
+                            Ready to Swap?
                         </h2>
                         <p className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-in-up-delay font-medium leading-relaxed">
 
