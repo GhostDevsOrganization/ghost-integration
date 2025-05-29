@@ -69,6 +69,7 @@ export default function LandingPage() {
       title: "Learn",
       route: "/learn",
       description: "Educational platform exploring Kaspa's revolutionary BlockDAG technology and Projects to follow.",
+
       icon: <LearnIcon size={24} className="drop-shadow-lg" />,
       color: "from-teal-600 to-purple-700"
     },
@@ -150,6 +151,7 @@ export default function LandingPage() {
       phase: "Q2 2025",
       title: "Payment Gateway Launch",
       description: "Apple Pay, Visa, and Mastercard integration. Simply purchase with tradfi payment methods.",
+
       icon: <PaymentIcon size={32} className="text-teal-400 drop-shadow-xl" />,
       color: "from-teal-400 to-purple-600",
       delay: "0s"
@@ -158,6 +160,7 @@ export default function LandingPage() {
       phase: "Q3 2025",
       title: "Mobile App Release",
       description: "Mobile app to simplify your portal experience and seamless swapping.",
+
       icon: <MobileIcon size={32} className="text-purple-400 drop-shadow-xl" />,
       color: "from-teal-500 to-purple-500",
       delay: "0.2s"
@@ -174,6 +177,7 @@ export default function LandingPage() {
       phase: "Q1 2026",
       title: "NFT Expansion",
       description: " Launch portal to new worlds of NFT projects and possibilities.",
+
       icon: <AIIcon size={32} className="text-pink-400 drop-shadow-xl" />,
       color: "from-teal-600 to-purple-700",
       delay: "0.6s"
@@ -320,6 +324,7 @@ export default function LandingPage() {
                 </p>
                 <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 sm:mb-10 animate-fade-in-up-delay backdrop-blur-sm relative z-10 leading-relaxed px-2 sm:px-0 text-gray-600 font-medium overflow-visible">
                   Your portal from traditional finance to blockchain technology, making crypto accessible to everyone
+
                 </p>
 
               </div>
@@ -409,7 +414,6 @@ export default function LandingPage() {
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Mastercard</h3>
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
             </div>
-
           </div>
 
           <div className="relative bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-200 mx-4 shadow-xl hover:shadow-2xl transition-all duration-500">
