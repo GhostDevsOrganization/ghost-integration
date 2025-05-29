@@ -22,9 +22,9 @@ const EnhancedFooter = () => {
                     <div className="ml-2 h-4 w-4 rounded-full bg-[var(--accent-primary)]/20 group-hover:bg-[var(--accent-primary)]/40 transition-all duration-300"></div>
                 </div>
                 <div className="mt-12 text-center text-sm text-[var(--text-secondary)]">
-                     <div>&nbsp;</div>
-                     <p>© {new Date().getFullYear()} <a href="https://ghostdevlabs.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-primary)] transition-colors duration-300">Ghost Devs</a>. All rights reserved.</p>
-                 </div>
+                    <div>&nbsp;</div>
+                    <p>© {new Date().getFullYear()} <a href="https://ghostdevlabs.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-primary)] transition-colors duration-300">Ghost Devs</a>. All rights reserved.</p>
+                </div>
                 {/*<nav className="flex flex-wrap justify-center gap-8" aria-label="Footer navigation">
                     <a href="#features" className="hover:text-[var(--accent-primary)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--accent-primary)] after:transition-all hover:after:w-full">Features</a>
                     <a href="#roadmap" className="hover:text-[var(--accent-primary)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--accent-primary)] after:transition-all hover:after:w-full">Roadmap</a>
@@ -48,7 +48,7 @@ const EnhancedFooter = () => {
                 </div>
             </div>
 
-            
+
         </footer>
     );
 };
