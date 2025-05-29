@@ -27,7 +27,7 @@ import {
 import TwitterIcon from './TwitterIcon';
 import TelegramIcon from './TelegramIcon';
 import {
-  ApplePayIcon,
+  KaspaIcon,
   VisaIcon,
   MastercardIcon,
   MobileWalletIcon
@@ -58,26 +58,28 @@ export default function LandingPage() {
 
   const features = [
     {
-      title: "Token Swapping",
+      title: "Swap",
       route: "/features/token-swapping",
-      description: "Advanced cross-chain token swap aggregation.",
+      description: "Send assets from and to your wallets accross any network. \n Enterprise-grade security. \n Wrap and unwrap with ease.",
       icon: <SwapIcon size={24} className="drop-shadow-lg" />,
       color: "from-teal-500 to-purple-500"
     },
-    {
-      title: "Cross-Chain Support",
-      route: "/features/cross-chain",
-      description: "Unified wallet management system enabling simultaneous control of multiple blockchain assets with enterprise-grade security.",
-      icon: <WalletIcon size={24} className="drop-shadow-lg" />,
-      comingSoon: true,
-      color: "from-teal-400 to-purple-600"
-    },
+
     {
       title: "Learn",
       route: "/learn",
-      description: "Educational platform exploring Kaspa's revolutionary BlockDAG architecture and Projects.",
+      description: "Educational platform exploring Kaspa's revolutionary BlockDAG technology and Projects to follow.",
+
       icon: <LearnIcon size={24} className="drop-shadow-lg" />,
       color: "from-teal-600 to-purple-700"
+    },
+    {
+      title: "Explore",
+      route: "/portal",
+      description: "Our interactive portal. \n Discover the future of blockchain technology.",
+      icon: <WalletIcon size={24} className="drop-shadow-lg" />,
+      comingSoon: false,
+      color: "from-teal-400 to-purple-600"
     }
   ];
 
@@ -121,6 +123,12 @@ export default function LandingPage() {
 
   const paymentMethods = [
     {
+      name: 'Your Wallet',
+      icon: <MobileIcon size={32} className="text-teal-400 drop-shadow-xl" />,
+      status: 'Coming Q3 2025',
+      gradient: 'from-teal-400 to-cyan-500'
+    },
+    {
       name: 'Apple Pay',
       icon: <PaymentIcon size={32} className="text-amber-400 drop-shadow-xl" />,
       status: 'Coming Q2 2025',
@@ -137,20 +145,13 @@ export default function LandingPage() {
       icon: <PaymentIcon size={32} className="text-red-400 drop-shadow-xl" />,
       status: 'Coming Q2 2025',
       gradient: 'from-red-400 to-pink-500'
-    },
-    {
-      name: 'Mobile Wallet',
-      icon: <MobileIcon size={32} className="text-teal-400 drop-shadow-xl" />,
-      status: 'Coming Q3 2025',
-      gradient: 'from-teal-400 to-cyan-500'
     }
-  ];
-
-  const roadmapPhases = [
+  ]; const roadmapPhases = [
     {
       phase: "Q2 2025",
       title: "Payment Gateway Launch",
-      description: "Apple Pay, Visa, and Mastercard integration. simple crypto purchases with tradfi payment methods.",
+      description: "Apple Pay, Visa, and Mastercard integration. Simply purchase with tradfi payment methods.",
+
       icon: <PaymentIcon size={32} className="text-teal-400 drop-shadow-xl" />,
       color: "from-teal-400 to-purple-600",
       delay: "0s"
@@ -158,7 +159,8 @@ export default function LandingPage() {
     {
       phase: "Q3 2025",
       title: "Mobile App Release",
-      description: "Mobile app to simplify your portal to crypto and seamless swapping.",
+      description: "Mobile app to simplify your portal experience and seamless swapping.",
+
       icon: <MobileIcon size={32} className="text-purple-400 drop-shadow-xl" />,
       color: "from-teal-500 to-purple-500",
       delay: "0.2s"
@@ -166,7 +168,7 @@ export default function LandingPage() {
     {
       phase: "Q4 2025",
       title: "Smart Contract Utilities",
-      description: "Token utilization framework launches, enabling advanced DeFi interactions and governance features.",
+      description: "Tokenization, DeFi interactions and governance features.",
       icon: <SmartContractIcon size={32} className="text-cyan-400 drop-shadow-xl" />,
       color: "from-teal-300 to-purple-400",
       delay: "0.4s"
@@ -174,7 +176,8 @@ export default function LandingPage() {
     {
       phase: "Q1 2026",
       title: "NFT Expansion",
-      description: " Launch portal to new worlds of NFT Projects and possibilitys.",
+      description: " Launch portal to new worlds of NFT projects and possibilities.",
+
       icon: <AIIcon size={32} className="text-pink-400 drop-shadow-xl" />,
       color: "from-teal-600 to-purple-700",
       delay: "0.6s"
@@ -183,35 +186,35 @@ export default function LandingPage() {
 
   const contactMethods = [
     {
-      title: "Get in touch",
-      description: "Help with technical issues, account questions, or general inquiries",
-      icon: <EmailIcon size={32} className="text-teal-400 drop-shadow-xl" />,
-      contact: "support@ghostdevlabs.com",
-      action: "mailto:support@ghost",
-      color: "from-teal-400 to-blue-500"
-    },
-    {
-      title: "Follow on X",
-      description: "Stay updated with the latest news and announcements",
+      title: "Follow Us",
+      description: "The latest news and public announcements",
       icon: <TwitterIcon size={32} className="text-blue-400 drop-shadow-xl" />,
       contact: "@Kasportal",
       action: "https://x.com/kasportal",
       color: "from-blue-400 to-indigo-500"
     },
     {
-      title: "Community Telegram",
-      description: "join us for real-time discussions and updates on projects",
+      title: "Find Community",
+      description: "Join us for real-time discussions and updates",
       icon: <TelegramIcon size={32} className="text-purple-400 drop-shadow-xl" />,
-      contact: "Join Telegram",
+      contact: "Telegram",
       action: "https://t.me/+ogluJ3Srnr83MmJh",
       color: "from-teal-500 to-purple-500"
     },
     {
-      title: "Partner with us",
+      title: "Need Something?",
+      description: "*Technical issues or general inquiries",
+      icon: <EmailIcon size={32} className="text-teal-400 drop-shadow-xl" />,
+      contact: "Email",
+      action: "mailto:support@ghostdevlabs.com",
+      color: "from-teal-400 to-blue-500"
+    },
+    {
+      title: "Team Up",
       description: "You want it? lets build a portal to it",
       icon: <BusinessIcon size={32} className="text-indigo-400 drop-shadow-xl" />,
-      contact: "support@ghostdevlabs.com",
-      action: "mailto:business@ghost",
+      contact: "Lets build",
+      action: "mailto:buildtech@ghostdevlabs.com",
       color: "from-teal-600 to-purple-700"
     }
   ];
@@ -317,21 +320,13 @@ export default function LandingPage() {
                   Kasportal
                 </h1>
                 <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-transparent bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text mb-4 sm:mb-6 animate-fade-in-up drop-shadow-lg relative z-10 leading-normal font-medium overflow-visible py-1">
-                  Seamless Finance. On-Chain and Beyond.
+                  Crypto Exploration. On-Chain and Beyond.
                 </p>
                 <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 sm:mb-10 animate-fade-in-up-delay backdrop-blur-sm relative z-10 leading-relaxed px-2 sm:px-0 text-gray-600 font-medium overflow-visible">
-                  Portaling traditional payment systems with blockchain technology to make crypto accessible to everyone
+                  Your portal from traditional finance to blockchain technology, making crypto accessible to everyone
+
                 </p>
 
-                <button
-                  className="mt-4 sm:mt-6 px-8 sm:px-10 lg:px-12 py-4 sm:py-5 lg:py-6 bg-gradient-to-r from-teal-500 to-purple-500 rounded-full font-bold text-white text-lg sm:text-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-105 sm:hover:scale-110 animate-fade-in-up-delay-2 group relative overflow-hidden border border-white/30 backdrop-blur-sm w-full sm:w-auto"
-                  onClick={handleEnterPortal}
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-3 sm:gap-4">
-                    Enter Portal
-                    <ArrowRight className="w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-2 transition-transform duration-300" />
-                  </span>
-                </button>
               </div>
             </div>
 
@@ -360,11 +355,11 @@ export default function LandingPage() {
               Core Features
             </h2>
             <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Swap - Learn - Explore 
+              Send, Swap, Discover
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 px-4 auto-rows-fr">
             {features.map((feature, index) => (
               <FeatureCard
                 key={index}
@@ -380,51 +375,29 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Development Roadmap Section */}
-        <section className="py-16 sm:py-20 lg:py-24">
-          <div className="text-center mb-16 sm:mb-20 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
-              Development Roadmap
-            </h2>
-            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Our journey to fully decentralized finance
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 px-4">
-            {roadmapPhases.map((phase, index) => (
-              <div
-                key={index}
-                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full"
-              >
-                <div className="flex items-center justify-center w-20 h-20 mx-auto mb-8 bg-gradient-to-r from-teal-100 to-purple-100 rounded-3xl backdrop-blur-sm border border-teal-200">
-                  {phase.icon}
-                </div>
-                <div className="text-lg text-teal-600 font-bold mb-3 text-center">{phase.phase}</div>
-                <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">{phase.title}</h3>
-                <p className="text-center leading-relaxed text-gray-600 text-lg">{phase.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Seamless Payment Integration Section */}
+        {/* Soon Come Section */}
         <section className="py-16 sm:py-20 lg:py-24">
           <div className="text-center mb-16 sm:mb-20 px-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up drop-shadow-xl">
-              Seamless Payment Integration
+              🚀 Coming Soon!
             </h2>
             <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto animate-fade-in-up-delay leading-relaxed text-gray-600 font-medium">
-              Buy crypto with the payment methods you use every day
             </p>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 mb-16 sm:mb-20 px-4">
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
-                <ApplePayIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+                <MobileWalletIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
               </div>
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Apple Pay</h3>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Every* Wallet</h3>
+              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium"> Your Wallet, Supported Now.  </p>
+            </div>
+            <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
+              <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
+                <KaspaIcon size={500} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+              </div>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Kaspa</h3>
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
@@ -441,30 +414,6 @@ export default function LandingPage() {
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Mastercard</h3>
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
             </div>
-            <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
-              <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
-                <MobileWalletIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
-              </div>
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Mobile Wallet</h3>
-              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q3 2025</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Enhanced iPhone Mockup Section */}
-        <section className="py-16 sm:py-20 lg:py-24">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up drop-shadow-xl">
-              🚀 Mobile Experience - Coming Soon!
-            </h2>
-            <div className="mb-6 sm:mb-8">
-              <span className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-full text-lg sm:text-xl lg:text-2xl shadow-lg animate-pulse">
-                FEATURE IN DEVELOPMENT
-              </span>
-            </div>
-            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto animate-fade-in-up-delay leading-relaxed text-gray-600 font-medium">
-              Follow alongs as we build fiat compatability - Expected launch Q2 2025.
-            </p>
           </div>
 
           <div className="relative bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-200 mx-4 shadow-xl hover:shadow-2xl transition-all duration-500">
@@ -476,7 +425,33 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* Development Roadmap Section */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="text-center mb-16 sm:mb-20 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
+              Development Roadmap
+            </h2>
+            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
+              Our journey toward decentralized finance
+            </p>
+          </div>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 px-4 auto-rows-fr">
+            {roadmapPhases.map((phase, index) => (
+              <div
+                key={index}
+                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full flex flex-col"
+              >
+                <div className="flex items-center justify-center w-20 h-20 mx-auto mb-8 bg-gradient-to-r from-teal-100 to-purple-100 rounded-3xl backdrop-blur-sm border border-teal-200">
+                  {phase.icon}
+                </div>
+                <div className="text-lg text-teal-600 font-bold mb-3 text-center">{phase.phase}</div>
+                <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">{phase.title}</h3>
+                <p className="text-center leading-relaxed text-gray-600 text-lg flex-grow">{phase.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Contact Section */}
         <section className="py-16 sm:py-20 lg:py-24">
@@ -494,7 +469,7 @@ export default function LandingPage() {
               <div
                 key={index}
                 onClick={() => handleContactClick(method.action)}
-                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 cursor-pointer w-full"
+                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 cursor-pointer w-full flex flex-col"
               >
                 <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-r ${method.color}`}></div>
 
@@ -503,9 +478,9 @@ export default function LandingPage() {
                 </div>
 
                 <h3 className="text-2xl font-bold mb-4 text-center text-gray-900">{method.title}</h3>
-                <p className="text-center leading-relaxed text-gray-600 text-lg mb-6">{method.description}</p>
+                <p className="text-center leading-relaxed text-gray-600 text-lg mb-6 flex-grow">{method.description}</p>
 
-                <div className="text-center">
+                <div className="text-center mt-auto">
                   <span className={`inline-block px-6 py-3 bg-gradient-to-r ${method.color} text-white font-bold rounded-full text-lg shadow-lg group-hover:shadow-xl transition-all duration-300`}>
                     {method.contact}
                   </span>

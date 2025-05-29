@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import BitcoinIcon from './BitcoinIcon';
 import EthereumIcon from './EthereumIcon';
 import SolanaIcon from './SolanaIcon';
-import { VisaIcon, MastercardIcon, ApplePayIcon, CashAppIcon } from './EnhancedPaymentIcons';
+import { VisaIcon, MastercardIcon, KaspaIcon, CashAppIcon, PayPalIcon } from './EnhancedPaymentIcons';
+
 
 // Enhanced Payment Icons with Quantum Effects
 const PaymentIcons = {
@@ -11,8 +12,7 @@ const PaymentIcons = {
     Solana: ({ size = 40, glow = false }) => <SolanaIcon size={size} glow={glow} />,
     Visa: ({ size = 40, glow = false }) => <VisaIcon size={size} glow={glow} />,
     Mastercard: ({ size = 40, glow = false }) => <MastercardIcon size={size} glow={glow} />,
-    ApplePay: ({ size = 40, glow = false }) => <ApplePayIcon size={size} glow={glow} />,
-    CashApp: ({ size = 40, glow = false }) => <CashAppIcon size={size} glow={glow} />
+    ApplePay: ({ size = 40, glow = false }) => <KaspaIcon size={size} glow={glow} />,
 };
 
 // Floating icon data with orbital properties - all payment methods (slower speeds, equally spaced)
@@ -22,8 +22,7 @@ const floatingIconsData = [
     { name: 'Solana', component: PaymentIcons.Solana, color: '#9945FF', orbit: { radius: 160, speed: 0.25, phase: 102.86 } },
     { name: 'Visa', component: PaymentIcons.Visa, color: '#1A1F71', orbit: { radius: 220, speed: 0.18, phase: 154.29 } },
     { name: 'Mastercard', component: PaymentIcons.Mastercard, color: '#EB001B', orbit: { radius: 190, speed: 0.22, phase: 205.72 } },
-    { name: 'ApplePay', component: PaymentIcons.ApplePay, color: '#000000', orbit: { radius: 210, speed: 0.12, phase: 257.15 } },
-    { name: 'CashApp', component: PaymentIcons.CashApp, color: '#00D632', orbit: { radius: 170, speed: 0.28, phase: 308.58 } }
+    { name: 'ApplePay', component: PaymentIcons.ApplePay, color: '#4FD1C7', orbit: { radius: 210, speed: 0.12, phase: 257.15 } },
 ];
 
 export default function QuantumPortal({ onEnterPortal = () => { }, isActive = false, mousePosition = { x: 0, y: 0 } }) {
@@ -262,22 +261,30 @@ export default function QuantumPortal({ onEnterPortal = () => { }, isActive = fa
                         }}
                     />
 
-                    {/* 3D Radar rings */}
-                    {[1, 2, 3, 4, 5].map(index => (
-                        <div
-                            key={`ring-${index}`}
-                            className="absolute top-1/2 left-1/2 border-2 rounded-full"
-                            style={{
-                                width: `${(portalSize * 0.9) * (index / 5)}px`,
-                                height: `${(portalSize * 0.9) * (index / 5)}px`,
-                                borderColor: `rgba(168, 85, 247, ${0.6 - index * 0.1})`,
-                                transform: `translate(-50%, -50%) rotateX(${index * 15}deg) rotateY(${index * 10}deg)`,
-                                animation: `ringRotate ${5 + index}s linear infinite ${index % 2 === 0 ? 'reverse' : ''}`,
-                                boxShadow: `0 0 ${20 - index * 2}px rgba(168, 85, 247, 0.4)`,
-                                transformStyle: 'preserve-3d'
-                            }}
-                        />
-                    ))}
+                    {/* 3D Gyroscopic Radar Rings */}
+                    {[1, 2, 3, 4, 5].map(index => {
+                        // Create unique rotation values for each ring
+                        const startX = index * 15;
+                        const startY = index * 25;
+                        const startZ = index * 10;
+                        
+                        return (
+                            <div
+                                key={`ring-${index}`}
+                                className="absolute top-1/2 left-1/2 rounded-full"
+                                style={{
+                                    width: `${(portalSize * 0.9) * (index / 5)}px`,
+                                    height: `${(portalSize * 0.9) * (index / 5)}px`,
+                                    border: `2px solid rgba(168, 85, 247, ${0.6 - index * 0.1})`,
+                                    transform: `translate(-50%, -50%) rotateX(${startX}deg) rotateY(${startY}deg) rotateZ(${startZ}deg)`,
+                                    transformStyle: 'preserve-3d',
+                                    boxShadow: `0 0 ${20 - index * 2}px rgba(168, 85, 247, 0.4)`,
+                                    animation: `${10 + index * 2}s linear infinite ${index % 2 === 0 ? 'alternate' : 'alternate-reverse'}`,
+                                    animationName: `gyroscope-${index}`,
+                                }}
+                            />
+                        );
+                    })}
 
                     {/* Energy core */}
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -329,7 +336,7 @@ export default function QuantumPortal({ onEnterPortal = () => { }, isActive = fa
                             transition: 'all 0.3s ease'
                         }}
                     >
-                        {suctionActive ? 'ENTERING...' : 'ENTER PORTAL'}
+                        {suctionActive ? 'ENTERING...' : ''}
                     </div>
 
                     {/* Mobile tap indicator */}

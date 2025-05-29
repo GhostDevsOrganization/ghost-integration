@@ -1,44 +1,87 @@
 import React from 'react';
 
-// Apple Pay Icon - Brand accurate design
-export const ApplePayIcon = ({ size = 32, className = "" }) => (
-    <svg width={size} height={size} viewBox="0 0 48 32" fill="none" className={className}>
-        <rect width="48" height="32" rx="6" fill="#000000" />
-        <g transform="translate(8, 8)">
-            {/* Apple logo */}
-            <path d="M8.5 2.5c0-1.1.9-2 2-2 .7 0 1.3.4 1.7.9.3.4.5.9.5 1.4 0 .1 0 .2-.1.2-.9.1-1.8-.5-2.1-1.3-.2-.4-.3-.8-.3-1.2 0-.1 0-.1.3 0z" fill="white" />
-            <path d="M13.2 6.8c-.8-.9-1.9-1.4-3.1-1.4-1.5 0-2.7.9-3.4.9-.7 0-1.8-.9-3-.9-1.5 0-2.9.9-3.7 2.3-1.6 2.8-.4 6.9 1.1 9.2.7 1.1 1.6 2.4 2.7 2.4 1.1 0 1.4-.7 2.7-.7 1.3 0 1.5.7 2.7.7 1.1 0 1.9-1.2 2.6-2.3.5-.7.9-1.5 1.1-2.3 0-.1-.1-.1-.1-.1-2.2-.8-2.2-3.8 0-4.6.1-.1.1-.2 0-.2z" fill="white" />
-        </g>
-        <text x="24" y="22" fontSize="8" fill="white" fontFamily="Arial, sans-serif" fontWeight="500">Pay</text>
+// Venmo Icon - Transparent design based on provided image
+export const VenmoIcon = ({ size = 32, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 120 40" fill="none" className={className}>
+        {/* Venmo text with blue gradient */}
+        <text x="10" y="30" fontSize="24" fontFamily="Arial, sans-serif" fontWeight="bold" fill="url(#venmoGradient)">
+            venmo
+        </text>
+        <defs>
+            <linearGradient id="venmoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#1E90FF" />
+                <stop offset="50%" stopColor="#0080FF" />
+                <stop offset="100%" stopColor="#0066CC" />
+            </linearGradient>
+        </defs>
     </svg>
 );
 
-// Visa Icon - Brand accurate design
-export const VisaIcon = ({ size = 32, className = "" }) => (
-    <svg width={size} height={size} viewBox="0 0 48 32" fill="none" className={className}>
-        <rect width="48" height="32" rx="6" fill="#1A1F71" />
-        <g transform="translate(6, 10)">
-            <path d="M14.5 0L11.8 12h-2.4L7.8 3.2c-.2-.7-.3-1-.8-1.3C6.4 1.5 5.5 1.1 4.5.8L4.7 0h4.1c.5 0 1 .4 1.1.9L11.3 8l2.8-8h2.4z" fill="white" />
-            <path d="M21.8 0L19.6 12h-2.3L19.5 0h2.3z" fill="white" />
-            <path d="M28.5 3.2c0-.5.4-.9.9-.9.8 0 1.4.2 1.9.4l.3-2.1C31.1.4 30.3.2 29.4.2c-2.3 0-3.9 1.2-3.9 2.9 0 1.3 1.1 2 2 2.4.9.5 1.2.8 1.2 1.2 0 .6-.7.9-1.4.9-.9 0-1.8-.2-2.6-.6l-.4 2.1c.6.3 1.7.5 2.8.5 2.4 0 4-1.2 4-3 0-2.3-3.2-2.4-3.2-3.4z" fill="white" />
-            <path d="M36 0c-.5 0-.9.3-1.1.8L31.5 12h2.4l.5-1.3h2.9l.3 1.3H40L38.4 0H36zm-.4 3.2l.7 4.5h-1.9l1.2-4.5z" fill="white" />
-        </g>
-    </svg>
+// Kaspa Icon - Using official Kaspa SVG (Best approach)
+export const KaspaIcon = ({ size = 120, className = "", glow = false }) => (
+    <div className={`inline-flex items-center justify-center ${className}`}>
+        <img
+            src="/icons/kaspa-official.svg"
+            width={size}
+            height={size}
+            alt="Kaspa"
+            className={`${glow ? 'drop-shadow-lg' : ''}`}
+            style={{ filter: glow ? 'drop-shadow(0 0 8px rgba(112, 199, 186, 0.5))' : 'none' }}
+        />
+    </div>
 );
 
-// Mastercard Icon - Brand accurate design
-export const MastercardIcon = ({ size = 32, className = "" }) => (
-    <svg width={size} height={size} viewBox="0 0 48 32" fill="none" className={className}>
-        <rect width="48" height="32" rx="6" fill="#000000" />
-        <g transform="translate(12, 8)">
-            {/* Left circle (red) */}
-            <circle cx="8" cy="8" r="8" fill="#EB001B" />
-            {/* Right circle (yellow) */}
-            <circle cx="16" cy="8" r="8" fill="#F79E1B" />
-            {/* Intersection (orange) */}
-            <path d="M12 2.5c1.5 1.2 2.5 3.1 2.5 5.5s-1 4.3-2.5 5.5c-1.5-1.2-2.5-3.1-2.5-5.5s1-4.3 2.5-5.5z" fill="#FF5F00" />
-        </g>
-    </svg>
+// Visa Icon - Simple CSS approach (No dependencies)
+export const VisaIcon = ({ size = 32, className = "", glow = false }) => (
+    <div
+        className={`inline-flex items-center justify-center bg-white border border-blue-200 rounded-lg font-bold text-blue-700 ${glow ? 'shadow-lg shadow-blue-500/20' : 'shadow-sm'} ${className}`}
+        style={{
+            width: size * 1.6,
+            height: size,
+            fontSize: size * 0.35
+        }}
+    >
+        VISA
+    </div>
+);
+
+// Mastercard Icon - Simple CSS approach (No dependencies)
+export const MastercardIcon = ({ size = 32, className = "", glow = false }) => (
+    <div className={`inline-flex items-center justify-center ${className}`}>
+        <div
+            className={`bg-black rounded-lg flex items-center justify-center relative overflow-hidden ${glow ? 'shadow-lg' : 'shadow-sm'}`}
+            style={{ width: size * 1.6, height: size }}
+        >
+            {/* Mastercard circles */}
+            <div className="flex items-center justify-center relative">
+                <div
+                    className="bg-red-600 rounded-full absolute"
+                    style={{
+                        width: size * 0.4,
+                        height: size * 0.4,
+                        left: size * 0.1
+                    }}
+                />
+                <div
+                    className="bg-yellow-500 rounded-full absolute"
+                    style={{
+                        width: size * 0.4,
+                        height: size * 0.4,
+                        right: size * 0.1
+                    }}
+                />
+                <div
+                    className="bg-orange-500 rounded-full absolute"
+                    style={{
+                        width: size * 0.2,
+                        height: size * 0.4,
+                        left: '50%',
+                        transform: 'translateX(-50%)'
+                    }}
+                />
+            </div>
+        </div>
+    </div>
 );
 
 // Mobile Wallet Icon - Generic mobile payment design
@@ -53,25 +96,99 @@ export const MobileWalletIcon = ({ size = 32, className = "" }) => (
     </svg>
 );
 
-// CashApp Icon - Brand accurate design
-export const CashAppIcon = ({ size = 32, className = "" }) => (
+// CashApp Icon - Professional brand accurate design
+export const CashAppIcon = ({ size = 32, className = "", glow = false }) => (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" className={className}>
-        <rect width="32" height="32" rx="6" fill="#00D632" />
-        <g transform="translate(6, 6)">
-            <path d="M10 2c4.4 0 8 3.6 8 8s-3.6 8-8 8-8-3.6-8-8 3.6-8 8-8z" fill="white" />
-            <path d="M12.5 6.5c-.3-.3-.7-.5-1.2-.5H8.7c-.8 0-1.5.7-1.5 1.5v.5h1.5v-.5h2.6l-3.8 3.8c-.3.3-.5.7-.5 1.2v.5c0 .8.7 1.5 1.5 1.5h2.6c.5 0 .9-.2 1.2-.5l.5-.5-1.1-1.1-.5.5H8.7v-.5l3.8-3.8c.3-.3.5-.7.5-1.2V7c0-.2-.1-.4-.2-.5l-.3-.5z" fill="#00D632" />
+        <defs>
+            <filter id="cashappGlow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                <feMerge>
+                    <feMergeNode in="coloredBlur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </defs>
+
+        {/* Background */}
+        <rect
+            width="32"
+            height="32"
+            rx="6"
+            fill="#00D632"
+            filter={glow ? "url(#cashappGlow)" : "none"}
+        />
+
+        {/* Cash App $ symbol */}
+        <g transform="translate(16, 16)">
+            <circle cx="0" cy="0" r="12" fill="white" />
+            {/* Stylized $ symbol */}
+            <path
+                d="M-2 -8 L2 -8 C4 -8 6 -6 6 -4 C6 -2 4 0 2 0 L-2 0 L-2 2 L2 2 C4 2 6 4 6 6 C6 8 4 8 2 8 L-2 8 M0 -10 L0 10"
+                stroke="#00D632"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+            />
         </g>
+
+        {/* Subtle highlight */}
+        <rect
+            x="1"
+            y="1"
+            width="30"
+            height="1"
+            rx="0.5"
+            fill="rgba(255,255,255,0.2)"
+        />
     </svg>
 );
 
-// PayPal Icon - Brand accurate design
-export const PayPalIcon = ({ size = 32, className = "" }) => (
+// PayPal Icon - Professional brand accurate design
+export const PayPalIcon = ({ size = 32, className = "", glow = false }) => (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" className={className}>
-        <rect width="32" height="32" rx="6" fill="#003087" />
+        <defs>
+            <filter id="paypalGlow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                <feMerge>
+                    <feMergeNode in="coloredBlur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </defs>
+
+        {/* Background */}
+        <rect
+            width="32"
+            height="32"
+            rx="6"
+            fill="#003087"
+            filter={glow ? "url(#paypalGlow)" : "none"}
+        />
+
+        {/* PayPal P symbols */}
         <g transform="translate(4, 6)">
-            <path d="M8.5 2h4.8c2.8 0 4.7 1.8 4.7 4.5 0 3.2-2.1 5.5-5.2 5.5H10l-.8 4H6.5L8.5 2z" fill="#009CDE" />
-            <path d="M6 6h4.8c2.8 0 4.7 1.8 4.7 4.5 0 3.2-2.1 5.5-5.2 5.5H7.5l-.8 4H4L6 6z" fill="#012169" />
+            {/* Front P (light blue) */}
+            <path
+                d="M8.5 2h4.8c2.8 0 4.7 1.8 4.7 4.5 0 3.2-2.1 5.5-5.2 5.5H10l-.8 4H6.5L8.5 2z"
+                fill="#009CDE"
+            />
+            {/* Back P (dark blue) */}
+            <path
+                d="M6 6h4.8c2.8 0 4.7 1.8 4.7 4.5 0 3.2-2.1 5.5-5.2 5.5H7.5l-.8 4H4L6 6z"
+                fill="#012169"
+            />
         </g>
+
+        {/* Subtle highlight */}
+        <rect
+            x="1"
+            y="1"
+            width="30"
+            height="1"
+            rx="0.5"
+            fill="rgba(255,255,255,0.1)"
+        />
     </svg>
 );
 
@@ -114,7 +231,8 @@ export const PaymentCard = ({ icon, title, status, gradient, delay = 0 }) => (
 );
 
 export default {
-    ApplePayIcon,
+    VenmoIcon,
+    KaspaIcon,
     VisaIcon,
     MastercardIcon,
     MobileWalletIcon,

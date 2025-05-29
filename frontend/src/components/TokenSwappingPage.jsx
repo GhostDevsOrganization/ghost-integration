@@ -62,9 +62,10 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
         from: 'btc',
         to: 'kas',
         amount: '0.01',
-        backgroundColor: 'ffffff',
-        darkMode: false,
-        primaryColor: '2DD4BF'
+        backgroundColor: '1a1a1a', // Dark background
+        darkMode: true, // Force dark mode
+        primaryColor: '2DD4BF',
+        textColor: 'ffffff' // White text
     });
 
     // Define navigation protocols for FuturisticNav
@@ -131,7 +132,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         backgroundColor={widgetConfig.backgroundColor}
                         darkMode={widgetConfig.darkMode}
                         primaryColor={widgetConfig.primaryColor}
-                        height="600px"
+                        height="1000px"
                         width="100%"
                     />
                 </div>
@@ -187,8 +188,8 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         Token Swapping
                     </h1>
                     <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto animate-fade-in-up-delay px-4 leading-relaxed font-medium">
-                        Seamlessly exchange cryptocurrencies with our advanced swap engine.
-                        Fast, secure, and with no registration required.
+                        Seamlessly exchange cryptocurrencies.
+                        Fast, Secure, Non Custodial.
                     </p>
                 </div>
 
@@ -200,36 +201,45 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-purple-100/30 rounded-full"></div>
 
                         <div className="relative z-10">
-                            <div className="text-center mb-8 sm:mb-12">
-                                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-4">
-                                    Advanced Swap Engine
-                                </h2>
-                                <p className="text-lg sm:text-xl text-gray-600 font-medium max-w-3xl mx-auto">
-                                    Experience lightning-fast cryptocurrency exchanges with our cutting-edge technology
-                                </p>
-                            </div>
 
-                            {/* Widget Container - Better Responsive Design */}
-                            <div className="relative mb-6 bg-gray-50/50 rounded-2xl p-3 sm:p-4 lg:p-6">
-                                {loading ? (
-                                    <div className="absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-2xl z-20">
-                                        <div className="flex flex-col items-center">
-                                            <div className="w-12 h-12 sm:w-16 sm:h-16 border-3 border-teal-200 border-t-teal-600 rounded-full animate-spin mb-4 sm:mb-6"></div>
-                                            <p className="text-teal-600 text-base sm:text-lg font-semibold">Initializing advanced swap engine...</p>
-                                        </div>
+
+                            {/* Enhanced Widget Container with Header and Footer */}
+                            <div className="relative mb-6 bg-gradient-to-r from-teal-50/30 to-purple-50/30 rounded-3xl p-1 shadow-xl">
+                                <div className="bg-white/80 backdrop-blur-sm rounded-2xl">
+                                    {/* Widget Header */}
+                                    <div className="p-4 sm:p-6 bg-gradient-to-r from-teal-600 to-purple-600 rounded-t-2xl">
+                                        <h3 className="text-xl sm:text-2xl font-bold text-white">Swap Tokens</h3>
+                                        <p className="text-teal-100 text-sm sm:text-base">Instantly exchange cryptocurrencies</p>
                                     </div>
-                                ) : null}
 
-                                <ChangeNowWidget
-                                    from={widgetConfig.from}
-                                    to={widgetConfig.to}
-                                    amount={widgetConfig.amount}
-                                    backgroundColor={widgetConfig.backgroundColor}
-                                    darkMode={widgetConfig.darkMode}
-                                    primaryColor={widgetConfig.primaryColor}
-                                    height="520px"
-                                    width="100%"
-                                />
+                                    {/* Widget Body */}
+                                    <div className="p-3 sm:p-4 lg:p-6 relative">
+                                        {loading ? (
+                                            <div className="absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-2xl z-20">
+                                                <div className="flex flex-col items-center">
+                                                    <div className="w-16 h-16 border-4 border-teal-400 border-t-transparent rounded-full animate-spin mb-4"></div>
+                                                    <p className="text-teal-600 font-medium">Loading exchange rates...</p>
+                                                </div>
+                                            </div>
+                                        ) : null}
+
+                                        <ChangeNowWidget
+                                            from={widgetConfig.from}
+                                            to={widgetConfig.to}
+                                            amount={widgetConfig.amount}
+                                            backgroundColor={widgetConfig.backgroundColor}
+                                            darkMode={true}  // Force dark mode for better contrast
+                                            primaryColor={widgetConfig.primaryColor}
+                                            height="520px"
+                                            width="100%"
+                                        />
+                                    </div>
+
+                                    {/* Widget Footer */}
+                                    <div className="p-3 text-center text-xs sm:text-sm text-gray-500 border-t border-gray-200/50">
+                                        Powered by kasportal.com • Secured by Kaspa
+                                    </div>
+                                </div>
                             </div>
 
                             {/* Action Buttons */}
@@ -245,12 +255,12 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                     <RefreshCw size={20} />
                                     <span className="font-medium">Refresh Rates</span>
                                 </button>
-                                <button
+                                {/* <button
                                     className="flex items-center gap-3 text-gray-500 hover:text-teal-600 transition-colors duration-200 px-6 py-3 rounded-full hover:bg-teal-50 border border-gray-200 hover:border-teal-300 w-full sm:w-auto justify-center"
                                     title="Swap information"
                                 >
 
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>
@@ -264,7 +274,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                             Why Choose Our Swap Engine?
                         </h2>
                         <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up-delay px-4 font-medium">
-                            Experience the next generation of cryptocurrency trading with our advanced features.
+                            Speed - Ease of Use - Myriad Coins
                         </p>
                     </div>
 
@@ -272,20 +282,20 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         {[
                             {
                                 title: 'Lightning Speed',
-                                description: 'Lightning-fast swaps completed in under 15 minutes with our advanced routing algorithms.',
+                                description: 'Speedy swaps completed in under 10 minutes even on the clunkiest chains.',
                                 icon: <RefreshCw className="w-8 h-8 sm:w-10 sm:h-10" />,
                                 color: 'from-teal-500 to-blue-600'
                             },
                             {
-                                title: 'Zero Registration',
-                                description: 'No KYC, no accounts, no hassle. Just connect your wallet and start swapping instantly.',
+                                title: 'Non Custodial',
+                                description: 'No sign up, no accounts, no hassle. Just connect a fund and recipient wallet and swap.',
                                 icon: <Wallet className="w-8 h-8 sm:w-10 sm:h-10" />,
                                 color: 'from-teal-600 to-purple-600'
                             },
 
                             {
-                                title: '900+ Cryptocurrencies',
-                                description: 'Swap between any of 900+ supported cryptocurrencies including all major coins and tokens.',
+                                title: 'So Many Coins!',
+                                description: 'Swap between 900 + supported cryptocurrencies including all major coins and tokens.',
                                 icon: <Link2 className="w-8 h-8 sm:w-10 sm:h-10" />,
                                 color: 'from-teal-700 to-purple-700'
                             },
@@ -300,15 +310,15 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                 <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
 
                                 <div className="relative z-10">
-                                    <div className={`p-4 sm:p-5 rounded-2xl bg-gradient-to-r ${feature.color} w-fit mb-6 sm:mb-8 group-hover:scale-110 transition-transform duration-300`}>
+                                    <div className={`p-4 sm:p-5 rounded-2xl bg-gradient-to-r ${feature.color} w-fit mb-6 sm:mb-8 group-hover:scale-110 transition-transform duration-300 mx-auto`}>
                                         <div className="text-white">
                                             {feature.icon}
                                         </div>
                                     </div>
-                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 group-hover:text-teal-700 transition-colors duration-300">
+                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 group-hover:text-teal-700 transition-colors duration-300 text-center">
                                         {feature.title}
                                     </h3>
-                                    <p className="text-base sm:text-lg text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed">
+                                    <p className="text-base sm:text-lg text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed text-center">
                                         {feature.description}
                                     </p>
                                 </div>
@@ -316,6 +326,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         ))}
                     </div>
                 </section>
+
 
                 {/* How It Works - Clean Design */}
                 <section className="mb-32">
@@ -331,18 +342,18 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
                         {[
                             {
-                                title: 'Select Tokens',
-                                description: 'Choose your source and destination cryptocurrencies from our extensive list of 900+ supported tokens.',
+                                title: 'Select',
+                                description: 'Specify source and destination tokens from the list of 900 + supported tokens.',
                                 color: 'from-teal-500 to-blue-600'
                             },
                             {
-                                title: 'AI Rate Discovery',
-                                description: 'Our advanced AI scans 50+ exchanges in real-time to find the best possible exchange rate for your trade.',
+                                title: 'Scan',
+                                description: 'Scan 50+ exchanges in real-time to find the best exchange rate for your trade.',
                                 color: 'from-teal-600 to-purple-600'
                             },
                             {
-                                title: 'Fast Execution',
-                                description: 'Complete your swap in under 15 minutes with our lightning-fast execution engine and receive your tokens.',
+                                title: 'Execute',
+                                description: 'Complete your swap in under 10 minutes and receive your tokens.',
                                 color: 'from-teal-400 to-purple-500'
                             }
                         ].map((step, index) => (
@@ -381,23 +392,23 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         {[
                             {
                                 question: "How long does a swap take to complete?",
-                                answer: "Most swaps are completed within 5-15 minutes thanks to our advanced routing algorithms. Kaspa transactions are typically even faster due to the network's high throughput capabilities."
+                                answer: "Most swaps are completed within 5-10 minutes thanks to our advanced routing algorithms. Kaspa transactions are typically even faster due to the network's high throughput capabilities."
                             },
                             {
                                 question: "Are there any swap limits?",
-                                answer: "Basic swaps have no upper limits. However, very large transactions may require additional verification steps in accordance with regulatory requirements."
+                                answer: "Basic swaps have no upper limits. However, very large transactions may require additional verification steps, KYC verification in accordance with regulatory requirements."
                             },
                             {
                                 question: "What fees are associated with swapping?",
-                                answer: "The exchange rate you see includes all fees. There are no hidden fees or additional charges. The rate includes network transaction fees and a small service fee."
+                                answer: "The exchange rate you see includes all fees. The rate includes network transaction fees and a small service fee Typically around 1%."
                             },
                             {
                                 question: "Is my personal information required?",
-                                answer: "For basic swaps, only your receiving wallet address is required. No personal information or account creation is needed."
+                                answer: "For basic swaps, only your sending and receiving wallet address is required. No account creation is needed, You maintain control of your funds and seed phrases at all time. This is a non custodial service."
                             },
                             {
                                 question: "What if my swap is taking longer than expected?",
-                                answer: "Transactions may occasionally take longer due to network congestion. You can check the status of your swap using the transaction ID provided. If a swap is pending for over 2 hours, please contact our 24/7 support."
+                                answer: "Transactions may occasionally take longer due to network congestion. You can check the status of your swap using the transaction ID provided. If a swap is pending for over 2 hours, please contact our support."
                             }
                         ].map((faq, index) => (
                             <div key={index} className="bg-white backdrop-blur-sm border border-gray-200 rounded-2xl overflow-hidden hover:border-teal-300 hover:shadow-lg transition-all duration-500 shadow-md">
@@ -419,7 +430,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                 <section className="text-center py-16 sm:py-24">
                     <div className="relative px-4">
                         <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-8 animate-fade-in-up whitespace-nowrap">
-                            Ready to Experience Advanced Trading?
+                            Want to learn more?
                         </h2>
                         <p className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-in-up-delay font-medium leading-relaxed">
 

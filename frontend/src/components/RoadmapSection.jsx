@@ -232,7 +232,7 @@ const RoadmapSection = () => {
             </div>
 
             {/* Enhanced styles */}
-            <style jsx="true" global="true">{`
+            <style jsx={true} global={true}>{`
                 .grid-bg {
                     background-image:
                         linear-gradient(to right, rgba(74, 222, 128, 0.1) 1px, transparent 1px),

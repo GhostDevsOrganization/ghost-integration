@@ -63,7 +63,7 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                     <Link to="/" className="flex items-center gap-3 group">
                         <div className="relative group">
                             <img
-                                src="/kasportal-logo.svg"
+                                src="/images/photo_2025-05-29_09-55-50.jpg"
                                 alt="Kasportal"
                                 className="w-10 h-10 transition-transform duration-300 group-hover:scale-110 hover:scale-105 transition-transform duration-500 drop-shadow-2xl relative z-10"
                             />
@@ -144,10 +144,10 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                         ))}
                     </div>
 
-                    {/* Right side elements */}
+                    {/* {/* Right side elements *
                     <div className="flex items-center gap-4">
                         <ThemeSwitcher className="mr-4 z-[1000]" dropdownPosition="bottom" />
-                    </div>
+                    </div> */}
                 </div>
             </nav>
 
@@ -163,7 +163,7 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                     {/* Logo in mobile menu */}
                     <div className="mb-8 relative group">
                         <img
-                            src="/kasportal-logo.svg"
+                            src="/images/photo_2025-05-29_09-55-50.jpg"
                             alt="Kasportal"
                             className="w-20 h-20 mx-auto mb-4 hover:scale-105 transition-transform duration-500 drop-shadow-2xl relative z-10"
                         />

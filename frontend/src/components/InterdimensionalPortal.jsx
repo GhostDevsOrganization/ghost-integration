@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Repeat, Wallet, Send, Home, MessageCircle } from 'lucide-react';
 import TokenSwappingPage from './TokenSwappingPage';
 import TraditionalNav from './TraditionalNav';
+import BetaTestForm from './BetaTestForm';
 import { useTheme } from '../context/ThemeContext';
 import GuidedTour from './GuidedTour';
 import { connectKasware, disconnectKasware, signTransaction } from '../services/kaswareService';
@@ -32,6 +33,7 @@ const Kasportal = () => {
   // Portal UI state
   const [activeProtocol, setActiveProtocol] = useState(null);
   const [portalActive, setPortalActive] = useState(false);
+  const [showBetaForm, setShowBetaForm] = useState(false);
 
   // Wallet state
   const [kaswareInstalled, setKaswareInstalled] = useState(false);
@@ -260,12 +262,18 @@ const Kasportal = () => {
         ))}
 
         {/* Central portal */}
-        <div className="relative w-32 h-32 rounded-full z-30 cursor-pointer group" onClick={() => setPortalActive(!portalActive)}>
+        <div className="relative w-32 h-32 rounded-full z-30 cursor-pointer group" onClick={() => setShowBetaForm(true)}>
           {/* Portal core */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-teal-400/30 to-purple-600/30 animate-pulse"></div>
           <div className="absolute inset-2 rounded-full bg-gradient-to-br from-teal-300/50 to-purple-500/50 animate-spin" style={{ animationDuration: '8s' }}></div>
           <div className="absolute inset-4 rounded-full bg-gradient-to-br from-white/80 to-teal-200/80 group-hover:scale-110 transition-transform"></div>
 
+          {/* Alpha access indicator */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-xs font-bold text-teal-800 opacity-70 group-hover:opacity-100 transition-opacity">
+              ALPHA
+            </span>
+          </div>
         </div>
       </div>
 
@@ -310,6 +318,13 @@ const Kasportal = () => {
           <p className="text-white text-sm">Balance: {(balance.total / 100000000).toFixed(4)} KAS</p>
         </div>
       )}
+
+      {/* Beta Test Form */}
+      <BetaTestForm
+        isVisible={showBetaForm}
+        onClose={() => setShowBetaForm(false)}
+      />
+
 
       {/* CSS animations */}
       <style jsx>{`

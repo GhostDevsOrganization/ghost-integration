@@ -271,7 +271,7 @@ const LearnPage = () => {
                 <div className="w-32 h-1 bg-gradient-to-r from-teal-500 to-purple-500 mx-auto mb-12 animate-fade-in-up-delay-2"></div>
                 <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 max-w-6xl mx-auto px-4 leading-relaxed animate-fade-in-up-delay-3 font-medium">
                     Your comprehensive resource to understand Kaspa's innovative BlockDAG technology,
-                    its revolutionary capabilities, and the future of quantum-powered decentralized finance.
+                    its capabilities, and the potential future of decentralized finance.
                 </p>
             </header>
 
@@ -750,7 +750,7 @@ const LearnPage = () => {
                                     Ready to Dive Deeper?
                                 </h2>
                                 <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in-up-delay font-medium">
-                                    Explore Kaspa's revolutionary technology and join the quantum-powered blockchain revolution.
+                                    We are working to simplify the blockchain— discover how it could work better for you.
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                                     <Link
@@ -758,13 +758,13 @@ const LearnPage = () => {
                                         className="group relative inline-flex items-center gap-4 px-10 py-5 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 rounded-full font-bold text-white text-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-2 overflow-hidden"
                                     >
                                         <span className="relative z-10 flex items-center gap-4">
-                                            Start Trading
+                                            Start Swapping
                                             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
                                         </span>
                                         <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                     </Link>
                                     <a
-                                        href="https://kaspa.org"
+                                        href="https://ghostdevlabs.com"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="group relative inline-flex items-center gap-4 px-10 py-5 bg-white border border-teal-300 rounded-full font-bold text-teal-600 text-xl hover:bg-teal-50 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-3"

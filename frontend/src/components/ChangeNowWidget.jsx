@@ -54,6 +54,7 @@ const ChangeNowWidget = ({
     horizontal: String(horizontal),
     lang,
     primaryColor: themeBasedPrimaryColor,
+    hideExtraFees: "true", // This will hide the "No extra fees" text
     ...rest,
   });
 
