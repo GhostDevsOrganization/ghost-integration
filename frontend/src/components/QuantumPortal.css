@@ -1,0 +1,36 @@
+@keyframes gyro1 {
+  0% { transform: translate(-50%, -50%) rotateX(0deg) rotateY(30deg); }
+  50% { transform: translate(-50%, -50%) rotateX(180deg) rotateY(210deg); }
+  100% { transform: translate(-50%, -50%) rotateX(360deg) rotateY(390deg); }
+}
+
+@keyframes gyro2 {
+  0% { transform: translate(-50%, -50%) rotateX(60deg) rotateY(0deg); }
+  50% { transform: translate(-50%, -50%) rotateX(240deg) rotateY(180deg); }
+  100% { transform: translate(-50%, -50%) rotateX(420deg) rotateY(360deg); }
+}
+
+@keyframes gyro3 {
+  0% { transform: translate(-50%, -50%) rotateY(60deg) rotateZ(30deg); }
+  50% { transform: translate(-50%, -50%) rotateY(240deg) rotateZ(210deg); }
+  100% { transform: translate(-50%, -50%) rotateY(420deg) rotateZ(390deg); }
+}
+
+@keyframes gyro4 {
+  0% { transform: translate(-50%, -50%) rotateX(30deg) rotateZ(60deg); }
+  50% { transform: translate(-50%, -50%) rotateX(210deg) rotateZ(240deg); }
+  100% { transform: translate(-50%, -50%) rotateX(390deg) rotateZ(420deg); }
+}
+
+@keyframes gyro5 {
+  0% { transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg) rotateZ(0deg); }
+  50% { transform: translate(-50%, -50%) rotateX(225deg) rotateY(225deg) rotateZ(180deg); }
+  100% { transform: translate(-50%, -50%) rotateX(405deg) rotateY(405deg) rotateZ(360deg); }
+}
+
+.gyroscope-ring {
+  position: absolute;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
