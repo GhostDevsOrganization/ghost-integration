@@ -17,57 +17,71 @@ export const VenmoIcon = ({ size = 32, className = "" }) => (
     </svg>
 );
 
-// Kaspa Icon - Transparent design with teal circle and white arrows
-export const KaspaIcon = ({ size = 32, className = "" }) => (
-    <svg width={size} height={size} viewBox="0 0 80 40" fill="none" className={className}>
-        {/* Teal circular background */}
-        <circle cx="20" cy="20" r="16" fill="#4FD1C7" />
-
-        {/* White arrow symbols inside circle */}
-        <g transform="translate(20, 20)">
-            {/* Right-pointing arrow */}
-            <path d="M-4 -6 L4 0 L-4 6 L-2 6 L6 0 L-2 -6 Z" fill="white" />
-            {/* Left-pointing arrow overlay */}
-            <path d="M4 -4 L-2 0 L4 4 L2 4 L-4 0 L2 -4 Z" fill="white" opacity="0.8" />
-        </g>
-
-        {/* Kaspa text */}
-        <text x="45" y="26" fontSize="16" fill="#2D3748" fontFamily="Arial, sans-serif" fontWeight="600">
-            Kaspa
-        </text>
-    </svg>
+// Kaspa Icon - Using official Kaspa SVG (Best approach)
+export const KaspaIcon = ({ size = 32, className = "", glow = false }) => (
+    <div className={`inline-flex items-center justify-center ${className}`}>
+        <img
+            src="/icons/kaspa-official.svg"
+            width={size}
+            height={size}
+            alt="Kaspa"
+            className={`${glow ? 'drop-shadow-lg' : ''}`}
+            style={{ filter: glow ? 'drop-shadow(0 0 8px rgba(112, 199, 186, 0.5))' : 'none' }}
+        />
+    </div>
 );
 
-// Visa Icon - Transparent design with blue VISA text
-export const VisaIcon = ({ size = 32, className = "" }) => (
-    <svg width={size} height={size} viewBox="0 0 100 40" fill="none" className={className}>
-        {/* VISA text in blue */}
-        <g transform="translate(10, 8)">
-            {/* V */}
-            <path d="M0 0 L6 0 L12 24 L18 0 L24 0 L15 32 L9 32 Z" fill="#1434CB" />
-            {/* I */}
-            <path d="M26 0 L32 0 L32 32 L26 32 Z" fill="#1434CB" />
-            {/* S */}
-            <path d="M36 0 L60 0 L60 6 L42 6 L42 11 L58 11 L58 17 L42 17 L42 26 L60 26 L60 32 L36 32 Z" fill="#1434CB" />
-            {/* A */}
-            <path d="M64 0 L70 0 L84 32 L78 32 L75 24 L67 24 L64 32 L58 32 Z M69 18 L73 18 L71 12 Z" fill="#1434CB" />
-        </g>
-    </svg>
+// Visa Icon - Simple CSS approach (No dependencies)
+export const VisaIcon = ({ size = 32, className = "", glow = false }) => (
+    <div
+        className={`inline-flex items-center justify-center bg-white border border-blue-200 rounded-lg font-bold text-blue-700 ${glow ? 'shadow-lg shadow-blue-500/20' : 'shadow-sm'} ${className}`}
+        style={{
+            width: size * 1.6,
+            height: size,
+            fontSize: size * 0.35
+        }}
+    >
+        VISA
+    </div>
 );
 
-// Mastercard Icon - Brand accurate design
-export const MastercardIcon = ({ size = 32, className = "" }) => (
-    <svg width={size} height={size} viewBox="0 0 48 32" fill="none" className={className}>
-        <rect width="48" height="32" rx="6" fill="#000000" />
-        <g transform="translate(12, 8)">
-            {/* Left circle (red) */}
-            <circle cx="8" cy="8" r="8" fill="#EB001B" />
-            {/* Right circle (yellow) */}
-            <circle cx="16" cy="8" r="8" fill="#F79E1B" />
-            {/* Intersection (orange) */}
-            <path d="M12 2.5c1.5 1.2 2.5 3.1 2.5 5.5s-1 4.3-2.5 5.5c-1.5-1.2-2.5-3.1-2.5-5.5s1-4.3 2.5-5.5z" fill="#FF5F00" />
-        </g>
-    </svg>
+// Mastercard Icon - Simple CSS approach (No dependencies)
+export const MastercardIcon = ({ size = 32, className = "", glow = false }) => (
+    <div className={`inline-flex items-center justify-center ${className}`}>
+        <div
+            className={`bg-black rounded-lg flex items-center justify-center relative overflow-hidden ${glow ? 'shadow-lg' : 'shadow-sm'}`}
+            style={{ width: size * 1.6, height: size }}
+        >
+            {/* Mastercard circles */}
+            <div className="flex items-center justify-center relative">
+                <div
+                    className="bg-red-600 rounded-full absolute"
+                    style={{
+                        width: size * 0.4,
+                        height: size * 0.4,
+                        left: size * 0.1
+                    }}
+                />
+                <div
+                    className="bg-yellow-500 rounded-full absolute"
+                    style={{
+                        width: size * 0.4,
+                        height: size * 0.4,
+                        right: size * 0.1
+                    }}
+                />
+                <div
+                    className="bg-orange-500 rounded-full absolute"
+                    style={{
+                        width: size * 0.2,
+                        height: size * 0.4,
+                        left: '50%',
+                        transform: 'translateX(-50%)'
+                    }}
+                />
+            </div>
+        </div>
+    </div>
 );
 
 // Mobile Wallet Icon - Generic mobile payment design
@@ -82,25 +96,99 @@ export const MobileWalletIcon = ({ size = 32, className = "" }) => (
     </svg>
 );
 
-// CashApp Icon - Brand accurate design
-export const CashAppIcon = ({ size = 32, className = "" }) => (
+// CashApp Icon - Professional brand accurate design
+export const CashAppIcon = ({ size = 32, className = "", glow = false }) => (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" className={className}>
-        <rect width="32" height="32" rx="6" fill="#00D632" />
-        <g transform="translate(6, 6)">
-            <path d="M10 2c4.4 0 8 3.6 8 8s-3.6 8-8 8-8-3.6-8-8 3.6-8 8-8z" fill="white" />
-            <path d="M12.5 6.5c-.3-.3-.7-.5-1.2-.5H8.7c-.8 0-1.5.7-1.5 1.5v.5h1.5v-.5h2.6l-3.8 3.8c-.3.3-.5.7-.5 1.2v.5c0 .8.7 1.5 1.5 1.5h2.6c.5 0 .9-.2 1.2-.5l.5-.5-1.1-1.1-.5.5H8.7v-.5l3.8-3.8c.3-.3.5-.7.5-1.2V7c0-.2-.1-.4-.2-.5l-.3-.5z" fill="#00D632" />
+        <defs>
+            <filter id="cashappGlow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                <feMerge>
+                    <feMergeNode in="coloredBlur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </defs>
+
+        {/* Background */}
+        <rect
+            width="32"
+            height="32"
+            rx="6"
+            fill="#00D632"
+            filter={glow ? "url(#cashappGlow)" : "none"}
+        />
+
+        {/* Cash App $ symbol */}
+        <g transform="translate(16, 16)">
+            <circle cx="0" cy="0" r="12" fill="white" />
+            {/* Stylized $ symbol */}
+            <path
+                d="M-2 -8 L2 -8 C4 -8 6 -6 6 -4 C6 -2 4 0 2 0 L-2 0 L-2 2 L2 2 C4 2 6 4 6 6 C6 8 4 8 2 8 L-2 8 M0 -10 L0 10"
+                stroke="#00D632"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+            />
         </g>
+
+        {/* Subtle highlight */}
+        <rect
+            x="1"
+            y="1"
+            width="30"
+            height="1"
+            rx="0.5"
+            fill="rgba(255,255,255,0.2)"
+        />
     </svg>
 );
 
-// PayPal Icon - Brand accurate design
-export const PayPalIcon = ({ size = 32, className = "" }) => (
+// PayPal Icon - Professional brand accurate design
+export const PayPalIcon = ({ size = 32, className = "", glow = false }) => (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" className={className}>
-        <rect width="32" height="32" rx="6" fill="#003087" />
+        <defs>
+            <filter id="paypalGlow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                <feMerge>
+                    <feMergeNode in="coloredBlur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </defs>
+
+        {/* Background */}
+        <rect
+            width="32"
+            height="32"
+            rx="6"
+            fill="#003087"
+            filter={glow ? "url(#paypalGlow)" : "none"}
+        />
+
+        {/* PayPal P symbols */}
         <g transform="translate(4, 6)">
-            <path d="M8.5 2h4.8c2.8 0 4.7 1.8 4.7 4.5 0 3.2-2.1 5.5-5.2 5.5H10l-.8 4H6.5L8.5 2z" fill="#009CDE" />
-            <path d="M6 6h4.8c2.8 0 4.7 1.8 4.7 4.5 0 3.2-2.1 5.5-5.2 5.5H7.5l-.8 4H4L6 6z" fill="#012169" />
+            {/* Front P (light blue) */}
+            <path
+                d="M8.5 2h4.8c2.8 0 4.7 1.8 4.7 4.5 0 3.2-2.1 5.5-5.2 5.5H10l-.8 4H6.5L8.5 2z"
+                fill="#009CDE"
+            />
+            {/* Back P (dark blue) */}
+            <path
+                d="M6 6h4.8c2.8 0 4.7 1.8 4.7 4.5 0 3.2-2.1 5.5-5.2 5.5H7.5l-.8 4H4L6 6z"
+                fill="#012169"
+            />
         </g>
+
+        {/* Subtle highlight */}
+        <rect
+            x="1"
+            y="1"
+            width="30"
+            height="1"
+            rx="0.5"
+            fill="rgba(255,255,255,0.1)"
+        />
     </svg>
 );
 

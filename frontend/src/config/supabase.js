@@ -1,11 +1,43 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Replace with your actual Supabase URL
+// Supabase configuration
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL || 'https://your-project.supabase.co'
 const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY || 'your-anon-key'
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Single client instance to prevent multiple GoTrueClient warnings
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
+    },
+    global: {
+        headers: {
+            'X-Client-Info': 'kasportal-web'
+        }
+    }
+})
 
-// Admin client with service role key for admin operations
-const supabaseServiceKey = process.env.REACT_APP_SUPABASE_SERVICE_KEY || 'sbp_f4cb80770d248967cadf2a3cb2f8c15dfc03a509'
-export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey)
+// Helper function to check if Supabase is properly configured
+export const isSupabaseConfigured = () => {
+    return supabaseUrl !== 'https://your-project.supabase.co' &&
+        supabaseAnonKey !== 'your-anon-key' &&
+        supabaseUrl.includes('supabase.co')
+}
+
+// Helper function for graceful error handling
+export const handleSupabaseError = (error) => {
+    console.error('Supabase operation failed:', error)
+
+    if (!isSupabaseConfigured()) {
+        return {
+            error: 'Database not configured. Using local storage fallback.',
+            fallback: true
+        }
+    }
+
+    return {
+        error: error.message || 'Database operation failed',
+        fallback: false
+    }
+}
