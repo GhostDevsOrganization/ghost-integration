@@ -200,14 +200,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-purple-100/30 rounded-full"></div>
 
                         <div className="relative z-10">
-                            <div className="text-center mb-8 sm:mb-12">
-                                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-4">
-                                    Advanced Swap Engine
-                                </h2>
-                                <p className="text-lg sm:text-xl text-gray-600 font-medium max-w-3xl mx-auto">
-                                    Experience lightning-fast cryptocurrency exchanges with our cutting-edge technology
-                                </p>
-                            </div>
+
 
                             {/* Widget Container - Better Responsive Design */}
                             <div className="relative mb-6 bg-gray-50/50 rounded-2xl p-3 sm:p-4 lg:p-6">
@@ -272,7 +265,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         {[
                             {
                                 title: 'Lightning Speed',
-                                description: 'Lightning-fast swaps completed in under 15 minutes with our advanced routing algorithms.',
+                                description: 'Lightning-fast swaps completed in under 10 minutes with our advanced routing algorithms.',
                                 icon: <RefreshCw className="w-8 h-8 sm:w-10 sm:h-10" />,
                                 color: 'from-teal-500 to-blue-600'
                             },
@@ -419,7 +412,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                 <section className="text-center py-16 sm:py-24">
                     <div className="relative px-4">
                         <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-8 animate-fade-in-up whitespace-nowrap">
-                            Ready to Experience Advanced Trading?
+                            Want to learn more?
                         </h2>
                         <p className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-in-up-delay font-medium leading-relaxed">
 
