@@ -188,7 +188,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                     </h1>
                     <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto animate-fade-in-up-delay px-4 leading-relaxed font-medium">
                         Seamlessly exchange cryptocurrencies.
-                        Fast, secure, Non Custodial.
+                        Fast, Secure, Non Custodial.
                     </p>
                 </div>
 
@@ -238,12 +238,12 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                     <RefreshCw size={20} />
                                     <span className="font-medium">Refresh Rates</span>
                                 </button>
-                                <button
+                                {/* <button
                                     className="flex items-center gap-3 text-gray-500 hover:text-teal-600 transition-colors duration-200 px-6 py-3 rounded-full hover:bg-teal-50 border border-gray-200 hover:border-teal-300 w-full sm:w-auto justify-center"
                                     title="Swap information"
                                 >
 
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>
@@ -325,8 +325,8 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
                         {[
                             {
-                                title: 'Select Tokens',
-                                description: 'Add funding source and destination token from the list of 900 + supported tokens.',
+                                title: 'Select',
+                                description: 'Specify source and destination tokens from the list of 900 + supported tokens.',
                                 color: 'from-teal-500 to-blue-600'
                             },
                             {

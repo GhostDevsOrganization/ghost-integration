@@ -173,7 +173,7 @@ export default function LandingPage() {
     {
       phase: "Q1 2026",
       title: "NFT Expansion",
-      description: " Launch portal to new worlds of NFT Projects and possibilitys.",
+      description: " Launch portal to new worlds of NFT projects and possibilities.",
       icon: <AIIcon size={32} className="text-pink-400 drop-shadow-xl" />,
       color: "from-teal-600 to-purple-700",
       delay: "0.6s"
@@ -182,31 +182,31 @@ export default function LandingPage() {
 
   const contactMethods = [
     {
-      title: "Get in touch",
-      description: "Help with technical issues, account questions, or general inquiries",
-      icon: <EmailIcon size={32} className="text-teal-400 drop-shadow-xl" />,
-      contact: "Email",
-      action: "mailto:support@ghostdevlabs.com",
-      color: "from-teal-400 to-blue-500"
-    },
-    {
-      title: "Follow on X",
-      description: "Stay updated with the latest news and announcements",
+      title: "Follow Us",
+      description: "The latest news and public announcements",
       icon: <TwitterIcon size={32} className="text-blue-400 drop-shadow-xl" />,
       contact: "@Kasportal",
       action: "https://x.com/kasportal",
       color: "from-blue-400 to-indigo-500"
     },
     {
-      title: "Community Telegram",
-      description: "join us for real-time discussions and updates on projects",
+      title: "Find Community",
+      description: "Join us for real-time discussions and updates",
       icon: <TelegramIcon size={32} className="text-purple-400 drop-shadow-xl" />,
       contact: "Telegram",
       action: "https://t.me/+ogluJ3Srnr83MmJh",
       color: "from-teal-500 to-purple-500"
     },
     {
-      title: "Partner with us",
+      title: "Need Something?",
+      description: "*Technical issues or general inquiries",
+      icon: <EmailIcon size={32} className="text-teal-400 drop-shadow-xl" />,
+      contact: "Email",
+      action: "mailto:support@ghostdevlabs.com",
+      color: "from-teal-400 to-blue-500"
+    }, 
+    {
+      title: "Team Up",
       description: "You want it? lets build a portal to it",
       icon: <BusinessIcon size={32} className="text-indigo-400 drop-shadow-xl" />,
       contact: "Lets build",
@@ -385,8 +385,8 @@ export default function LandingPage() {
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
                 <MobileWalletIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
               </div>
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Mobile Wallets</h3>
-              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium"> Multiple Wallets Now Supported </p>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Every* Wallet</h3>
+              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium"> Your Wallet, Supported Now.  </p>
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
@@ -465,7 +465,7 @@ export default function LandingPage() {
               <div
                 key={index}
                 onClick={() => handleContactClick(method.action)}
-                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 cursor-pointer w-full"
+                className="group relative p-8 sm:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 cursor-pointer w-full flex flex-col"
               >
                 <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-r ${method.color}`}></div>
 
@@ -474,9 +474,9 @@ export default function LandingPage() {
                 </div>
 
                 <h3 className="text-2xl font-bold mb-4 text-center text-gray-900">{method.title}</h3>
-                <p className="text-center leading-relaxed text-gray-600 text-lg mb-6">{method.description}</p>
+                <p className="text-center leading-relaxed text-gray-600 text-lg mb-6 flex-grow">{method.description}</p>
 
-                <div className="text-center">
+                <div className="text-center mt-auto">
                   <span className={`inline-block px-6 py-3 bg-gradient-to-r ${method.color} text-white font-bold rounded-full text-lg shadow-lg group-hover:shadow-xl transition-all duration-300`}>
                     {method.contact}
                   </span>
