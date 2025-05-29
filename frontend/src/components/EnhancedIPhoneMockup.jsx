@@ -76,17 +76,17 @@ export default function EnhancedIPhoneMockup() {
 
 
                     <div className="flex flex-wrap gap-3 mb-8 justify-center lg:justify-start">
-                        <div className="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300 text-gray-300">
+                        <div className="px-4 py-2 text-gray-600 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300 text-gray-300">
                             <span>⚡</span> Instant
                         </div>
-                        <div className="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300 text-gray-300">
+                        <div className="px-4 py-2 text-gray-600 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300 text-gray-300">
                             <span>🔒</span> Secure
                         </div>
-                        <div className="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300 text-gray-300">
+                        <div className="px-4 py-2 text-gray-600 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300 text-gray-300">
                             <span>📱</span> Easy
                         </div>
                     </div>
-                    <p className="text-xl  text-gray-300 mb-8 leading-relaxed">
+                    <p className="text-xl  text-gray-600 mb-8 leading-relaxed">
                         Powered by Kaspa's lightning-fast blockDAG. Manage, monitor, and send your crypto everywhere you go.
                     </p>
                     <div className="flex gap-4 items-center justify-center lg:justify-start">
