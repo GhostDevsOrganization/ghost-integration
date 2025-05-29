@@ -62,9 +62,10 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
         from: 'btc',
         to: 'kas',
         amount: '0.01',
-        backgroundColor: 'ffffff',
-        darkMode: false,
-        primaryColor: '2DD4BF'
+        backgroundColor: '1a1a1a', // Dark background
+        darkMode: true, // Force dark mode
+        primaryColor: '2DD4BF',
+        textColor: 'ffffff' // White text
     });
 
     // Define navigation protocols for FuturisticNav
@@ -131,7 +132,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         backgroundColor={widgetConfig.backgroundColor}
                         darkMode={widgetConfig.darkMode}
                         primaryColor={widgetConfig.primaryColor}
-                        height="600px"
+                        height="1000px"
                         width="100%"
                     />
                 </div>
@@ -202,27 +203,43 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         <div className="relative z-10">
 
 
-                            {/* Widget Container - Better Responsive Design */}
-                            <div className="relative mb-6 bg-gray-50/50 rounded-2xl p-3 sm:p-4 lg:p-6">
-                                {loading ? (
-                                    <div className="absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-2xl z-20">
-                                        <div className="flex flex-col items-center">
-                                            <div className="w-12 h-12 sm:w-16 sm:h-16 border-3 border-teal-200 border-t-teal-600 rounded-full animate-spin mb-4 sm:mb-6"></div>
-                                            <p className="text-teal-600 text-base sm:text-lg font-semibold">Initializing advanced swap engine...</p>
-                                        </div>
+                            {/* Enhanced Widget Container with Header and Footer */}
+                            <div className="relative mb-6 bg-gradient-to-r from-teal-50/30 to-purple-50/30 rounded-3xl p-1 shadow-xl">
+                                <div className="bg-white/80 backdrop-blur-sm rounded-2xl">
+                                    {/* Widget Header */}
+                                    <div className="p-4 sm:p-6 bg-gradient-to-r from-teal-600 to-purple-600 rounded-t-2xl">
+                                        <h3 className="text-xl sm:text-2xl font-bold text-white">Swap Tokens</h3>
+                                        <p className="text-teal-100 text-sm sm:text-base">Instantly exchange cryptocurrencies</p>
                                     </div>
-                                ) : null}
 
-                                <ChangeNowWidget
-                                    from={widgetConfig.from}
-                                    to={widgetConfig.to}
-                                    amount={widgetConfig.amount}
-                                    backgroundColor={widgetConfig.backgroundColor}
-                                    darkMode={widgetConfig.darkMode}
-                                    primaryColor={widgetConfig.primaryColor}
-                                    height="520px"
-                                    width="100%"
-                                />
+                                    {/* Widget Body */}
+                                    <div className="p-3 sm:p-4 lg:p-6 relative">
+                                        {loading ? (
+                                            <div className="absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-2xl z-20">
+                                                <div className="flex flex-col items-center">
+                                                    <div className="w-16 h-16 border-4 border-teal-400 border-t-transparent rounded-full animate-spin mb-4"></div>
+                                                    <p className="text-teal-600 font-medium">Loading exchange rates...</p>
+                                                </div>
+                                            </div>
+                                        ) : null}
+
+                                        <ChangeNowWidget
+                                            from={widgetConfig.from}
+                                            to={widgetConfig.to}
+                                            amount={widgetConfig.amount}
+                                            backgroundColor={widgetConfig.backgroundColor}
+                                            darkMode={true}  // Force dark mode for better contrast
+                                            primaryColor={widgetConfig.primaryColor}
+                                            height="520px"
+                                            width="100%"
+                                        />
+                                    </div>
+
+                                    {/* Widget Footer */}
+                                    <div className="p-3 text-center text-xs sm:text-sm text-gray-500 border-t border-gray-200/50">
+                                        Powered by kasportal.com • Secured by Kaspa
+                                    </div>
+                                </div>
                             </div>
 
                             {/* Action Buttons */}
@@ -250,65 +267,65 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                 </section>
 
 
-            {/* Features Section - Clean White Cards */}
-<section className="mb-32">
-    <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up">
-            Why Choose Our Swap Engine?
-        </h2>
-        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up-delay px-4 font-medium">
-            Speed - Ease of Use - Myriad Coins
-        </p>
-    </div>
-
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-        {[
-            {
-                title: 'Lightning Speed',
-                description: 'Speedy swaps completed in under 10 minutes even on the clunkiest chains.',
-                icon: <RefreshCw className="w-8 h-8 sm:w-10 sm:h-10" />,
-                color: 'from-teal-500 to-blue-600'
-            },
-            {
-                title: 'Non Custodial',
-                description: 'No sign up, no accounts, no hassle. Just connect a fund and recipient wallet and swap.',
-                icon: <Wallet className="w-8 h-8 sm:w-10 sm:h-10" />,
-                color: 'from-teal-600 to-purple-600'
-            },
-
-            {
-                title: 'So Many Coins!',
-                description: 'Swap between 900 + supported cryptocurrencies including all major coins and tokens.',
-                icon: <Link2 className="w-8 h-8 sm:w-10 sm:h-10" />,
-                color: 'from-teal-700 to-purple-700'
-            },
-
-        ].map((feature, index) => (
-            <div
-                key={index}
-                className="group relative bg-white backdrop-blur-sm border border-gray-200 rounded-3xl p-8 sm:p-10 hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-3 animate-fade-in-up shadow-lg"
-                style={{ animationDelay: `${index * 0.1}s` }}
-            >
-                {/* Glowing background effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
-
-                <div className="relative z-10">
-                    <div className={`p-4 sm:p-5 rounded-2xl bg-gradient-to-r ${feature.color} w-fit mb-6 sm:mb-8 group-hover:scale-110 transition-transform duration-300 mx-auto`}>
-                        <div className="text-white">
-                            {feature.icon}
-                        </div>
+                {/* Features Section - Clean White Cards */}
+                <section className="mb-32">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6 animate-fade-in-up">
+                            Why Choose Our Swap Engine?
+                        </h2>
+                        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up-delay px-4 font-medium">
+                            Speed - Ease of Use - Myriad Coins
+                        </p>
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 group-hover:text-teal-700 transition-colors duration-300 text-center">
-                        {feature.title}
-                    </h3>
-                    <p className="text-base sm:text-lg text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed text-center">
-                        {feature.description}
-                    </p>
-                </div>
-            </div>
-        ))}
-    </div>
-</section>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+                        {[
+                            {
+                                title: 'Lightning Speed',
+                                description: 'Speedy swaps completed in under 10 minutes even on the clunkiest chains.',
+                                icon: <RefreshCw className="w-8 h-8 sm:w-10 sm:h-10" />,
+                                color: 'from-teal-500 to-blue-600'
+                            },
+                            {
+                                title: 'Non Custodial',
+                                description: 'No sign up, no accounts, no hassle. Just connect a fund and recipient wallet and swap.',
+                                icon: <Wallet className="w-8 h-8 sm:w-10 sm:h-10" />,
+                                color: 'from-teal-600 to-purple-600'
+                            },
+
+                            {
+                                title: 'So Many Coins!',
+                                description: 'Swap between 900 + supported cryptocurrencies including all major coins and tokens.',
+                                icon: <Link2 className="w-8 h-8 sm:w-10 sm:h-10" />,
+                                color: 'from-teal-700 to-purple-700'
+                            },
+
+                        ].map((feature, index) => (
+                            <div
+                                key={index}
+                                className="group relative bg-white backdrop-blur-sm border border-gray-200 rounded-3xl p-8 sm:p-10 hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-3 animate-fade-in-up shadow-lg"
+                                style={{ animationDelay: `${index * 0.1}s` }}
+                            >
+                                {/* Glowing background effect */}
+                                <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
+
+                                <div className="relative z-10">
+                                    <div className={`p-4 sm:p-5 rounded-2xl bg-gradient-to-r ${feature.color} w-fit mb-6 sm:mb-8 group-hover:scale-110 transition-transform duration-300 mx-auto`}>
+                                        <div className="text-white">
+                                            {feature.icon}
+                                        </div>
+                                    </div>
+                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 group-hover:text-teal-700 transition-colors duration-300 text-center">
+                                        {feature.title}
+                                    </h3>
+                                    <p className="text-base sm:text-lg text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed text-center">
+                                        {feature.description}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
 
                 {/* How It Works - Clean Design */}

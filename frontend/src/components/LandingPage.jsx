@@ -204,7 +204,7 @@ export default function LandingPage() {
       contact: "Email",
       action: "mailto:support@ghostdevlabs.com",
       color: "from-teal-400 to-blue-500"
-    }, 
+    },
     {
       title: "Team Up",
       description: "You want it? lets build a portal to it",
@@ -390,7 +390,7 @@ export default function LandingPage() {
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
-                <KaspaIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+                <KaspaIcon size={500} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
               </div>
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Kaspa</h3>
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
