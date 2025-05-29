@@ -6,10 +6,9 @@ import DiscordIcon from './DiscordIcon';
 
 const EnhancedFooter = () => {
     const socialLinks = [
-        { name: "Twitter", icon: <Twitter size={20} />, href: "https://x.com/kas_portal", ariaLabel: "Follow us on Twitter" },
-        { name: "GitHub", icon: <Github size={20} />, href: "https://github.com/GhostDevs", ariaLabel: "View our GitHub" },
-        { name: "Discord", icon: <DiscordIcon size={20} />, href: "https://discord.gg/kaspa", ariaLabel: "Join our Discord server" },
-        { name: "Telegram", icon: <Send size={20} />, href: "https://t.me/+ogluJ3Srnr83MmJh", ariaLabel: "Join our Telegram group" }
+        { name: "Telegram", icon: <Send size={22} />, href: "https://t.me/+ogluJ3Srnr83MmJh", ariaLabel: "Join our Telegram group" },
+        { name: "Twitter", icon: <Twitter size={22} />, href: "https://x.com/kas_portal", ariaLabel: "Follow us on Twitter" },
+        { name: "GitHub", icon: <Github size={22} />, href: "https://github.com/GhostDevs", ariaLabel: "View our GitHub" }
     ];
 
     return (
@@ -22,12 +21,15 @@ const EnhancedFooter = () => {
                     <span className="text-2xl font-bold text-[var(--accent-primary)]">Kasportal</span>
                     <div className="ml-2 h-4 w-4 rounded-full bg-[var(--accent-primary)]/20 group-hover:bg-[var(--accent-primary)]/40 transition-all duration-300"></div>
                 </div>
-
-                <nav className="flex flex-wrap justify-center gap-8" aria-label="Footer navigation">
+                <div className="mt-12 text-center text-sm text-[var(--text-secondary)]">
+                     <div>&nbsp;</div>
+                     <p>© {new Date().getFullYear()} <a href="https://ghostdevlabs.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-primary)] transition-colors duration-300">Ghost Devs</a>. All rights reserved.</p>
+                 </div>
+                {/*<nav className="flex flex-wrap justify-center gap-8" aria-label="Footer navigation">
                     <a href="#features" className="hover:text-[var(--accent-primary)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--accent-primary)] after:transition-all hover:after:w-full">Features</a>
                     <a href="#roadmap" className="hover:text-[var(--accent-primary)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--accent-primary)] after:transition-all hover:after:w-full">Roadmap</a>
                     <a href="https://kaspa.org" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-primary)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--accent-primary)] after:transition-all hover:after:w-full">Kaspa.org</a>
-                </nav>
+                </nav>*/}
 
                 <div className="flex space-x-6">
                     {socialLinks.map((link) => (
@@ -46,10 +48,7 @@ const EnhancedFooter = () => {
                 </div>
             </div>
 
-            <div className="mt-12 text-center text-sm text-[var(--text-secondary)]">
-                <p>© {new Date().getFullYear()} Ghost Devs. All rights reserved.</p>
-                <p className="mt-1">Not affiliated with the Kaspa Foundation.</p>
-            </div>
+            
         </footer>
     );
 };

@@ -144,10 +144,10 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                         ))}
                     </div>
 
-                    {/* Right side elements */}
+                    {/* {/* Right side elements *
                     <div className="flex items-center gap-4">
                         <ThemeSwitcher className="mr-4 z-[1000]" dropdownPosition="bottom" />
-                    </div>
+                    </div> */}
                 </div>
             </nav>
 

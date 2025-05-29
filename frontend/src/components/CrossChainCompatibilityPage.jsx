@@ -121,8 +121,8 @@ const CrossChainCompatibilityPage = () => {
                 'Wide user adoption'
             ],
             steps: [
-                'Connect your Venmo account',
-                'Select cryptocurrency to purchase',
+                'Hit the crypto button on mobile',
+                'Select cryptocurrency to reci',
                 'Send payment via Venmo',
                 'Receive crypto instantly'
             ]
@@ -230,11 +230,11 @@ const CrossChainCompatibilityPage = () => {
                 {/* Page Header - Enhanced Typography */}
                 <div className="mb-24 text-center">
                     <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-8 animate-fade-in-up leading-tight">
-                        Cross Chain Compatibility
+                        Move Crypto Between Any Blockchain
                     </h1>
                     <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto animate-fade-in-up-delay px-4 leading-relaxed font-medium">
-                        Bridge the gap between blockchains with our revolutionary cross-chain infrastructure.
-                        Seamlessly transfer assets across multiple networks with enterprise-grade security.
+                        Transfer your assets across Ethereum, Bitcoin, Solana, and 50+ other networks. 
+                        One platform, every blockchain.
                     </p>
                 </div>
 
@@ -384,7 +384,7 @@ const CrossChainCompatibilityPage = () => {
                             {
                                 step: '01',
                                 title: 'Select Cryptocurrencies',
-                                description: 'Choose your source and destination cryptocurrencies from our supported list.',
+                                description: 'Choose your source and destination wallet, from cryptocurrencies in our supported list.',
                                 color: 'from-teal-500 to-blue-600'
                             },
                             {
@@ -396,7 +396,7 @@ const CrossChainCompatibilityPage = () => {
                             {
                                 step: '03',
                                 title: 'Direct Transfer',
-                                description: 'Your exchanged cryptocurrency is transferred directly to your wallet.',
+                                description: 'Your exchanged cryptocurrency is transferred directly to your wallet --> from your wallet. You hold and control your funds.',
                                 color: 'from-teal-400 to-purple-500'
                             }
                         ].map((step, index) => (
@@ -427,7 +427,7 @@ const CrossChainCompatibilityPage = () => {
                 <section className="text-center py-16 sm:py-24">
                     <div className="relative px-4">
                         <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-8 animate-fade-in-up">
-                            Ready to Bridge the Future?
+                            Ready to Swap?
                         </h2>
                         <p className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-in-up-delay font-medium leading-relaxed">
 

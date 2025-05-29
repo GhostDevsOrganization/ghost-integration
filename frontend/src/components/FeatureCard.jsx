@@ -52,10 +52,12 @@ const FeatureCard = ({ icon, title, description, route, color, comingSoon, delay
                 <h3 className="text-xl font-bold text-[var(--text-primary)] mb-4 group-hover:text-[var(--accent-primary)] transition-colors duration-300">
                     {title}
                     {comingSoon && (
-                        <span className="ml-2 px-2 py-1 text-xs bg-gradient-to-r from-[var(--accent-primary)]/20 to-[var(--accent-secondary)]/20 text-[var(--accent-primary)] rounded-full border border-[var(--accent-primary)]/30 backdrop-blur-sm">
-                            Coming Soon
-                        </span>
-                    )}
+        <div className="mt-4">
+          <span className="inline-block px-3 py-1 text-sm bg-yellow-100 text-yellow-800 rounded-full">
+            Coming Soon
+          </span>
+        </div>
+      )}
                 </h3>
                 <p className="text-[var(--text-secondary)] group-hover:text-[var(--text-tertiary)] transition-colors duration-300 leading-relaxed font-medium">
                     {description}
