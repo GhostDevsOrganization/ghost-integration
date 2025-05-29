@@ -60,13 +60,13 @@ export default function LandingPage() {
     {
       title: "Token Swapping",
       route: "/features/token-swapping",
-      description: "Advanced cross-chain token swap aggregation.",
+      description: "Cross-chain token exchanges with best-rate routing and minimal fees through our advanced swap aggregator.",
       icon: <SwapIcon size={24} className="drop-shadow-lg" />,
       color: "from-teal-500 to-purple-500"
     },
     {
       title: "Cross-Chain Support",
-      route: "/features/cross-chain",
+      route: "/features/cross-chain-compatibility",
       description: "Unified wallet management system enabling simultaneous control of multiple blockchain assets with enterprise-grade security.",
       icon: <WalletIcon size={24} className="drop-shadow-lg" />,
       comingSoon: true,
@@ -75,7 +75,7 @@ export default function LandingPage() {
     {
       title: "Learn",
       route: "/learn",
-      description: "Educational platform exploring Kaspa's revolutionary BlockDAG architecture and Projects.",
+      description: "Comprehensive educational platform exploring Kaspa's revolutionary BlockDAG architecture and cutting-edge innovations.",
       icon: <LearnIcon size={24} className="drop-shadow-lg" />,
       color: "from-teal-600 to-purple-700"
     }
@@ -150,7 +150,7 @@ export default function LandingPage() {
     {
       phase: "Q2 2025",
       title: "Payment Gateway Launch",
-      description: "Apple Pay, Visa, and Mastercard integration. simple crypto purchases with tradfi payment methods.",
+      description: "Apple Pay, Visa, and Mastercard integration goes live. One-click crypto purchases with traditional payment methods.",
       icon: <PaymentIcon size={32} className="text-teal-400 drop-shadow-xl" />,
       color: "from-teal-400 to-purple-600",
       delay: "0s"
@@ -158,7 +158,7 @@ export default function LandingPage() {
     {
       phase: "Q3 2025",
       title: "Mobile App Release",
-      description: "Mobile app to simplify your portal to crypto and seamless swapping.",
+      description: "Full-featured mobile app with instant on-ramping, portfolio management, and seamless swapping.",
       icon: <MobileIcon size={32} className="text-purple-400 drop-shadow-xl" />,
       color: "from-teal-500 to-purple-500",
       delay: "0.2s"
@@ -173,8 +173,8 @@ export default function LandingPage() {
     },
     {
       phase: "Q1 2026",
-      title: "NFT Expansion",
-      description: " Launch portal to new worlds of NFT Projects and possibilitys.",
+      title: "AI NFT Ecosystem",
+      description: "Machine learning NFTs and token-bound NFT platform goes live with full marketplace integration.",
       icon: <AIIcon size={32} className="text-pink-400 drop-shadow-xl" />,
       color: "from-teal-600 to-purple-700",
       delay: "0.6s"
@@ -183,34 +183,34 @@ export default function LandingPage() {
 
   const contactMethods = [
     {
-      title: "Get in touch",
-      description: "Help with technical issues, account questions, or general inquiries",
+      title: "Email Support",
+      description: "Get help with technical issues, account questions, or general inquiries",
       icon: <EmailIcon size={32} className="text-teal-400 drop-shadow-xl" />,
-      contact: "support@ghostdevlabs.com",
+      contact: "support@ghost",
       action: "mailto:support@ghost",
       color: "from-teal-400 to-blue-500"
     },
     {
       title: "Follow on X",
-      description: "Stay updated with the latest news and announcements",
+      description: "Stay updated with the latest news, announcements, and community updates",
       icon: <TwitterIcon size={32} className="text-blue-400 drop-shadow-xl" />,
-      contact: "@Kasportal",
-      action: "https://x.com/kasportal",
+      contact: "@kas_portal",
+      action: "https://x.com/kas_portal",
       color: "from-blue-400 to-indigo-500"
     },
     {
       title: "Community Telegram",
-      description: "join us for real-time discussions and updates on projects",
+      description: "Join our vibrant community for real-time discussions and updates",
       icon: <TelegramIcon size={32} className="text-purple-400 drop-shadow-xl" />,
       contact: "Join Telegram",
       action: "https://t.me/+ogluJ3Srnr83MmJh",
       color: "from-teal-500 to-purple-500"
     },
     {
-      title: "Partner with us",
-      description: "You want it? lets build a portal to it",
+      title: "Business Inquiries",
+      description: "Partnership opportunities and enterprise solutions",
       icon: <BusinessIcon size={32} className="text-indigo-400 drop-shadow-xl" />,
-      contact: "support@ghostdevlabs.com",
+      contact: "business@ghost",
       action: "mailto:business@ghost",
       color: "from-teal-600 to-purple-700"
     }
@@ -317,10 +317,10 @@ export default function LandingPage() {
                   Kasportal
                 </h1>
                 <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-transparent bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text mb-4 sm:mb-6 animate-fade-in-up drop-shadow-lg relative z-10 leading-normal font-medium overflow-visible py-1">
-                  Seamless Finance. On-Chain and Beyond.
+                  Seamless Finance. On-Chain and Off.
                 </p>
                 <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 sm:mb-10 animate-fade-in-up-delay backdrop-blur-sm relative z-10 leading-relaxed px-2 sm:px-0 text-gray-600 font-medium overflow-visible">
-                  Portaling traditional payment systems with blockchain technology to make crypto accessible to everyone
+                  Bridging traditional payment systems with blockchain technology. From Apple Pay to smart contract utilities, we're making crypto accessible to everyone
                 </p>
 
                 <button
@@ -360,7 +360,7 @@ export default function LandingPage() {
               Core Features
             </h2>
             <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Swap - Learn - Explore 
+              Explore our comprehensive suite of blockchain tools and services
             </p>
           </div>
 
@@ -387,7 +387,7 @@ export default function LandingPage() {
               Development Roadmap
             </h2>
             <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              Our journey to fully decentralized finance
+              Our journey to revolutionize decentralized finance
             </p>
           </div>
 
@@ -415,7 +415,7 @@ export default function LandingPage() {
               Seamless Payment Integration
             </h2>
             <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto animate-fade-in-up-delay leading-relaxed text-gray-600 font-medium">
-              Buy crypto with the payment methods you use every day
+              Buy crypto with the payment methods you already use every day
             </p>
           </div>
 
@@ -463,7 +463,7 @@ export default function LandingPage() {
               </span>
             </div>
             <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto animate-fade-in-up-delay leading-relaxed text-gray-600 font-medium">
-              Follow alongs as we build fiat compatability - Expected launch Q2 2025.
+              Track our progress building the future of mobile DeFi with KAS Coin integration, Apple Pay, Visa, and Mastercard support. Expected launch Q3 2025.
             </p>
           </div>
 
@@ -485,7 +485,7 @@ export default function LandingPage() {
               Get in Touch
             </h2>
             <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
-              We're here to help you navigate the transition from centralized finance
+              We're here to help you navigate the future of decentralized finance
             </p>
           </div>
 
