@@ -98,9 +98,11 @@ export default function EnhancedIPhoneMockup() {
                         </button>
 
                         <div className="w-24 h-24 bg-white rounded-xl p-2">
-                            <div className="w-full h-full bg-black rounded-lg flex items-center justify-center text-xs font-mono">
-                                QR CODE
-                            </div>
+                            <img 
+                                src="/images/KASQR.svg" 
+                                alt="Kasportal QR Code" 
+                                className="w-full h-full"
+                            />
                         </div>
                     </div>
                 </div>
