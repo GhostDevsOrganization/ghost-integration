@@ -27,7 +27,7 @@ import {
 import TwitterIcon from './TwitterIcon';
 import TelegramIcon from './TelegramIcon';
 import {
-  ApplePayIcon,
+  KaspaIcon,
   VisaIcon,
   MastercardIcon,
   MobileWalletIcon
@@ -64,7 +64,7 @@ export default function LandingPage() {
       icon: <SwapIcon size={24} className="drop-shadow-lg" />,
       color: "from-teal-500 to-purple-500"
     },
-    
+
     {
       title: "Learn",
       route: "/learn",
@@ -72,13 +72,13 @@ export default function LandingPage() {
       icon: <LearnIcon size={24} className="drop-shadow-lg" />,
       color: "from-teal-600 to-purple-700"
     },
-    {      
+    {
       title: "Explore",
       route: "/portal",
       description: "Our interactive portal. \n Discover the future of blockchain technology.",
       icon: <WalletIcon size={24} className="drop-shadow-lg" />,
       comingSoon: false,
-      color: "from-teal-400 to-purple-600" 
+      color: "from-teal-400 to-purple-600"
     }
   ];
 
@@ -145,7 +145,7 @@ export default function LandingPage() {
       status: 'Coming Q2 2025',
       gradient: 'from-red-400 to-pink-500'
     }
-  ];  const roadmapPhases = [
+  ]; const roadmapPhases = [
     {
       phase: "Q2 2025",
       title: "Payment Gateway Launch",
@@ -316,7 +316,7 @@ export default function LandingPage() {
                   Kasportal
                 </h1>
                 <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-transparent bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text mb-4 sm:mb-6 animate-fade-in-up drop-shadow-lg relative z-10 leading-normal font-medium overflow-visible py-1">
-                   Crypto Exploration. On-Chain and Beyond.
+                  Crypto Exploration. On-Chain and Beyond.
                 </p>
                 <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 sm:mb-10 animate-fade-in-up-delay backdrop-blur-sm relative z-10 leading-relaxed px-2 sm:px-0 text-gray-600 font-medium overflow-visible">
                   Your portal from traditional finance to blockchain technology, making crypto accessible to everyone
@@ -349,7 +349,7 @@ export default function LandingPage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">
               Core Features
             </h2>
-             <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
+            <p className="text-xl sm:text-2xl lg:text-3xl max-w-4xl mx-auto text-gray-600 font-medium">
               Send, Swap, Discover
             </p>
           </div>
@@ -390,9 +390,9 @@ export default function LandingPage() {
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
-                <ApplePayIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+                <KaspaIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
               </div>
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Apple Pay</h3>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Kaspa</h3>
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
@@ -409,7 +409,7 @@ export default function LandingPage() {
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Mastercard</h3>
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
             </div>
-            
+
           </div>
 
           <div className="relative bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-200 mx-4 shadow-xl hover:shadow-2xl transition-all duration-500">

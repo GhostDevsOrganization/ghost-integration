@@ -18,25 +18,26 @@ export default function EnhancedIPhoneMockup() {
     }, []);
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-                {/* iPhone Mockup Column */}
-                <div className="flex justify-center">
-                    <div className={`relative group ${shouldAnimate ? 'animate-float' : ''}`}>
-                        {/* Glow effect */}
-                        <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/20 to-teal-500/20 rounded-[60px] blur-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="flex items-center justify-center p-8 overflow-hidden relative">
+            {/* Main content */}
+            <div className="relative z-10 flex flex-col lg:flex-row items-center gap-16 max-w-7xl mx-auto">
+                {/* iPhone Mockup */}
+                <div className={`relative group ${shouldAnimate ? 'animate-float' : ''}`}>
+                    
+                    {/* Glow effect - changed to black */}
+                    <div className="absolute -inset-4 bg-black/20 rounded-[60px] blur-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-500" />
 
-                        {/* iPhone Frame */}
-                        <div className="relative w-[380px] h-[780px] bg-[#1a1a1a] rounded-[50px] p-3 shadow-2xl transform transition-transform duration-300 group-hover:scale-[1.02]">
-                            {/* Inner bezel */}
-                            <div className="absolute inset-[2px] bg-[#2a2a2a] rounded-[48px]" />
-                            <div className="absolute inset-[4px] bg-[#1a1a1a] rounded-[46px]" />
+                    {/* iPhone Frame - all black */}
+                    <div className="relative w-[380px] h-[780px] bg-black rounded-[50px] p-3 shadow-2xl transform transition-transform duration-300 group-hover:scale-[1.02]">
+                        {/* Inner bezel - all black */}
+                        <div className="absolute inset-[2px] bg-black rounded-[48px]" />
+                        <div className="absolute inset-[4px] bg-black rounded-[46px]" />
 
-                            {/* Screen */}
-                            <div className="relative w-full h-full bg-black rounded-[38px] overflow-hidden">
-                                {/* Notch */}
-                                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[210px] h-[30px] bg-[#1a1a1a] rounded-b-[20px] z-[100]" />
-
+                        {/* Screen */}
+                        <div className="relative w-full h-full bg-black rounded-[38px] overflow-hidden">
+                            {/* Notch - changed to pure black */}
+                            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[210px] h-[30px] bg-black rounded-b-[20px] z-[100]" />
+                        
                                 {/* Status Bar */}
                                 <div className="absolute top-0 left-0 right-0 h-11 flex justify-between items-center px-8 z-[99] text-white text-sm font-medium">
                                     <div>{new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
@@ -47,25 +48,25 @@ export default function EnhancedIPhoneMockup() {
                                     </div>
                                 </div>
 
-                                {/* Clean Phone Screen with Your SVG */}
-                                <div className="w-full h-full rounded-xl pt-11 flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-800">
-                                    <div className="flex items-center justify-center w-full h-full">
-                                        {/* Your SVG will be integrated here */}
-                                        <img
-                                            src="/images/kasportal-app-screenshot.png"
-                                            alt="Kasportal App Screenshot"
-                                            className="w-64 h-auto max-w-full rounded-lg drop-shadow-2xl opacity-90 hover:opacity-100 transition-opacity duration-500"
-                                        />
-                                    </div>
+                            {/* Clean Phone Screen with Your SVG */}
+                            <div className="w-full h-full rounded-xl pt-11 flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-800">
+                                <div className="flex items-center justify-center w-full h-full">
+                                    {/* Display the uploaded image */}
+                                    <img
+                                        src="/images/photo_2025-05-29_09-55-50.jpg"
+                                        alt="Kasportal App Enhanced"
+                                        className="w-64 h-auto max-w-full rounded-lg drop-shadow-2xl opacity-90 hover:opacity-100 transition-opacity duration-500"
+                                    />
+
                                 </div>
                             </div>
 
-                            {/* Physical buttons */}
-                            <div className="absolute top-32 -left-1 w-1 h-16 bg-[#2a2a2a] rounded-l-lg" />
-                            <div className="absolute top-52 -left-1 w-1 h-12 bg-[#2a2a2a] rounded-l-lg" />
-                            <div className="absolute top-72 -left-1 w-1 h-12 bg-[#2a2a2a] rounded-l-lg" />
-                            <div className="absolute top-44 -right-1 w-1 h-20 bg-[#2a2a2a] rounded-r-lg" />
-                        </div>
+                        {/* Physical buttons - all black */}
+                        <div className="absolute top-32 -left-1 w-1 h-16 bg-black rounded-l-lg" />
+                        <div className="absolute top-52 -left-1 w-1 h-12 bg-black rounded-l-lg" />
+                        <div className="absolute top-72 -left-1 w-1 h-12 bg-black rounded-l-lg" />
+                        <div className="absolute top-44 -right-1 w-1 h-20 bg-black rounded-r-lg" />
+
                     </div>
                 </div>
 
@@ -74,7 +75,7 @@ export default function EnhancedIPhoneMockup() {
                     <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text text-transparent">
                         Kaspa, Mobile
                     </h1>
-                    
+
                     <div className="flex flex-wrap gap-3 mb-8 justify-center lg:justify-start">
                         <div className="px-4 py-2 text-gray-600 bg-white/5 border border-white/20 rounded-full text-sm flex items-center gap-2 hover:bg-white/10 transition-all duration-300 text-gray-300">
                             <span>⚡</span> Instant

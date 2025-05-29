@@ -1,27 +1,56 @@
 import React from 'react';
 
-// Apple Pay Icon - Brand accurate design
-export const ApplePayIcon = ({ size = 32, className = "" }) => (
-    <svg width={size} height={size} viewBox="0 0 48 32" fill="none" className={className}>
-        <rect width="48" height="32" rx="6" fill="#000000" />
-        <g transform="translate(8, 8)">
-            {/* Apple logo */}
-            <path d="M8.5 2.5c0-1.1.9-2 2-2 .7 0 1.3.4 1.7.9.3.4.5.9.5 1.4 0 .1 0 .2-.1.2-.9.1-1.8-.5-2.1-1.3-.2-.4-.3-.8-.3-1.2 0-.1 0-.1.3 0z" fill="white" />
-            <path d="M13.2 6.8c-.8-.9-1.9-1.4-3.1-1.4-1.5 0-2.7.9-3.4.9-.7 0-1.8-.9-3-.9-1.5 0-2.9.9-3.7 2.3-1.6 2.8-.4 6.9 1.1 9.2.7 1.1 1.6 2.4 2.7 2.4 1.1 0 1.4-.7 2.7-.7 1.3 0 1.5.7 2.7.7 1.1 0 1.9-1.2 2.6-2.3.5-.7.9-1.5 1.1-2.3 0-.1-.1-.1-.1-.1-2.2-.8-2.2-3.8 0-4.6.1-.1.1-.2 0-.2z" fill="white" />
-        </g>
-        <text x="24" y="22" fontSize="8" fill="white" fontFamily="Arial, sans-serif" fontWeight="500">Pay</text>
+// Venmo Icon - Transparent design based on provided image
+export const VenmoIcon = ({ size = 32, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 120 40" fill="none" className={className}>
+        {/* Venmo text with blue gradient */}
+        <text x="10" y="30" fontSize="24" fontFamily="Arial, sans-serif" fontWeight="bold" fill="url(#venmoGradient)">
+            venmo
+        </text>
+        <defs>
+            <linearGradient id="venmoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#1E90FF" />
+                <stop offset="50%" stopColor="#0080FF" />
+                <stop offset="100%" stopColor="#0066CC" />
+            </linearGradient>
+        </defs>
     </svg>
 );
 
-// Visa Icon - Brand accurate design
+// Kaspa Icon - Transparent design with teal circle and white arrows
+export const KaspaIcon = ({ size = 32, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 80 40" fill="none" className={className}>
+        {/* Teal circular background */}
+        <circle cx="20" cy="20" r="16" fill="#4FD1C7" />
+
+        {/* White arrow symbols inside circle */}
+        <g transform="translate(20, 20)">
+            {/* Right-pointing arrow */}
+            <path d="M-4 -6 L4 0 L-4 6 L-2 6 L6 0 L-2 -6 Z" fill="white" />
+            {/* Left-pointing arrow overlay */}
+            <path d="M4 -4 L-2 0 L4 4 L2 4 L-4 0 L2 -4 Z" fill="white" opacity="0.8" />
+        </g>
+
+        {/* Kaspa text */}
+        <text x="45" y="26" fontSize="16" fill="#2D3748" fontFamily="Arial, sans-serif" fontWeight="600">
+            Kaspa
+        </text>
+    </svg>
+);
+
+// Visa Icon - Transparent design with blue VISA text
 export const VisaIcon = ({ size = 32, className = "" }) => (
-    <svg width={size} height={size} viewBox="0 0 48 32" fill="none" className={className}>
-        <rect width="48" height="32" rx="6" fill="#1A1F71" />
-        <g transform="translate(6, 10)">
-            <path d="M14.5 0L11.8 12h-2.4L7.8 3.2c-.2-.7-.3-1-.8-1.3C6.4 1.5 5.5 1.1 4.5.8L4.7 0h4.1c.5 0 1 .4 1.1.9L11.3 8l2.8-8h2.4z" fill="white" />
-            <path d="M21.8 0L19.6 12h-2.3L19.5 0h2.3z" fill="white" />
-            <path d="M28.5 3.2c0-.5.4-.9.9-.9.8 0 1.4.2 1.9.4l.3-2.1C31.1.4 30.3.2 29.4.2c-2.3 0-3.9 1.2-3.9 2.9 0 1.3 1.1 2 2 2.4.9.5 1.2.8 1.2 1.2 0 .6-.7.9-1.4.9-.9 0-1.8-.2-2.6-.6l-.4 2.1c.6.3 1.7.5 2.8.5 2.4 0 4-1.2 4-3 0-2.3-3.2-2.4-3.2-3.4z" fill="white" />
-            <path d="M36 0c-.5 0-.9.3-1.1.8L31.5 12h2.4l.5-1.3h2.9l.3 1.3H40L38.4 0H36zm-.4 3.2l.7 4.5h-1.9l1.2-4.5z" fill="white" />
+    <svg width={size} height={size} viewBox="0 0 100 40" fill="none" className={className}>
+        {/* VISA text in blue */}
+        <g transform="translate(10, 8)">
+            {/* V */}
+            <path d="M0 0 L6 0 L12 24 L18 0 L24 0 L15 32 L9 32 Z" fill="#1434CB" />
+            {/* I */}
+            <path d="M26 0 L32 0 L32 32 L26 32 Z" fill="#1434CB" />
+            {/* S */}
+            <path d="M36 0 L60 0 L60 6 L42 6 L42 11 L58 11 L58 17 L42 17 L42 26 L60 26 L60 32 L36 32 Z" fill="#1434CB" />
+            {/* A */}
+            <path d="M64 0 L70 0 L84 32 L78 32 L75 24 L67 24 L64 32 L58 32 Z M69 18 L73 18 L71 12 Z" fill="#1434CB" />
         </g>
     </svg>
 );
@@ -114,7 +143,8 @@ export const PaymentCard = ({ icon, title, status, gradient, delay = 0 }) => (
 );
 
 export default {
-    ApplePayIcon,
+    VenmoIcon,
+    KaspaIcon,
     VisaIcon,
     MastercardIcon,
     MobileWalletIcon,

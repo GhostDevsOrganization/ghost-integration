@@ -15,7 +15,6 @@ const CrossChainCompatibilityPage = () => {
     const [activeProtocol, setActiveProtocol] = useState('crosschain');
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [scrollY, setScrollY] = useState(0);
-    const [activePaymentMethod, setActivePaymentMethod] = useState('venmo');
 
     // Define navigation protocols
     const protocols = [
@@ -53,15 +52,7 @@ const CrossChainCompatibilityPage = () => {
             features: ['Smart Contracts', 'DeFi Ecosystem', 'NFT Support'],
             icon: EthereumIcon
         },
-        {
-            name: 'Binance Smart Chain',
-            symbol: 'BSC',
-            description: 'Fast and low-cost alternative to Ethereum',
-            status: 'live',
-            color: 'from-yellow-400 to-orange-500',
-            features: ['Low Fees', 'Fast Transactions', 'EVM Compatible'],
-            icon: BNBIcon
-        },
+
         {
             name: 'Polygon',
             symbol: 'MATIC',
@@ -79,7 +70,17 @@ const CrossChainCompatibilityPage = () => {
             color: 'from-green-400 to-teal-500',
             features: ['High Performance'],
             icon: SolanaIcon
+        },
+        {
+            name: 'So many more',
+            symbol: '',
+            description: 'Fully compatible with Ethereum and other EVM chains',
+            status: 'live',
+            color: 'from-yellow-400 to-orange-500',
+            features: ['Low Fees', 'Fast Transactions', 'EVM Compatible'],
+            icon: BNBIcon
         }
+
     ];
 
     const bridgeFeatures = [
@@ -109,58 +110,11 @@ const CrossChainCompatibilityPage = () => {
         }
     ];
 
-    const paymentMethods = {
-        venmo: {
-            name: 'Venmo',
-            icon: <Smartphone className="w-6 h-6" />,
-            color: 'from-blue-500 to-purple-600',
-            benefits: [
-                'Instant peer-to-peer transfers',
-                'Social payment features',
-                'Mobile-first experience',
-                'Wide user adoption'
-            ],
-            steps: [
-                'Hit the crypto button on mobile',
-                'Select cryptocurrency to reci',
-                'Send payment via Venmo',
-                'Receive crypto instantly'
-            ]
-        },
-        cashapp: {
-            name: 'Cash App',
-            icon: <DollarSign className="w-6 h-6" />,
-            color: 'from-green-500 to-emerald-600',
-            benefits: [
-                'Built-in Bitcoin support',
-                'Instant transfers',
-                'Stock investment integration',
-                'Cash Card compatibility'
-            ],
-            steps: [
-                'Link your Cash App account',
-                'Choose your crypto asset',
-                'Complete payment via Cash App',
-                'Assets transferred to wallet'
-            ]
-        },
-        paypal: {
-            name: 'PayPal',
-            icon: <CreditCard className="w-6 h-6" />,
-            color: 'from-blue-600 to-indigo-700',
-            benefits: [
-                'Global payment acceptance',
-                'Buyer protection',
-                'Multiple funding sources',
-                'Established trust network'
-            ],
-            steps: [
-                'Authorize PayPal connection',
-                'Select desired cryptocurrency',
-                'Process payment securely',
-                'Crypto delivered to your wallet'
-            ]
-        }
+    // Payment app icons for reference
+    const paymentAppIcons = {
+        venmo: <Smartphone className="w-6 h-6 text-blue-500" />,
+        cashapp: <DollarSign className="w-6 h-6 text-green-500" />,
+        paypal: <CreditCard className="w-6 h-6 text-blue-600" />
     };
 
 
@@ -230,9 +184,10 @@ const CrossChainCompatibilityPage = () => {
                 {/* Page Header - Enhanced Typography */}
                 <div className="mb-24 text-center">
                     <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-8 animate-fade-in-up leading-tight">
-                        Move Crypto Between Any Blockchain
+                        Cross Chain Compatibility
                     </h1>
                     <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto animate-fade-in-up-delay px-4 leading-relaxed font-medium">
+
                         Transfer your assets across Ethereum, Bitcoin, Solana, and 50+ other networks. 
                         One platform, every blockchain.
                     </p>
@@ -245,62 +200,76 @@ const CrossChainCompatibilityPage = () => {
                             Digital Payment Integrations
                         </h2>
                         <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up-delay px-4 font-medium">
-                            Buy cryptocurrency directly with your favorite payment apps. Fast, secure, and convenient.
+                            Buy cryptocurrency directly with your favorite payment apps
                         </p>
                     </div>
 
-                    {/* Payment Method Tabs */}
+                    {/* Payment Apps Icons */}
                     <div className="flex justify-center mb-12">
-                        <div className="bg-white backdrop-blur-sm border border-gray-200 rounded-2xl p-3 flex gap-3 shadow-lg">
-                            {Object.entries(paymentMethods).map(([key, method]) => (
-                                <button
-                                    key={key}
-                                    onClick={() => setActivePaymentMethod(key)}
-                                    className={`flex items-center gap-3 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${activePaymentMethod === key
-                                        ? `bg-gradient-to-r ${method.color} text-white shadow-lg`
-                                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                                        }`}
-                                >
-                                    {method.icon}
-                                    {method.name}
-                                </button>
-                            ))}
+                        <div className="bg-white backdrop-blur-sm border border-gray-200 rounded-2xl p-4 flex gap-6 shadow-lg">
+                            <div className="flex items-center gap-3 px-6 py-3">
+                                <Smartphone className="w-6 h-6 text-blue-500" />
+                                <span className="font-semibold text-gray-800">Venmo</span>
+                            </div>
+                            <div className="flex items-center gap-3 px-6 py-3">
+                                <DollarSign className="w-6 h-6 text-green-500" />
+                                <span className="font-semibold text-gray-800">Cash App</span>
+                            </div>
+                            <div className="flex items-center gap-3 px-6 py-3">
+                                <CreditCard className="w-6 h-6 text-blue-600" />
+                                <span className="font-semibold text-gray-800">PayPal</span>
+                            </div>
                         </div>
                     </div>
 
-                    {/* Active Payment Method Display */}
+                    {/* How It Works - Unified */}
                     <div className="bg-white backdrop-blur-sm border border-gray-200 rounded-3xl p-10 hover:border-teal-300 hover:shadow-xl transition-all duration-500 shadow-lg">
-                        <div className="grid md:grid-cols-2 gap-10">
-                            {/* Benefits */}
+                        <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">How It Works</h3>
+                        <div className="grid md:grid-cols-2 gap-12">
                             <div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-4">
-                                    <div className={`p-3 rounded-xl bg-gradient-to-r ${paymentMethods[activePaymentMethod].color}`}>
-                                        {paymentMethods[activePaymentMethod].icon}
+                                <p className="text-gray-700 text-lg mb-8 leading-relaxed">
+                                    Our platform integrates with popular payment apps including Venmo, Cash App, and PayPal, allowing you to easily convert your fiat currency to cryptocurrency.
+                                </p>
+                                <div className="space-y-4 mb-6">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
+                                        <span className="text-gray-700 text-lg">Load any payment app with fiat via wire transfers or cards</span>
                                     </div>
-                                    {paymentMethods[activePaymentMethod].name} Benefits
-                                </h3>
-                                <div className="space-y-4">
-                                    {paymentMethods[activePaymentMethod].benefits.map((benefit, index) => (
-                                        <div key={index} className="flex items-center gap-4">
-                                            <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
-                                            <span className="text-gray-700 text-lg">{benefit}</span>
-                                        </div>
-                                    ))}
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
+                                        <span className="text-gray-700 text-lg">Each app's crypto tab allows you to generate specific addresses</span>
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
+                                        <span className="text-gray-700 text-lg">Swap to over 900 cryptocurrencies across multiple blockchains</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            {/* Steps */}
-                            <div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-8">How It Works</h3>
-                                <div className="space-y-6">
-                                    {paymentMethods[activePaymentMethod].steps.map((step, index) => (
-                                        <div key={index} className="flex items-start gap-5">
-                                            <div className={`w-10 h-10 rounded-full bg-gradient-to-r ${paymentMethods[activePaymentMethod].color} flex items-center justify-center text-white text-lg font-bold flex-shrink-0`}>
-                                                {index + 1}
-                                            </div>
-                                            <span className="text-gray-700 pt-2 text-lg">{step}</span>
-                                        </div>
-                                    ))}
+                            <div className="space-y-6">
+                                <div className="flex items-start gap-5">
+                                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-teal-500 to-blue-600 flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+                                        1
+                                    </div>
+                                    <span className="text-gray-700 pt-2 text-lg">Open your preferred payment app (Venmo, Cash App, or PayPal)</span>
+                                </div>
+                                <div className="flex items-start gap-5">
+                                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-teal-500 to-blue-600 flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+                                        2
+                                    </div>
+                                    <span className="text-gray-700 pt-2 text-lg">Navigate to the crypto section and buy the crytpo you want start with</span>
+                                </div>
+                                <div className="flex items-start gap-5">
+                                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-teal-500 to-blue-600 flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+                                        3
+                                    </div>
+                                    <span className="text-gray-700 pt-2 text-lg">Use Kasportal to pick the coin you want to end with</span>
+                                </div>
+                                <div className="flex items-start gap-5">
+                                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-teal-500 to-blue-600 flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+                                        4
+                                    </div>
+                                    <span className="text-gray-700 pt-2 text-lg">Send your cyrpto in venmo, cash app or paypal to wherever!</span>
                                 </div>
                             </div>
                         </div>
@@ -316,7 +285,7 @@ const CrossChainCompatibilityPage = () => {
                             Supported Blockchain Networks
                         </h2>
                         <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up-delay px-4 font-medium">
-                            Connect and transfer assets across the most popular blockchain networks with ease.
+                            Connect and transfer assets across popular blockchain networks with ease
                         </p>
                     </div>
 
@@ -407,21 +376,7 @@ const CrossChainCompatibilityPage = () => {
                             >
                                 <div className={`absolute inset-0 bg-gradient-to-r ${step.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
 
-                                <div className="relative z-10 text-center">
-                                    <div className={`text-5xl sm:text-6xl font-bold bg-gradient-to-r ${step.color} bg-clip-text text-transparent mb-6 sm:mb-8`}>
-                                        {step.step}
-                                    </div>
-                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 group-hover:text-teal-700 transition-colors duration-300">
-                                        {step.title}
-                                    </h3>
-                                    <p className="text-base sm:text-lg text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed">
-                                        {step.description}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
+
 
                 {/* Call to Action */}
                 <section className="text-center py-16 sm:py-24">
