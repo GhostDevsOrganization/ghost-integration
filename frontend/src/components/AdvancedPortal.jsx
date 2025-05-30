@@ -146,26 +146,36 @@ const AdvancedPortal = () => {
             </div>
 
             <main className="relative z-10 max-w-7xl mx-auto px-4 pt-24 pb-12">
-               <div className="flex items-right gap-4">
-                    <ThemeSwitcher className="mt-6 items-right z-[1000]" dropdownPosition="bottom" />                </div>
-                <div className="text-center mb-16">
-                    <div className="flex justify-center items-center mb-8">
-                        <div className="relative">
-                            <div className="w-24 h-24 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}>
-                                <Sparkles className="w-12 h-12 text-white animate-pulse" />
+               <div className="flex justify-between items-start w-full">
+                    <div className="flex-1">
+                        {/* Empty div to balance the layout */}
+                    </div>
+                    
+                    <div className="flex-1">
+                        <div className="text-center mb-16">
+                            <div className="flex justify-center items-center mb-8">
+                                <div className="relative">
+                                    <div className="w-24 h-24 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}>
+                                        <Sparkles className="w-12 h-12 text-white animate-pulse" />
+                                    </div>
+                                    <div className="absolute inset-0 rounded-full blur-xl opacity-50 animate-pulse" style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}></div>
+                                </div>
                             </div>
-                            <div className="absolute inset-0 rounded-full blur-xl opacity-50 animate-pulse" style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}></div>
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in-up">
+                                <span style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                                    Kasportal Command Center
+                                </span>
+                            </h1>
+                            <p className="text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed animate-fade-in-up-delay" style={{ color: 'var(--text-secondary)' }}>
+                                Your gateway to the KasPortal ecosystem. Access advanced trading tools,
+                                cross-chain bridges, and comprehensive learning resources.
+                            </p>
                         </div>
                     </div>
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in-up">
-                        <span style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                            Kasportal Command Center
-                        </span>
-                    </h1>
-                    <p className="text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed animate-fade-in-up-delay" style={{ color: 'var(--text-secondary)' }}>
-                        Your gateway to the KasPortal ecosystem. Access advanced trading tools,
-                        cross-chain bridges, and comprehensive learning resources.
-                    </p>
+                    
+                    <div className="flex-1 flex justify-end">
+                        <ThemeSwitcher className="mt-6 z-[1000]" dropdownPosition="bottom" />
+                    </div>
                 </div>
 
                 {/* Quick Actions Grid */}

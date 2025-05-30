@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Link2, Zap, Shield, Globe, CheckCircle, ArrowRight, Home, Repeat, BookOpen, Wallet, CreditCard, Smartphone, DollarSign } from 'lucide-react';
+import { ArrowLeft, Link2, Zap, Shield, Globe, CheckCircle, ArrowRight, Home, Repeat, BookOpen, Wallet, CreditCard, Smartphone, DollarSign, ExternalLink, Expand, ExternalLinkIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import FuturisticNav from './FuturisticNav';
 import EnhancedFooter from './EnhancedFooter';
@@ -52,7 +52,6 @@ const CrossChainCompatibilityPage = () => {
             features: ['Smart Contracts', 'DeFi Ecosystem', 'NFT Support'],
             icon: EthereumIcon
         },
-
         {
             name: 'Polygon',
             symbol: 'MATIC',
@@ -80,7 +79,6 @@ const CrossChainCompatibilityPage = () => {
             features: ['Low Fees', 'Fast Transactions', 'EVM Compatible'],
             icon: BNBIcon
         }
-
     ];
 
     const bridgeFeatures = [
@@ -109,14 +107,6 @@ const CrossChainCompatibilityPage = () => {
             color: 'from-teal-600 to-purple-700'
         }
     ];
-
-    // Payment app icons for reference
-    const paymentAppIcons = {
-        venmo: <Smartphone className="w-6 h-6 text-blue-500" />,
-        cashapp: <DollarSign className="w-6 h-6 text-green-500" />,
-        paypal: <CreditCard className="w-6 h-6 text-blue-600" />
-    };
-
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -187,7 +177,6 @@ const CrossChainCompatibilityPage = () => {
                         Cross Chain Compatibility
                     </h1>
                     <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto animate-fade-in-up-delay px-4 leading-relaxed font-medium">
-
                         Transfer your assets across Ethereum, Bitcoin, Solana, and 50+ other networks. 
                         One platform, every blockchain.
                     </p>
@@ -257,7 +246,7 @@ const CrossChainCompatibilityPage = () => {
                                     <div className="w-10 h-10 rounded-full bg-gradient-to-r from-teal-500 to-blue-600 flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
                                         2
                                     </div>
-                                    <span className="text-gray-700 pt-2 text-lg">Navigate to the crypto section and buy the crytpo you want start with</span>
+                                    <span className="text-gray-700 pt-2 text-lg">Navigate to the crypto section and buy the crypto you want to start with</span>
                                 </div>
                                 <div className="flex items-start gap-5">
                                     <div className="w-10 h-10 rounded-full bg-gradient-to-r from-teal-500 to-blue-600 flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
@@ -398,20 +387,26 @@ const CrossChainCompatibilityPage = () => {
                         <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-8 animate-fade-in-up">
                             Ready to Swap?
                         </h2>
-                        <p className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-in-up-delay font-medium leading-relaxed">
-
-                        </p>
-                        <Link
-                            to="/portal/interdimensional"
-                            className="group relative inline-flex items-center gap-4 px-12 sm:px-16 py-6 sm:py-8 bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 rounded-full font-bold text-white text-xl sm:text-2xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-2 overflow-hidden"
-                        >
-                            <span className="relative z-10 flex items-center gap-">
-                                Enter Portal
-                                <ArrowRight className="w-6 h-6 sm:w-8 sm:h-8 group-hover:translate-x-2 transition-transform duration-300" />
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                            <Link
+                            to="/features/token-swapping"
+                            className="group relative inline-flex items-center gap-4 px-10 py-5 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 rounded-full font-bold text-white text-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-2 overflow-hidden"
+                            >
+                            <span className="relative z-10 flex items-center gap-4 text-white">
+                                Start Swapping
+                                <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
                             </span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                        </Link>
+                            </Link>
+                            <a
+                                href="../../learn"
+                                rel="noopener noreferrer"
+                                className="hover:text-white group relative  inline-flex items-center gap-4 px-10 py-5 bg-white border border-teal-300 rounded-full font-bold text-teal-600 text-xl hover:bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 hover:opacity-3 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-300">
+                                <span className="flex items-center gap-4">
+                                    Learn more
+                                    <ExternalLinkIcon className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                                </span>
+                             </a>
+                        </div>
                     </div>
                 </section>
             </main>
