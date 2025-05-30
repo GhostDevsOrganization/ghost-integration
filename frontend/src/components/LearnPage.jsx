@@ -750,7 +750,7 @@ const LearnPage = () => {
                                     Ready to Dive Deeper?
                                 </h2>
                                 <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in-up-delay font-medium">
-                                    We are working to simplify the blockchain— discover how it could work better for you.
+                                    We are working to simplify blockchain— discover how it could work better for you.
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                                     <Link
@@ -767,8 +767,7 @@ const LearnPage = () => {
                                         href="https://ghostdevlabs.com"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group relative inline-flex items-center gap-4 px-10 py-5 bg-white border border-teal-300 rounded-full font-bold text-teal-600 text-xl hover:bg-teal-50 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-3"
-                                    >
+                                        className="group relative inline-flex items-center gap-4 px-10 py-5 bg-white border border-teal-300 rounded-full font-bold text-teal-600 text-xl hover:bg-teal-50 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-3">
                                         <span className="flex items-center gap-4">
                                             Official Website
                                             <ExternalLink className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
