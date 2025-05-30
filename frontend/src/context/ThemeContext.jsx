@@ -141,7 +141,7 @@ export const ThemeProvider = ({ children }) => {
   // Default to 'KASPA_GREEN' theme, check localStorage
   const [currentTheme, setCurrentTheme] = useState(() => {
     const storedTheme = localStorage.getItem('colorTheme');
-    return storedTheme && THEMES[storedTheme] ? storedTheme : 'KASPA_GREEN';
+    return storedTheme && THEMES[storedTheme] ? storedTheme : 'CLEAN_WHITE';
   });
 
   // Background animation preferences

@@ -48,7 +48,7 @@ const EnhancedFooter = () => {
                 </div>
             </div>
 
-            
+
         </footer>
     );
 };

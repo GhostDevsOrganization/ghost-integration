@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import HexagonalLogo from './HexagonalLogo';
 
 export default function EnhancedIPhoneMockup() {
     const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -67,9 +66,10 @@ export default function EnhancedIPhoneMockup() {
                                 <div className="w-full h-full rounded-xl pt-11 flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-800">
                                     <div className="flex flex-col items-center justify-center w-full h-full space-y-6">
                                         {/* Hexagonal Logo */}
-                                        <HexagonalLogo
+                                        <img
+                                            src="/images/photo_2025-05-29_09-55-50-removebg-preview.png"
+                                            alt="Kasportal Logo"
                                             className="w-48 h-48 transform hover:scale-110 transition-transform duration-500"
-                                            animate={shouldAnimate}
                                         />
 
                                         {/* App Title */}

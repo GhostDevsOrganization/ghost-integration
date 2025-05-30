@@ -1,6 +1,6 @@
 import React from 'react';
 
-const KaspaIcon = ({ size = 32, className = "", glow = false }) => {
+const KaspaIcon = ({ size = 64, className = "", glow = false }) => {
     return (
         <div className={`relative ${glow ? 'animate-pulse' : ''} ${className}`} style={{ width: size, height: size }}>
             {glow && (
