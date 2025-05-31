@@ -27,7 +27,7 @@ import {
 import TwitterIcon from './TwitterIcon';
 import TelegramIcon from './TelegramIcon';
 import {
-  KaspaIcon,
+  ApplePayIcon,
   VisaIcon,
   MastercardIcon,
   MobileWalletIcon
@@ -125,7 +125,7 @@ export default function LandingPage() {
     {
       name: 'Your Wallet',
       icon: <MobileIcon size={32} className="text-teal-400 drop-shadow-xl" />,
-      status: 'Coming Q3 2025',
+      status: 'Any Wallet, Available Now',
       gradient: 'from-teal-400 to-cyan-500'
     },
     {
@@ -136,13 +136,13 @@ export default function LandingPage() {
     },
     {
       name: 'Visa',
-      icon: <PaymentIcon size={32} className="text-blue-400 drop-shadow-xl" />,
+      icon: <PaymentIcon size={50} className="text-blue-400 drop-shadow-xl" />,
       status: 'Coming Q2 2025',
       gradient: 'from-blue-400 to-indigo-500'
     },
     {
       name: 'Mastercard',
-      icon: <PaymentIcon size={32} className="text-red-400 drop-shadow-xl" />,
+      icon: <PaymentIcon size={200} className="text-red-400 drop-shadow-xl" />,
       status: 'Coming Q2 2025',
       gradient: 'from-red-400 to-pink-500'
     }
@@ -203,7 +203,7 @@ export default function LandingPage() {
     },
     {
       title: "Need Something?",
-      description: "*Technical issues or general inquiries",
+      description: "Technical issues or general inquiries",
       icon: <EmailIcon size={32} className="text-teal-400 drop-shadow-xl" />,
       contact: "Email",
       action: "mailto:support@ghostdevlabs.com",
@@ -390,26 +390,26 @@ export default function LandingPage() {
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
                 <MobileWalletIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
               </div>
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Every* Wallet</h3>
-              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium"> Your Wallet, Supported Now.  </p>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Your Wallet</h3>
+              <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium"> Every Wallet, Supported Now.  </p>
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
-                <KaspaIcon size={500} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+                <ApplePayIcon size={150} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
               </div>
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Kaspa</h3>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">ApplePay</h3>
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
-                <VisaIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+                <VisaIcon size={250} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
               </div>
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Visa</h3>
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
-                <MastercardIcon size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+                <MastercardIcon size={550} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
               </div>
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Mastercard</h3>
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>

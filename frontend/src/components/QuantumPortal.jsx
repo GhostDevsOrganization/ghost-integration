@@ -10,7 +10,7 @@ const PaymentIcons = {
     Bitcoin: ({ size = 40, glow = false }) => <BitcoinIcon size={size} glow={glow} />,
     Ethereum: ({ size = 40, glow = false }) => <EthereumIcon size={size} glow={glow} />,
     Solana: ({ size = 40, glow = false }) => <SolanaIcon size={size} glow={glow} />,
-    Visa: ({ size = 40, glow = false }) => <VisaIcon size={size} glow={glow} />,
+    Visa: ({ size = 40, glow = false }) => <VisaIcon size={100} glow={glow} />,
     Mastercard: ({ size = 40, glow = false }) => <MastercardIcon size={size} glow={glow} />,
     ApplePay: ({ size = 40, glow = false }) => <KaspaIcon size={size} glow={glow} />,
 };
@@ -279,8 +279,7 @@ export default function QuantumPortal({ onEnterPortal = () => { }, isActive = fa
                                     transform: `translate(-50%, -50%) rotateX(${startX}deg) rotateY(${startY}deg) rotateZ(${startZ}deg)`,
                                     transformStyle: 'preserve-3d',
                                     boxShadow: `0 0 ${20 - index * 2}px rgba(168, 85, 247, 0.4)`,
-                                    animation: `${10 + index * 2}s linear infinite ${index % 2 === 0 ? 'alternate' : 'alternate-reverse'}`,
-                                    animationName: `gyroscope-${index}`,
+                                    animation: `gyroscope-${index} ${10 + index * 2}s linear infinite ${index % 2 === 0 ? 'alternate' : 'alternate-reverse'}`,
                                 }}
                             />
                         );

@@ -1,20 +1,24 @@
 import React from 'react';
-
+export const ApplePayIcon = ({ size = 120, className = "", glow = false }) => (
+    <div className={`inline-flex items-center justify-center ${className}`}>
+        <img
+            src="/icons/ApplePayIcon.svg"
+            width={size}
+            height={size}
+            alt="Apple"
+        />
+    </div>
+);
 // Venmo Icon - Transparent design based on provided image
 export const VenmoIcon = ({ size = 32, className = "" }) => (
-    <svg width={size} height={size} viewBox="0 0 120 40" fill="none" className={className}>
-        {/* Venmo text with blue gradient */}
-        <text x="10" y="30" fontSize="24" fontFamily="Arial, sans-serif" fontWeight="bold" fill="url(#venmoGradient)">
-            venmo
-        </text>
-        <defs>
-            <linearGradient id="venmoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#1E90FF" />
-                <stop offset="50%" stopColor="#0080FF" />
-                <stop offset="100%" stopColor="#0066CC" />
-            </linearGradient>
-        </defs>
-    </svg>
+    <div className={`inline-flex items-center justify-center ${className}`}>
+        <img
+            src="/icons/VenmoIcon.png"
+            width={size}
+            height={size}
+            alt="Venmo"
+        />
+    </div>
 );
 
 // Kaspa Icon - Using official Kaspa SVG (Best approach)
@@ -31,56 +35,27 @@ export const KaspaIcon = ({ size = 120, className = "", glow = false }) => (
     </div>
 );
 
-// Visa Icon - Simple CSS approach (No dependencies)
+// Visa Icon
 export const VisaIcon = ({ size = 32, className = "", glow = false }) => (
-    <div
-        className={`inline-flex items-center justify-center bg-white border border-blue-200 rounded-lg font-bold text-blue-700 ${glow ? 'shadow-lg shadow-blue-500/20' : 'shadow-sm'} ${className}`}
-        style={{
-            width: size * 1.6,
-            height: size,
-            fontSize: size * 0.35
-        }}
-    >
-        VISA
+    <div>
+         <img
+            src="/icons/VisaIcon.png"
+            width={size}
+            height={size}
+            alt="Visa"
+        />
     </div>
 );
 
 // Mastercard Icon - Simple CSS approach (No dependencies)
 export const MastercardIcon = ({ size = 32, className = "", glow = false }) => (
     <div className={`inline-flex items-center justify-center ${className}`}>
-        <div
-            className={`bg-black rounded-lg flex items-center justify-center relative overflow-hidden ${glow ? 'shadow-lg' : 'shadow-sm'}`}
-            style={{ width: size * 1.6, height: size }}
-        >
-            {/* Mastercard circles */}
-            <div className="flex items-center justify-center relative">
-                <div
-                    className="bg-red-600 rounded-full absolute"
-                    style={{
-                        width: size * 0.4,
-                        height: size * 0.4,
-                        left: size * 0.1
-                    }}
-                />
-                <div
-                    className="bg-yellow-500 rounded-full absolute"
-                    style={{
-                        width: size * 0.4,
-                        height: size * 0.4,
-                        right: size * 0.1
-                    }}
-                />
-                <div
-                    className="bg-orange-500 rounded-full absolute"
-                    style={{
-                        width: size * 0.2,
-                        height: size * 0.4,
-                        left: '50%',
-                        transform: 'translateX(-50%)'
-                    }}
-                />
-            </div>
-        </div>
+         <img
+            src="/icons/MastercardIcon.png"
+            width={size}
+            height={size}
+            alt="Mastercard"
+        />
     </div>
 );
 
@@ -231,6 +206,7 @@ export const PaymentCard = ({ icon, title, status, gradient, delay = 0 }) => (
 );
 
 export default {
+    ApplePayIcon,
     VenmoIcon,
     KaspaIcon,
     VisaIcon,
