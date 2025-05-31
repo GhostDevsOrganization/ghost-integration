@@ -390,12 +390,16 @@ const CrossChainCompatibilityPage = () => {
                         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                             <Link
                             to="/features/token-swapping"
+
+
+
                             className="group relative inline-flex items-center gap-4 px-10 py-5 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 rounded-full font-bold text-white text-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-2 overflow-hidden"
                             >
                             <span className="relative z-10 flex items-center gap-4 text-white">
                                 Start Swapping
                                 <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
                             </span>
+
                             </Link>
                             <a
                                 href="../../learn"
