@@ -267,7 +267,7 @@ export default function QuantumPortal({ onEnterPortal = () => { }, isActive = fa
                         const startX = index * 15;
                         const startY = index * 25;
                         const startZ = index * 10;
-                        
+
                         return (
                             <div
                                 key={`ring-${index}`}
@@ -279,7 +279,7 @@ export default function QuantumPortal({ onEnterPortal = () => { }, isActive = fa
                                     transform: `translate(-50%, -50%) rotateX(${startX}deg) rotateY(${startY}deg) rotateZ(${startZ}deg)`,
                                     transformStyle: 'preserve-3d',
                                     boxShadow: `0 0 ${20 - index * 2}px rgba(168, 85, 247, 0.4)`,
-                                    animation: `gyroscope-${index} ${10 + index * 2}s linear infinite ${index % 2 === 0 ? 'alternate' : 'alternate-reverse'}`,
+                                    animation: `gyro${index} ${10 + index * 2}s linear infinite ${index % 2 === 0 ? 'alternate' : 'alternate-reverse'}`,
                                 }}
                             />
                         );
@@ -348,6 +348,51 @@ export default function QuantumPortal({ onEnterPortal = () => { }, isActive = fa
 
                 {/* Enhanced styles */}
                 <style>{`
+          @keyframes gyro1 {
+            0% {
+              transform: translate(-50%, -50%) rotateX(15deg) rotateY(25deg) rotateZ(10deg);
+            }
+            100% {
+              transform: translate(-50%, -50%) rotateX(375deg) rotateY(385deg) rotateZ(370deg);
+            }
+          }
+
+          @keyframes gyro2 {
+            0% {
+              transform: translate(-50%, -50%) rotateX(30deg) rotateY(50deg) rotateZ(20deg);
+            }
+            100% {
+              transform: translate(-50%, -50%) rotateX(390deg) rotateY(410deg) rotateZ(380deg);
+            }
+          }
+
+          @keyframes gyro3 {
+            0% {
+              transform: translate(-50%, -50%) rotateX(45deg) rotateY(75deg) rotateZ(30deg);
+            }
+            100% {
+              transform: translate(-50%, -50%) rotateX(405deg) rotateY(435deg) rotateZ(390deg);
+            }
+          }
+
+          @keyframes gyro4 {
+            0% {
+              transform: translate(-50%, -50%) rotateX(60deg) rotateY(100deg) rotateZ(40deg);
+            }
+            100% {
+              transform: translate(-50%, -50%) rotateX(420deg) rotateY(460deg) rotateZ(400deg);
+            }
+          }
+
+          @keyframes gyro5 {
+            0% {
+              transform: translate(-50%, -50%) rotateX(75deg) rotateY(125deg) rotateZ(50deg);
+            }
+            100% {
+              transform: translate(-50%, -50%) rotateX(435deg) rotateY(485deg) rotateZ(410deg);
+            }
+          }
+
           @keyframes ringRotate {
             from { transform: translate(-50%, -50%) rotateX(var(--rx, 0deg)) rotateY(0deg) rotateZ(0deg); }
             to { transform: translate(-50%, -50%) rotateX(var(--rx, 0deg)) rotateY(360deg) rotateZ(360deg); }

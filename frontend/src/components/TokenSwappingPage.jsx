@@ -230,7 +230,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                             backgroundColor={widgetConfig.backgroundColor}
                                             darkMode={true}  // Force dark mode for better contrast
                                             primaryColor={widgetConfig.primaryColor}
-                                            height="520px"
+                                            height="400px"  // Reduced height
                                             width="100%"
                                         />
                                     </div>

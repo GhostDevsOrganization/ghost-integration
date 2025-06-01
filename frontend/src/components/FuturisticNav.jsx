@@ -70,8 +70,7 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                             <div className="absolute inset-0 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
                                 style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }} />
                         </div>
-                        <span className="text-xl font-bold bg-clip-text text-[var(--accent-primary)] "
-                            style={{background: 'Transparent' }}>
+                        <span className="text-xl font-bold text-black">
                             Kasportal
                         </span>
                     </Link>
