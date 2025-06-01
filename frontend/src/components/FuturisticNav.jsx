@@ -63,7 +63,7 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                     <Link to="/" className="flex items-center gap-3 group">
                         <div className="relative group">
                             <img
-                                src="/images/photo_2025-05-29_09-55-50.jpg"
+                                src="/icons/logo.png"
                                 alt="Kasportal"
                                 className="w-10 h-10 transition-transform duration-300 group-hover:scale-110 hover:scale-105 transition-transform duration-500 drop-shadow-2xl relative z-10"
                             />
