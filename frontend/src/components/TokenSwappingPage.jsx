@@ -192,56 +192,37 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         Fast, Secure, Non Custodial.
                     </p>
                 </div>
+                
+                {/* Enhanced Widget Container with Header and Footer */}
+                <div className="relative mb-6 bg-gradient-to-r from-teal-50/30 to-purple-50/30 rounded-3xl p-1 shadow-xl">
+                    <div className="bg-white/80 backdrop-blur-sm rounded-2xl">
+                        {/* Widget Header */}
+                        <div className="p-4 sm:p-6 bg-gradient-to-r from-teal-600 to-purple-600 rounded-t-2xl">
+                            <h3 className="text-xl sm:text-2xl font-bold text-white">Swap Tokens</h3>
+                            <p className="text-teal-100 text-sm sm:text-base">Instantly exchange cryptocurrencies</p>
+                        </div>
 
-                {/* Advanced Swap Engine Section - MOVED UP and Enhanced */}
-                <section className="mb-20">
-                    <div className="bg-white backdrop-blur-sm border border-gray-200 rounded-3xl p-6 sm:p-8 lg:p-12 hover:border-teal-300 hover:shadow-2xl transition-all duration-500 relative overflow-hidden shadow-xl">
-                        {/* Corner decoration */}
-                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-teal-100/50 rounded-full"></div>
-                        <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-purple-100/30 rounded-full"></div>
-
-                        <div className="relative z-10">
-
-
-                            {/* Enhanced Widget Container with Header and Footer */}
-                            <div className="relative mb-6 bg-gradient-to-r from-teal-50/30 to-purple-50/30 rounded-3xl p-1 shadow-xl">
-                                <div className="bg-white/80 backdrop-blur-sm rounded-2xl">
-                                    {/* Widget Header */}
-                                    <div className="p-4 sm:p-6 bg-gradient-to-r from-teal-600 to-purple-600 rounded-t-2xl">
-                                        <h3 className="text-xl sm:text-2xl font-bold text-white">Swap Tokens</h3>
-                                        <p className="text-teal-100 text-sm sm:text-base">Instantly exchange cryptocurrencies</p>
-                                    </div>
-
-                                    {/* Widget Body */}
-                                    <div className="p-3 sm:p-4 lg:p-6 relative">
-                                        {loading ? (
-                                            <div className="absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-2xl z-20">
-                                                <div className="flex flex-col items-center">
-                                                    <div className="w-16 h-16 border-4 border-teal-400 border-t-transparent rounded-full animate-spin mb-4"></div>
-                                                    <p className="text-teal-600 font-medium">Loading exchange rates...</p>
-                                                </div>
-                                            </div>
-                                        ) : null}
-
-                                        <ChangeNowWidget
-                                            from={widgetConfig.from}
-                                            to={widgetConfig.to}
-                                            amount={widgetConfig.amount}
-                                            backgroundColor={widgetConfig.backgroundColor}
-                                            darkMode={true}  // Force dark mode for better contrast
-                                            primaryColor={widgetConfig.primaryColor}
-                                            height="400px"  // Reduced height
-                                            width="100%"
-                                        />
-                                    </div>
-
-                                    {/* Widget Footer */}
-                                    <div className="p-3 text-center text-xs sm:text-sm text-gray-500 border-t border-gray-200/50">
-                                        Powered by kasportal.com • Secured by Kaspa
+                        {/* Widget Body */}
+                        <div className="p-3 sm:p-4 lg:p-6 relative">
+                            {loading ? (
+                                <div className="absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-2xl z-20">
+                                    <div className="flex flex-col items-center">
+                                        <div className="w-16 h-16 border-4 border-teal-400 border-t-transparent rounded-full animate-spin mb-4"></div>
+                                        <p className="text-teal-600 font-medium">Loading exchange rates...</p>
                                     </div>
                                 </div>
-                            </div>
+                            ) : null}
 
+                            <ChangeNowWidget
+                                from={widgetConfig.from}
+                                to={widgetConfig.to}
+                                amount={widgetConfig.amount}
+                                backgroundColor={widgetConfig.backgroundColor}
+                                darkMode={true}  // Force dark mode for better contrast
+                                primaryColor={widgetConfig.primaryColor}
+                                height="400px"  // Reduced height
+                                width="100%"
+                            />
                             {/* Action Buttons */}
                             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
                                 <button
@@ -263,10 +244,15 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                 </button> */}
                             </div>
                         </div>
+
+                        {/* Widget Footer */}
+                        <div className="p-3 text-center text-xs sm:text-sm text-gray-500 border-t border-gray-200/50">
+                            
+                            Powered by kasportal.com • Secured by Kaspa
+                        </div>
                     </div>
-                </section>
-
-
+                </div>
+               
                 {/* Features Section - Clean White Cards */}
                 <section className="mb-32">
                     <div className="text-center mb-16">

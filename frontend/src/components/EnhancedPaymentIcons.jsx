@@ -36,7 +36,7 @@ export const KaspaIcon = ({ size = 120, className = "", glow = false }) => (
 );
 
 // Visa Icon
-export const VisaIcon = ({ size = 32, className = "", glow = false }) => (
+export const VisaIcon = ({ size = 2, className = "", glow = false }) => (
     <div>
          <img
             src="/icons/VisaIcon.png"
