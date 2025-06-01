@@ -65,7 +65,7 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                             <img
                                 src="/icons/logo.png"
                                 alt="Kasportal"
-                                className="w-10 h-10 transition-transform duration-300 group-hover:scale-110 hover:scale-105 transition-transform duration-500 drop-shadow-2xl relative z-10"
+                                className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110 hover:scale-105 drop-shadow-2xl relative z-10"
                             />
                             <div className="absolute inset-0 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
                                 style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }} />
