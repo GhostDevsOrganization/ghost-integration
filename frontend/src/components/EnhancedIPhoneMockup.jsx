@@ -67,9 +67,9 @@ export default function EnhancedIPhoneMockup() {
                                     <div className="flex flex-col items-center justify-center w-full h-full space-y-6">
                                         {/* Hexagonal Logo */}
                                         <img
-                                            src="/images/photo_2025-05-29_09-55-50-removebg-preview.png"
+                                            src="/icons/logo.png"
                                             alt="Kasportal Logo"
-                                            className="w-48 h-48 transform hover:scale-110 transition-transform duration-500"
+                                            className="w-48 h-48 object-contain transform hover:scale-110 transition-transform duration-500"
                                         />
 
                                         {/* App Title */}
