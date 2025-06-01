@@ -1,5 +1,5 @@
 import React from 'react';
-export const ApplePayIcon = ({ size = 120, className = "", glow = false }) => (
+export const ApplePayIcon = ({ size = 32, className = "", glow = false }) => (
     <div className={`inline-flex items-center justify-center ${className}`}>
         <img
             src="/icons/ApplePayIcon.svg"
@@ -22,7 +22,7 @@ export const VenmoIcon = ({ size = 32, className = "" }) => (
 );
 
 // Kaspa Icon - Using official Kaspa SVG (Best approach)
-export const KaspaIcon = ({ size = 120, className = "", glow = false }) => (
+export const KaspaIcon = ({ size = 32, className = "", glow = false }) => (
     <div className={`inline-flex items-center justify-center ${className}`}>
         <img
             src="/icons/kaspa-official.svg"
@@ -36,7 +36,7 @@ export const KaspaIcon = ({ size = 120, className = "", glow = false }) => (
 );
 
 // Visa Icon
-export const VisaIcon = ({ size = 2, className = "", glow = false }) => (
+export const VisaIcon = ({ size = 32, className = "", glow = false }) => (
     <div>
          <img
             src="/icons/VisaIcon.png"
