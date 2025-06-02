@@ -58,6 +58,7 @@ const ChangeNowWidget = ({
 
   // Load the ChangeNOW stepper-connector script
   React.useEffect(() => {
+    /*
     const scriptId = "changenow-stepper-connector";
     if (!document.getElementById(scriptId)) {
       const script = document.createElement("script");
@@ -66,7 +67,7 @@ const ChangeNowWidget = ({
       script.defer = true;
       document.body.appendChild(script);
     }
-    // No cleanup needed, script is idempotent
+    */
   }, []);
 
   return (

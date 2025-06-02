@@ -320,10 +320,10 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                             <div style={{ width: "100%" }}>
                                                 <iframe
                                                     id="iframe-widget"
-                                                    src="https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=false&amp;amount=0.01&amp;backgroundColor=1a1a1a&amp;darkMode=true&amp;from=btc&amp;to=kas&amp;horizontal=false&amp;lang=en-US&amp;primaryColor=2DD4BF&amp;hideExtraFees=true&amp;textColor=ffffff&amp;link_id=c7ce3416e81112"
+                                                    src="https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=true&amount=1&amountFiat=1500&backgroundColor=0e0a0a&darkMode=true&from=btc&fromFiat=eur&horizontal=false&isFiat&lang=en-US&link_id=c7ce3416e81112&locales=true&logo=false&primaryColor=00C26F&to=eth&toFiat=eth&toTheMoon=true"
                                                     title="ChangeNOW Exchange Widget"
                                                     allow="clipboard-write"
-                                                    style={{ height: "360px", width: "100%", border: "none" }}
+                                                    style={{ height: "356px", width: "100%", border: "none" }}
                                                 ></iframe>
                                             </div>
                                         </div>
@@ -333,12 +333,27 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                                 className="group relative flex items-center gap-3 px-8 py-4 bg-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-gray-200 hover:border-teal-500 overflow-hidden"
                                                 onClick={() => {
                                                     setLoading(true);
+                                                    const iframe = document.getElementById("iframe-widget");
+                                                    if (iframe) {
+                                                        const currentUrl = new URL(iframe.src);
+                                                        currentUrl.searchParams.set('refresh', Date.now());
+                                                        iframe.src = currentUrl.toString();
+                                                    }
+                                                    // Remove the existing connector script if present
+                                                    const oldScript = document.querySelector("script[src='https://changenow.io/embeds/exchange-widget/v2/stepper-connector.js']");
+                                                    if (oldScript) {
+                                                        oldScript.remove();
+                                                    }
+                                                    // Re-add the connector script to reinitialize the widget
+                                                    const script = document.createElement("script");
+                                                    script.src = "https://changenow.io/embeds/exchange-widget/v2/stepper-connector.js";
+                                                    script.defer = true;
+                                                    document.body.appendChild(script);
                                                     setTimeout(() => setLoading(false), 1500);
                                                 }}
                                             >
                                                 <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                                 <div className="relative z-10 flex items-center gap-3 text-gray-700 group-hover:text-white transition-colors duration-300">
-                                                    {/* Refresh icon and text */}
                                                     <RefreshCw className="w-5 h-5 group-hover:animate-spin" />
                                                     <span>Refresh Rates</span>
                                                 </div>
