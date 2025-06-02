@@ -1,5 +1,4 @@
 import React from "react";
-import { useTheme } from '../context/ThemeContext.jsx';
 
 /**
  * ChangeNowWidget
@@ -15,6 +14,7 @@ import { useTheme } from '../context/ThemeContext.jsx';
  * - horizontal: boolean
  * - lang: string (e.g., "en-US")
  * - primaryColor: string (hex, e.g., "50C878")
+ * - textColor: string (hex, e.g., "FFFFFF") // <-- Added textColor prop
  * - height: string (e.g., "356px")
  * - width: string (e.g., "100%")
  * - [any other ChangeNOW widget params as needed]
@@ -29,36 +29,29 @@ const ChangeNowWidget = ({
   horizontal = false,
   lang = "en-US",
   primaryColor = "50C878",
+  textColor = "ffffff",
   height = "356px",
   width = "100%",
   ...rest
 }) => {
-  // Get theme context
-  const { theme, themeData } = useTheme();
-
-  // Override primaryColor based on theme if not explicitly provided
-  const themeBasedPrimaryColor = rest.primaryColor || themeData.colors.accentPrimary.replace('#', '');
-
-  // Override darkMode based on theme if not explicitly provided
-  const isDarkTheme = ['NEON_BLUE', 'COSMIC_ORANGE', 'KASPA_GREEN', 'ANDROMEDA_GALAXY', 'MILKY_WAY_NEBULA', 'CRAB_NEBULA'].includes(theme);
-  const themeBasedDarkMode = rest.darkMode !== undefined ? darkMode : isDarkTheme;
   // Build the widget URL with query params
   const params = new URLSearchParams({
     FAQ: "false",
     amount: String(amount),
     ...(amountFiat ? { amountFiat: String(amountFiat) } : {}),
     backgroundColor,
-    darkMode: String(themeBasedDarkMode),
+    darkMode: String(darkMode),
     from,
     to,
     horizontal: String(horizontal),
     lang,
-    primaryColor: themeBasedPrimaryColor,
+    primaryColor,
     hideExtraFees: "true", // This will hide the "No extra fees" text
+    ...(textColor ? { textColor } : {}), // <-- Add textColor to the params
     ...rest,
   });
 
-  // Add your ChangeNOW link_id here if you have one
+  // Add your ChangeNOW link_id here
   params.set("link_id", "c7ce3416e81112");
 
   const src = `https://changenow.io/embeds/exchange-widget/v2/widget.html?${params.toString()}`;
@@ -76,17 +69,8 @@ const ChangeNowWidget = ({
     // No cleanup needed, script is idempotent
   }, []);
 
-  // Update the widget when theme changes
-  React.useEffect(() => {
-    // Force iframe reload when theme changes
-    const iframe = document.getElementById("iframe-widget");
-    if (iframe) {
-      iframe.src = src;
-    }
-  }, [theme, src]);
-
   return (
-    <div style={{ width }}>
+    <div style={{ width, marginTop: '96px' }}>
       <iframe
         id="iframe-widget"
         src={src}

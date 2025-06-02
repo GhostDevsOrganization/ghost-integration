@@ -16,6 +16,7 @@ import LearnPage from './components/LearnPage'; // Import LearnPage
 import BlogPage from './components/BlogPage'; // Import BlogPage
 import ArticlePage from './components/ArticlePage'; // Import ArticlePage
 import IconComparison from './components/IconComparison'; // Import IconComparison
+import QuantumSwapEngineTest from './components/QuantumSwapEngineTest'; // Import QuantumSwapEngineTest
 import AdvancedPortal from './components/AdvancedPortal'; // Import AdvancedPortal
 import EnhancedRadarPortalPage from './components/EnhancedRadarPortalPage'; // Import EnhancedRadarPortalPage
 import KaspaResearchPaper from './components/KaspaResearchPaper'; // Import KaspaResearchPaper
@@ -118,6 +119,7 @@ function App() {
           <Route path="/research/kaspa-analysis" element={<KaspaResearchPaper />} />
           <Route path="/icon-comparison" element={<IconComparison />} />
           <Route path="/demo-backgrounds" element={<BackgroundDemoShowcase />} />
+          <Route path="/test/quantum-swap" element={<QuantumSwapEngineTest />} />
         </Routes>
       </div>
     </ThemeProvider>
