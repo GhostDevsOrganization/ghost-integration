@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@kaspa/wallet": "^1.4.26",
+    "@supabase/supabase-js": "^2.49.9",
     "@walletconnect/client": "^1.8.0",
     "@walletconnect/qrcode-modal": "^1.8.0",
     "@walletconnect/sign-client": "^2.19.2",
