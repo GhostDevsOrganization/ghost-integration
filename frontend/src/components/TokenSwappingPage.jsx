@@ -64,10 +64,10 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
         from: 'btc',
         to: 'kas',
         amount: '0.01',
-        backgroundColor: '1a1a1a', // Dark background
-        darkMode: true,          // Force dark mode
+        backgroundColor: 'ffffff', // Dark background
+        darkMode: false,          // Force dark mode
         primaryColor: '2DD4BF',
-        textColor: 'ffffff'      // White text  
+        textColor: '000000'      // White text  
     });
 
     // Define navigation protocols for FuturisticNav
@@ -131,8 +131,8 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         from={widgetConfig.from}
                         to={widgetConfig.to}
                         amount={widgetConfig.amount}
-                        backgroundColor={widgetConfig.backgroundColor}
-                        darkMode={widgetConfig.darkMode}
+                        backgroundColor='white'
+                        darkMode='false'
                         primaryColor={widgetConfig.primaryColor}
                         height="1000px"
                         width="100%"
@@ -197,31 +197,12 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
 
                 {/* Enhanced Widget Container with Premium Effects */}
                 <div className="relative mb-12">
-                    {/* Animated background orbs */}
                     <div className="absolute inset-0 pointer-events-none">
                         <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-teal-400/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
-                        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tl from-purple-400/20 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
                     </div>
 
                     {/* 3D Perspective wrapper */}
-                    <div className="relative transform-gpu hover:scale-[1.02] transition-transform duration-500">
-                        {/* Floating particles around widget */}
-                        <div className="absolute inset-0 pointer-events-none">
-                            {[...Array(8)].map((_, i) => (
-                                <div
-                                    key={i}
-                                    className="absolute animate-float-orbit"
-                                    style={{
-                                        left: '50%',
-                                        top: '50%',
-                                        animation: `float-orbit ${20 + i * 2}s linear infinite`,
-                                        animationDelay: `${i * 0.5}s`
-                                    }}
-                                >
-                                    <div className="w-2 h-2 bg-gradient-to-br from-teal-400 to-purple-400 rounded-full shadow-lg shadow-teal-400/50"></div>
-                                </div>
-                            ))}
-                        </div>
+                    <div className="relative transform-gpu hover:scale-[1.02]  duration-500">
 
                         {/* Main widget with enhanced wrapper */}
                         <div className="relative">
@@ -231,41 +212,13 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                             {/* Glass morphism container */}
                             <div className="relative bg-gradient-to-br from-white/95 via-white/90 to-white/95 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-white/50">
                                 {/* Animated border gradient */}
-                                <div className="absolute inset-0 pointer-events-none rounded-3xl p-[2px] bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 animate-gradient-rotate">
-                                    <div className="h-full w-full bg-white rounded-3xl pointer-events-auto"></div>
-                                </div>
+                                
 
                                 {/* Content wrapper */}
                                 <div className="relative z-10">
                                     {/* Premium header with animated elements */}
                                     <div className="relative p-6 sm:p-8 bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 overflow-hidden">
-                                        {/* Animated wave pattern */}
-                                        <div className="absolute inset-0 opacity-20">
-                                            <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 120">
-                                                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                                                    fill="currentColor" className="text-white/20 animate-wave"></path>
-                                            </svg>
-                                        </div>
-
-                                        {/* Sparkle effects */}
-                                        <div className="absolute inset-0">
-                                            {[...Array(15)].map((_, i) => (
-                                                <div
-                                                    key={i}
-                                                    className="absolute animate-sparkle"
-                                                    style={{
-                                                        left: `${Math.random() * 100}%`,
-                                                        top: `${Math.random() * 100}%`,
-                                                        animationDelay: `${Math.random() * 3}s`
-                                                    }}
-                                                >
-                                                    <svg width="10" height="10" viewBox="0 0 10 10" className="text-white/60">
-                                                        <path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4L5 0Z" fill="currentColor" />>
-                                                    </svg>
-                                                </div>
-                                            ))}
-                                        </div>
-
+                                                                                
                                         <div className="relative z-10 flex items-center justify-between">
                                             <div>
                                                 <h3 className="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
@@ -275,17 +228,12 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                                     </div>
                                                     Swap & Bridge
                                                 </h3>
-                                                <p className="text-teal-100 text-sm sm:text-base mt-2 flex items-center gap-2">
-                                                    <span className="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                                                    Exchange over 900+ cryptocurrencies with ease
-                                                </p>
-                                            </div>
+                                                                                           </div>
                                             <div className="hidden sm:flex flex-col items-end gap-2">
                                                 <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
                                                     <Zap className="w-4 h-4 text-yellow-300 animate-pulse" />
                                                     <span className="text-white text-sm font-medium">Lightning Fast</span>
                                                 </div>
-                                                <div className="text-xs text-teal-100">Avg. swap time: 5 mins</div>
                                             </div>
                                         </div>
                                     </div>
@@ -303,31 +251,24 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                             </div>
                                             <div className="flex items-center gap-2">
                                                 <Clock className="w-4 h-4 text-blue-600" />
-                                                <span className="text-gray-700">24/7 Available</span>
+                                                <span className="text-gray-700">Available 24/7</span>
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* Widget body with enhanced styling */}
                                     <div className="p-4 sm:p-6 lg:p-8 relative bg-gradient-to-b from-white to-gray-50/50">
-                                        <div className="relative">
-                                            <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-teal-500 rounded-tl-lg"></div>
-                                            <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-teal-500 rounded-tr-lg"></div>
-                                            <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-teal-500 rounded-bl-lg"></div>
-                                            <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-teal-500 rounded-br-lg"></div>
-
-                                            {/* Remove the extra margin by deleting margin-top */}
-                                            <div style={{ width: "100%" }}>
-                                                <iframe
-                                                    id="iframe-widget"
-                                                    src="https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=false&amp;amount=0.01&amp;backgroundColor=1a1a1a&amp;darkMode=true&amp;from=btc&amp;to=kas&amp;horizontal=false&amp;lang=en-US&amp;primaryColor=2DD4BF&amp;hideExtraFees=true&amp;textColor=ffffff&amp;link_id=c7ce3416e81112"
-                                                    title="ChangeNOW Exchange Widget"
-                                                    allow="clipboard-write"
-                                                    style={{ height: "360px", width: "100%", border: "none" }}
-                                                ></iframe>
-                                            </div>
+                                    
+                                        <div style={{ width: "100%" }}>
+                                            <iframe
+                                                id="iframe-widget"
+                                                src="https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=false&amp;amount=0.01&amp;backgroundColor=ffffff&amp;darkMode=false&amp;from=eth&amp;to=kas&amp;horizontal=false&amp;lang=en-US&amp;primaryColor=2DD4BF&amp;hideExtraFees=true&amp;textColor=ffffff&amp;link_id=c7ce3416e81112"
+                                                title="ChangeNOW Exchange Widget"
+                                                allow="clipboard-write"
+                                                style={{ height: "360px", width: "100%", border: "none" }}
+                                            ></iframe>
                                         </div>
-
+                                
                                         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mt-8">
                                             <button
                                                 className="group relative flex items-center gap-3 px-8 py-4 bg-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-gray-200 hover:border-teal-500 overflow-hidden"
@@ -339,7 +280,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                                 <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                                 <div className="relative z-10 flex items-center gap-3 text-gray-700 group-hover:text-white transition-colors duration-300">
                                                     {/* Refresh icon and text */}
-                                                    <RefreshCw className="w-5 h-5 group-hover:animate-spin" />
+                                                    <RefreshCw className="w-5 h-5 group-click=animate-spin" />
                                                     <span>Refresh Rates</span>
                                                 </div>
                                                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"></div>
@@ -350,8 +291,6 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                     {/* Premium footer */}
                                     <div className="relative p-4 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
                                         {/* Animated line */}
-                                        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-teal-400 to-transparent animate-slide"></div>
-
                                         <div className="relative flex flex-col sm:flex-row items-center justify-between gap-4">
                                             <div className="flex items-center gap-6 text-sm">
                                                 <div className="flex items-center gap-2">
@@ -361,10 +300,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                                     </div>
                                                     <span className="text-gray-300">Status: <span className="text-green-400 font-bold">Active</span></span>
                                                 </div>
-                                                <div className="hidden sm:flex items-center gap-2">
-                                                    <Activity className="w-4 h-4 text-teal-400 animate-pulse" />
-                                                    <span className="text-gray-300">Network: <span className="text-teal-400 font-bold">Optimal</span></span>
-                                                </div>
+                                            
                                             </div>
                                             <div className="text-xs text-gray-400 flex items-center gap-2">
                                                 <Lock className="w-3 h-3" />
