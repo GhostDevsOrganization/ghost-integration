@@ -64,10 +64,10 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
         from: 'btc',
         to: 'kas',
         amount: '0.01',
-        backgroundColor: '1a1a1a', // Dark background
-        darkMode: true,          // Force dark mode
+        backgroundColor: 'ffffff', // Dark background
+        darkMode: false,          // Force dark mode
         primaryColor: '2DD4BF',
-        textColor: 'ffffff'      // White text  
+        textColor: '000000'      // White text  
     });
 
     // Define navigation protocols for FuturisticNav
@@ -131,8 +131,8 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                         from={widgetConfig.from}
                         to={widgetConfig.to}
                         amount={widgetConfig.amount}
-                        backgroundColor={widgetConfig.backgroundColor}
-                        darkMode={widgetConfig.darkMode}
+                        backgroundColor='white'
+                        darkMode='false'
                         primaryColor={widgetConfig.primaryColor}
                         height="1000px"
                         width="100%"
@@ -197,31 +197,12 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
 
                 {/* Enhanced Widget Container with Premium Effects */}
                 <div className="relative mb-12">
-                    {/* Animated background orbs */}
                     <div className="absolute inset-0 pointer-events-none">
                         <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-teal-400/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
-                        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tl from-purple-400/20 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
                     </div>
 
                     {/* 3D Perspective wrapper */}
-                    <div className="relative transform-gpu hover:scale-[1.02] transition-transform duration-500">
-                        {/* Floating particles around widget */}
-                        <div className="absolute inset-0 pointer-events-none">
-                            {[...Array(8)].map((_, i) => (
-                                <div
-                                    key={i}
-                                    className="absolute animate-float-orbit"
-                                    style={{
-                                        left: '50%',
-                                        top: '50%',
-                                        animation: `float-orbit ${20 + i * 2}s linear infinite`,
-                                        animationDelay: `${i * 0.5}s`
-                                    }}
-                                >
-                                    <div className="w-2 h-2 bg-gradient-to-br from-teal-400 to-purple-400 rounded-full shadow-lg shadow-teal-400/50"></div>
-                                </div>
-                            ))}
-                        </div>
+                    <div className="relative transform-gpu hover:scale-[1.02]  duration-500">
 
                         {/* Main widget with enhanced wrapper */}
                         <div className="relative">
@@ -285,7 +266,6 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                                     <Zap className="w-4 h-4 text-yellow-300 animate-pulse" />
                                                     <span className="text-white text-sm font-medium">Lightning Fast</span>
                                                 </div>
-                                                <div className="text-xs text-teal-100">Avg. swap time: 5 mins</div>
                                             </div>
                                         </div>
                                     </div>
@@ -303,7 +283,7 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                             </div>
                                             <div className="flex items-center gap-2">
                                                 <Clock className="w-4 h-4 text-blue-600" />
-                                                <span className="text-gray-700">24/7 Available</span>
+                                                <span className="text-gray-700">Available 24/7</span>
                                             </div>
                                         </div>
                                     </div>
@@ -365,8 +345,6 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
                                     {/* Premium footer */}
                                     <div className="relative p-4 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
                                         {/* Animated line */}
-                                        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-teal-400 to-transparent animate-slide"></div>
-
                                         <div className="relative flex flex-col sm:flex-row items-center justify-between gap-4">
                                             <div className="flex items-center gap-6 text-sm">
                                                 <div className="flex items-center gap-2">

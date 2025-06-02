@@ -20,11 +20,11 @@ import React from "react";
  * - [any other ChangeNOW widget params as needed]
  */
 const ChangeNowWidget = ({
-  from = "btc",
-  to = "eth",
+  from = "eth",
+  to = "kas",
   amount = "0.1",
   amountFiat = "",
-  backgroundColor = "FFFFFF",
+  backgroundColor = "123456",
   darkMode = false,
   horizontal = false,
   lang = "en-US",
