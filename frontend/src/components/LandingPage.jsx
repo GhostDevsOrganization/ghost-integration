@@ -211,7 +211,7 @@ export default function LandingPage() {
     },
     {
       title: "Team Up",
-      description: "You want it? lets build a portal to it",
+      description: "You want it? Lets build a portal to it",
       icon: <BusinessIcon size={32} className="text-indigo-400 drop-shadow-xl" />,
       contact: "Lets build",
       action: "mailto:buildtech@ghostdevlabs.com",

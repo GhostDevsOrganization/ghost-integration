@@ -7,7 +7,7 @@ import DiscordIcon from './DiscordIcon';
 const EnhancedFooter = () => {
     const socialLinks = [
         { name: "Telegram", icon: <Send size={22} />, href: "https://t.me/+ogluJ3Srnr83MmJh", ariaLabel: "Join our Telegram group" },
-        { name: "Twitter", icon: <Twitter size={22} />, href: "https://x.com/kas_portal", ariaLabel: "Follow us on Twitter" },
+        { name: "Twitter", icon: <Twitter size={22} />, href: "https://x.com/kasportal", ariaLabel: "Follow us on Twitter" },
         { name: "GitHub", icon: <Github size={22} />, href: "https://github.com/GhostDevs", ariaLabel: "View our GitHub" }
     ];
 
