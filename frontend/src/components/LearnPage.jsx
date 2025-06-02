@@ -2,15 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import FuturisticNav from './FuturisticNav';
 import EnhancedFooter from './EnhancedFooter';
-import QuantumBackground from './3D/QuantumBackground';
-import HolographicGrid from './3D/HolographicGrid'
-import { Home, Repeat, Wallet, Link2, BookOpen, Menu, X } from 'lucide-react';
-import { Book, ArrowRight, Github, Send, Clock, ExternalLink, Zap, Shield, Database, Layers, RefreshCw, AlertTriangle, DollarSign, Lock, Cpu, ServerCrash } from 'lucide-react';
+import HolographicGrid from './3D/HolographicGrid';
+import { Home, Repeat, Wallet, Link2, BookOpen, Menu, X, Book, ArrowRight, Github, Send, Clock, ExternalLink, Zap, Shield, Database, Layers, RefreshCw, AlertTriangle, DollarSign, Lock, Cpu, ServerCrash } from 'lucide-react';
 import DiscordIcon from './DiscordIcon';
-import CrystalFormation from './3D/CrystalFormation';
 
 const LearnPage = () => {
-    // Use default theme data instead of useTheme hook
     const themeData = {
         colors: {
             accentPrimary: '#00D632',
@@ -26,7 +22,7 @@ const LearnPage = () => {
     const [scrollY, setScrollY] = useState(0);
     const location = useLocation();
 
-    // Mouse movement tracking for background effects
+    // Track mouse and scroll for possible parallax effects
     useEffect(() => {
         const handleMouseMove = (e) => {
             setMousePosition({
@@ -34,84 +30,21 @@ const LearnPage = () => {
                 y: (e.clientY / window.innerHeight) - 0.5
             });
         };
-
-        const handleScroll = () => {
-            setScrollY(window.scrollY);
-        };
+        const handleScroll = () => { setScrollY(window.scrollY); };
 
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('scroll', handleScroll);
-
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
-    // Animate in sections as they come into view AND track active section
-    useEffect(() => {
-        const animationObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        // Track which section is currently in view for navigation highlighting
-        const navigationObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const sectionId = entry.target.id;
-                    if (sectionId && topics.some(topic => topic.id === sectionId)) {
-                        setActiveTopic(sectionId);
-                    }
-                }
-            });
-        }, {
-            threshold: 0.3,
-            rootMargin: '-20% 0px -70% 0px'
-        });
-
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            animationObserver.observe(el);
-        });
-
-        // Observe all section elements for navigation tracking
-        topics.forEach(topic => {
-            const element = document.getElementById(topic.id);
-            if (element) {
-                navigationObserver.observe(element);
-            }
-        });
-
-        return () => {
-            animationObserver.disconnect();
-            navigationObserver.disconnect();
-        };
-    }, []);
-
-    // Auto-scroll to anchor links AND ensure visibility
+    // Change active topic based on URL hash
     useEffect(() => {
         if (location.hash) {
             const id = location.hash.substring(1);
-            const element = document.getElementById(id);
-            if (element) {
-                element.classList.add('animate-in');
-
-                setTimeout(() => {
-                    const navHeight = 60;
-                    const padding = 20;
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - navHeight - padding;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                    setActiveTopic(id);
-                }, 100);
-            }
+            setActiveTopic(id);
         } else {
             setActiveTopic('overview');
         }
@@ -137,7 +70,6 @@ const LearnPage = () => {
         { name: 'Kaspa Explorer', url: 'https://explorer.kaspa.org', icon: <ExternalLink size={16} className="ml-1" /> }
     ];
 
-    // Timeline for Kaspa history
     const kaspaTimeline = [
         { date: 'Nov 2021', event: 'Kaspa Mainnet Launch', description: 'Kaspa launches with fair distribution, no premine or token allocations.' },
         { date: 'Feb 2023', event: 'DAGKnight Whitepaper Released', description: 'Updated whitepaper for the next-generation DAGKnight protocol released.' },
@@ -145,7 +77,6 @@ const LearnPage = () => {
         { date: 'May 2025', event: 'Crescendo Upgrade (10 BPS)', description: 'Hard fork increased block rates to 10 blocks per second (BPS), significantly boosting throughput.' }
     ];
 
-    // Define navigation protocols for FuturisticNav
     const protocols = [
         { key: 'home', label: 'Home', path: '/', icon: <Home size={18} /> },
         { key: 'swap', label: 'Token Swapping', path: '/features/token-swapping', icon: <Repeat size={18} /> },
@@ -154,56 +85,23 @@ const LearnPage = () => {
     ];
 
     return (
-        <div className="min-h-screen overflow-x-hidden relative bg-gradient-to-br from-white via-gray-50 to-white text-gray-900">
-            {/* Add 3D Background */}
-            <HolographicGrid themeData={themeData} />
-
-            {/* Clean light background with subtle gradients */}
-            <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/80 to-white"></div>
-                <div className="absolute inset-0 opacity-20">
-                    <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl animate-pulse bg-gradient-to-br from-teal-100 to-transparent"></div>
-                    <div className="absolute top-1/4 right-0 w-80 h-80 rounded-full blur-3xl animate-pulse bg-gradient-to-bl from-purple-100 to-transparent" style={{ animationDelay: '1s' }}></div>
-                    <div className="absolute bottom-0 left-1/3 w-72 h-72 rounded-full blur-3xl animate-pulse bg-gradient-to-tr from-blue-100 to-transparent" style={{ animationDelay: '2s' }}></div>
-                </div>
-                <div
-                    className="absolute inset-0 transition-all duration-500 ease-out"
-                    style={{
-                        background: `radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.03), transparent 70%)`,
-                        transform: `translate(${mousePosition.x * 15}px, ${mousePosition.y * 15}px)`
-                    }}
-                ></div>
-
-                {/* Floating particles */}
-                {[...Array(12)].map((_, i) => (
-                    <div
-                        key={i}
-                        className="absolute w-0.5 h-0.5 rounded-full animate-float bg-teal-300/30"
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 5}s`,
-                            animationDuration: `${4 + Math.random() * 6}s`
-                        }}
-                    />
-                ))}
+        <div className="min-h-screen relative bg-gradient-to-br from-white via-gray-50 to-white text-gray-900">
+            {/* HolographicGrid behind all content */}
+            <div className="absolute inset-0 -z-10">
+                <HolographicGrid themeData={themeData} />
             </div>
 
-            <FuturisticNav
-                protocols={protocols}
-                activeProtocol="learn"
-            />
+            <FuturisticNav protocols={protocols} activeProtocol="learn" />
 
-            {/* Always Accessible Navigation Button */}
+            {/* Mobile Navigation Button */}
             <button
                 onClick={() => setShowMobileNav(!showMobileNav)}
-                className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-teal-500 to-purple-500 text-white flex items-center justify-center shadow-lg hover:shadow-teal-500/25 transition-all duration-300 transform hover:scale-110"
+                className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-teal-500 to-purple-500 text-white flex items-center justify-center shadow-lg hover:shadow-teal-500/25 transition-transform duration-300 hover:scale-110"
                 aria-label="Open navigation menu"
             >
                 {showMobileNav ? <X size={24} /> : <BookOpen size={24} />}
             </button>
 
-            {/* Always Accessible Navigation Menu */}
             {showMobileNav && (
                 <div className="fixed inset-0 z-40 bg-white/95 backdrop-blur-sm flex items-center justify-center overflow-auto">
                     <div className="w-full max-w-sm mx-auto px-6 py-10">
@@ -229,24 +127,16 @@ const LearnPage = () => {
                                 </a>
                             ))}
                         </div>
-
-                        {/* Community Resources in Mobile Menu */}
                         <div className="mt-8 pt-6 border-t border-gray-200">
                             <button
                                 className="flex items-center text-teal-600 hover:text-purple-600 transition-colors duration-300 font-medium mb-4 w-full justify-center"
                                 onClick={() => setShowCommunityLinks(!showCommunityLinks)}
                             >
                                 <span>Community Resources</span>
-                                <svg
-                                    className={`ml-2 w-4 h-4 transition-transform duration-300 ${showCommunityLinks ? 'rotate-180' : ''}`}
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
+                                <svg className={`ml-2 w-4 h-4 transition-transform duration-300 ${showCommunityLinks ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
                             </button>
-
                             {showCommunityLinks && (
                                 <div className="space-y-3">
                                     {communityResources.map((resource, index) => (
@@ -269,29 +159,26 @@ const LearnPage = () => {
                 </div>
             )}
 
-            {/* Header - Enhanced Typography */}
             <header className="pt-32 pb-24 text-center relative z-10">
-                <div className="flex justify-center items-center mb-12 animate-fade-in-up">
+                <div className="flex justify-center items-center mb-12">
                     <div className="w-28 h-28 bg-gradient-to-r from-teal-100 to-purple-100 rounded-full flex items-center justify-center backdrop-blur-sm border border-teal-200">
                         <Book size={56} className="text-teal-600" />
                     </div>
                 </div>
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-10 animate-fade-in-up-delay">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-10">
                     <span className="bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent">Kaspa Learning Hub</span>
                 </h1>
-                <div className="w-32 h-1 bg-gradient-to-r from-teal-500 to-purple-500 mx-auto mb-12 animate-fade-in-up-delay-2"></div>
-                <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 max-w-6xl mx-auto px-4 leading-relaxed animate-fade-in-up-delay-3 font-medium">
+                <div className="w-32 h-1 bg-gradient-to-r from-teal-500 to-purple-500 mx-auto mb-12"></div>
+                <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 max-w-6xl mx-auto px-4 leading-relaxed font-medium">
                     Your comprehensive resource to understand Kaspa's innovative BlockDAG technology,
                     its capabilities, and the potential future of decentralized finance.
                 </p>
             </header>
 
-            {/* Main content - Improved desktop layout */}
             <main className="max-w-7xl mx-auto px-6 pb-20 relative z-10">
                 <div className="flex flex-col xl:flex-row gap-12">
-                    {/* Desktop Sidebar - Clean White Design */}
-                    <div className="xl:w-80 xl:flex-shrink-0">
-                        <div className="bg-white backdrop-blur-md border border-gray-200 rounded-3xl p-8 sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto z-30 hover:border-teal-300 hover:shadow-xl transition-all duration-500 hidden xl:block shadow-lg">
+                    <aside className="xl:w-80 xl:flex-shrink-0 hidden xl:block">
+                        <div className="bg-white backdrop-blur-md border border-gray-200 rounded-3xl p-8 sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto hover:border-teal-300 hover:shadow-xl transition-all duration-500 shadow-lg">
                             <h3 className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-8">Learning Topics</h3>
                             <nav className="space-y-2">
                                 {topics.map(topic => (
@@ -308,23 +195,16 @@ const LearnPage = () => {
                                     </a>
                                 ))}
                             </nav>
-
                             <div className="mt-10 pt-8 border-t border-gray-200">
                                 <button
-                                    className="flex items-center text-teal-600 hover:text-purple-600 transition-colors duration-300 font-medium text-lg mb-6"
+                                    className="flex items-center text-teal-600 hover:text-purple-600 transition-colors duration-300 font-medium text-lg mb-6 w-full justify-center"
                                     onClick={() => setShowCommunityLinks(!showCommunityLinks)}
                                 >
                                     <span>Community Resources</span>
-                                    <svg
-                                        className={`ml-3 w-5 h-5 transition-transform duration-300 ${showCommunityLinks ? 'rotate-180' : ''}`}
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
+                                    <svg className={`ml-3 w-5 h-5 transition-transform duration-300 ${showCommunityLinks ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </button>
-
                                 {showCommunityLinks && (
                                     <div className="space-y-4">
                                         {communityResources.map((resource, index) => (
@@ -343,25 +223,21 @@ const LearnPage = () => {
                                 )}
                             </div>
                         </div>
-                    </div>
+                    </aside>
 
-                    {/* Main content area - Clean White Cards */}
                     <div className="xl:flex-1 xl:min-w-0">
                         {/* Overview Section */}
-                        <section id="overview" className="mb-24 animate-on-scroll opacity-0 transition-opacity duration-1000">
+                        <section id="overview" className="mb-24">
                             <div className="bg-white backdrop-blur-md border border-gray-200 rounded-3xl p-10 lg:p-12 hover:border-teal-300 hover:shadow-xl transition-all duration-500 relative overflow-hidden shadow-lg">
                                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-teal-50 rounded-full"></div>
                                 <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-purple-50 rounded-full"></div>
-
                                 <div className="relative z-10">
                                     <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-10">Kaspa Overview</h2>
-
                                     <p className="mb-10 text-gray-700 text-xl leading-relaxed">
                                         Kaspa is a revolutionary Layer-1 blockchain protocol that employs an innovative BlockDAG architecture
                                         (Directed Acyclic Graph) with the GHOSTDAG consensus mechanism. This novel approach enables Kaspa to
                                         achieve unprecedented scalability and transaction speeds while maintaining robust security.
                                     </p>
-
                                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 my-12">
                                         <div className="group bg-gray-50 p-8 rounded-3xl border border-gray-200 hover:border-teal-300 hover:shadow-lg transition-all duration-500 transform hover:scale-105 hover:-translate-y-3">
                                             <div className="mb-6 text-teal-600 group-hover:scale-110 transition-transform duration-300">
@@ -372,7 +248,6 @@ const LearnPage = () => {
                                                 10 blocks per second with transaction inclusion in 100ms and confirmation in seconds
                                             </p>
                                         </div>
-
                                         <div className="group bg-gray-50 p-8 rounded-3xl border border-gray-200 hover:border-purple-300 hover:shadow-lg transition-all duration-500 transform hover:scale-105 hover:-translate-y-3">
                                             <div className="mb-6 text-purple-600 group-hover:scale-110 transition-transform duration-300">
                                                 <Shield size={36} />
@@ -382,7 +257,6 @@ const LearnPage = () => {
                                                 Proof-of-Work consensus with GHOSTDAG protocol offering Bitcoin-level security guarantees
                                             </p>
                                         </div>
-
                                         <div className="group bg-gray-50 p-8 rounded-3xl border border-gray-200 hover:border-teal-300 hover:shadow-lg transition-all duration-500 transform hover:scale-105 hover:-translate-y-3">
                                             <div className="mb-6 text-teal-600 group-hover:scale-110 transition-transform duration-300">
                                                 <Database size={36} />
@@ -393,7 +267,6 @@ const LearnPage = () => {
                                             </p>
                                         </div>
                                     </div>
-
                                     <h3 className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-6">Key Features</h3>
                                     <ul className="list-disc list-inside space-y-4 text-gray-700 mb-12 text-lg leading-relaxed">
                                         <li>Fast block production (10 BPS) with the Crescendo upgrade</li>
@@ -404,7 +277,6 @@ const LearnPage = () => {
                                         <li>Potential MEV (Miner Extractable Value) resistance</li>
                                         <li>KRC-20 token standard support</li>
                                     </ul>
-
                                     <div className="mt-12">
                                         <h3 className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-8">Kaspa Timeline</h3>
                                         <div className="space-y-8">
@@ -424,7 +296,7 @@ const LearnPage = () => {
                         </section>
 
                         {/* BlockDAG Architecture Section */}
-                        <section id="blockdag" className="mb-24 animate-on-scroll opacity-0 transition-opacity duration-1000">
+                        <section id="blockdag" className="mb-24">
                             <div className="bg-white backdrop-blur-md border border-gray-200 rounded-3xl p-10 lg:p-12 hover:border-teal-300 hover:shadow-xl transition-all duration-500 relative overflow-hidden shadow-lg">
                                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-purple-50 rounded-full"></div>
                                 <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-teal-50 rounded-full"></div>
@@ -753,43 +625,43 @@ const LearnPage = () => {
                                 </div>
                             </div>
                         </section>
-
-                        {/* Call to Action */}
-                        <section className="text-center py-24">
-                            <div className="relative">
-                                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-8 animate-fade-in-up">
-                                    Ready to Dive Deeper?
-                                </h2>
-                                <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in-up-delay font-medium">
-                                    We are working to simplify blockchain— discover how it could work better for you.
-                                </p>
-                                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                                    <Link
-                                        to="/features/token-swapping"
-                                        className="group relative inline-flex items-center gap-4 px-10 py-5 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 rounded-full font-bold text-white text-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-2 overflow-hidden"
-                                    >
-                                        <span className="relative z-10 flex items-center gap-4">
-                                            Start Swapping
-                                            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
-                                        </span>
-                                        <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                    </Link>
-                                    <a
-                                        href="https://ghostdevlabs.com"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="group relative inline-flex items-center gap-4 px-10 py-5 bg-white border border-teal-300 rounded-full font-bold text-teal-600 text-xl hover:bg-teal-50 transition-all duration-500 transform hover:scale-110 animate-fade-in-up-delay-3">
-                                        <span className="flex items-center gap-4">
-                                            Official Website
-                                            <ExternalLink className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </section>
                     </div>
                 </div>
             </main>
+
+            <section className="text-center py-24 relative z-10">
+                <div className="relative">
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-8">
+                        Ready to Dive Deeper?
+                    </h2>
+                    <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed font-medium">
+                        We are working to simplify blockchain— discover how it could work better for you.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                        <Link
+                            to="/features/token-swapping"
+                            className="group relative inline-flex items-center gap-4 px-10 py-5 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 rounded-full font-bold text-white text-xl shadow-2xl hover:shadow-teal-500/25 transition-transform duration-500 hover:scale-110 overflow-hidden"
+                        >
+                            <span className="relative z-10 flex items-center gap-4">
+                                Start Swapping
+                                <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                            </span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </Link>
+                        <a
+                            href="https://ghostdevlabs.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative inline-flex items-center gap-4 px-10 py-5 bg-white border border-teal-300 rounded-full font-bold text-teal-600 text-xl hover:bg-teal-50 transition-transform duration-500 hover:scale-110"
+                        >
+                            <span className="flex items-center gap-4">
+                                Official Website
+                                <ExternalLink className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </section>
 
             <EnhancedFooter />
 
@@ -798,17 +670,11 @@ const LearnPage = () => {
                     from { opacity: 0; transform: translateY(30px); }
                     to { opacity: 1; transform: translateY(0); }
                 }
-                
-                @keyframes float {
-                    0%, 100% { transform: translateY(0px) rotate(0deg); }
-                    50% { transform: translateY(-20px) rotate(180deg); }
-                }
-                
                 .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
                 .animate-fade-in-up-delay { animation: fade-in-up 0.8s ease-out 0.2s forwards; opacity: 0; }
                 .animate-fade-in-up-delay-2 { animation: fade-in-up 0.8s ease-out 0.4s forwards; opacity: 0; }
-                .`}
-            </style>
+                .animate-fade-in-up-delay-3 { animation: fade-in-up 0.8s ease-out 0.6s forwards; opacity: 0; }
+            `}</style>
         </div>
     );
 };

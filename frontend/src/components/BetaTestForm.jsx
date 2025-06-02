@@ -110,6 +110,25 @@ const BetaTestForm = ({ isVisible, onClose }) => {
                     }
 
                     console.log('Successfully saved to Supabase:', data);
+
+                    // Aggregate email in the dedicated beta_testers table
+                    const { data: testerData, error: testerError } = await supabase
+                        .from('beta_testers')
+                        .upsert([
+                            {
+                                email: formData.email,
+                                source: formData.referralSource || 'unknown',
+                                use_case: formData.comments || '',
+                                created_at: new Date().toISOString()
+                            }
+                        ], { onConflict: 'email' });
+
+                    if (testerError) {
+                        console.error('Failed to aggregate tester email:', testerError);
+                    } else {
+                        console.log('Tester email aggregated successfully:', testerData);
+                    }
+
                     submissionSuccess = true;
                 } catch (supabaseError) {
                     const errorInfo = handleSupabaseError(supabaseError);
@@ -126,7 +145,8 @@ const BetaTestForm = ({ isVisible, onClose }) => {
             // Fallback to localStorage if Supabase fails or isn't configured
             if (!submissionSuccess) {
                 try {
-                    const existingSubmissions = JSON.parse(localStorage.getItem('beta_submissions') || '[]');
+                    // Change key to 'betaSubmissions' to match the dashboard expectation
+                    const existingSubmissions = JSON.parse(localStorage.getItem('betaSubmissions') || '[]');
 
                     // Check for duplicate email in localStorage
                     if (existingSubmissions.some(sub => sub.email === formData.email)) {
@@ -137,12 +157,12 @@ const BetaTestForm = ({ isVisible, onClose }) => {
                     const newSubmission = {
                         ...formData,
                         id: Date.now().toString(),
-                        submitted_at: new Date().toISOString(),
+                        timestamp: new Date().toISOString(), // using 'timestamp' to match dashboard
                         source: 'localStorage'
                     };
 
                     existingSubmissions.push(newSubmission);
-                    localStorage.setItem('beta_submissions', JSON.stringify(existingSubmissions));
+                    localStorage.setItem('betaSubmissions', JSON.stringify(existingSubmissions));
 
                     console.log('Successfully saved to localStorage:', newSubmission);
                     submissionSuccess = true;
