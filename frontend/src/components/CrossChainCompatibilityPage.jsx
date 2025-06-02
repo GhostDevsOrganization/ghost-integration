@@ -71,12 +71,12 @@ const CrossChainCompatibilityPage = () => {
             icon: SolanaIcon
         },
         {
-            name: 'So many more',
+            name: 'So Many More',
             symbol: '',
-            description: 'Fully compatible with Ethereum and other EVM chains',
+            description: 'Fully compatible with all major chains',
             status: 'live',
             color: 'from-yellow-400 to-orange-500',
-            features: ['Low Fees', 'Fast Transactions', 'EVM Compatible'],
+            features: ['Low Fees', 'Fast Transactions', 'Try it Today!'],
             icon: BNBIcon
         }
     ];
@@ -340,19 +340,19 @@ const CrossChainCompatibilityPage = () => {
                     <div className="grid md:grid-cols-3 gap-8 sm:gap-10">
                         {[
                             {
-                                step: '01',
+                                step: '1',
                                 title: 'Select Cryptocurrencies',
                                 description: 'Choose your source and destination wallet, from cryptocurrencies in our supported list.',
                                 color: 'from-teal-500 to-blue-600'
                             },
                             {
-                                step: '02',
+                                step: '2',
                                 title: 'Secure Exchange',
                                 description: 'Our platform calculates the best rates and executes your exchange securely.',
                                 color: 'from-teal-600 to-purple-600'
                             },
                             {
-                                step: '03',
+                                step: '3',
                                 title: 'Direct Transfer',
                                 description: 'Your exchanged cryptocurrency is transferred directly to your wallet --> from your wallet. You hold and control your funds.',
                                 color: 'from-teal-400 to-purple-500'

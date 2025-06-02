@@ -1,50 +1,32 @@
 import React from 'react';
 
-const KASIcon = ({ size = 32, className = "", glow = false }) => {
+const KASIcon = ({ size = 44, className = "", glow = false }) => {
     return (
         <div className={`relative ${glow ? 'animate-pulse' : ''} ${className}`} style={{ width: size, height: size }}>
             {glow && (
                 <div className="absolute inset-0 rounded-full bg-teal-400/40 blur-xl animate-pulse" />
             )}
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={size}
-                height={size}
-                viewBox="0 0 32 32"
-                className="relative z-10 drop-shadow-2xl"
-            >
-                <defs>
-                    <linearGradient id="kas-c" x1="50%" x2="50%" y1="0%" y2="100%">
-                        <stop offset="0%" stopColor="#FFF" stopOpacity=".5" />
-                        <stop offset="100%" stopOpacity=".5" />
-                    </linearGradient>
-                    <circle id="kas-b" cx="16" cy="15" r="15" />
-                    <filter id="kas-a" width="111.7%" height="111.7%" x="-5.8%" y="-4.2%" filterUnits="objectBoundingBox">
-                        <feOffset dy=".5" in="SourceAlpha" result="shadowOffsetOuter1" />
-                        <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation=".5" />
-                        <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1" />
-                        <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.199473505 0" />
-                    </filter>
-                </defs>
-                <g fill="none" fillRule="evenodd">
-                    <use fill="#000" filter="url(#kas-a)" xlinkHref="#kas-b" />
-                    <use fill="#70C7BA" xlinkHref="#kas-b" />
-                    <use fill="url(#kas-c)" style={{ mixBlendMode: "soft-light" }} xlinkHref="#kas-b" />
-                    <circle cx="16" cy="15" r="14.5" stroke="#000" strokeOpacity=".097" />
-                    <text
-                        x="16"
-                        y="20"
-                        fontSize="16"
-                        fontWeight="bold"
-                        fill="#FFF"
-                        textAnchor="middle"
-                        fontFamily="Arial, sans-serif"
-                        style={{ dominantBaseline: "middle" }}
-                    >
-                        𐤊
-                    </text>
-                </g>
-            </svg>
+            <div className="relative z-10 rounded-full border-2 border-teal-300 bg-white shadow-xl hover:border-teal-400 transition-colors duration-300 overflow-hidden" style={{ width: size, height: size }}>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 197.05 196.86"
+                    className="drop-shadow-sm"
+                    style={{ display: 'block' }}
+                >
+                    <defs>
+                        <style>{`.cls-1{fill:none;}.cls-2{fill:#fff;}.cls-3{fill:#6fc7ba;}`}</style>
+                    </defs>
+                    <g>
+                        <g>
+                            <circle className="cls-2" cx="98.52" cy="98.43" r="41.03"></circle>
+                            <path className="cls-3" d="m149.42,76.34c-2.8-6.76-7.22-13.03-12.32-18.12-5.08-5.1-11.61-8.91-18.38-11.71-6.51-2.71-13.78-4.07-21.28-4.07s-15.21.27-21.72,2.98c-6.76,2.8-12.42,8.12-17.51,13.22-5.1,5.1-11.02,10.51-13.82,17.26-2.71,6.53-1.83,14.48-1.83,21.99s.55,14.85,3.26,21.38c2.8,6.76,8.52,11.54,13.6,16.64,5.1,5.1,9.71,11.18,16.47,13.98,6.53,2.71,14.04,4.55,21.54,4.55s14.87-2.22,21.4-4.94c6.75-2.8,12.86-7.18,17.96-12.27,5.1-5.1,9.19-11.32,12.01-18.08,2.7-6.51,5.79-13.76,5.79-21.26s-2.48-15-5.19-21.53Zm-36.26,53.49l-11.88-1.75,3.39-23-24.87,19.16-7.32-9.56,21.82-16.8-21.82-16.81,7.32-9.56,24.87,19.16-3.39-22.99,11.88-1.77,4.73,31.98-4.73,31.96Z"></path>
+                        </g>
+                        <rect className="cls-1" x=".09" y="-.09" width="196.86" height="197.05" transform="translate(196.96 -.09) rotate(90)"></rect>
+                    </g>
+                </svg>
+            </div>
         </div>
     );
 };
