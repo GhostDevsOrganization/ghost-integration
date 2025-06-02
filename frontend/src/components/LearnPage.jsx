@@ -3,11 +3,22 @@ import { Link, useLocation } from 'react-router-dom';
 import FuturisticNav from './FuturisticNav';
 import EnhancedFooter from './EnhancedFooter';
 import QuantumBackground from './3D/QuantumBackground';
+import HolographicGrid from './3D/HolographicGrid'
 import { Home, Repeat, Wallet, Link2, BookOpen, Menu, X } from 'lucide-react';
 import { Book, ArrowRight, Github, Send, Clock, ExternalLink, Zap, Shield, Database, Layers, RefreshCw, AlertTriangle, DollarSign, Lock, Cpu, ServerCrash } from 'lucide-react';
 import DiscordIcon from './DiscordIcon';
+import CrystalFormation from './3D/CrystalFormation';
 
 const LearnPage = () => {
+    // Use default theme data instead of useTheme hook
+    const themeData = {
+        colors: {
+            accentPrimary: '#00D632',
+            accentSecondary: '#009986',
+            primaryBackground: '#ffffff'
+        }
+    };
+
     const [activeTopic, setActiveTopic] = useState('overview');
     const [showCommunityLinks, setShowCommunityLinks] = useState(false);
     const [showMobileNav, setShowMobileNav] = useState(false);
@@ -145,7 +156,7 @@ const LearnPage = () => {
     return (
         <div className="min-h-screen overflow-x-hidden relative bg-gradient-to-br from-white via-gray-50 to-white text-gray-900">
             {/* Add 3D Background */}
-            <QuantumBackground />
+            <HolographicGrid themeData={themeData} />
 
             {/* Clean light background with subtle gradients */}
             <div className="fixed inset-0 pointer-events-none z-0">
@@ -796,13 +807,8 @@ const LearnPage = () => {
                 .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
                 .animate-fade-in-up-delay { animation: fade-in-up 0.8s ease-out 0.2s forwards; opacity: 0; }
                 .animate-fade-in-up-delay-2 { animation: fade-in-up 0.8s ease-out 0.4s forwards; opacity: 0; }
-                .animate-fade-in-up-delay-3 { animation: fade-in-up 0.8s ease-out 0.6s forwards; opacity: 0; }
-                .animate-float { animation: float 6s ease-in-out infinite; }
-                
-                .animate-in {
-                    opacity: 1 !important;
-                }
-            `}</style>
+                .`}
+            </style>
         </div>
     );
 };

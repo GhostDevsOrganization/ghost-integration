@@ -333,7 +333,7 @@ const Neural3DBackground = ({
 
     return (
         <div className={cn(
-            "w-full h-screen relative flex items-center justify-center overflow-hidden",
+            "fixed inset-0 w-full h-full pointer-events-none z-0",
             "bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900",
             className
         )}>
@@ -342,9 +342,11 @@ const Neural3DBackground = ({
                 ref={canvasRef}
                 className="absolute inset-0 w-full h-full"
             />
-            <div className="relative z-10">
-                {children}
-            </div>
+            {children && (
+                <div className="relative z-10">
+                    {children}
+                </div>
+            )}
         </div>
     );
 };

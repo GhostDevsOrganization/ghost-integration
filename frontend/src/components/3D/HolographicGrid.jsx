@@ -4,15 +4,29 @@ import * as THREE from 'three';
 export default function HolographicGrid({ themeData, performanceMode = 'high' }) {
     const mountRef = useRef(null);
 
+    // Define default colors that will always work
+    const defaultColors = {
+        accentPrimary: '#00D632',
+        accentSecondary: '#009986',
+        primaryBackground: '#ffffff'
+    };
+
     useEffect(() => {
         if (!mountRef.current) return;
+
+        // Use default colors if themeData is not available
+        const colors = themeData?.colors ? {
+            accentPrimary: themeData.colors.accentPrimary || defaultColors.accentPrimary,
+            accentSecondary: themeData.colors.accentSecondary || defaultColors.accentSecondary,
+            primaryBackground: themeData.colors.primaryBackground || defaultColors.primaryBackground
+        } : defaultColors;
 
         // Scene setup
         const scene = new THREE.Scene();
         scene.fog = new THREE.Fog(0x000000, 50, 200);
 
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 20, 40);
+        camera.position.set(0, 25, 50);
         camera.lookAt(0, 0, 0);
 
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: performanceMode === 'high' });
@@ -20,22 +34,22 @@ export default function HolographicGrid({ themeData, performanceMode = 'high' })
         renderer.setPixelRatio(performanceMode === 'high' ? window.devicePixelRatio : 1);
         mountRef.current.appendChild(renderer.domElement);
 
-        // Create holographic grid floor
+        // Create holographic grid floor with safe colors
         const gridSize = performanceMode === 'high' ? 100 : 50;
         const divisions = performanceMode === 'high' ? 50 : 25;
 
         const gridHelper = new THREE.GridHelper(gridSize, divisions,
-            new THREE.Color(themeData.colors.accentPrimary),
-            new THREE.Color(themeData.colors.accentSecondary)
+            new THREE.Color(colors.accentPrimary),
+            new THREE.Color(colors.accentSecondary)
         );
         gridHelper.material.opacity = 0.3;
         gridHelper.material.transparent = true;
         scene.add(gridHelper);
 
-        // Create vertical grid walls
+        // Create vertical grid walls with safe colors
         const wallGrid1 = new THREE.GridHelper(gridSize, divisions,
-            new THREE.Color(themeData.colors.accentPrimary),
-            new THREE.Color(themeData.colors.accentSecondary)
+            new THREE.Color(colors.accentPrimary),
+            new THREE.Color(colors.accentSecondary)
         );
         wallGrid1.rotation.x = Math.PI / 2;
         wallGrid1.position.z = -gridSize / 2;
@@ -44,8 +58,8 @@ export default function HolographicGrid({ themeData, performanceMode = 'high' })
         scene.add(wallGrid1);
 
         const wallGrid2 = new THREE.GridHelper(gridSize, divisions,
-            new THREE.Color(themeData.colors.accentPrimary),
-            new THREE.Color(themeData.colors.accentSecondary)
+            new THREE.Color(colors.accentPrimary),
+            new THREE.Color(colors.accentSecondary)
         );
         wallGrid2.rotation.z = Math.PI / 2;
         wallGrid2.position.x = -gridSize / 2;
@@ -184,6 +198,11 @@ export default function HolographicGrid({ themeData, performanceMode = 'high' })
             requestAnimationFrame(animate);
             const time = Date.now() * 0.001;
 
+            // Slower camera animation
+            //camera.position.x = Math.sin(time * 0.002) * 2; // Reduced from 0.1 to 0.02, and 10 to 5
+            //camera.position.z = 40 + Math.cos(time * 0.002) * 2; // Reduced movement
+            camera.lookAt(0, 0, 0);
+
             // Animate scan lines
             scanLines.forEach((line, index) => {
                 line.position.z += line.userData.speed * line.userData.direction;
@@ -251,10 +270,8 @@ export default function HolographicGrid({ themeData, performanceMode = 'high' })
                 }
             });
 
-            // Animate camera
-            camera.position.x = Math.sin(time * 0.1) * 10;
-            camera.position.z = 40 + Math.cos(time * 0.1) * 10;
-            camera.lookAt(0, 0, 0);
+
+
 
             renderer.render(scene, camera);
         };

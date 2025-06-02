@@ -14,6 +14,9 @@ import USDTIcon from './USDTIcon';
 import BNBIcon from './BNBIcon';
 
 import KASIcon from './KASIcon';
+import EnhancedBlockchainNetwork from './3D/EnhancedBlockchainNetwork.jsx';
+import CyberpunkMetropolis from './CyberpunkMetropolis.jsx';
+import Neural3DBackground from './3D/Neural3DBackground.jsx';
 
 const TokenSwappingPage = ({ isWidgetMode = false }) => {
     const [showAdvanced, setShowAdvanced] = useState(false);
@@ -144,8 +147,8 @@ const TokenSwappingPage = ({ isWidgetMode = false }) => {
 
     return (
         <div className="min-h-screen overflow-x-hidden relative bg-gradient-to-br from-white via-gray-50 to-white text-gray-900">
-            {/* Add 3D Background */}
-            <QuantumBackground />
+            {/* Neural 3D Background covering entire page */}
+            <Neural3DBackground />
 
             {/* Clean light background with subtle gradients */}
             <div className="fixed inset-0 pointer-events-none z-0">
