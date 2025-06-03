@@ -42,7 +42,7 @@ export default function EnhancedIPhoneMockup() {
                         <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/20 to-teal-500/20 rounded-[60px] blur-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-500" />
 
                         {/* iPhone Frame */}
-                        <div className="relative w-[380px] h-[780px] bg-[#1a1a1a] rounded-[50px] p-3 shadow-2xl transform transition-transform duration-300 group-hover:scale-[1.02]">
+                        <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px] aspect-[9/19] bg-[#1a1a1a] rounded-[30px] sm:rounded-[40px] md:rounded-[50px] p-2 sm:p-3 shadow-2xl transform transition-transform duration-300 group-hover:scale-[1.02] mx-auto">
                             {/* Inner bezel */}
                             <div className="absolute inset-[2px] bg-[#2a2a2a] rounded-[48px]" />
                             <div className="absolute inset-[4px] bg-[#1a1a1a] rounded-[46px]" />
