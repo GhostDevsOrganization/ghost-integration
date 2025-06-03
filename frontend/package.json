@@ -36,7 +36,9 @@
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
     "dev": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts build",
+    "clean": "powershell -Command \"if (Test-Path 'dist') { Remove-Item -Recurse -Force 'dist' -ErrorAction SilentlyContinue }; if (Test-Path 'build') { Remove-Item -Recurse -Force 'build' -ErrorAction SilentlyContinue }\"",
+    "prebuild": "npm run clean",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
