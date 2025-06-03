@@ -1,15 +1,9 @@
 {
     "version": 2,
-    "builds": [
-        {
-            "src": "frontend/package.json",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "build",
-                "buildCommand": "cd frontend && npm install && npm run build"
-            }
-        }
-    ],
+    "buildCommand": "cd frontend && npm install && npm run build",
+    "outputDirectory": "frontend/build",
+    "framework": null,
+    "installCommand": "npm install",
     "routes": [
         {
             "handle": "filesystem"
@@ -25,6 +19,5 @@
         "REACT_APP_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56YWtsb214cmVjbnJqYXNqZGZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg1MDkyMjEsImV4cCI6MjA2NDA4NTIyMX0.0B6JH8uwqVysPAxMW4FpWzLd8UMoVKQvql8VkulsxB0",
         "GENERATE_SOURCEMAP": "false",
         "NODE_OPTIONS": "--openssl-legacy-provider"
-    },
-    "homepage": "/"
+    }
 }
