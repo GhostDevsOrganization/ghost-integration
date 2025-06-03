@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Home, Repeat, Link2, BookOpen, Sparkles, Activity } from 'lucide-react';
-import ThemeSwitcher from './ThemeSwitcher';
 
 const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -56,8 +55,10 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
             </button>
 
             {/* Desktop Navigation */}
-            <nav className={`hidden md:flex fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${scrolled ? 'py-3' : 'py-4'} backdrop-blur-xl border-b`}
-                style={{ backgroundColor: 'var(--primary-bg)', borderColor: 'var(--border-color)' }}>
+            <nav
+                className={`hidden md:flex fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${scrolled ? 'py-3' : 'py-4'} backdrop-blur-xl border-b`}
+                style={{ backgroundColor: 'var(--primary-bg)', borderColor: 'var(--border-color)' }}
+            >
                 <div className="max-w-7xl mx-auto px-6 flex items-center justify-between w-full">
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-3 group">
@@ -67,8 +68,10 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                                 alt="Kasportal"
                                 className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110 hover:scale-105 drop-shadow-2xl relative z-10"
                             />
-                            <div className="absolute inset-0 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
-                                style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }} />
+                            <div
+                                className="absolute inset-0 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
+                                style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}
+                            />
                         </div>
                         <span className="text-xl font-bold text-black">
                             Kasportal
@@ -84,26 +87,32 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                                 onMouseEnter={() => setHoveredItem(protocol.key)}
                                 onMouseLeave={() => setHoveredItem(null)}
-                                className={`relative flex items-center gap-2 px-5 py-2.5 rounded-xl transition-all duration-300 ${activeProtocol === protocol.key
-                                    ? 'text-white'
-                                    : 'hover:text-white'
-                                    }`}
+                                className={`relative flex items-center gap-2 px-5 py-2.5 rounded-xl transition-all duration-300 ${activeProtocol === protocol.key ? 'text-white' : 'hover:text-white'}`}
                                 style={{ color: activeProtocol === protocol.key ? 'var(--text-primary)' : 'var(--text-secondary)' }}
                             >
                                 {/* Background gradient */}
-                                <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${activeProtocol === protocol.key
-                                    ? 'opacity-100'
-                                    : hoveredItem === protocol.key
+                                <div
+                                    className={`absolute inset-0 rounded-xl transition-all duration-300 ${activeProtocol === protocol.key
                                         ? 'opacity-100'
-                                        : 'opacity-0'
-                                    }`}
-                                    style={{ background: activeProtocol === protocol.key ? 'linear-gradient(to right, rgba(var(--accent-primary-rgb-values), 0.3), rgba(var(--accent-secondary-rgb-values), 0.3))' : hoveredItem === protocol.key ? 'linear-gradient(to right, rgba(var(--accent-primary-rgb-values), 0.2), rgba(var(--accent-secondary-rgb-values), 0.2))' : 'none' }} />
+                                        : hoveredItem === protocol.key
+                                            ? 'opacity-100'
+                                            : 'opacity-0'
+                                        }`}
+                                    style={{
+                                        background:
+                                            activeProtocol === protocol.key
+                                                ? 'linear-gradient(to right, rgba(var(--accent-primary-rgb-values), 0.3), rgba(var(--accent-secondary-rgb-values), 0.3))'
+                                                : hoveredItem === protocol.key
+                                                    ? 'linear-gradient(to right, rgba(var(--accent-primary-rgb-values), 0.2), rgba(var(--accent-secondary-rgb-values), 0.2))'
+                                                    : 'none'
+                                    }}
+                                />
 
                                 {/* Border glow */}
-                                <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${activeProtocol === protocol.key
-                                    ? 'opacity-100'
-                                    : 'opacity-0'
-                                    }`} style={{ padding: '1px', background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}>
+                                <div
+                                    className={`absolute inset-0 rounded-xl transition-all duration-300 ${activeProtocol === protocol.key ? 'opacity-100' : 'opacity-0'}`}
+                                    style={{ padding: '1px', background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}
+                                >
                                     <div className="w-full h-full rounded-xl" style={{ backgroundColor: 'var(--primary-bg)' }} />
                                 </div>
 
@@ -117,8 +126,10 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
 
                                 {/* Active indicator */}
                                 {activeProtocol === protocol.key && (
-                                    <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-1 rounded-full"
-                                        style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }} />
+                                    <div
+                                        className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-1 rounded-full"
+                                        style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}
+                                    />
                                 )}
 
                                 {/* Hover particles */}
@@ -142,33 +153,30 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                             </Link>
                         ))}
                     </div>
-
-                    {/* {/* Right side elements *
-                    <div className="flex items-center gap-4">
-                        <ThemeSwitcher className="mr-4 z-[1000]" dropdownPosition="bottom" />
-                    </div> */}
                 </div>
             </nav>
 
             {/* Mobile Navigation */}
             <nav
-                className={`mobile-menu md:hidden fixed inset-0 backdrop-blur-xl z-[990] transition-all duration-300 ${menuOpen
-                    ? 'opacity-100 pointer-events-auto'
-                    : 'opacity-0 pointer-events-none'
-                    }`}
+                className={`mobile-menu md:hidden fixed inset-0 backdrop-blur-xl z-[990] transition-all duration-300 ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
                 style={{ backgroundColor: 'rgba(var(--primary-bg-rgb-values), 0.95)' }}
             >
                 <div className="flex flex-col items-center justify-center h-full space-y-6 py-16 px-4 overflow-y-auto">
-                    {/* Logo in mobile menu */}
+                    {/* Logo in mobile menu (using correct logo) */}
                     <div className="mb-8 relative group">
                         <img
-                            src="/icons/logo.svg"
+                            src="/icons/logo.png"
                             alt="Kasportal"
                             className="w-20 h-20 mx-auto mb-4 hover:scale-105 transition-transform duration-500 drop-shadow-2xl relative z-10"
                         />
-                        <div className="absolute inset-0 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300" style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}></div>
-                        <h2 className="text-2xl font-bold bg-clip-text text-transparent"
-                            style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}>
+                        <div
+                            className="absolute inset-0 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
+                            style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}
+                        />
+                        <h2
+                            className="text-2xl font-bold bg-clip-text text-transparent"
+                            style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))' }}
+                        >
                             Kasportal
                         </h2>
                     </div>
@@ -187,12 +195,21 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                                 animationDelay: `${index * 0.1}s`,
                                 backgroundColor: activeProtocol === protocol.key ? 'rgba(var(--accent-primary-rgb-values), 0.3)' : 'transparent',
                                 color: activeProtocol === protocol.key ? 'var(--text-primary)' : 'var(--text-secondary)',
-                                backgroundImage: activeProtocol === protocol.key ? 'linear-gradient(to right, rgba(var(--accent-primary-rgb-values), 0.3), rgba(var(--accent-secondary-rgb-values), 0.3))' : (hoveredItem === protocol.key ? 'linear-gradient(to right, rgba(var(--accent-primary-rgb-values), 0.2), rgba(var(--accent-secondary-rgb-values), 0.2))' : 'none')
+                                backgroundImage: activeProtocol === protocol.key
+                                    ? 'linear-gradient(to right, rgba(var(--accent-primary-rgb-values), 0.3), rgba(var(--accent-secondary-rgb-values), 0.3))'
+                                    : (hoveredItem === protocol.key
+                                        ? 'linear-gradient(to right, rgba(var(--accent-primary-rgb-values), 0.2), rgba(var(--accent-secondary-rgb-values), 0.2))'
+                                        : 'none')
                             }}
                         >
                             {activeProtocol === protocol.key && (
-                                <div className="absolute inset-0 rounded-xl blur-xl"
-                                    style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))', opacity: 0.2 }} />
+                                <div
+                                    className="absolute inset-0 rounded-xl blur-xl"
+                                    style={{
+                                        background: 'linear-gradient(to right, var(--accent-primary), var(--accent-secondary))',
+                                        opacity: 0.2
+                                    }}
+                                />
                             )}
 
                             <div className="relative z-10 flex items-center gap-3">
@@ -204,8 +221,7 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                         </Link>
                     ))}
 
-                    {/* Theme Switcher for Mobile */}
-                    <ThemeSwitcher className="mt-6 z-[1000]" dropdownPosition="bottom" />
+                    {/* Removed ThemeSwitcher for mobile */}
 
                     {/* Mobile menu footer */}
                     <div className="mt-8 flex items-center gap-4">
@@ -224,15 +240,15 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
             </div>
 
             <style>{`
-        @keyframes slide {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(400%); }
-        }
-        
-        .animate-slide {
-          animation: slide 3s linear infinite;
-        }
-      `}</style>
+                @keyframes slide {
+                  0% { transform: translateX(-100%); }
+                  100% { transform: translateX(400%); }
+                }
+                
+                .animate-slide {
+                  animation: slide 3s linear infinite;
+                }
+            `}</style>
         </>
     );
 };
