@@ -11,6 +11,7 @@ import useIsMobile from '../hooks/useIsMobile';
 import MEVProtectionVisual from './3D/MEVProtectionVisual';
 import EnhancedIPhoneMockup from './EnhancedIPhoneMockup';
 import EnhancedIPhoneMockupMobile from './EnhancedIPhoneMockupMobile';
+import BetaTestForm from './BetaTestForm';
 import {
   SwapIcon,
   WalletIcon,
@@ -52,6 +53,7 @@ export default function LandingPage() {
   const [portalActive, setPortalActive] = useState(false);
   const [activeProtocol, setActiveProtocol] = useState('home');
   const [scrollY, setScrollY] = useState(0);
+  const [showBetaForm, setShowBetaForm] = useState(false);
 
   const handleProtocolChange = (protocolKey) => {
     setActiveProtocol(protocolKey);
@@ -330,8 +332,21 @@ export default function LandingPage() {
                 </p>
                 <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 sm:mb-10 animate-fade-in-up-delay backdrop-blur-sm relative z-10 leading-relaxed px-2 sm:px-0 text-gray-600 font-medium overflow-visible">
                   Your portal from traditional finance to blockchain technology, making crypto accessible to everyone
-
                 </p>
+
+                {/* Beta Signup Button */}
+                <div className="flex justify-center lg:justify-start animate-fade-in-up-delay-2">
+                  <button
+                    onClick={() => setShowBetaForm(true)}
+                    className="group relative px-8 py-4 bg-gradient-to-r from-teal-500 to-purple-500 hover:from-teal-400 hover:to-purple-400 text-white font-bold rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span className="relative z-10 flex items-center space-x-2">
+                      <span>🚀 Join Beta Program</span>
+                      <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </button>
+                </div>
 
               </div>
             </div>
@@ -506,6 +521,12 @@ export default function LandingPage() {
       </main>
 
       <EnhancedFooter />
+
+      {/* Beta Test Form Modal */}
+      <BetaTestForm
+        isVisible={showBetaForm}
+        onClose={() => setShowBetaForm(false)}
+      />
 
       <style>{`
         @keyframes fade-in-up {

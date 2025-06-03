@@ -87,67 +87,64 @@ const BetaTestForm = ({ isVisible, onClose }) => {
         try {
             let submissionSuccess = false;
 
-            // Check if Supabase is configured
-            if (isSupabaseConfigured()) {
-                try {
-                    const { data, error } = await supabase
-                        .from('beta_submissions')
-                        .insert([{
+            // Primary: Use localStorage for now (since Supabase is having issues)
+            try {
+                const existingSubmissions = JSON.parse(localStorage.getItem('beta_submissions') || '[]');
+
+                // Check for duplicate email in localStorage
+                if (existingSubmissions.some(sub => sub.email === formData.email)) {
+                    setErrors({ email: 'This email is already registered for beta access.' });
+                    return;
+                }
+
+                const newSubmission = {
+                    ...formData,
+                    id: Date.now().toString(),
+                    submitted_at: new Date().toISOString(),
+                    source: 'localStorage',
+                    interests: formData.interests.join(', ')
+                };
+
+                existingSubmissions.push(newSubmission);
+                localStorage.setItem('beta_submissions', JSON.stringify(existingSubmissions));
+
+                console.log('Successfully saved to localStorage:', newSubmission);
+                submissionSuccess = true;
+            } catch (localStorageError) {
+                console.error('localStorage failed:', localStorageError);
+
+                // Fallback to Supabase if localStorage fails
+                if (isSupabaseConfigured()) {
+                    try {
+                        const submissionData = {
                             name: formData.name,
                             email: formData.email,
-                            interests: formData.interests,
+                            interests: formData.interests.join(', '),
                             referral_source: formData.referralSource,
                             comments: formData.comments,
                             submitted_at: new Date().toISOString()
-                        }]);
+                        };
 
-                    if (error) {
-                        if (error.code === '23505' && error.details?.includes('email')) {
-                            setErrors({ email: 'This email is already registered for beta access.' });
-                            return;
+                        const { data, error } = await supabase
+                            .from('beta_submissions')
+                            .insert([submissionData]);
+
+                        if (error) {
+                            if (error.code === '23505' && error.details?.includes('email')) {
+                                setErrors({ email: 'This email is already registered for beta access.' });
+                                return;
+                            }
+                            throw error;
                         }
-                        throw error;
-                    }
 
-                    console.log('Successfully saved to Supabase:', data);
-                    submissionSuccess = true;
-                } catch (supabaseError) {
-                    const errorInfo = handleSupabaseError(supabaseError);
-                    console.warn(errorInfo.error);
-
-                    if (!errorInfo.fallback) {
-                        setErrors({ submit: errorInfo.error });
+                        console.log('Successfully saved to Supabase as fallback:', data);
+                        submissionSuccess = true;
+                    } catch (supabaseError) {
+                        console.error('Supabase fallback also failed:', supabaseError);
+                        setErrors({ submit: 'Unable to save your submission. Please try again.' });
                         return;
                     }
-                    // Continue to localStorage fallback
-                }
-            }
-
-            // Fallback to localStorage if Supabase fails or isn't configured
-            if (!submissionSuccess) {
-                try {
-                    const existingSubmissions = JSON.parse(localStorage.getItem('beta_submissions') || '[]');
-
-                    // Check for duplicate email in localStorage
-                    if (existingSubmissions.some(sub => sub.email === formData.email)) {
-                        setErrors({ email: 'This email is already registered for beta access.' });
-                        return;
-                    }
-
-                    const newSubmission = {
-                        ...formData,
-                        id: Date.now().toString(),
-                        submitted_at: new Date().toISOString(),
-                        source: 'localStorage'
-                    };
-
-                    existingSubmissions.push(newSubmission);
-                    localStorage.setItem('beta_submissions', JSON.stringify(existingSubmissions));
-
-                    console.log('Successfully saved to localStorage:', newSubmission);
-                    submissionSuccess = true;
-                } catch (localStorageError) {
-                    console.error('localStorage fallback failed:', localStorageError);
+                } else {
                     setErrors({ submit: 'Unable to save your submission. Please try again.' });
                     return;
                 }
@@ -155,9 +152,7 @@ const BetaTestForm = ({ isVisible, onClose }) => {
 
             // Success - show confirmation
             if (submissionSuccess) {
-                // Brief delay for better UX
                 await new Promise(resolve => setTimeout(resolve, 800));
-
                 setIsSubmitted(true);
 
                 // Auto close after success message
@@ -173,7 +168,6 @@ const BetaTestForm = ({ isVisible, onClose }) => {
                     });
                 }, 3000);
             }
-
         } catch (error) {
             console.error('Unexpected error submitting form:', error);
             setErrors({ submit: 'An unexpected error occurred. Please try again.' });
@@ -348,9 +342,7 @@ const BetaTestForm = ({ isVisible, onClose }) => {
                                     )}
                                 </button>
 
-                                {errors.submit && (
-                                    <p className="text-red-400 text-sm text-center">{errors.submit}</p>
-                                )}
+                                {errors.submit && <p className="text-red-400 text-sm text-center">{errors.submit}</p>}
                             </form>
                         </>
                     )}
