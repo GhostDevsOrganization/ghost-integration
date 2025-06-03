@@ -1,0 +1,15 @@
+import React from 'react';
+import EnhancedIPhoneMockup from './components/EnhancedIPhoneMockup';
+import EnhancedIPhoneMockupMobile from './components/EnhancedIPhoneMockupMobile';
+import useIsMobile from './hooks/useIsMobile';
+
+export default function App() {
+    const isMobile = useIsMobile();
+
+    return (
+        <>
+            {isMobile ? <EnhancedIPhoneMockupMobile /> : <EnhancedIPhoneMockup />}
+            {/* Other components */}
+        </>
+    );
+}

@@ -6,9 +6,11 @@ import QuantumPortal from './QuantumPortal';
 import FuturisticNav from './FuturisticNav';
 import EnhancedFooter from './EnhancedFooter';
 import FeatureCard from './FeatureCard';
+import useIsMobile from '../hooks/useIsMobile';
 
 import MEVProtectionVisual from './3D/MEVProtectionVisual';
 import EnhancedIPhoneMockup from './EnhancedIPhoneMockup';
+import EnhancedIPhoneMockupMobile from './EnhancedIPhoneMockupMobile';
 import {
   SwapIcon,
   WalletIcon,
@@ -43,6 +45,7 @@ import KASIcon from './KASIcon';
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const { themeData } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const portalRef = useRef(null);
@@ -428,7 +431,7 @@ export default function LandingPage() {
           <div className="relative bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-200 mx-4 shadow-xl hover:shadow-2xl transition-all duration-500">
             <div className="flex justify-center overflow-hidden">
               <div className="w-full max-w-4xl">
-                <EnhancedIPhoneMockup />
+                {isMobile ? <EnhancedIPhoneMockupMobile /> : <EnhancedIPhoneMockup />}
               </div>
             </div>
           </div>
