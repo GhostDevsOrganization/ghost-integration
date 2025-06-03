@@ -162,7 +162,7 @@ const FuturisticNav = ({ protocols, activeProtocol, onProtocolClick }) => {
                     {/* Logo in mobile menu */}
                     <div className="mb-8 relative group">
                         <img
-                            src="/images/photo_2025-05-29_09-55-50.jpg"
+                            src="/icons/logo.svg"
                             alt="Kasportal"
                             className="w-20 h-20 mx-auto mb-4 hover:scale-105 transition-transform duration-500 drop-shadow-2xl relative z-10"
                         />
