@@ -28,6 +28,10 @@ import {
     KaspaIcon,
     VisaIcon,
     MastercardIcon,
+    ApplePayIcon,
+    VenmoIcon,
+    CashAppIcon,
+    PayPalIcon,
 } from './EnhancedPaymentIcons';
 import BitcoinIcon from './BitcoinIcon';
 import EthereumIcon from './EthereumIcon';

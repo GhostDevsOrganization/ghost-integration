@@ -18,6 +18,7 @@ import ArticlePage from './components/ArticlePage'; // Import ArticlePage
 import IconComparison from './components/IconComparison'; // Import IconComparison
 import QuantumSwapEngineTest from './components/QuantumSwapEngineTest'; // Import QuantumSwapEngineTest
 import AdvancedPortal from './components/AdvancedPortal'; // Import AdvancedPortal
+import AdminDashboard from './components/AdminDashboard'; // Import AdminDashboard
 import EnhancedRadarPortalPage from './components/EnhancedRadarPortalPage'; // Import EnhancedRadarPortalPage
 import KaspaResearchPaper from './components/KaspaResearchPaper'; // Import KaspaResearchPaper
 import { ThemeProvider } from './context/ThemeContext'; // Import ThemeProvider
@@ -120,6 +121,7 @@ function App() {
           <Route path="/icon-comparison" element={<IconComparison />} />
           <Route path="/demo-backgrounds" element={<BackgroundDemoShowcase />} />
           <Route path="/test/quantum-swap" element={<QuantumSwapEngineTest />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
         </Routes>
       </div>
     </ThemeProvider>

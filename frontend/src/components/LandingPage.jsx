@@ -6,9 +6,12 @@ import QuantumPortal from './QuantumPortal';
 import FuturisticNav from './FuturisticNav';
 import EnhancedFooter from './EnhancedFooter';
 import FeatureCard from './FeatureCard';
+import useIsMobile from '../hooks/useIsMobile';
 
 import MEVProtectionVisual from './3D/MEVProtectionVisual';
 import EnhancedIPhoneMockup from './EnhancedIPhoneMockup';
+import EnhancedIPhoneMockupMobile from './EnhancedIPhoneMockupMobile';
+import BetaTestForm from './BetaTestForm';
 import {
   SwapIcon,
   WalletIcon,
@@ -30,7 +33,10 @@ import {
   ApplePayIcon,
   VisaIcon,
   MastercardIcon,
-  MobileWalletIcon
+  MobileWalletIcon,
+  VenmoIcon,
+  CashAppIcon,
+  PayPalIcon
 } from './EnhancedPaymentIcons';
 import BitcoinIcon from './BitcoinIcon';
 import EthereumIcon from './EthereumIcon';
@@ -40,12 +46,14 @@ import KASIcon from './KASIcon';
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const { themeData } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const portalRef = useRef(null);
   const [portalActive, setPortalActive] = useState(false);
   const [activeProtocol, setActiveProtocol] = useState('home');
   const [scrollY, setScrollY] = useState(0);
+  const [showBetaForm, setShowBetaForm] = useState(false);
 
   const handleProtocolChange = (protocolKey) => {
     setActiveProtocol(protocolKey);
@@ -324,8 +332,21 @@ export default function LandingPage() {
                 </p>
                 <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 sm:mb-10 animate-fade-in-up-delay backdrop-blur-sm relative z-10 leading-relaxed px-2 sm:px-0 text-gray-600 font-medium overflow-visible">
                   Your portal from traditional finance to blockchain technology, making crypto accessible to everyone
-
                 </p>
+
+                {/* Beta Signup Button */}
+                <div className="flex justify-center lg:justify-start animate-fade-in-up-delay-2">
+                  <button
+                    onClick={() => setShowBetaForm(true)}
+                    className="group relative px-8 py-4 bg-gradient-to-r from-teal-500 to-purple-500 hover:from-teal-400 hover:to-purple-400 text-white font-bold rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span className="relative z-10 flex items-center space-x-2">
+                      <span>🚀 Join Beta Program</span>
+                      <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </button>
+                </div>
 
               </div>
             </div>
@@ -395,21 +416,27 @@ export default function LandingPage() {
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
-                <ApplePayIcon size={150} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+                <div className="w-8 h-8 flex items-center justify-center">
+                  <ApplePayIcon size={32} className="drop-shadow-xl" />
+                </div>
               </div>
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">ApplePay</h3>
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
-                <VisaIcon size={75} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+                <div className="w-8 h-8 flex items-center justify-center">
+                  <VisaIcon size={32} className="drop-shadow-xl" />
+                </div>
               </div>
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Visa</h3>
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
             </div>
             <div className="group text-center p-6 sm:p-8 lg:p-10 bg-white backdrop-blur-2xl border border-gray-200 rounded-3xl hover:border-teal-300 hover:shadow-xl transition-all duration-500 transform hover:scale-105 w-full">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 relative z-10">
-                <MastercardIcon size={525} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 drop-shadow-xl" />
+                <div className="w-8 h-8 flex items-center justify-center">
+                  <MastercardIcon size={32} className="drop-shadow-xl" />
+                </div>
               </div>
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 relative z-10 text-gray-900">Mastercard</h3>
               <p className="text-base sm:text-lg relative z-10 text-gray-600 font-medium">Coming Q2 2025</p>
@@ -419,7 +446,7 @@ export default function LandingPage() {
           <div className="relative bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-200 mx-4 shadow-xl hover:shadow-2xl transition-all duration-500">
             <div className="flex justify-center overflow-hidden">
               <div className="w-full max-w-4xl">
-                <EnhancedIPhoneMockup />
+                {isMobile ? <EnhancedIPhoneMockupMobile /> : <EnhancedIPhoneMockup />}
               </div>
             </div>
           </div>
@@ -494,6 +521,12 @@ export default function LandingPage() {
       </main>
 
       <EnhancedFooter />
+
+      {/* Beta Test Form Modal */}
+      <BetaTestForm
+        isVisible={showBetaForm}
+        onClose={() => setShowBetaForm(false)}
+      />
 
       <style>{`
         @keyframes fade-in-up {

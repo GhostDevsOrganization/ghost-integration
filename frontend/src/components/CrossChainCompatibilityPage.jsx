@@ -195,7 +195,7 @@ const CrossChainCompatibilityPage = () => {
 
                     {/* Payment Apps Icons */}
                     <div className="flex justify-center mb-12">
-                        <div className="bg-white backdrop-blur-sm border border-gray-200 rounded-2xl p-4 flex gap-6 shadow-lg">
+                        <div className="bg-white backdrop-blur-sm border border-gray-200 rounded-2xl p-4 flex flex-wrap gap-6 shadow-lg">
                             <div className="flex items-center gap-3 px-6 py-3">
                                 <Smartphone className="w-6 h-6 text-blue-500" />
                                 <span className="font-semibold text-gray-800">Venmo</span>
