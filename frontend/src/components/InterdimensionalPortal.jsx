@@ -301,6 +301,13 @@ const Kasportal = () => {
             Research Paper
           </button>
           <button
+            onClick={() => window.location.href = '/architecture'}
+            className="flex items-center bg-indigo-800 hover:bg-indigo-700 text-white px-3 py-1 rounded transition-colors"
+          >
+            <Settings size={16} className="mr-1" />
+            Tech Deep Dive
+          </button>
+          <button
             onClick={connected ? disconnectWallet : connectWallet}
             className="flex items-center bg-gray-800 hover:bg-gray-700 text-white px-3 py-1 rounded transition-colors"
           >

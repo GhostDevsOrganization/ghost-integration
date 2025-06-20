@@ -6,6 +6,7 @@ import { AuthMiddleware } from './middleware/auth.middleware';
 import { ChangeNowModule } from './changenow/changenow.module';
 import { PaymentModule } from './payment/payment.module';
 import { SoundcloudModule } from './soundcloud/soundcloud.module';
+import { OracleModule } from './oracle/oracle.module';
 // import { MongooseModule } from '@nestjs/mongoose';
 import { validateEnv } from './config/env.validation';
 
@@ -25,6 +26,7 @@ import { validateEnv } from './config/env.validation';
     ChangeNowModule,
     PaymentModule,
     SoundcloudModule,
+    OracleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

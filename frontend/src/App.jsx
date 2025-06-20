@@ -9,6 +9,7 @@ import VaultsProtocol from './components/VaultsProtocol';
 import LendingProtocol from './components/LendingProtocol';
 import OracleProtocol from './components/OracleProtocol';
 import MultiSigProtocol from './components/MultiSigProtocol';
+import TechnicalArchitectureDashboard from './components/TechnicalArchitectureDashboard';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "/multisig",
     element: <MultiSigProtocol />,
+  },
+  {
+    path: "/architecture",
+    element: <TechnicalArchitectureDashboard />,
   },
   {
     path: "/admin-dashboard",
