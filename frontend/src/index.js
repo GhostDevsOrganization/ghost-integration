@@ -1,42 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'; // Import router components
 import { Buffer } from 'buffer';
 import process from 'process';
 import 'react-app-polyfill/stable';
 import './index.css';
 import './styles/mobile-fixes.css';
-import InterdimensionalPortal from './components/InterdimensionalPortal';
-import LandingPage from './components/LandingPage'; // Import the new LandingPage component
-import TokenSwappingPage from './components/TokenSwappingPage'; // Import TokenSwappingPage
-import MultiWalletSupportPage from './components/MultiWalletSupportPage'; // Import MultiWalletSupportPage
-import AdvancedAnalyticsPage from './components/AdvancedAnalyticsPage'; // Import AdvancedAnalyticsPage
-import CrossChainCompatibilityPage from './components/CrossChainCompatibilityPage'; // Import CrossChainCompatibilityPage
-import LearnPage from './components/LearnPage'; // Import LearnPage
-import BlogPage from './components/BlogPage'; // Import BlogPage
-import ArticlePage from './components/ArticlePage'; // Import ArticlePage
-import IconComparison from './components/IconComparison'; // Import IconComparison
-import QuantumSwapEngineTest from './components/QuantumSwapEngineTest'; // Import QuantumSwapEngineTest
-import AdvancedPortal from './components/AdvancedPortal'; // Import AdvancedPortal
-import AdminDashboard from './components/AdminDashboard'; // Import AdminDashboard
-import EnhancedRadarPortalPage from './components/EnhancedRadarPortalPage'; // Import EnhancedRadarPortalPage
-import KaspaResearchPaper from './components/KaspaResearchPaper'; // Import KaspaResearchPaper
-import { ThemeProvider } from './context/ThemeContext'; // Import ThemeProvider
-import BlackPortfolioChart from './components/BlackPortfolioChart';
-import BackgroundDemoShowcase from './components/BackgroundDemoShowcase'; // Import BackgroundDemoShowcase
+import App from './App'; // Import the main App component
+import { ThemeProvider } from './context/ThemeContext.jsx'; // Import ThemeProvider
 import MobileResponsiveWrapper from './components/MobileResponsiveWrapper'; // Import MobileResponsiveWrapper
 import './mobile-enhancements.js'; // Import mobile enhancements script
-
-// ScrollToTop component to handle route changes
-function ScrollToTop() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-}
 
 // Debug logging setup
 function enableMobileDebugging() {
@@ -90,52 +62,14 @@ if (window.location.search.includes('debug=true')) {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-function App() {
-  const [showAnalytics, setShowAnalytics] = useState(false);
-  const location = useLocation();
-
-  const isPortalRoute = location.pathname.startsWith('/portal');
-
-  return (
-    <ThemeProvider>
-      <div className="relative">
-        <ScrollToTop />
-        {isPortalRoute && (
-          null
-        )}
-
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/portal" element={<AdvancedPortal />} />
-          <Route path="/portal/enhanced-radar" element={<EnhancedRadarPortalPage />} />
-          <Route path="/portal/interdimensional" element={<InterdimensionalPortal />} />
-          <Route path="/swap" element={<TokenSwappingPage />} />
-          <Route path="/features/token-swapping" element={<TokenSwappingPage />} />
-          <Route path="/features/cross-chain-compatibility" element={<CrossChainCompatibilityPage />} />
-          <Route path="/features/multi-wallet-support" element={<MultiWalletSupportPage />} />
-          <Route path="/features/advanced-analytics" element={<AdvancedAnalyticsPage />} />
-          <Route path="/learn" element={<LearnPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:articleId" element={<ArticlePage />} />
-          <Route path="/research/kaspa-analysis" element={<KaspaResearchPaper />} />
-          <Route path="/icon-comparison" element={<IconComparison />} />
-          <Route path="/demo-backgrounds" element={<BackgroundDemoShowcase />} />
-          <Route path="/test/quantum-swap" element={<QuantumSwapEngineTest />} />
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        </Routes>
-      </div>
-    </ThemeProvider>
-  );
-}
-
 function renderApp() {
   root.render(
     <React.StrictMode>
-      <BrowserRouter> {/* BrowserRouter wraps the App */}
+      <ThemeProvider>
         <MobileResponsiveWrapper>
           <App />
         </MobileResponsiveWrapper>
-      </BrowserRouter>
+      </ThemeProvider>
     </React.StrictMode>
   );
 }
